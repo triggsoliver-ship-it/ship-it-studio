@@ -24,10 +24,10 @@ const PROJECTS = [
     url:"https://ajsvehicleservices.co.uk", repo:"https://github.com/triggsoliver-ship-it/AJS" },
   { name:"Man With A Whistle", tag:"Business site", g:"linear-gradient(135deg,#4a3a14,#231b08)",
     desc:"Clean marketing site for a bespoke dog trainer — services, training videos and a clear booking call-to-action.",
-    url:"", repo:"https://github.com/triggsoliver-ship-it/manwithawhistle" },
+    url:"https://manwithawhistle.co.uk", repo:"https://github.com/triggsoliver-ship-it/manwithawhistle" },
   { name:"Veles Capital", tag:"Finance", g:"linear-gradient(135deg,#243140,#0e151c)",
     desc:"Sharp, corporate brand site for Veles Capital — built to convey trust and credibility in financial services.",
-    url:"", repo:"https://github.com/triggsoliver-ship-it/Veles-Capital-" },
+    url:"https://velescapital.net", repo:"https://github.com/triggsoliver-ship-it/Veles-Capital-" },
 ];
 
 /* ---- contact ---- */
@@ -124,8 +124,8 @@ document.addEventListener('DOMContentLoaded',()=>{
         body:JSON.stringify(Object.fromEntries(new FormData(form)))});
         const data=await res.json();
         if(data.success){note.style.color='var(--accent)';note.textContent="Thanks — we'll be in touch within a day.";form.reset();}
-        else{note.style.color='#ff6b6b';note.textContent='Something went wrong. Email triggsoliver@gmail.com';}
-      }catch(err){note.style.color='#ff6b6b';note.textContent='Network error — email triggsoliver@gmail.com';}
+        else{note.style.color='#ff6b6b';note.textContent='Something went wrong. Email info@shipitstudio.co.uk';}
+      }catch(err){note.style.color='#ff6b6b';note.textContent='Network error — email info@shipitstudio.co.uk';}
     });}
 
   // PWA install
