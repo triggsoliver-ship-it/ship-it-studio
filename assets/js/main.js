@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const toggle=()=>{burger.classList.toggle('open');menu.classList.toggle('open');
       document.body.style.overflow=menu.classList.contains('open')?'hidden':'';};
     burger.addEventListener('click',toggle);
-    menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+    menu.querySelectorAll('a:not([data-install])').forEach(a=>a.addEventListener('click',()=>{
       burger.classList.remove('open');menu.classList.remove('open');document.body.style.overflow='';}));
   }
 
@@ -149,6 +149,16 @@ let deferredPrompt=null;
 function setupInstall(){
   const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone===true;
   const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+
+  // Inject an install entry into the mobile menu (the nav button is hidden on phones)
+  const menu=document.querySelector('.mobile-menu');
+  if(menu && !menu.querySelector('[data-install]')){
+    const a=document.createElement('a');
+    a.setAttribute('data-install','');
+    a.href='#'; a.className='accent'; a.textContent='Add to home screen';
+    menu.appendChild(a);
+  }
+
   const btns=[...document.querySelectorAll('[data-install]')];
 
   // Always reveal the install affordance (unless already installed)
@@ -159,6 +169,10 @@ function setupInstall(){
 
   btns.forEach(b=>b.addEventListener('click',async(ev)=>{
     ev.preventDefault();
+    // close mobile menu if it's open
+    const mm=document.querySelector('.mobile-menu.open'), bg=document.querySelector('.burger.open');
+    if(mm){mm.classList.remove('open');document.body.style.overflow='';}
+    if(bg)bg.classList.remove('open');
     if(deferredPrompt){
       deferredPrompt.prompt();
       await deferredPrompt.userChoice;
@@ -172,27 +186,24 @@ function setupInstall(){
     btns.forEach(b=>{b.style.display='none';});
     document.querySelectorAll('[data-install-note]').forEach(n=>n.textContent='Installed — check your home screen! 🎉');
   });
+
+  // One-time bottom banner on iOS Safari (where there's no install prompt at all)
+  if(isIOS && !isStandalone) showIosBanner();
 }
 
-function showInstallHelp(isIOS){
-  if(document.getElementById('sis-install-modal')) return;
-  const steps = isIOS
-    ? "Tap the <b>Share</b> icon (the square with an up-arrow) in your browser bar, scroll down and choose <b>“Add to Home Screen”</b>."
-    : "Open your browser menu (the <b>⋮</b> or <b>⋯</b> button) and choose <b>“Install app”</b> or <b>“Add to Home screen”</b>. On desktop Chrome you can also click the install icon in the address bar.";
-  const m=document.createElement('div');
-  m.id='sis-install-modal';
-  m.style.cssText='position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.62);backdrop-filter:blur(6px);padding:20px';
-  m.innerHTML=`<div style="max-width:390px;background:#0f1416;border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:30px;text-align:center;font-family:Inter,system-ui,sans-serif">
-    <img src="/assets/icon-192.png" width="74" height="74" alt="" style="border-radius:18px;margin:0 auto 16px;box-shadow:0 10px 30px rgba(0,0,0,.5)"/>
-    <h3 style="font-family:'Space Grotesk',sans-serif;color:#f2f7f5;font-size:21px;margin:0 0 12px">Add to your home screen</h3>
-    <p style="color:#8b9894;font-size:15px;line-height:1.55;margin:0 0 22px">${steps}</p>
-    <button id="sis-install-close" style="background:#2BE38A;color:#03130b;border:0;font-weight:600;padding:13px 26px;border-radius:999px;cursor:pointer;font-size:15px">Got it</button>
-  </div>`;
-  document.body.appendChild(m);
-  const close=()=>m.remove();
-  m.addEventListener('click',e=>{if(e.target===m)close();});
-  m.querySelector('#sis-install-close').addEventListener('click',close);
+function showIosBanner(){
+  try{ if(localStorage.getItem('sis-ios-hide')) return; }catch(e){}
+  if(document.getElementById('sis-ios-banner')) return;
+  const bar=document.createElement('div');
+  bar.id='sis-ios-banner';
+  bar.style.cssText='position:fixed;left:12px;right:12px;bottom:12px;z-index:150;background:#0f1416;border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:13px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 14px 40px rgba(0,0,0,.55);font-family:Inter,system-ui,sans-serif';
+  bar.innerHTML=`<img src="/assets/icon-192.png" width="40" height="40" alt="" style="border-radius:10px;flex:none"/>
+    <div style="flex:1;color:#f2f7f5;font-size:13.5px;line-height:1.4">Add <b>Ship It Studio</b> to your home screen — tap <b>Share</b> then <b>“Add to Home Screen”</b>.</div>
+    <button id="sis-ios-x" aria-label="Dismiss" style="flex:none;background:none;border:0;color:#8b9894;font-size:24px;line-height:1;cursor:pointer;padding:2px 6px">×</button>`;
+  document.body.appendChild(bar);
+  bar.querySelector('#sis-ios-x').addEventListener('click',()=>{bar.remove();try{localStorage.setItem('sis-ios-hide','1');}catch(e){}});
 }
+
 function registerSW(){
   if('serviceWorker' in navigator){
     window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));
