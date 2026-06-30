@@ -147,20 +147,51 @@ function animateCount(el){
 /* ---- PWA: install button + service worker ---- */
 let deferredPrompt=null;
 function setupInstall(){
-  const btns=document.querySelectorAll('[data-install]');
-  window.addEventListener('beforeinstallprompt',e=>{
-    e.preventDefault();deferredPrompt=e;
-    btns.forEach(b=>{b.style.display='inline-flex';});
-  });
-  btns.forEach(b=>b.addEventListener('click',async()=>{
-    if(!deferredPrompt){
-      alert("To install: open the browser menu and choose “Add to Home Screen” / “Install app”.");return;}
-    deferredPrompt.prompt();
-    await deferredPrompt.userChoice;deferredPrompt=null;
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone===true;
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  const btns=[...document.querySelectorAll('[data-install]')];
+
+  // Always reveal the install affordance (unless already installed)
+  if(!isStandalone) btns.forEach(b=>{b.style.display='';});
+
+  // Capture Chrome/Android automatic prompt when offered
+  window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;});
+
+  btns.forEach(b=>b.addEventListener('click',async(ev)=>{
+    ev.preventDefault();
+    if(deferredPrompt){
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt=null;
+      return;
+    }
+    showInstallHelp(isIOS); // iOS Safari + desktop fallback
   }));
+
   window.addEventListener('appinstalled',()=>{
+    btns.forEach(b=>{b.style.display='none';});
     document.querySelectorAll('[data-install-note]').forEach(n=>n.textContent='Installed — check your home screen! 🎉');
   });
+}
+
+function showInstallHelp(isIOS){
+  if(document.getElementById('sis-install-modal')) return;
+  const steps = isIOS
+    ? "Tap the <b>Share</b> icon (the square with an up-arrow) in your browser bar, scroll down and choose <b>“Add to Home Screen”</b>."
+    : "Open your browser menu (the <b>⋮</b> or <b>⋯</b> button) and choose <b>“Install app”</b> or <b>“Add to Home screen”</b>. On desktop Chrome you can also click the install icon in the address bar.";
+  const m=document.createElement('div');
+  m.id='sis-install-modal';
+  m.style.cssText='position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.62);backdrop-filter:blur(6px);padding:20px';
+  m.innerHTML=`<div style="max-width:390px;background:#0f1416;border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:30px;text-align:center;font-family:Inter,system-ui,sans-serif">
+    <img src="/assets/icon-192.png" width="74" height="74" alt="" style="border-radius:18px;margin:0 auto 16px;box-shadow:0 10px 30px rgba(0,0,0,.5)"/>
+    <h3 style="font-family:'Space Grotesk',sans-serif;color:#f2f7f5;font-size:21px;margin:0 0 12px">Add to your home screen</h3>
+    <p style="color:#8b9894;font-size:15px;line-height:1.55;margin:0 0 22px">${steps}</p>
+    <button id="sis-install-close" style="background:#2BE38A;color:#03130b;border:0;font-weight:600;padding:13px 26px;border-radius:999px;cursor:pointer;font-size:15px">Got it</button>
+  </div>`;
+  document.body.appendChild(m);
+  const close=()=>m.remove();
+  m.addEventListener('click',e=>{if(e.target===m)close();});
+  m.querySelector('#sis-install-close').addEventListener('click',close);
 }
 function registerSW(){
   if('serviceWorker' in navigator){
