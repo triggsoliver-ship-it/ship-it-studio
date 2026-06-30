@@ -1,0 +1,169 @@
+/* ============================================================
+   SHIP IT STUDIO — shared scripts
+   ============================================================ */
+
+/* ---- project data (shared across pages) ---- */
+const PROJECTS = [
+  { name:"Car Events Near Me", tag:"Platform", g:"linear-gradient(135deg,#123a6b,#0a1a33)",
+    desc:"Search-and-book platform for every UK car event — filter by region, date and price, then book direct. Next.js + Stripe.",
+    url:"https://careventsnearme.uk", repo:"https://github.com/triggsoliver-ship-it/Car-Events-Near-Me-" },
+  { name:"GenoVaq", tag:"Marketplace", g:"linear-gradient(135deg,#3a1f6b,#1a0d33)",
+    desc:"Global marketplace for animal breeding genetics. Verified sellers, KYC and Stripe Connect with automatic 10% commission.",
+    url:"", private:true, repo:"" },
+  { name:"Prime Origins Atlas", tag:"Marketplace", g:"linear-gradient(135deg,#0e4d39,#06231a)",
+    desc:"Verified carbon-credit marketplace. Browse by registry & vintage, buy with Stripe Checkout, 4% platform fee.",
+    url:"https://primeoriginsatlas.org", repo:"https://github.com/triggsoliver-ship-it/prime-origins-atlas" },
+  { name:"Prime Origins Global", tag:"Brand site", g:"linear-gradient(135deg,#14463a,#08231c)",
+    desc:"Corporate brand site for Prime Origins — the story, mission and offering behind the carbon platform.",
+    url:"https://primeoriginsglobal.org", repo:"https://github.com/triggsoliver-ship-it/prime-origins-global" },
+  { name:"Bromspec Motorworks", tag:"Business site", g:"linear-gradient(135deg,#5a1d1d,#2a0c0c)",
+    desc:"Dark, premium multi-page site for a performance garage. Auto-loading gallery, brands strip, enquiry form.",
+    url:"https://bromspec.co.uk", repo:"https://github.com/triggsoliver-ship-it/Bromspec" },
+  { name:"AJS Vehicle Services", tag:"Business site", g:"linear-gradient(135deg,#0e4458,#06222c)",
+    desc:"Fast one-page site for an independent garage in Andover. WhatsApp lead capture, gallery lightbox, click-to-call.",
+    url:"https://ajsvehicleservices.co.uk", repo:"https://github.com/triggsoliver-ship-it/AJS" },
+  { name:"Man With A Whistle", tag:"Business site", g:"linear-gradient(135deg,#4a3a14,#231b08)",
+    desc:"Clean marketing site for a bespoke dog trainer — services, training videos and a clear booking call-to-action.",
+    url:"", repo:"https://github.com/triggsoliver-ship-it/manwithawhistle" },
+  { name:"Veles Capital", tag:"Finance", g:"linear-gradient(135deg,#243140,#0e151c)",
+    desc:"Sharp, corporate brand site for Veles Capital — built to convey trust and credibility in financial services.",
+    url:"", repo:"https://github.com/triggsoliver-ship-it/Veles-Capital-" },
+];
+
+/* ---- contact ---- */
+const WHATSAPP = "447926186207";
+const WA_MSG = "Hi Ship It Studio — I'd like a website.";
+const WA_HREF = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(WA_MSG)}`;
+
+/* ---- render project cards into any #work-grid ---- */
+function renderProjects(limit){
+  const grid = document.getElementById('work-grid');
+  if(!grid) return;
+  const list = limit ? PROJECTS.slice(0,limit) : PROJECTS;
+  grid.innerHTML = list.map(p=>{
+    let link;
+    if(p.private) link = '<span class="soon">🔒 Private — demo on request</span>';
+    else if(p.url) link = `<a class="visit" href="${p.url}" target="_blank" rel="noopener">Visit live site →</a>`;
+    else link = '<span class="soon">Live link coming soon</span>';
+    return `<article class="pcard reveal">
+      <div class="thumb" style="background:${p.g}">
+        <span class="tag">${p.tag}</span><h3>${p.name}</h3>
+      </div>
+      <div class="body"><p>${p.desc}</p><div class="links">${link}</div></div>
+    </article>`;
+  }).join('');
+}
+
+/* ---- boot ---- */
+document.addEventListener('DOMContentLoaded',()=>{
+  // wire whatsapp links
+  document.querySelectorAll('[data-wa]').forEach(a=>a.href=WA_HREF);
+
+  // year
+  const yr=document.getElementById('yr'); if(yr) yr.textContent=new Date().getFullYear();
+
+  // sticky nav
+  const nav=document.querySelector('.nav');
+  const onScroll=()=>nav&&nav.classList.toggle('scrolled',window.scrollY>20);
+  onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+
+  // mobile menu
+  const burger=document.querySelector('.burger');
+  const menu=document.querySelector('.mobile-menu');
+  if(burger&&menu){
+    const toggle=()=>{burger.classList.toggle('open');menu.classList.toggle('open');
+      document.body.style.overflow=menu.classList.contains('open')?'hidden':'';};
+    burger.addEventListener('click',toggle);
+    menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+      burger.classList.remove('open');menu.classList.remove('open');document.body.style.overflow='';}));
+  }
+
+  // render projects (data-limit attr controls count)
+  const grid=document.getElementById('work-grid');
+  if(grid){const lim=grid.dataset.limit?parseInt(grid.dataset.limit):0;renderProjects(lim||0);}
+
+  // reveal on scroll
+  const io=new IntersectionObserver((es)=>{es.forEach((e,i)=>{
+    if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),(e.target.dataset.delay||0)*1);io.unobserve(e.target);}});},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // count-up stats
+  const counters=document.querySelectorAll('[data-count]');
+  const cio=new IntersectionObserver((es)=>{es.forEach(e=>{
+    if(e.isIntersecting){animateCount(e.target);cio.unobserve(e.target);}});},{threshold:.5});
+  counters.forEach(c=>cio.observe(c));
+
+  // service card glow follows cursor
+  document.querySelectorAll('.svc').forEach(card=>{
+    card.addEventListener('mousemove',ev=>{const r=card.getBoundingClientRect();
+      card.style.setProperty('--mx',(ev.clientX-r.left)+'px');
+      card.style.setProperty('--my',(ev.clientY-r.top)+'px');});
+  });
+
+  // tilt on project cards
+  document.querySelectorAll('.pcard').forEach(card=>{
+    card.addEventListener('mousemove',ev=>{const r=card.getBoundingClientRect();
+      const rx=((ev.clientY-r.top)/r.height-.5)*-6, ry=((ev.clientX-r.left)/r.width-.5)*6;
+      card.style.transform=`perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;});
+    card.addEventListener('mouseleave',()=>card.style.transform='');
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(q=>q.addEventListener('click',()=>{
+    q.parentElement.classList.toggle('open');}));
+
+  // contact form (Web3Forms)
+  const form=document.getElementById('contact-form');
+  if(form){const note=document.getElementById('formnote');
+    form.addEventListener('submit',async e=>{e.preventDefault();
+      const key=form.querySelector('[name=access_key]').value;
+      if(key.includes('REPLACE_WITH')){note.style.color='#e0a800';note.textContent='Form not yet activated — add your Web3Forms key.';return;}
+      note.style.color='var(--muted)';note.textContent='Sending…';
+      try{const res=await fetch('https://api.web3forms.com/submit',{method:'POST',
+        headers:{'Content-Type':'application/json',Accept:'application/json'},
+        body:JSON.stringify(Object.fromEntries(new FormData(form)))});
+        const data=await res.json();
+        if(data.success){note.style.color='var(--accent)';note.textContent="Thanks — we'll be in touch within a day.";form.reset();}
+        else{note.style.color='#ff6b6b';note.textContent='Something went wrong. Email triggsoliver@gmail.com';}
+      }catch(err){note.style.color='#ff6b6b';note.textContent='Network error — email triggsoliver@gmail.com';}
+    });}
+
+  // PWA install
+  setupInstall();
+  registerSW();
+});
+
+function animateCount(el){
+  const target=parseFloat(el.dataset.count);
+  const suffix=el.dataset.suffix||'';
+  const dur=1400,start=performance.now();
+  const step=now=>{const p=Math.min((now-start)/dur,1);
+    const val=target*(1-Math.pow(1-p,3));
+    el.textContent=(target%1?val.toFixed(0):Math.round(val))+suffix;
+    if(p<1)requestAnimationFrame(step);};
+  requestAnimationFrame(step);
+}
+
+/* ---- PWA: install button + service worker ---- */
+let deferredPrompt=null;
+function setupInstall(){
+  const btns=document.querySelectorAll('[data-install]');
+  window.addEventListener('beforeinstallprompt',e=>{
+    e.preventDefault();deferredPrompt=e;
+    btns.forEach(b=>{b.style.display='inline-flex';});
+  });
+  btns.forEach(b=>b.addEventListener('click',async()=>{
+    if(!deferredPrompt){
+      alert("To install: open the browser menu and choose “Add to Home Screen” / “Install app”.");return;}
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;deferredPrompt=null;
+  }));
+  window.addEventListener('appinstalled',()=>{
+    document.querySelectorAll('[data-install-note]').forEach(n=>n.textContent='Installed — check your home screen! 🎉');
+  });
+}
+function registerSW(){
+  if('serviceWorker' in navigator){
+    window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));
+  }
+}
