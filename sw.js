@@ -1,5 +1,5 @@
 /* Ship It Studio — minimal service worker (enables installability + offline shell) */
-const CACHE = 'sis-v1';
+const CACHE = 'sis-v2';
 const ASSETS = [
   '/', '/index.html', '/work.html', '/services.html', '/pricing.html', '/contact.html',
   '/assets/css/style.css', '/assets/js/main.js',
