@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rosies Aesthetics — Aesthetics Clinic, Nailsea</title>
+<meta name="description" content="Natural, confidence-boosting aesthetic treatments in Nailsea. Anti-wrinkle, dermal fillers, skin boosters and more. Rated 4.7. Book your consultation with Rosies Aesthetics." />
+<meta name="theme-color" content="#ffffff" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#ffffff; --bg2:#faf6f5; --card:#ffffff; --ink:#161215; --soft:#6b6167;
+    --muted:#9a8f95; --line:#eee7e8; --accent:#c67e88; --accent-d:#a85f6a; --ease:cubic-bezier(.2,.7,.2,1); --maxw:1160px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-weight:400;line-height:1.62;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  h1,h2,h3{font-family:'Poppins',sans-serif;font-weight:600;letter-spacing:-.02em;line-height:1.08}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-family:'Poppins';font-weight:500;font-size:14px;letter-spacing:.02em;padding:15px 30px;border-radius:999px;border:1px solid transparent;cursor:pointer;transition:.3s var(--ease);white-space:nowrap}
+  .btn-primary{background:var(--ink);color:#fff}
+  .btn-primary:hover{background:var(--accent-d);transform:translateY(-2px)}
+  .btn-blush{background:var(--accent);color:#fff}
+  .btn-blush:hover{background:var(--accent-d);transform:translateY(-2px)}
+  .btn-outline{background:transparent;border-color:var(--ink);color:var(--ink)}
+  .btn-outline:hover{background:var(--ink);color:#fff}
+  .btn-light{background:#fff;color:var(--ink);border-color:var(--line)}
+  .kick{font-family:'Poppins';font-weight:500;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent-d)}
+
+  .nav{position:absolute;top:0;left:0;right:0;z-index:50}
+  .nav.stuck{position:fixed;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:80px}
+  .brand{font-family:'Poppins';font-weight:600;font-size:22px;letter-spacing:-.01em;line-height:1}
+  .brand small{display:block;font-family:'Inter';font-weight:400;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--soft);margin-top:4px}
+  .nav.light .brand,.nav.light .nav-links a{color:#fff}
+  .nav.stuck .brand,.nav.stuck .nav-links a{color:var(--ink)}
+  .nav-links{display:flex;gap:32px;align-items:center}
+  .nav-links a{font-family:'Inter';font-size:14px;opacity:.9;transition:.2s}
+  .nav-links a:hover{opacity:1;color:var(--accent)}
+  @media(max-width:900px){.nav-links{display:none}}
+
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;color:#fff;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;z-index:0}
+  .hero-bg img{width:100%;height:100%;object-fit:cover}
+  .hero-bg:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(22,18,21,.5),rgba(22,18,21,.12) 55%,transparent)}
+  .hero .wrap{position:relative;z-index:1;padding:120px 24px 60px}
+  .hero .kick{color:#f4d9dd}
+  .hero h1{font-size:clamp(42px,7.5vw,86px);max-width:15ch;margin:18px 0 0;font-weight:600}
+  .hero p.lead{font-family:'Inter';font-weight:300;font-size:clamp(17px,2vw,20px);max-width:44ch;margin:22px 0 32px;color:#f3ecee}
+  .hero-cta{display:flex;gap:13px;flex-wrap:wrap}
+  .hero-cta .btn-primary{background:#fff;color:var(--ink)}
+  .hero-cta .btn-primary:hover{background:var(--accent);color:#fff}
+  .hero-cta .btn-outline{border-color:rgba(255,255,255,.6);color:#fff}
+  .hero-cta .btn-outline:hover{background:#fff;color:var(--ink)}
+  .hero-rating{margin-top:38px;font-family:'Inter';font-size:14px;color:#f3ecee}
+  .hero-rating .s{color:#f0b6bd;letter-spacing:2px}
+
+  .trustbar{background:var(--bg2);border-bottom:1px solid var(--line)}
+  .trustbar .wrap{display:flex;justify-content:space-around;flex-wrap:wrap;gap:16px;padding:20px 0;text-align:center}
+  .trustbar .t{font-family:'Inter';font-size:13.5px;letter-spacing:.03em;color:var(--soft);font-weight:500}
+  .trustbar .t b{color:var(--accent-d)}
+
+  section.sec{padding:110px 0}
+  .center{text-align:center;max-width:640px;margin:0 auto 58px}
+  .center h2{font-size:clamp(32px,5vw,52px);margin-top:14px;font-weight:600}
+  .center p{color:var(--soft);font-size:17px;margin-top:14px;font-weight:300}
+  .divider{width:50px;height:2px;background:var(--accent);margin:18px auto 0;border-radius:2px}
+
+  .tx-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:860px){.tx-grid{grid-template-columns:1fr}}
+  .tx{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:34px 28px;transition:.3s var(--ease)}
+  .tx:hover{transform:translateY(-6px);box-shadow:0 22px 44px rgba(22,18,21,.07);border-color:#f0dfe1}
+  .tx .n{font-family:'Poppins';font-size:15px;color:var(--accent);font-weight:600}
+  .tx h3{font-size:22px;margin:8px 0 10px;font-weight:600}
+  .tx p{color:var(--soft);font-size:15px;font-weight:300}
+  .tx .from{margin-top:14px;font-family:'Poppins';font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-d)}
+
+  .about{display:grid;grid-template-columns:0.92fr 1.08fr;gap:54px;align-items:center}
+  @media(max-width:860px){.about{grid-template-columns:1fr;gap:30px}}
+  .about img{border-radius:16px;width:100%}
+  .about h2{font-size:clamp(30px,4.4vw,48px);margin:14px 0 6px;font-weight:600}
+  .about p{color:var(--soft);font-size:16.5px;margin-top:14px;font-weight:300}
+  .creds{display:flex;gap:26px;margin-top:26px;flex-wrap:wrap}
+  .creds .c b{font-family:'Poppins';font-size:28px;display:block;color:var(--ink)}
+  .creds .c span{font-family:'Inter';font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+  .quote{background:var(--bg2);text-align:center}
+  .quote .big{font-family:'Poppins';font-size:clamp(24px,3.6vw,38px);font-weight:500;max-width:24ch;margin:0 auto;line-height:1.3}
+  .quote .s{color:var(--accent);letter-spacing:4px;font-size:20px;margin:20px 0 10px}
+  .quote .who{font-family:'Inter';font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+  .book{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:20px;overflow:hidden}
+  @media(max-width:860px){.book{grid-template-columns:1fr}}
+  .book .left{background:var(--ink);color:#efe7e9;padding:52px 44px}
+  .book .left h2{color:#fff;font-size:clamp(28px,4vw,44px);font-weight:600}
+  .book .left p{color:#d8ccd0;font-weight:300;margin-top:14px}
+  .book .contact{margin-top:26px}
+  .book .contact a{display:flex;align-items:center;gap:13px;padding:14px 0;border-top:1px solid rgba(255,255,255,.14);color:#efe7e9;font-family:'Inter';font-size:15px}
+  .book .contact a:hover{color:var(--accent)}
+  .book .contact svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:1.6}
+  .book .right{background:var(--card);padding:52px 44px}
+  form label{display:block;font-family:'Poppins';font-size:12px;letter-spacing:.05em;color:var(--muted);margin:16px 0 7px;font-weight:500}
+  form input,form select,form textarea{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:13px 14px;color:var(--ink);font-family:'Inter';font-size:15px;transition:.2s}
+  form input:focus,form select,form textarea:focus{outline:none;border-color:var(--accent)}
+  form textarea{resize:vertical;min-height:88px}
+  form button{margin-top:22px;width:100%;justify-content:center}
+  .formnote{font-family:'Inter';font-size:13px;margin-top:12px;text-align:center;color:var(--muted);min-height:18px}
+
+  footer{background:var(--ink);color:#d8ccd0;padding:54px 0 36px}
+  .foot-top{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+  .foot-top .brand{color:#fff}
+  .foot-top a:hover{color:var(--accent)}
+  .foot-credit{margin-top:32px;padding-top:22px;border-top:1px solid rgba(255,255,255,.14);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:'Inter';font-size:12.5px;color:#b6a9ae}
+  .foot-credit a{color:var(--accent)}
+
+  .float{position:fixed;right:20px;bottom:20px;z-index:60}
+  .float a{display:inline-flex;background:var(--accent);color:#fff;font-family:'Poppins';font-size:13px;padding:14px 24px;border-radius:999px;box-shadow:0 12px 30px rgba(198,126,136,.4);transition:.2s}
+  .float a:hover{background:var(--accent-d);transform:translateY(-2px)}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:.8s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header class="nav light"><div class="wrap">
+  <a class="brand" href="#top">Rosies Aesthetics<small>Nailsea</small></a>
+  <nav class="nav-links">
+    <a href="#treatments">Treatments</a><a href="#about">About</a><a href="#reviews">Reviews</a><a href="#book">Book</a>
+  </nav>
+  <a class="btn btn-light" href="#book">Book consultation</a>
+</div></header>
+
+<a id="top"></a>
+
+<section class="hero">
+  <div class="hero-bg"><img src="/demos/rosies-aesthetics/hero.png" alt="Modern aesthetics clinic" /></div>
+  <div class="wrap">
+    <span class="kick">Aesthetics Clinic · Nailsea</span>
+    <h1>Look like you, refreshed.</h1>
+    <p class="lead">Natural, confidence-boosting aesthetic treatments in a modern, welcoming clinic — subtle results, expertly delivered.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#book">Book a consultation</a>
+      <a class="btn btn-outline" href="#treatments">View treatments</a>
+    </div>
+    <div class="hero-rating"><span class="s">★★★★★</span> Rated 4.7 from 51 Google reviews</div>
+  </div>
+</section>
+
+<div class="trustbar"><div class="wrap">
+  <div class="t"><b>4.7★</b> 51 reviews</div>
+  <div class="t">Fully qualified &amp; insured</div>
+  <div class="t">Free, no-pressure consultations</div>
+  <div class="t">4 Southfield Road, Nailsea</div>
+</div></div>
+
+<section class="sec" id="treatments"><div class="wrap">
+  <div class="center reveal"><span class="kick">The Menu</span><h2>Treatments</h2><div class="divider"></div>
+    <p>Every treatment starts with a proper consultation, so you always know what to expect. Indicative prices — confirmed at consultation.</p></div>
+  <div class="tx-grid">
+    <div class="tx reveal"><div class="n">01</div><h3>Anti-Wrinkle</h3><p>Soften lines on the forehead, frown and around the eyes for a fresh, natural look.</p><div class="from">From £150</div></div>
+    <div class="tx reveal"><div class="n">02</div><h3>Lip Enhancement</h3><p>Naturally balanced lips — subtle definition or a little more volume, always tasteful.</p><div class="from">From £160</div></div>
+    <div class="tx reveal"><div class="n">03</div><h3>Dermal Fillers</h3><p>Restore volume and definition to cheeks, jawline and chin for a refreshed profile.</p><div class="from">From £190</div></div>
+    <div class="tx reveal"><div class="n">04</div><h3>Skin Boosters</h3><p>Deep hydration and glow that improves skin quality from within for a radiant finish.</p><div class="from">From £200</div></div>
+    <div class="tx reveal"><div class="n">05</div><h3>Microneedling</h3><p>Stimulate collagen to smooth texture, fine lines and scarring for fresher skin.</p><div class="from">From £85</div></div>
+    <div class="tx reveal"><div class="n">06</div><h3>Consultation</h3><p>Not sure where to start? A relaxed, honest chat about your goals and the right plan.</p><div class="from">Complimentary</div></div>
+  </div>
+</div></section>
+
+<section class="sec" id="about" style="background:var(--bg2)"><div class="wrap">
+  <div class="about">
+    <div class="reveal"><img src="/demos/rosies-aesthetics/skin.png" alt="Natural glowing skin result" /></div>
+    <div class="reveal">
+      <span class="kick">About Rosies</span>
+      <h2>Natural results, delivered with care.</h2>
+      <p>At Rosies Aesthetics, it's all about enhancing your natural features — never overdone. Our clients come back because they feel genuinely looked after: honest advice, a gentle approach, and beautiful, subtle results.</p>
+      <p>Every appointment is unhurried and private, right here in the heart of Nailsea.</p>
+      <div class="creds">
+        <div class="c"><b>4.7★</b><span>Google rated</span></div>
+        <div class="c"><b>51+</b><span>Happy clients</span></div>
+        <div class="c"><b>Fully</b><span>Qualified &amp; insured</span></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec quote reveal"><div class="wrap">
+  <div class="s">★★★★★</div>
+  <p class="big">“Friendly, clean and professional — natural results and I always feel at ease.”</p>
+  <div class="who">— Google review</div>
+</div></section>
+
+<section class="sec" id="reviews"><div class="wrap">
+  <div class="center reveal"><span class="kick">Kind words</span><h2>Loved by clients</h2><div class="divider"></div></div>
+  <div class="tx-grid">
+    <div class="tx reveal"><div class="s" style="color:var(--accent)">★★★★★</div><p style="margin-top:8px;font-size:16px;color:var(--ink)">“Natural, beautiful results. I wouldn't go anywhere else in Nailsea.”</p><div class="from">— Verified client</div></div>
+    <div class="tx reveal"><div class="s" style="color:var(--accent)">★★★★★</div><p style="margin-top:8px;font-size:16px;color:var(--ink)">“So reassuring and professional. My lips look subtle and exactly right.”</p><div class="from">— Google review</div></div>
+    <div class="tx reveal"><div class="s" style="color:var(--accent)">★★★★★</div><p style="margin-top:8px;font-size:16px;color:var(--ink)">“Lovely clinic, always spotless, and I leave feeling my best.”</p><div class="from">— Verified client</div></div>
+  </div>
+  <p style="text-align:center;color:var(--muted);font-size:13px;margin-top:20px;font-family:'Inter'">A sample of real feedback — your live Google reviews can display here.</p>
+</div></section>
+
+<section class="sec" id="book" style="padding-top:0"><div class="wrap reveal">
+  <div class="book">
+    <div class="left">
+      <span class="kick" style="color:var(--accent)">Get in touch</span>
+      <h2>Book your consultation</h2>
+      <p>Tell us what you're interested in and we'll be in touch to arrange your appointment. All consultations are relaxed and pressure-free.</p>
+      <div class="contact">
+        <a href="#"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg> hello@rosiesaesthetics.co.uk</a>
+        <a href="#"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg> @rosiesaesthetics</a>
+        <a href="#"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5.4-7-11a7 7 0 0 1 14 0c0 5.6-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> 4 Southfield Road, Nailsea</a>
+      </div>
+    </div>
+    <div class="right">
+      <form id="contact-form">
+        <label>Name</label><input type="text" name="name" required placeholder="Your name" />
+        <label>Email or phone</label><input type="text" name="contact" required placeholder="How can we reach you?" />
+        <label>Treatment of interest</label>
+        <select name="treatment"><option>Not sure — I'd like advice</option><option>Anti-wrinkle</option><option>Lip enhancement</option><option>Dermal fillers</option><option>Skin boosters</option><option>Microneedling</option></select>
+        <label>Message</label><textarea name="message" placeholder="Anything you'd like us to know…"></textarea>
+        <button type="submit" class="btn btn-blush">Request my consultation</button>
+        <div class="formnote" id="formnote"></div>
+      </form>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="foot-top">
+    <div style="max-width:320px"><div class="brand">Rosies Aesthetics<small style="color:#b6a9ae">Nailsea</small></div>
+      <p style="margin-top:14px;font-weight:300;color:#cabfc3">Natural, confidence-boosting aesthetic treatments in a modern, welcoming clinic. Rated 4.7 from 51 reviews.</p></div>
+    <div style="font-family:'Inter';font-size:14.5px;line-height:2"><div style="font-family:'Poppins';font-size:19px;color:#fff;margin-bottom:6px">Visit</div>4 Southfield Road<br>Nailsea, BS48<br><a href="#">@rosiesaesthetics</a></div>
+  </div>
+  <div class="foot-credit"><span>© <span id="yr"></span> Rosies Aesthetics</span><span>Concept design by <a href="https://shipitstudio.co.uk" target="_blank" rel="noopener">Ship It Studio</a></span></div>
+</div></footer>
+
+<div class="float"><a href="#book">Book consultation</a></div>
+
+<script>
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  const nav=document.querySelector('.nav');
+  const onScroll=()=>{if(window.scrollY>60){nav.classList.add('stuck');nav.classList.remove('light');}else{nav.classList.remove('stuck');nav.classList.add('light');}};
+  onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+  const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}}),{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  const f=document.getElementById('contact-form'),n=document.getElementById('formnote');
+  f.addEventListener('submit',e=>{e.preventDefault();n.style.color='var(--accent-d)';n.textContent='Thank you — this is a demo form. Once live, enquiries arrive straight in your inbox.';f.reset();});
+</script>
+</body>
+</html>
