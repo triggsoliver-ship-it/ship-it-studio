@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Eco Steam Interior Valet — Mobile Steam Valeting, Andover</title>
+<meta name="description" content="Premium mobile steam valeting in Andover. We come to you. Interior deep-clean, sanitise and protect using eco steam — showroom-fresh results. Rated 5.0 from 96 reviews." />
+<meta name="theme-color" content="#0a0e12" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0a0e12; --bg2:#0e141a; --card:#121a22; --line:rgba(255,255,255,.09);
+    --line2:rgba(255,255,255,.16); --text:#eef4f8; --muted:#94a4b1;
+    --accent:#19c9ff; --accent2:#4be3c0; --ease:cubic-bezier(.2,.7,.2,1); --maxw:1180px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  h1,h2,h3{font-family:'Sora',sans-serif;font-weight:700;letter-spacing:-.02em;line-height:1.05}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .accent{color:var(--accent)}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:15px;padding:14px 26px;border-radius:12px;border:1px solid transparent;cursor:pointer;transition:.25s var(--ease);white-space:nowrap}
+  .btn svg{width:18px;height:18px}
+  .btn-primary{background:linear-gradient(120deg,var(--accent),var(--accent2));color:#03121a;box-shadow:0 10px 30px rgba(25,201,255,.28)}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 44px rgba(25,201,255,.45)}
+  .btn-ghost{background:rgba(255,255,255,.05);border-color:var(--line2);color:var(--text)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
+
+  /* top bar */
+  .topbar{background:#070a0d;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:40px;gap:12px}
+  .topbar a{color:var(--text);font-weight:600}
+  .topbar .star{color:#ffca3a}
+  @media(max-width:640px){.topbar .hideS{display:none}}
+
+  /* nav */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(10,14,18,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:11px;font-family:'Sora';font-weight:800;font-size:18px;letter-spacing:-.01em}
+  .brand .logo{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;color:#03121a}
+  .brand .logo svg{width:22px;height:22px}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{color:var(--muted);font-size:15px;font-weight:500;transition:.15s}
+  .nav-links a:hover{color:var(--text)}
+  @media(max-width:860px){.nav-links{display:none}}
+
+  /* hero */
+  .hero{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;z-index:0}
+  .hero-bg img{width:100%;height:100%;object-fit:cover}
+  .hero-bg:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,11,14,.94),rgba(8,11,14,.72) 45%,rgba(8,11,14,.35))}
+  .hero .wrap{position:relative;z-index:1;padding-top:70px;padding-bottom:70px}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);background:rgba(25,201,255,.1);border:1px solid rgba(25,201,255,.28);padding:7px 15px;border-radius:999px;margin-bottom:24px}
+  .hero h1{font-size:clamp(38px,6.4vw,74px);max-width:16ch}
+  .hero h1 .g{background:linear-gradient(120deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.lead{color:#cdd8e0;font-size:clamp(17px,2.1vw,21px);max-width:52ch;margin:22px 0 30px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-chips{display:flex;gap:26px;margin-top:44px;flex-wrap:wrap}
+  .chip b{font-family:'Sora';font-size:24px;display:block}
+  .chip span{color:var(--muted);font-size:13px}
+
+  /* trust strip */
+  .trust{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .trust .wrap{display:flex;justify-content:space-around;gap:20px;padding:22px 0;flex-wrap:wrap;text-align:center}
+  .trust .t{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:14.5px;font-weight:500}
+  .trust .t svg{width:22px;height:22px;stroke:var(--accent);fill:none;stroke-width:1.8}
+
+  section.sec{padding:88px 0}
+  .kick{color:var(--accent);font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+  .sec-head{max-width:640px;margin-bottom:46px}
+  .sec-head h2{font-size:clamp(28px,4.4vw,44px);margin-top:12px}
+  .sec-head p{color:var(--muted);font-size:17px;margin-top:14px}
+
+  /* services */
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:860px){.svc-grid{grid-template-columns:1fr}}
+  .svc{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px 24px;transition:.25s var(--ease)}
+  .svc:hover{transform:translateY(-6px);border-color:var(--line2)}
+  .svc .ic{width:50px;height:50px;border-radius:12px;background:rgba(25,201,255,.12);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+  .svc .ic svg{width:26px;height:26px;stroke:var(--accent);fill:none;stroke-width:1.7}
+  .svc h3{font-size:19px;margin-bottom:9px}
+  .svc p{color:var(--muted);font-size:14.5px}
+
+  /* why steam split */
+  .split{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
+  @media(max-width:860px){.split{grid-template-columns:1fr;gap:30px}}
+  .split img{border-radius:18px;border:1px solid var(--line)}
+  .feat{display:flex;gap:14px;margin-top:22px}
+  .feat .fi{flex:none;width:42px;height:42px;border-radius:11px;background:rgba(25,201,255,.1);display:flex;align-items:center;justify-content:center}
+  .feat .fi svg{width:22px;height:22px;stroke:var(--accent);fill:none;stroke-width:1.8}
+  .feat h4{font-family:'Sora';font-size:17px;margin-bottom:4px}
+  .feat p{color:var(--muted);font-size:14.5px}
+
+  /* gallery */
+  .gal{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:860px){.gal{grid-template-columns:repeat(2,1fr)}}
+  .gal .g{border-radius:14px;overflow:hidden;border:1px solid var(--line);aspect-ratio:1;position:relative}
+  .gal .g img{width:100%;height:100%;object-fit:cover;transition:.4s var(--ease)}
+  .gal .g:hover img{transform:scale(1.06)}
+  .gal .g.big{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+  .gal .slot{background:var(--card);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:var(--muted);border:1px dashed var(--line2);text-align:center;padding:12px;font-size:13px}
+  .gal .slot svg{width:26px;height:26px;stroke:var(--muted);fill:none;stroke-width:1.6}
+
+  /* packages */
+  .pkg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  @media(max-width:960px){.pkg-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.pkg-grid{grid-template-columns:1fr}}
+  .pkg{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 22px;position:relative;transition:.25s var(--ease)}
+  .pkg:hover{transform:translateY(-5px);border-color:var(--line2)}
+  .pkg.feat2{border-color:rgba(25,201,255,.5);background:linear-gradient(180deg,rgba(25,201,255,.06),var(--card))}
+  .pkg .badge{position:absolute;top:-12px;left:22px;background:linear-gradient(120deg,var(--accent),var(--accent2));color:#03121a;font-size:11px;font-weight:700;padding:5px 12px;border-radius:999px}
+  .pkg h3{font-size:18px}
+  .pkg .price{font-family:'Sora';font-size:34px;font-weight:800;margin:10px 0 2px}
+  .pkg .price small{font-size:14px;color:var(--muted);font-weight:500}
+  .pkg ul{list-style:none;margin:16px 0 20px}
+  .pkg li{color:var(--muted);font-size:14px;padding:6px 0 6px 24px;position:relative}
+  .pkg li:before{content:"";position:absolute;left:0;top:12px;width:13px;height:7px;border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg)}
+
+  /* reviews */
+  .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:860px){.rev-grid{grid-template-columns:1fr}}
+  .rev{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 24px}
+  .rev .stars{color:#ffca3a;font-size:15px;letter-spacing:2px;margin-bottom:12px}
+  .rev p{font-size:15.5px;margin-bottom:14px}
+  .rev .who{color:var(--muted);font-size:13.5px;font-weight:600}
+
+  /* area */
+  .area-box{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:34px;display:grid;grid-template-columns:1.2fr 1fr;gap:30px;align-items:center}
+  @media(max-width:760px){.area-box{grid-template-columns:1fr}}
+  .area-tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+  .area-tags span{background:rgba(255,255,255,.05);border:1px solid var(--line);padding:7px 13px;border-radius:999px;font-size:13.5px;color:var(--muted)}
+
+  /* CTA */
+  .cta{position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--line2);text-align:center;padding:64px 32px}
+  .cta:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(25,201,255,.16),rgba(75,227,192,.1))}
+  .cta>*{position:relative}
+  .cta h2{font-size:clamp(28px,4.6vw,46px);max-width:18ch;margin:0 auto}
+  .cta p{color:#cdd8e0;font-size:18px;margin:16px auto 28px;max-width:46ch}
+
+  footer{border-top:1px solid var(--line);padding:44px 0 34px;margin-top:20px;color:var(--muted);font-size:14px}
+  .foot-top{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:flex-start}
+  .foot-credit{margin-top:26px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px}
+  .foot-credit a{color:var(--accent);font-weight:600}
+
+  .float{position:fixed;right:18px;bottom:18px;z-index:60;display:flex;flex-direction:column;gap:12px}
+  .float a{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(0,0,0,.5);transition:.2s}
+  .float a:hover{transform:scale(1.08)}
+  .float .call{background:linear-gradient(120deg,var(--accent),var(--accent2))}
+  .float .wa{background:#25D366}
+  .float svg{width:28px;height:28px}
+
+  .reveal{opacity:0;transform:translateY(30px);transition:.7s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <span class="hideS">Mobile service — we come to you across Andover &amp; Test Valley</span>
+  <span><span class="star">★★★★★</span> 5.0 · 96 Google reviews &nbsp;·&nbsp; <a href="tel:07506593195">07506 593195</a></span>
+</div></div>
+
+<header class="nav"><div class="wrap">
+  <a class="brand" href="#top">
+    <span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17a4 4 0 0 1-1-7.9M8 9a5 5 0 0 1 9.6 1.3A3.5 3.5 0 0 1 17 17H9"/><path d="M12 20v2M8 19v2M16 19v2"/></svg></span>
+    Eco Steam<span style="color:var(--muted);font-weight:600">Valet</span>
+  </a>
+  <nav class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#why">Why steam</a>
+    <a href="#work">Results</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#book">Book</a>
+  </nav>
+  <a class="btn btn-primary" href="#book">Book my valet</a>
+</div></header>
+
+<a id="top"></a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"><img src="hero.png" alt="Glossy freshly detailed car with steam" /></div>
+  <div class="wrap">
+    <span class="eyebrow">Mobile eco steam valeting · Andover</span>
+    <h1>Your car, <span class="g">showroom-fresh</span> — steam-cleaned at your door.</h1>
+    <p class="lead">Deep-clean, sanitise and protect using high-temperature eco steam. Barely any water, no harsh chemicals — just a spotless, fresh interior. We come to you across Andover.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#book">Book your valet
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn-ghost" href="tel:07506593195">Call 07506 593195</a>
+    </div>
+    <div class="hero-chips">
+      <div class="chip"><b>5.0★</b><span>96 Google reviews</span></div>
+      <div class="chip"><b>We come to you</b><span>Home or work</span></div>
+      <div class="chip"><b>Eco steam</b><span>Low water · sanitising</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<div class="trust"><div class="wrap">
+  <div class="t"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> Fully mobile — driveway or workplace</div>
+  <div class="t"><svg viewBox="0 0 24 24"><path d="M12 2 4 6v6c0 5 8 8 8 8s8-3 8-8V6z"/></svg> Kills germs &amp; odours with steam</div>
+  <div class="t"><svg viewBox="0 0 24 24"><path d="M7 17a4 4 0 0 1-1-7.9M8 9a5 5 0 0 1 9.6 1.3A3.5 3.5 0 0 1 17 17H9"/></svg> Eco-friendly, minimal water</div>
+  <div class="t"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/></svg> Cars, vans, motorhomes</div>
+</div></div>
+
+<!-- SERVICES -->
+<section class="sec" id="services"><div class="wrap">
+  <div class="sec-head reveal">
+    <span class="kick">What we do</span>
+    <h2>Steam valeting that goes deeper.</h2>
+    <p>Pick a package or mix and match — every job is done by hand, on your driveway, with professional steam equipment.</p>
+  </div>
+  <div class="svc-grid">
+    <div class="svc reveal"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="10" rx="2"/><path d="M6 8V6a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v2M8 18v2M16 18v2"/></svg></div>
+      <h3>Interior Steam Valet</h3><p>Seats, carpets, mats, dashboard, vents and boot deep-cleaned and sanitised with steam. Every crevice.</p></div>
+    <div class="svc reveal"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 12h16M6 12V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4M7 16h.01M17 16h.01"/></svg></div>
+      <h3>Exterior Wash &amp; Protect</h3><p>Gentle hand wash, wheels and tyres dressed, glass polished and a protective finish that beads the rain.</p></div>
+    <div class="svc reveal"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 8l7-5 7 5M5 8v8l7 5 7-5V8"/></svg></div>
+      <h3>Full Valet</h3><p>The complete inside-and-out treatment. Ideal before a big trip — or before you sell.</p></div>
+    <div class="svc reveal"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2 4 6v6c0 5 8 8 8 8s8-3 8-8V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <h3>Steam Sanitise &amp; Odour Removal</h3><p>High-temperature steam kills bacteria and lifts smoke, pet and food odours — leaving it genuinely fresh.</p></div>
+    <div class="svc reveal"><div class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="12" rx="2"/><path d="M8 6V4h8v2"/></svg></div>
+      <h3>Leather Clean &amp; Condition</h3><p>Leather gently cleaned, fed and protected so it stays supple and looks its best for years.</p></div>
+    <div class="svc reveal"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10M12 2v10l7 3"/></svg></div>
+      <h3>Pet Hair &amp; Deep Extract</h3><p>Stubborn pet hair, spills and ground-in dirt lifted with steam and extraction. Like it never happened.</p></div>
+  </div>
+</div></section>
+
+<!-- WHY STEAM -->
+<section class="sec" id="why" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
+  <div class="split">
+    <div class="reveal">
+      <span class="kick">Why steam</span>
+      <h2 style="font-size:clamp(28px,4.4vw,44px);margin:12px 0 8px">Cleaner car. Cleaner conscience.</h2>
+      <p style="color:var(--muted);font-size:17px">Traditional valeting drowns your car in water and chemicals. Steam does more with less — the heat lifts dirt and kills germs on contact, using a fraction of the water.</p>
+      <div class="feat"><div class="fi"><svg viewBox="0 0 24 24"><path d="M7 17a4 4 0 0 1-1-7.9M8 9a5 5 0 0 1 9.6 1.3A3.5 3.5 0 0 1 17 17H9"/></svg></div>
+        <div><h4>Up to 90% less water</h4><p>Kinder to the environment and safe on every surface.</p></div></div>
+      <div class="feat"><div class="fi"><svg viewBox="0 0 24 24"><path d="M12 2 4 6v6c0 5 8 8 8 8s8-3 8-8V6z"/></svg></div>
+        <div><h4>Sanitises as it cleans</h4><p>High-temperature steam kills bacteria, dust mites and odours.</p></div></div>
+      <div class="feat"><div class="fi"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <div><h4>No harsh chemicals</h4><p>Great for allergies, kids and pets — and gentle on your trim.</p></div></div>
+    </div>
+    <div class="reveal"><img src="interior.png" alt="Spotless car interior being steam cleaned" /></div>
+  </div>
+</div></section>
+
+<!-- GALLERY -->
+<section class="sec" id="work"><div class="wrap">
+  <div class="sec-head reveal">
+    <span class="kick">Recent results</span>
+    <h2>The difference is in the detail.</h2>
+    <p>A few from the driveway. Your before &amp; afters slot straight in here.</p>
+  </div>
+  <div class="gal">
+    <div class="g big reveal"><img src="hero.png" alt="Detailed glossy car" /></div>
+    <div class="g reveal"><img src="interior.png" alt="Clean interior" /></div>
+    <div class="g slot reveal"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/><circle cx="9" cy="9" r="1.5"/></svg>Your photo</div>
+    <div class="g slot reveal"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/><circle cx="9" cy="9" r="1.5"/></svg>Your photo</div>
+    <div class="g slot reveal"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/><circle cx="9" cy="9" r="1.5"/></svg>Your before / after</div>
+  </div>
+</div></section>
+
+<!-- PRICING -->
+<section class="sec" id="pricing" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
+  <div class="sec-head reveal">
+    <span class="kick">Packages</span>
+    <h2>Simple pricing. No surprises.</h2>
+    <p>Prices from — final quote depends on size and condition. We'll confirm before we start.</p>
+  </div>
+  <div class="pkg-grid">
+    <div class="pkg reveal"><h3>Mini Valet</h3><div class="price">£35<small> from</small></div>
+      <ul><li>Interior vacuum &amp; wipe-down</li><li>Windows &amp; dash</li><li>Exterior rinse</li><li>~45 mins</li></ul>
+      <a class="btn btn-ghost" href="#book" style="width:100%;justify-content:center">Book</a></div>
+    <div class="pkg feat2 reveal"><span class="badge">Most popular</span><h3>Full Interior Steam</h3><div class="price">£65<small> from</small></div>
+      <ul><li>Full steam deep-clean</li><li>Seats, carpets, boot</li><li>Sanitise &amp; deodorise</li><li>Glass &amp; trim dressed</li></ul>
+      <a class="btn btn-primary" href="#book" style="width:100%;justify-content:center">Book</a></div>
+    <div class="pkg reveal"><h3>Full Valet</h3><div class="price">£90<small> from</small></div>
+      <ul><li>Interior steam valet</li><li>Exterior wash &amp; protect</li><li>Wheels &amp; tyres</li><li>Inside &amp; out, spotless</li></ul>
+      <a class="btn btn-ghost" href="#book" style="width:100%;justify-content:center">Book</a></div>
+    <div class="pkg reveal"><h3>Premium Detail</h3><div class="price">£150<small> from</small></div>
+      <ul><li>Everything in Full Valet</li><li>Leather clean &amp; feed</li><li>Odour / pet-hair removal</li><li>Paint protection</li></ul>
+      <a class="btn btn-ghost" href="#book" style="width:100%;justify-content:center">Book</a></div>
+  </div>
+</div></section>
+
+<!-- REVIEWS -->
+<section class="sec"><div class="wrap">
+  <div class="sec-head reveal">
+    <span class="kick">What customers say</span>
+    <h2>5.0 stars, 96 reviews and counting.</h2>
+  </div>
+  <div class="rev-grid">
+    <div class="rev reveal"><div class="stars">★★★★★</div><p>“Done an amazing job — literally looks like a fresh-off-the-lot car again.”</p><div class="who">— Google review</div></div>
+    <div class="rev reveal"><div class="stars">★★★★★</div><p>“Came to my house, spotless finish inside and out. Couldn't recommend more highly.”</p><div class="who">— Verified customer</div></div>
+    <div class="rev reveal"><div class="stars">★★★★★</div><p>“Got years of dog hair and smell out of the boot. Genuinely like a brand new car.”</p><div class="who">— Google review</div></div>
+  </div>
+  <p style="color:var(--muted);font-size:13px;margin-top:16px">Sample of real feedback — your live Google reviews can feed in automatically.</p>
+</div></section>
+
+<!-- AREA -->
+<section class="sec" style="padding-top:0"><div class="wrap reveal">
+  <div class="area-box">
+    <div>
+      <span class="kick">Where we cover</span>
+      <h2 style="font-size:clamp(24px,3.6vw,34px);margin:12px 0 6px">Mobile across Andover &amp; Test Valley</h2>
+      <p style="color:var(--muted)">We bring everything with us — water and power included. All you need is a space to park.</p>
+      <div class="area-tags">
+        <span>Andover</span><span>Charlton</span><span>Enham</span><span>Weyhill</span><span>Ludgershall</span><span>Whitchurch</span><span>Stockbridge</span><span>Overton</span><span>+ surrounding villages</span>
+      </div>
+    </div>
+    <div style="text-align:center">
+      <div style="font-family:'Sora';font-size:44px;font-weight:800;color:var(--accent)">10<span style="font-size:22px">mi</span></div>
+      <p style="color:var(--muted);font-size:14px">radius of Andover — further on request</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- CTA / BOOK -->
+<section class="sec" id="book" style="padding-top:0"><div class="wrap reveal">
+  <div class="cta">
+    <span class="kick">Book your valet</span>
+    <h2 style="margin-top:12px">Ready for that new-car feeling?</h2>
+    <p>Message or call to book — most jobs sorted within a few days. Tell us your car and where you are, we'll do the rest.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+      <a class="btn btn-primary" href="https://wa.me/447506593195?text=Hi%20Eco%20Steam%20-%20I'd%20like%20to%20book%20a%20valet" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24z"/></svg>
+        WhatsApp us</a>
+      <a class="btn btn-ghost" href="tel:07506593195">Call 07506 593195</a>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="foot-top">
+    <div style="max-width:320px">
+      <div class="brand" style="margin-bottom:12px"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17a4 4 0 0 1-1-7.9M8 9a5 5 0 0 1 9.6 1.3A3.5 3.5 0 0 1 17 17H9"/></svg></span>Eco Steam Valet</div>
+      <p>Premium mobile steam valeting across Andover &amp; Test Valley. Rated 5.0 from 96 reviews.</p>
+    </div>
+    <div>
+      <div style="color:var(--text);font-weight:600;margin-bottom:8px">Get in touch</div>
+      <p><a href="tel:07506593195" style="color:var(--text)">07506 593195</a></p>
+      <p><a href="https://wa.me/447506593195" target="_blank" rel="noopener" style="color:var(--text)">WhatsApp</a></p>
+      <p>Mon–Sat · Andover, Hampshire</p>
+    </div>
+  </div>
+  <div class="foot-credit">
+    <span>© <span id="yr"></span> Eco Steam Interior Valet</span>
+    <span>Concept design by <a href="https://shipitstudio.co.uk" target="_blank" rel="noopener">Ship It Studio</a></span>
+  </div>
+</div></footer>
+
+<div class="float">
+  <a class="wa" href="https://wa.me/447506593195?text=Hi%20Eco%20Steam%20-%20I'd%20like%20to%20book%20a%20valet" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="#fff"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.516 5.26l-.999 3.648 3.972-1.607z"/></svg></a>
+  <a class="call" href="tel:07506593195" aria-label="Call"><svg viewBox="0 0 24 24" fill="none" stroke="#03121a" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></a>
+</div>
+
+<script>
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
