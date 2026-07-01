@@ -54,8 +54,29 @@ function renderProjects(limit){
   }).join('');
 }
 
+/* ---- July promo bar (site-wide) ---- */
+function injectPromoBar(){
+  if(document.querySelector('.promo-bar')) return;
+  const css = `:root{--promo-h:40px}
+  .promo-bar{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:center;text-align:center;min-height:var(--promo-h);
+    background:linear-gradient(100deg,#ff7a1a,#ff3d3d 55%,#ff2d6f);color:#fff;font-family:Inter,system-ui,sans-serif;font-weight:600;font-size:13px;line-height:1.3;
+    padding:8px 16px;text-decoration:none;letter-spacing:.2px}
+  .promo-bar strong{font-weight:800}
+  .promo-bar:hover{filter:brightness(1.05)}
+  .nav{top:var(--promo-h)}
+  body{padding-top:var(--promo-h)}
+  @media(max-width:680px){:root{--promo-h:54px}.promo-bar{font-size:11.5px;padding:7px 12px}}`;
+  const style=document.createElement('style'); style.textContent=css; document.head.appendChild(style);
+  const bar=document.createElement('a');
+  bar.className='promo-bar'; bar.href='/contact.html';
+  bar.innerHTML='<span><strong>July offer</strong> — as temperatures rise, our prices fall: <strong>30% off any new website or redesign</strong>. First 20 customers only →</span>';
+  document.body.insertBefore(bar, document.body.firstChild);
+}
+
 /* ---- boot ---- */
 document.addEventListener('DOMContentLoaded',()=>{
+  injectPromoBar();
+
   // wire whatsapp links
   document.querySelectorAll('[data-wa]').forEach(a=>a.href=WA_HREF);
 
@@ -74,7 +95,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const toggle=()=>{burger.classList.toggle('open');menu.classList.toggle('open');
       document.body.style.overflow=menu.classList.contains('open')?'hidden':'';};
     burger.addEventListener('click',toggle);
-    menu.querySelectorAll('a:not([data-install])').forEach(a=>a.addEventListener('click',()=>{
+    menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
       burger.classList.remove('open');menu.classList.remove('open');document.body.style.overflow='';}));
   }
 
@@ -204,6 +225,25 @@ function showIosBanner(){
   bar.querySelector('#sis-ios-x').addEventListener('click',()=>{bar.remove();try{localStorage.setItem('sis-ios-hide','1');}catch(e){}});
 }
 
+function showInstallHelp(isIOS){
+  if(document.getElementById('sis-install-modal')) return;
+  const steps = isIOS
+    ? "Tap the <b>Share</b> icon (the square with an up-arrow) in your browser bar, scroll down and choose <b>“Add to Home Screen”</b>."
+    : "Open your browser menu (the <b>⋮</b> or <b>⋯</b> button) and choose <b>“Install app”</b> or <b>“Add to Home screen”</b>. On desktop Chrome you can also click the install icon in the address bar.";
+  const m=document.createElement('div');
+  m.id='sis-install-modal';
+  m.style.cssText='position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.62);backdrop-filter:blur(6px);padding:20px';
+  m.innerHTML=`<div style="max-width:390px;background:#0f1416;border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:30px;text-align:center;font-family:Inter,system-ui,sans-serif">
+    <img src="/assets/icon-192.png" width="74" height="74" alt="" style="border-radius:18px;margin:0 auto 16px;box-shadow:0 10px 30px rgba(0,0,0,.5)"/>
+    <h3 style="font-family:'Space Grotesk',sans-serif;color:#f2f7f5;font-size:21px;margin:0 0 12px">Add to your home screen</h3>
+    <p style="color:#8b9894;font-size:15px;line-height:1.55;margin:0 0 22px">${steps}</p>
+    <button id="sis-install-close" style="background:#2BE38A;color:#03130b;border:0;font-weight:600;padding:13px 26px;border-radius:999px;cursor:pointer;font-size:15px">Got it</button>
+  </div>`;
+  document.body.appendChild(m);
+  const close=()=>m.remove();
+  m.addEventListener('click',e=>{if(e.target===m)close();});
+  m.querySelector('#sis-install-close').addEventListener('click',close);
+}
 function registerSW(){
   if('serviceWorker' in navigator){
     window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));
