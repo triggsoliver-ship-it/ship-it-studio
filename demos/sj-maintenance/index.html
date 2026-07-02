@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>S J Maintenance — Home Improvement &amp; Property Maintenance, Nailsea</title>
+<meta name="description" content="Family-run home improvement and property maintenance in Nailsea & North Somerset. Decorating, repairs, home decor and the jobs on your list. Free quotes." />
+<meta name="theme-color" content="#2b3a2e" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#f6f5f1; --bg2:#eeece4; --card:#ffffff; --ink:#1e2a22; --soft:#5b6a5f;
+    --line:#e3e0d6; --accent:#3f7d54; --accent-d:#2f6342; --gold:#c98a3a; --ease:cubic-bezier(.2,.7,.2,1); --maxw:1160px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.62;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{font-family:'Manrope',sans-serif;font-weight:800;letter-spacing:-.02em;line-height:1.06}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-family:'Manrope';font-weight:700;font-size:15px;padding:14px 26px;border-radius:10px;border:1px solid transparent;cursor:pointer;transition:.25s var(--ease);white-space:nowrap}
+  .btn svg{width:18px;height:18px}
+  .btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 24px rgba(63,125,84,.26)}
+  .btn-primary:hover{background:var(--accent-d);transform:translateY(-2px)}
+  .btn-ghost{background:#fff;border-color:var(--line);color:var(--ink)}
+  .btn-white{background:#fff;color:var(--ink)}
+  .btn-white:hover{transform:translateY(-2px)}
+  .topbar{background:var(--ink);color:#d9e1db;font-size:13.5px}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:42px;gap:12px}
+  .topbar a{color:#fff;font-weight:600}
+  .topbar .star{color:#ffca3a}
+  @media(max-width:640px){.topbar .hideS{display:none}}
+  .nav{position:sticky;top:0;z-index:50;background:rgba(246,245,241,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .brand{font-family:'Manrope';font-weight:800;font-size:20px;display:flex;align-items:center;gap:10px}
+  .brand .mk{width:34px;height:34px;border-radius:9px;background:var(--accent);display:flex;align-items:center;justify-content:center}
+  .brand .mk svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:2}
+  .brand small{display:block;font-family:'Inter';font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);font-weight:500}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{color:var(--soft);font-size:15px;font-weight:500;transition:.15s}
+  .nav-links a:hover{color:var(--ink)}
+  @media(max-width:860px){.nav-links{display:none}}
+  .hero{position:relative;min-height:74vh;display:flex;align-items:center;color:#fff;overflow:hidden;background:linear-gradient(135deg,#2b3a2e 0%,#3f5a44 55%,#4d6d54 100%)}
+  .hero:before{content:"";position:absolute;inset:0;opacity:.12;background-image:radial-gradient(circle at 20% 30%,#fff 0 2px,transparent 3px),radial-gradient(circle at 70% 60%,#fff 0 2px,transparent 3px);background-size:60px 60px}
+  .hero .wrap{position:relative;z-index:1;padding:76px 22px}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:'Manrope';font-size:13px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:#cdead6;background:rgba(63,125,84,.3);border:1px solid rgba(150,220,170,.4);padding:7px 15px;border-radius:999px;margin-bottom:22px}
+  .hero h1{font-size:clamp(38px,6vw,66px);max-width:15ch}
+  .hero p.lead{font-size:clamp(17px,2vw,20px);max-width:52ch;margin:20px 0 30px;color:#e8efe9}
+  .hero-cta{display:flex;gap:13px;flex-wrap:wrap}
+  .hero-rating{display:flex;align-items:center;gap:9px;margin-top:36px;font-size:14.5px}
+  .hero-rating .stars{color:#ffca3a}
+  .trust{background:var(--card);border-bottom:1px solid var(--line)}
+  .trust .wrap{display:flex;justify-content:space-around;gap:16px;padding:22px 0;flex-wrap:wrap;text-align:center}
+  .trust .t{display:flex;align-items:center;gap:9px;color:var(--soft);font-size:14.5px;font-weight:600}
+  .trust .t svg{width:22px;height:22px;stroke:var(--accent);fill:none;stroke-width:1.9}
+  section.sec{padding:84px 0}
+  .kick{font-family:'Manrope';color:var(--accent);font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+  .sec-head{max-width:620px;margin-bottom:46px}
+  .sec-head h2{font-size:clamp(28px,4.4vw,44px);margin-top:12px}
+  .sec-head p{color:var(--soft);font-size:17px;margin-top:14px}
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:860px){.svc-grid{grid-template-columns:1fr}}
+  .svc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 24px;transition:.25s var(--ease)}
+  .svc:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(30,42,34,.08)}
+  .svc .ic{width:48px;height:48px;border-radius:11px;background:rgba(63,125,84,.1);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+  .svc .ic svg{width:25px;height:25px;stroke:var(--accent);fill:none;stroke-width:1.8}
+  .svc h3{font-size:19px;margin-bottom:8px}
+  .svc p{color:var(--soft);font-size:14.5px}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  @media(max-width:860px){.split{grid-template-columns:1fr;gap:30px}}
+  .panel{border-radius:16px;min-height:320px;background:linear-gradient(135deg,#3f5a44,#4d6d54);position:relative;overflow:hidden;border:1px solid var(--line)}
+  .panel:before{content:"";position:absolute;inset:0;opacity:.14;background-image:radial-gradient(circle at 30% 40%,#fff 0 2px,transparent 3px);background-size:52px 52px}
+  .panel span{position:absolute;left:24px;bottom:20px;color:#fff;font-family:'Manrope';font-weight:700;font-size:15px;z-index:1}
+  .feat{display:flex;gap:14px;margin-top:22px}
+  .feat .fi{flex:none;width:42px;height:42px;border-radius:11px;background:rgba(63,125,84,.1);display:flex;align-items:center;justify-content:center}
+  .feat .fi svg{width:22px;height:22px;stroke:var(--accent);fill:none;stroke-width:1.9}
+  .feat h4{font-family:'Manrope';font-size:17px;margin-bottom:3px}
+  .feat p{color:var(--soft);font-size:14.5px}
+  .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:860px){.rev-grid{grid-template-columns:1fr}}
+  .rev{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 24px}
+  .rev .stars{color:#ffca3a;margin-bottom:12px}
+  .rev p{font-size:15.5px;margin-bottom:14px}
+  .rev .who{color:var(--soft);font-size:13.5px;font-weight:700;font-family:'Manrope'}
+  .quote-cta{background:var(--ink);color:#fff;border-radius:20px;padding:56px 40px;display:grid;grid-template-columns:1.3fr 1fr;gap:36px;align-items:center}
+  @media(max-width:760px){.quote-cta{grid-template-columns:1fr;padding:40px 26px}}
+  .quote-cta h2{font-size:clamp(26px,3.6vw,40px)}
+  .quote-cta p{color:#c9d3cc;margin-top:12px}
+  .qbox{background:#fff;border-radius:14px;padding:26px}
+  .qbox .big{font-family:'Manrope';font-size:22px;font-weight:800;color:var(--ink)}
+  .qbox a.tel{display:block;font-family:'Manrope';font-size:28px;font-weight:800;color:var(--accent);margin:8px 0 2px}
+  .qbox a.mail{display:block;font-size:15px;color:var(--soft);font-weight:600;margin-bottom:4px}
+  .qbox .btn{width:100%;justify-content:center;margin-top:12px}
+  footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--soft);font-size:14px}
+  .foot-top{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .foot-credit{margin-top:26px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px}
+  .foot-credit a{color:var(--accent);font-weight:700}
+  .float{position:fixed;right:18px;bottom:18px;z-index:60}
+  .float a{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;font-family:'Manrope';font-weight:700;font-size:14px;padding:14px 20px;border-radius:999px;box-shadow:0 10px 26px rgba(63,125,84,.4)}
+  .float svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2}
+  .reveal{opacity:0;transform:translateY(28px);transition:.7s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="wrap">
+  <span class="hideS">Family-run home improvement &amp; property maintenance · Nailsea &amp; North Somerset</span>
+  <span><span class="star">★★★★★</span> Trusted local trade &nbsp;·&nbsp; <a href="tel:07481891882">07481 891882</a></span>
+</div></div>
+<header class="nav"><div class="wrap">
+  <a class="brand" href="#top"><span class="mk"><svg viewBox="0 0 24 24"><path d="M4 20h16M6 16l8-8 4 4-8 8H6z"/></svg></span>
+    <span>S J Maintenance<small>Home Improvement · Nailsea</small></span></a>
+  <nav class="nav-links">
+    <a href="#services">Services</a><a href="#why">Why us</a><a href="#reviews">Reviews</a><a href="#quote">Free quote</a>
+  </nav>
+  <a class="btn btn-primary" href="#quote">Get a free quote</a>
+</div></header>
+<a id="top"></a>
+<section class="hero"><div class="wrap">
+  <span class="eyebrow">Home improvement &amp; maintenance · Nailsea</span>
+  <h1>The jobs on your list, ticked off properly.</h1>
+  <p class="lead">A family-run local trade handling decorating, home decor, repairs and improvements across Nailsea and North Somerset. One trusted pair of hands for the lot.</p>
+  <div class="hero-cta">
+    <a class="btn btn-white" href="#quote">Get a free quote
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a class="btn btn-ghost" href="tel:07481891882" style="background:transparent;border-color:rgba(255,255,255,.5);color:#fff">Call 07481 891882</a>
+  </div>
+  <div class="hero-rating"><span class="stars">★★★★★</span> Trusted family-run local business</div>
+</div></section>
+<div class="trust"><div class="wrap">
+  <div class="t"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> Free quotes</div>
+  <div class="t"><svg viewBox="0 0 24 24"><path d="M12 2 4 6v6c0 5 8 8 8 8s8-3 8-8V6z"/></svg> Family-run &amp; reliable</div>
+  <div class="t"><svg viewBox="0 0 24 24"><path d="M4 20h16M6 16l8-8 4 4-8 8H6z"/></svg> Home improvement &amp; decor</div>
+  <div class="t"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg> North Somerset wide</div>
+</div></div>
+<section class="sec" id="services"><div class="wrap">
+  <div class="sec-head reveal"><span class="kick">What we do</span>
+    <h2>One local trade for the whole to-do list.</h2>
+    <p>Decorating, repairs, home decor and improvements — the jobs that make your home look and feel right.</p></div>
+  <div class="svc-grid">
+    <div class="svc reveal"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 20h16M6 16l8-8 4 4-8 8H6z"/></svg></div><h3>Painting &amp; decorating</h3><p>Interior and exterior painting and finishing that lifts the whole room.</p></div>
+    <div class="svc reveal"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg></div><h3>Home decor &amp; improvements</h3><p>Feature updates, fixtures and finishing touches to refresh your space.</p></div>
+    <div class="svc reveal"><div class="ic"><svg viewBox="0 0 24 24"><path d="M14 6l4 4M3 21l1-4 11-11 3 3-11 11z"/></svg></div><h3>Repairs &amp; odd jobs</h3><p>The list of small fixes that never quite get done — sorted in one visit.</p></div>
+    <div class="svc reveal"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M6 21V9h12v12M9 13h6"/></svg></div><h3>Flooring &amp; tiling</h3><p>Neat, hard-wearing floors and tiling for kitchens, bathrooms and more.</p></div>
+    <div class="svc reveal"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2v4M5 8l3 3M19 8l-3 3M4 21h16l-2-8H6z"/></svg></div><h3>Assembly &amp; fitting</h3><p>Flat-pack, shelving, fixtures and fittings put up properly and level.</p></div>
+    <div class="svc reveal"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div><h3>General maintenance</h3><p>Keeping your home in good order with reliable, tidy workmanship.</p></div>
+  </div>
+</div></section>
+<section class="sec" id="why" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
+  <div class="split">
+    <div class="reveal">
+      <span class="kick">Why choose us</span>
+      <h2 style="font-size:clamp(28px,4.4vw,44px);margin:12px 0 8px">A family-run trade you can rely on.</h2>
+      <p style="color:var(--soft);font-size:17px">You get the same friendly, trusted pair of hands every time — someone who turns up, does the job properly and treats your home with respect.</p>
+      <div class="feat"><div class="fi"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div><div><h4>Free, fair quotes</h4><p>Clear pricing up front so you know exactly where you stand.</p></div></div>
+      <div class="feat"><div class="fi"><svg viewBox="0 0 24 24"><path d="M12 2 4 6v6c0 5 8 8 8 8s8-3 8-8V6z"/></svg></div><div><h4>Family-run &amp; local</h4><p>Proudly serving Nailsea and North Somerset with a personal touch.</p></div></div>
+      <div class="feat"><div class="fi"><svg viewBox="0 0 24 24"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg></div><div><h4>Tidy &amp; considerate</h4><p>We respect your home and leave every job clean and finished.</p></div></div>
+    </div>
+    <div class="panel reveal"><span>Nailsea · North Somerset</span></div>
+  </div>
+</div></section>
+<section class="sec" id="reviews"><div class="wrap">
+  <div class="sec-head reveal"><span class="kick">What customers say</span><h2>Loved by local homeowners.</h2></div>
+  <div class="rev-grid">
+    <div class="rev reveal"><div class="stars">★★★★★</div><p>“Friendly, reliable and did a lovely job of our decorating. Wouldn't hesitate to have them back.”</p><div class="who">— Local customer</div></div>
+    <div class="rev reveal"><div class="stars">★★★★★</div><p>“Sorted a whole list of little jobs in one visit and left everything tidy. Brilliant.”</p><div class="who">— Verified customer</div></div>
+    <div class="rev reveal"><div class="stars">★★★★★</div><p>“Great value and really easy to deal with. Highly recommend to anyone in Nailsea.”</p><div class="who">— Local customer</div></div>
+  </div>
+</div></section>
+<section class="sec" id="quote" style="background:var(--bg2);border-top:1px solid var(--line)"><div class="wrap reveal">
+  <div class="quote-cta">
+    <div>
+      <span class="kick" style="color:var(--gold)">Free quote</span>
+      <h2 style="margin-top:10px">Got a job or a list? Let's have a look.</h2>
+      <p>Tell us what you need doing and we'll give you a free, no-obligation quote. From a single job to a whole list — one trusted local trade for all of it.</p>
+    </div>
+    <div class="qbox">
+      <div class="big">Get in touch for a free quote</div>
+      <a class="tel" href="tel:07481891882">07481 891882</a>
+      <a class="mail" href="mailto:sj_maintenance@outlook.com">sj_maintenance@outlook.com</a>
+      <a class="btn btn-primary" href="tel:07481891882"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>Call now</a>
+    </div>
+  </div>
+</div></section>
+<footer><div class="wrap">
+  <div class="foot-top">
+    <div style="max-width:340px"><div class="brand" style="margin-bottom:10px"><span class="mk"><svg viewBox="0 0 24 24"><path d="M4 20h16M6 16l8-8 4 4-8 8H6z"/></svg></span>S J Maintenance</div>
+      <p>Family-run home improvement &amp; property maintenance in Nailsea &amp; North Somerset.</p></div>
+    <div><div style="color:var(--ink);font-family:'Manrope';font-weight:800;margin-bottom:6px">Get in touch</div>
+      <p><a href="tel:07481891882" style="color:var(--ink)">07481 891882</a></p><p><a href="mailto:sj_maintenance@outlook.com" style="color:var(--ink)">sj_maintenance@outlook.com</a></p><p>Nailsea, North Somerset</p></div>
+  </div>
+  <div class="foot-credit"><span>© <span id="yr"></span> S J Maintenance</span>
+    <span>Concept design by <a href="https://shipitstudio.co.uk" target="_blank" rel="noopener">Ship It Studio</a></span></div>
+</div></footer>
+<div class="float"><a href="tel:07481891882"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>Call for a quote</a></div>
+<script>
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
