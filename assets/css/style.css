@@ -264,6 +264,16 @@ section{position:relative}
 .cta-band h2{font-size:clamp(30px,5vw,52px);max-width:18ch;margin:0 auto}
 .cta-band p{color:var(--muted);font-size:18px;margin:16px auto 30px;max-width:50ch}
 
+/* ---------- PWA band ---------- */
+.pwa-band{text-align:left;display:grid;grid-template-columns:120px minmax(0,1fr);gap:34px;align-items:center}
+.pwa-band h2,.pwa-band p{margin-left:0;margin-right:0;max-width:none}
+.pwa-icon{width:120px;height:120px;border-radius:28px;box-shadow:0 16px 40px rgba(0,0,0,.5)}
+@media(max-width:720px){
+  .pwa-band{grid-template-columns:1fr;text-align:center;gap:20px;justify-items:center}
+  .pwa-band>div>div{justify-content:center}
+  .pwa-icon{width:84px;height:84px;border-radius:20px}
+}
+
 /* ---------- contact ---------- */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:start}
 .contact-alt a{display:flex;align-items:center;gap:14px;padding:18px 0;border-top:1px solid var(--line);transition:.2s}
