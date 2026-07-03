@@ -59,7 +59,7 @@ function injectPromoBar(){
   if(document.querySelector('.promo-bar')) return;
   const css = `:root{--promo-h:40px}
   .promo-bar{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:center;text-align:center;min-height:var(--promo-h);
-    background:linear-gradient(100deg,#ff7a1a,#ff3d3d 55%,#ff2d6f);color:#fff;font-family:Inter,system-ui,sans-serif;font-weight:600;font-size:13px;line-height:1.3;
+    background:linear-gradient(100deg,#ff7a1a,#ff3d3d 55%,#ff2d6f);color:#fff;font-family:'Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:13px;line-height:1.3;
     padding:8px 16px;text-decoration:none;letter-spacing:.2px}
   .promo-bar strong{font-weight:800}
   .promo-bar:hover{filter:brightness(1.05)}
@@ -217,7 +217,7 @@ function showIosBanner(){
   if(document.getElementById('sis-ios-banner')) return;
   const bar=document.createElement('div');
   bar.id='sis-ios-banner';
-  bar.style.cssText='position:fixed;left:12px;right:12px;bottom:12px;z-index:150;background:#0f1416;border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:13px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 14px 40px rgba(0,0,0,.55);font-family:Inter,system-ui,sans-serif';
+  bar.style.cssText='position:fixed;left:12px;right:12px;bottom:12px;z-index:150;background:#0f1416;border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:13px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 14px 40px rgba(0,0,0,.55);font-family:"Instrument Sans",system-ui,sans-serif';
   bar.innerHTML=`<img src="/assets/icon-192.png" width="40" height="40" alt="" style="border-radius:10px;flex:none"/>
     <div style="flex:1;color:#f2f7f5;font-size:13.5px;line-height:1.4">Add <b>Ship It Studio</b> to your home screen — tap <b>Share</b> then <b>“Add to Home Screen”</b>.</div>
     <button id="sis-ios-x" aria-label="Dismiss" style="flex:none;background:none;border:0;color:#8b9894;font-size:24px;line-height:1;cursor:pointer;padding:2px 6px">×</button>`;
@@ -233,9 +233,9 @@ function showInstallHelp(isIOS){
   const m=document.createElement('div');
   m.id='sis-install-modal';
   m.style.cssText='position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.62);backdrop-filter:blur(6px);padding:20px';
-  m.innerHTML=`<div style="max-width:390px;background:#0f1416;border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:30px;text-align:center;font-family:Inter,system-ui,sans-serif">
+  m.innerHTML=`<div style="max-width:390px;background:#0f1416;border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:30px;text-align:center;font-family:'Instrument Sans',system-ui,sans-serif">
     <img src="/assets/icon-192.png" width="74" height="74" alt="" style="border-radius:18px;margin:0 auto 16px;box-shadow:0 10px 30px rgba(0,0,0,.5)"/>
-    <h3 style="font-family:'Space Grotesk',sans-serif;color:#f2f7f5;font-size:21px;margin:0 0 12px">Add to your home screen</h3>
+    <h3 style="font-family:'Bricolage Grotesque',sans-serif;color:#f2f7f5;font-size:21px;margin:0 0 12px">Add to your home screen</h3>
     <p style="color:#8b9894;font-size:15px;line-height:1.55;margin:0 0 22px">${steps}</p>
     <button id="sis-install-close" style="background:#2BE38A;color:#03130b;border:0;font-weight:600;padding:13px 26px;border-radius:999px;cursor:pointer;font-size:15px">Got it</button>
   </div>`;
