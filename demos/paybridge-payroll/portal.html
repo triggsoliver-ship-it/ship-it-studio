@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PayBridge Portal — Payroll Demo</title>
+<style>
+:root{--navy:#0b1f3a;--navy2:#122c52;--teal:#14b8a6;--teal-d:#0d9488;--ink:#1e293b;--mut:#64748b;--bg:#f1f5f9;--card:#fff;--line:#e2e8f0;--red:#dc2626;--green:#059669;--amber:#f59e0b}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+header{background:var(--navy);color:#fff}
+.topbar{max-width:1180px;margin:0 auto;padding:0 20px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:800;font-size:1.15rem;color:#fff;text-decoration:none}
+.logo span{color:var(--teal)}
+.topbar .co{font-size:.85rem;color:#94a3b8}
+.topbar .co b{color:#e2e8f0}
+.demo-banner{background:var(--amber);color:#451a03;text-align:center;font-size:.8rem;font-weight:600;padding:6px 14px}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 20px 60px}
+.tabs{display:flex;gap:6px;margin-bottom:22px;flex-wrap:wrap}
+.tab{padding:9px 18px;border-radius:8px;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:.9rem;font-weight:600;color:var(--mut)}
+.tab.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.panel{display:none}
+.panel.on{display:block}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:22px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+.stat .l{font-size:.78rem;color:var(--mut);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.stat .v{font-size:1.5rem;font-weight:800;letter-spacing:-.02em;margin-top:4px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;margin-bottom:20px}
+.card h2{font-size:1.1rem;margin-bottom:14px}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--mut);text-align:left;padding:8px 10px;border-bottom:2px solid var(--line)}
+td{padding:9px 10px;border-bottom:1px solid var(--line)}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
+tr:last-child td{border-bottom:none}
+.btn{background:var(--teal);color:#fff;border:none;padding:9px 18px;border-radius:8px;font-weight:700;cursor:pointer;font-size:.88rem}
+.btn:hover{background:var(--teal-d)}
+.btn.sec{background:#fff;color:var(--navy);border:1px solid var(--line)}
+.btn.danger{background:#fff;color:var(--red);border:1px solid #fecaca;padding:5px 10px;font-size:.78rem}
+.btn.sm{padding:5px 12px;font-size:.78rem}
+form .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:14px}
+label{display:block;font-size:.78rem;font-weight:700;color:var(--mut);margin-bottom:4px}
+input,select{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:8px;font-size:.9rem;background:#fff}
+input:focus,select:focus{outline:2px solid var(--teal);border-color:var(--teal)}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:.72rem;font-weight:700}
+.pill.g{background:#d1fae5;color:#065f46}
+.pill.b{background:#dbeafe;color:#1e40af}
+.pill.y{background:#fef3c7;color:#92400e}
+.note{font-size:.8rem;color:var(--mut);margin-top:10px}
+.payslip{background:#fff;border:1px solid var(--line);border-radius:12px;padding:26px;max-width:640px;margin:0 auto 18px}
+.payslip .head{display:flex;justify-content:space-between;border-bottom:2px solid var(--navy);padding-bottom:12px;margin-bottom:14px}
+.payslip h3{font-size:1rem}
+.payslip .cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.payslip .sec-t{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--mut);font-weight:700;margin-bottom:6px}
+.payslip .line{display:flex;justify-content:space-between;font-size:.87rem;padding:3px 0}
+.payslip .tot{display:flex;justify-content:space-between;font-weight:800;border-top:2px solid var(--line);margin-top:8px;padding-top:8px}
+.payslip .netbox{background:var(--navy);color:#fff;border-radius:10px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;margin-top:18px}
+.payslip .netbox .amt{font-size:1.4rem;font-weight:800}
+.empty{text-align:center;color:var(--mut);padding:30px;font-size:.9rem}
+.flash{background:#d1fae5;border:1px solid #6ee7b7;color:#065f46;border-radius:10px;padding:12px 16px;font-size:.88rem;font-weight:600;margin-bottom:16px;display:none}
+@media print{.tabs,.demo-banner,header,.btn,.no-print{display:none !important}body{background:#fff}.payslip{border:none;page-break-after:always}}
+</style>
+</head>
+<body>
+<div class="demo-banner">Demo portal — data stays in your browser. 2026-27 rates, Month 1 basis, NI category A. Not tax advice.</div>
+<header><div class="topbar">
+  <a class="logo" href="./">Pay<span>Bridge</span> <span style="color:#94a3b8;font-weight:500;font-size:.85rem">Portal</span></a>
+  <div class="co">Signed in as <b>Demo Ltd</b> · PAYE ref 123/AB456</div>
+</div></header>
+
+<div class="wrap">
+  <div class="flash" id="flash"></div>
+  <div class="tabs">
+    <button class="tab on" data-p="dash">Dashboard</button>
+    <button class="tab" data-p="emps">Employees</button>
+    <button class="tab" data-p="run">Run payroll</button>
+    <button class="tab" data-p="slips">Payslips</button>
+    <button class="tab" data-p="rti">RTI / HMRC</button>
+  </div>
+
+  <div class="panel on" id="p-dash">
+    <div class="cards">
+      <div class="stat"><div class="l">Employees</div><div class="v" id="d-emps">–</div></div>
+      <div class="stat"><div class="l">Gross this period</div><div class="v" id="d-gross">–</div></div>
+      <div class="stat"><div class="l">Due to HMRC</div><div class="v" id="d-hmrc">–</div></div>
+      <div class="stat"><div class="l">Total employer cost</div><div class="v" id="d-cost">–</div></div>
+    </div>
+    <div class="card">
+      <h2>Latest payroll run</h2>
+      <div id="d-run"><div class="empty">No payroll run yet — head to <b>Run payroll</b>.</div></div>
+    </div>
+    <div class="card">
+      <h2>What you pay, where</h2>
+      <p style="font-size:.9rem;color:var(--mut)">PayBridge calculates and files. All payments leave <b>your</b> bank account — net pay to employees, PAYE &amp; NI to HMRC by the 22nd, pension contributions to your provider. We never hold your tax money.</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p-emps">
+    <div class="card">
+      <h2>Add employee</h2>
+      <form id="empForm">
+        <div class="row">
+          <div><label>Full name</label><input id="f-name" required placeholder="Jane Smith"></div>
+          <div><label>Monthly gross (£)</label><input id="f-gross" type="number" min="0" step="0.01" required placeholder="3000"></div>
+          <div><label>Tax code</label><input id="f-code" value="1257L" placeholder="1257L, BR, K475..."></div>
+        </div>
+        <div class="row">
+          <div><label>Student loan</label><select id="f-sl"><option value="">None</option><option value="1">Plan 1</option><option value="2">Plan 2</option><option value="4">Plan 4</option><option value="5">Plan 5</option><option value="pg">Postgraduate</option></select></div>
+          <div><label>Pension — employee %</label><input id="f-ee" type="number" value="5" min="0" step="0.5"></div>
+          <div><label>Pension — employer %</label><input id="f-er" type="number" value="3" min="0" step="0.5"></div>
+        </div>
+        <button class="btn" type="submit">Add employee</button>
+        <span class="note">Pension is assessed on qualifying earnings (£520–£4,189/month) under a net pay arrangement. Auto-enrolment trigger: £10,000/year.</span>
+      </form>
+    </div>
+    <div class="card">
+      <h2>Team</h2>
+      <div id="empTable"></div>
+    </div>
+  </div>
+
+  <div class="panel" id="p-run">
+    <div class="card">
+      <h2>Run payroll</h2>
+      <div class="row" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:14px">
+        <div><label>Pay period</label><select id="r-period"></select></div>
+        <div style="align-self:end"><button class="btn" id="r-go">Calculate &amp; approve run</button></div>
+      </div>
+      <div id="runResult"></div>
+    </div>
+  </div>
+
+  <div class="panel" id="p-slips">
+    <div style="text-align:right;margin-bottom:12px" class="no-print"><button class="btn sec" onclick="window.print()">Print / save PDF</button></div>
+    <div id="slips"><div class="empty">Run a payroll to generate payslips.</div></div>
+  </div>
+
+  <div class="panel" id="p-rti">
+    <div class="card">
+      <h2>RTI submissions</h2>
+      <div id="rtiTable"><div class="empty">Your Full Payment Submission (FPS) appears here after each approved run. In the live service PayBridge files this with HMRC on or before payday.</div></div>
+    </div>
+    <div class="card">
+      <h2>Monthly remittance to HMRC</h2>
+      <div id="remit"><div class="empty">No data yet.</div></div>
+      <p class="note">Due by the 22nd of the following month (electronic). Eligible employers can offset up to £10,500/year Employment Allowance against employer NI — one allowance per business, claimed via EPS.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== PayBridge demo engine — 2026-27, rUK, Month 1 basis, NI cat A =====
+const R = {
+  bands: [ {to: 37700/12, rate:0.20}, {to:125140/12, rate:0.40}, {to:Infinity, rate:0.45} ],
+  niEE: { pt: 1048, uel: 4189, main: 0.08, upper: 0.02 },
+  niER: { st: 417, rate: 0.15 },
+  pension: { lower: 520, upper: 4189 },
+  sl: { "1": 26900/12, "2": 29385/12, "4": 33795/12, "5": 25000/12, "pg": 21000/12 },
+  slRate: p => p === "pg" ? 0.06 : 0.09
+};
+function freePay(code){
+  code = (code||"1257L").toUpperCase().trim();
+  if (code === "NT") return {free: Infinity, flat: null, k: 0};
+  if (code === "BR") return {free: 0, flat: 0.20, k: 0};
+  if (code === "D0") return {free: 0, flat: 0.40, k: 0};
+  if (code === "D1") return {free: 0, flat: 0.45, k: 0};
+  const k = code.startsWith("K");
+  const num = parseInt(code.replace(/[^0-9]/g,""),10) || 0;
+  const annual = num*10+9;
+  return k ? {free: 0, flat: null, k: annual/12} : {free: annual/12, flat: null, k: 0};
+}
+function calcMonth(e){
+  const gross = +e.gross;
+  const qe = Math.max(0, Math.min(gross, R.pension.upper) - R.pension.lower);
+  const eePen = +(qe * (e.eePct||0)/100).toFixed(2);
+  const erPen = +(qe * (e.erPct||0)/100).toFixed(2);
+  const fp = freePay(e.taxCode);
+  let tax = 0;
+  if (fp.flat !== null) tax = (gross - eePen) * fp.flat;
+  else {
+    let taxable = Math.max(0, gross - eePen - fp.free + fp.k);
+    let prev = 0;
+    for (const b of R.bands){
+      const amt = Math.min(taxable, b.to) - prev;
+      if (amt > 0) tax += amt * b.rate;
+      prev = b.to;
+      if (taxable <= b.to) break;
+    }
+  }
+  tax = Math.max(0, +tax.toFixed(2));
+  const eeNI = +((Math.max(0, Math.min(gross, R.niEE.uel) - R.niEE.pt) * R.niEE.main) + (Math.max(0, gross - R.niEE.uel) * R.niEE.upper)).toFixed(2);
+  const erNI = +(Math.max(0, gross - R.niER.st) * R.niER.rate).toFixed(2);
+  let sl = 0;
+  if (e.slPlan && R.sl[e.slPlan]) sl = Math.floor(Math.max(0, gross - R.sl[e.slPlan]) * R.slRate(e.slPlan));
+  const net = +(gross - tax - eeNI - sl - eePen).toFixed(2);
+  return { gross, tax, eeNI, erNI, sl, eePen, erPen, net, cost: +(gross+erNI+erPen).toFixed(2) };
+}
+// ===== state =====
+const SEED = [
+  {id:1,name:"Amelia Clarke",gross:3200,taxCode:"1257L",slPlan:"2",eePct:5,erPct:3},
+  {id:2,name:"Daniel Osei",gross:2400,taxCode:"1257L",slPlan:"",eePct:5,erPct:3},
+  {id:3,name:"Priya Patel",gross:5400,taxCode:"1257L",slPlan:"1",eePct:5,erPct:3}
+];
+let S;
+try { S = JSON.parse(localStorage.getItem("paybridge-demo")) } catch(e){ S = null }
+if (!S) S = { emps: SEED, runs: [] };
+const save = () => { try { localStorage.setItem("paybridge-demo", JSON.stringify(S)) } catch(e){} };
+const gbp = n => "£" + n.toLocaleString("en-GB",{minimumFractionDigits:2,maximumFractionDigits:2});
+// ===== tabs =====
+document.querySelectorAll(".tab").forEach(t => t.onclick = () => {
+  document.querySelectorAll(".tab").forEach(x=>x.classList.remove("on"));
+  document.querySelectorAll(".panel").forEach(x=>x.classList.remove("on"));
+  t.classList.add("on");
+  document.getElementById("p-"+t.dataset.p).classList.add("on");
+});
+function flash(msg){
+  const f = document.getElementById("flash");
+  f.textContent = msg; f.style.display = "block";
+  setTimeout(()=>f.style.display="none", 3500);
+}
+// ===== employees =====
+function slLabel(p){ return p ? (p==="pg"?"Postgrad":"Plan "+p) : "—" }
+function renderEmps(){
+  const el = document.getElementById("empTable");
+  if (!S.emps.length){ el.innerHTML = '<div class="empty">No employees yet.</div>'; return }
+  el.innerHTML = '<table><tr><th>Name</th><th class="r">Monthly gross</th><th>Tax code</th><th>Student loan</th><th class="r">Pension ee/er</th><th></th></tr>' +
+    S.emps.map(e=>`<tr><td><b>${e.name}</b></td><td class="r">${gbp(+e.gross)}</td><td>${e.taxCode}</td><td>${slLabel(e.slPlan)}</td><td class="r">${e.eePct}% / ${e.erPct}%</td><td style="text-align:right"><button class="btn danger" onclick="delEmp(${e.id})">Remove</button></td></tr>`).join("") + '</table>';
+}
+window.delEmp = id => { S.emps = S.emps.filter(e=>e.id!==id); save(); renderAll(); };
+document.getElementById("empForm").onsubmit = ev => {
+  ev.preventDefault();
+  const gross = parseFloat(document.getElementById("f-gross").value);
+  if (!(gross >= 0)) return;
+  S.emps.push({
+    id: Date.now(),
+    name: document.getElementById("f-name").value.trim(),
+    gross,
+    taxCode: document.getElementById("f-code").value.trim() || "1257L",
+    slPlan: document.getElementById("f-sl").value,
+    eePct: parseFloat(document.getElementById("f-ee").value)||0,
+    erPct: parseFloat(document.getElementById("f-er").value)||0
+  });
+  save(); ev.target.reset();
+  document.getElementById("f-code").value = "1257L";
+  document.getElementById("f-ee").value = 5; document.getElementById("f-er").value = 3;
+  renderAll(); flash("Employee added.");
+};
+// ===== payroll run =====
+const MONTHS = ["April 2026","May 2026","June 2026","July 2026","August 2026","September 2026","October 2026","November 2026","December 2026","January 2027","February 2027","March 2027"];
+const perSel = document.getElementById("r-period");
+perSel.innerHTML = MONTHS.map((m,i)=>`<option value="${i}" ${i===3?"selected":""}>Month ${i+1} — ${m}</option>`).join("");
+function runTable(run){
+  const t = run.totals;
+  return '<table><tr><th>Employee</th><th class="r">Gross</th><th class="r">Tax</th><th class="r">Emp NI</th><th class="r">Stu. loan</th><th class="r">Pension</th><th class="r">Net pay</th><th class="r">Emp\'r NI</th><th class="r">Emp\'r pension</th></tr>' +
+    run.lines.map(l=>`<tr><td><b>${l.name}</b></td><td class="r">${gbp(l.c.gross)}</td><td class="r">${gbp(l.c.tax)}</td><td class="r">${gbp(l.c.eeNI)}</td><td class="r">${gbp(l.c.sl)}</td><td class="r">${gbp(l.c.eePen)}</td><td class="r"><b>${gbp(l.c.net)}</b></td><td class="r">${gbp(l.c.erNI)}</td><td class="r">${gbp(l.c.erPen)}</td></tr>`).join("") +
+    `<tr style="font-weight:800;background:#f8fafc"><td>Totals</td><td class="r">${gbp(t.gross)}</td><td class="r">${gbp(t.tax)}</td><td class="r">${gbp(t.eeNI)}</td><td class="r">${gbp(t.sl)}</td><td class="r">${gbp(t.eePen)}</td><td class="r">${gbp(t.net)}</td><td class="r">${gbp(t.erNI)}</td><td class="r">${gbp(t.erPen)}</td></tr></table>`;
+}
+document.getElementById("r-go").onclick = () => {
+  if (!S.emps.length){ flash("Add employees first."); return }
+  const pi = +perSel.value;
+  const lines = S.emps.map(e => ({ name: e.name, code: e.taxCode, c: calcMonth(e) }));
+  const totals = lines.reduce((a,l)=>{ for (const k of ["gross","tax","eeNI","erNI","sl","eePen","erPen","net"]) a[k]=+((a[k]||0)+l.c[k]).toFixed(2); return a },{});
+  const run = { period: MONTHS[pi], month: pi+1, ts: new Date().toISOString(), lines, totals };
+  S.runs = S.runs.filter(r=>r.month!==run.month).concat(run).sort((a,b)=>a.month-b.month);
+  save(); renderAll();
+  document.getElementById("runResult").innerHTML = runTable(run) + `<p class="note">Approved ✓ — FPS queued for filing on or before payday. HMRC remittance for this period: <b>${gbp(run.totals.tax + run.totals.eeNI + run.totals.erNI + run.totals.sl)}</b> (PAYE + employee NI + employer NI + student loan).</p>`;
+  flash("Payroll run for " + run.period + " approved.");
+};
+// ===== payslips =====
+function renderSlips(){
+  const el = document.getElementById("slips");
+  if (!S.runs.length){ el.innerHTML = '<div class="empty">Run a payroll to generate payslips.</div>'; return }
+  const run = S.runs[S.runs.length-1];
+  el.innerHTML = run.lines.map(l => `
+  <div class="payslip">
+    <div class="head"><div><b style="color:var(--navy)">Pay<span style="color:var(--teal)">Bridge</span></b><div style="font-size:.78rem;color:var(--mut)">on behalf of Demo Ltd · PAYE 123/AB456</div></div>
+    <div style="text-align:right"><h3>${l.name}</h3><div style="font-size:.78rem;color:var(--mut)">${run.period} · Month ${run.month} · Tax code ${l.code}</div></div></div>
+    <div class="cols">
+      <div><div class="sec-t">Payments</div>
+        <div class="line"><span>Salary</span><span>${gbp(l.c.gross)}</span></div>
+        <div class="tot"><span>Total gross</span><span>${gbp(l.c.gross)}</span></div>
+      </div>
+      <div><div class="sec-t">Deductions</div>
+        <div class="line"><span>Income tax (PAYE)</span><span>${gbp(l.c.tax)}</span></div>
+        <div class="line"><span>National Insurance</span><span>${gbp(l.c.eeNI)}</span></div>
+        ${l.c.sl ? `<div class="line"><span>Student loan</span><span>${gbp(l.c.sl)}</span></div>` : ""}
+        ${l.c.eePen ? `<div class="line"><span>Pension</span><span>${gbp(l.c.eePen)}</span></div>` : ""}
+        <div class="tot"><span>Total deductions</span><span>${gbp(+(l.c.tax+l.c.eeNI+l.c.sl+l.c.eePen).toFixed(2))}</span></div>
+      </div>
+    </div>
+    <div class="netbox"><span>Net pay</span><span class="amt">${gbp(l.c.net)}</span></div>
+    <div style="font-size:.72rem;color:var(--mut);margin-top:10px">Employer contributions this period: NI ${gbp(l.c.erNI)} · Pension ${gbp(l.c.erPen)}</div>
+  </div>`).join("");
+}
+// ===== RTI =====
+function renderRTI(){
+  const el = document.getElementById("rtiTable"), rm = document.getElementById("remit");
+  if (!S.runs.length){ return }
+  el.innerHTML = '<table><tr><th>Submission</th><th>Period</th><th class="r">Employees</th><th class="r">Gross</th><th class="r">Tax + NI reported</th><th>Status</th></tr>' +
+    S.runs.map(r=>`<tr><td><b>FPS</b></td><td>${r.period} (M${r.month})</td><td class="r">${r.lines.length}</td><td class="r">${gbp(r.totals.gross)}</td><td class="r">${gbp(+(r.totals.tax+r.totals.eeNI+r.totals.erNI).toFixed(2))}</td><td><span class="pill g">Accepted ✓</span></td></tr>`).join("") + '</table><p class="note">Demo: submissions are simulated. The live service files via HMRC-recognised software under your PAYE scheme.</p>';
+  rm.innerHTML = '<table><tr><th>Period</th><th class="r">PAYE tax</th><th class="r">Employee NI</th><th class="r">Employer NI</th><th class="r">Student loan</th><th class="r">Total due to HMRC</th></tr>' +
+    S.runs.map(r=>`<tr><td>${r.period}</td><td class="r">${gbp(r.totals.tax)}</td><td class="r">${gbp(r.totals.eeNI)}</td><td class="r">${gbp(r.totals.erNI)}</td><td class="r">${gbp(r.totals.sl)}</td><td class="r"><b>${gbp(+(r.totals.tax+r.totals.eeNI+r.totals.erNI+r.totals.sl).toFixed(2))}</b></td></tr>`).join("") + '</table>';
+}
+// ===== dashboard =====
+function renderDash(){
+  document.getElementById("d-emps").textContent = S.emps.length;
+  const run = S.runs[S.runs.length-1];
+  document.getElementById("d-gross").textContent = run ? gbp(run.totals.gross) : "—";
+  document.getElementById("d-hmrc").textContent = run ? gbp(+(run.totals.tax+run.totals.eeNI+run.totals.erNI+run.totals.sl).toFixed(2)) : "—";
+  document.getElementById("d-cost").textContent = run ? gbp(+(run.totals.gross+run.totals.erNI+run.totals.erPen).toFixed(2)) : "—";
+  document.getElementById("d-run").innerHTML = run ? `<p style="font-size:.85rem;color:var(--mut);margin-bottom:10px">${run.period} · approved ${new Date(run.ts).toLocaleString("en-GB")}</p>` + runTable(run) : '<div class="empty">No payroll run yet — head to <b>Run payroll</b>.</div>';
+}
+function renderAll(){ renderEmps(); renderSlips(); renderRTI(); renderDash(); }
+renderAll();
+</script>
+</body>
+</html>
