@@ -24,7 +24,7 @@ const PROJECTS = [
     url:"https://ajsvehicleservices.co.uk", repo:"https://github.com/triggsoliver-ship-it/AJS" },
   { name:"Man With A Whistle", tag:"Business site", g:"linear-gradient(135deg,#4a3a14,#231b08)",
     desc:"Clean marketing site for a bespoke dog trainer — services, training videos and a clear booking call-to-action.",
-    url:"https://manwithawhistle.co.uk", repo:"https://github.com/triggsoliver-ship-it/manwithawhistle" },
+    url:"https://manwithawhistle.com", repo:"https://github.com/triggsoliver-ship-it/manwithawhistle" },
   { name:"Veles Capital", tag:"Finance", g:"linear-gradient(135deg,#243140,#0e151c)",
     desc:"Sharp, corporate brand site for Veles Capital — built to convey trust and credibility in financial services.",
     url:"https://velescapital.net", repo:"https://github.com/triggsoliver-ship-it/Veles-Capital-" },
