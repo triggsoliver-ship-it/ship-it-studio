@@ -24,7 +24,7 @@ const PROJECTS = [
     url:"https://ajsvehicleservices.co.uk", repo:"https://github.com/triggsoliver-ship-it/AJS" },
   { name:"Man With A Whistle", tag:"Business site", g:"linear-gradient(135deg,#4a3a14,#231b08)",
     desc:"Clean marketing site for a bespoke dog trainer — services, training videos and a clear booking call-to-action.",
-    url:"https://manwithawhistle.com", repo:"https://github.com/triggsoliver-ship-it/manwithawhistle" },
+    url:"https://manwithawhistle.co.uk", repo:"https://github.com/triggsoliver-ship-it/manwithawhistle" },
   { name:"Veles Capital", tag:"Finance", g:"linear-gradient(135deg,#243140,#0e151c)",
     desc:"Sharp, corporate brand site for Veles Capital — built to convey trust and credibility in financial services.",
     url:"https://velescapital.net", repo:"https://github.com/triggsoliver-ship-it/Veles-Capital-" },
@@ -54,29 +54,8 @@ function renderProjects(limit){
   }).join('');
 }
 
-/* ---- July promo bar (site-wide) ---- */
-function injectPromoBar(){
-  if(document.querySelector('.promo-bar')) return;
-  const css = `:root{--promo-h:40px}
-  .promo-bar{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:center;text-align:center;min-height:var(--promo-h);
-    background:linear-gradient(100deg,#ff7a1a,#ff3d3d 55%,#ff2d6f);color:#fff;font-family:'Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:13px;line-height:1.3;
-    padding:8px 16px;text-decoration:none;letter-spacing:.2px}
-  .promo-bar strong{font-weight:800}
-  .promo-bar:hover{filter:brightness(1.05)}
-  .nav{top:var(--promo-h)}
-  body{padding-top:var(--promo-h)}
-  @media(max-width:680px){:root{--promo-h:54px}.promo-bar{font-size:11.5px;padding:7px 12px}}`;
-  const style=document.createElement('style'); style.textContent=css; document.head.appendChild(style);
-  const bar=document.createElement('a');
-  bar.className='promo-bar'; bar.href='/start.html';
-  bar.innerHTML='<span><strong>Summer Starter</strong> — a full website for <strong>£499 all-in, and we write every word for you</strong>. Summer price ends 31 August →</span>';
-  document.body.insertBefore(bar, document.body.firstChild);
-}
-
 /* ---- boot ---- */
 document.addEventListener('DOMContentLoaded',()=>{
-  injectPromoBar();
-
   // wire whatsapp links
   document.querySelectorAll('[data-wa]').forEach(a=>a.href=WA_HREF);
 
