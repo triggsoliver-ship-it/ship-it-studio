@@ -68,8 +68,8 @@ function injectPromoBar(){
   @media(max-width:680px){:root{--promo-h:54px}.promo-bar{font-size:11.5px;padding:7px 12px}}`;
   const style=document.createElement('style'); style.textContent=css; document.head.appendChild(style);
   const bar=document.createElement('a');
-  bar.className='promo-bar'; bar.href='/contact.html';
-  bar.innerHTML='<span><strong>July offer</strong> — as temperatures rise, our prices fall: <strong>30% off any new website or redesign</strong>. First 20 customers only →</span>';
+  bar.className='promo-bar'; bar.href='/start.html';
+  bar.innerHTML='<span><strong>Summer Starter</strong> — a full website for <strong>£499 all-in, and we write every word for you</strong>. Summer price ends 31 August →</span>';
   document.body.insertBefore(bar, document.body.firstChild);
 }
 
