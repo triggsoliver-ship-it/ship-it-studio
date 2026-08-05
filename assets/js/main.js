@@ -28,6 +28,15 @@ const PROJECTS = [
   { name:"Veles Capital", tag:"Finance", g:"linear-gradient(135deg,#243140,#0e151c)",
     desc:"Sharp, corporate brand site for Veles Capital — built to convey trust and credibility in financial services.",
     url:"https://velescapital.net", repo:"https://github.com/triggsoliver-ship-it/Veles-Capital-" },
+  { name:"Sales Chaser", tag:"Platform", g:"linear-gradient(135deg,#6b3a14,#2b1608)",
+    desc:"AI lead qualification platform. Calls every opted-in lead within 60 seconds, qualifies them to your script and books the hot ones onto your sales team's calendar.",
+    url:"https://saleschaser.co.uk", repo:"https://github.com/triggsoliver-ship-it/Sales-Chaser" },
+  { name:"Parish in a Box", tag:"Platform", g:"linear-gradient(135deg,#4a1f3a,#220e1a)",
+    desc:"Compliant websites for England's parish and town councils. Transparency Code publishing, WCAG 2.2 AA and Assertion 10 evidence packs.",
+    url:"https://parishinabox.co.uk", repo:"" },
+  { name:"ScaleYourClub", tag:"Platform", g:"linear-gradient(135deg,#1e5c34,#0a2415)",
+    desc:"Free visibility check for grassroots and lower-league sports clubs, scored across six pillars with the evidence quoted, plus the sites, shops and fan lists that fix what it finds.",
+    url:"https://scaleyourclub.com", repo:"https://github.com/triggsoliver-ship-it/scaleyourclub" },
 ];
 
 /* ---- contact ---- */
