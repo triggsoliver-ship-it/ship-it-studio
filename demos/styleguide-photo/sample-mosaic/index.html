@@ -146,11 +146,20 @@ footer.pg .fwide .meta{text-align:right;font-size:14.5px}
 footer.pg .fwide .meta a{display:block}
 @media(max-width:700px){footer.pg .fwide .meta{text-align:left}}
 .why-panel{position:relative;overflow:hidden;background:var(--ink);color:#fff;padding:0}
+/* mosaic takes the light cut so it isn't frame's dark band again */
+.why-panel.light{background:var(--acc-soft);color:var(--ink)}
+.why-panel.light .pic{opacity:.13}
+.why-panel.light h2{color:var(--ink)}
+.why-panel.light .kicker{color:var(--acc-d);opacity:1}
+.why-panel.light .sub{color:var(--mut)}
+.why-panel.light .rows{background:var(--line);border-color:var(--line)}
+.why-panel.light .rows div{background:#fff}
+.why-panel.light .rows span{color:var(--mut)}
 .why-panel .pic{position:absolute;inset:0;opacity:.24}
 .why-panel .pic img{width:100%;height:100%;object-fit:cover}
 .why-panel .inner{position:relative;z-index:2;padding:86px 0}
 .why-panel h2{color:#fff;max-width:20ch}
-.why-panel .kicker{color:var(--acc)}
+.why-panel .kicker{color:#fff;opacity:.72}
 .why-panel .sub{color:rgba(255,255,255,.72);font-size:17px;max-width:56ch;margin-bottom:38px}
 .why-panel .rows{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px;
 background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14)}
@@ -182,7 +191,7 @@ background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14)}
 <div class="sec-head"><span class="kicker">Our services</span><h2>One person, most of the list.</h2><p>Domestic property maintenance across Berkhamsted and the Chilterns.</p></div>
 <div class="svc-tight"><div class="c"><figure><img src="https://images.unsplash.com/photo-1676210133055-eab6ef033ce3?auto=format&fit=crop&w=700&q=72" alt="Plumber working on pipework"/></figure><div class="body"><h3>Plumbing</h3><p>Taps, leaks, bathrooms and everything under the sink.</p></div></div><div class="c"><figure><img src="https://images.unsplash.com/photo-1758101755915-462eddc23f57?auto=format&fit=crop&w=700&q=72" alt="Electrician testing a panel"/></figure><div class="body"><h3>Electrics</h3><p>Sockets, lights, consumer units, testing and certificates.</p></div></div><div class="c"><figure><img src="https://images.unsplash.com/photo-1744063909793-8a1e85ace349?auto=format&fit=crop&w=700&q=72" alt="Radiators against a white wall"/></figure><div class="body"><h3>Heating</h3><p>Radiators, valves, balancing and the cold room upstairs.</p></div></div><div class="c"><figure><img src="https://images.unsplash.com/photo-1673870861507-d72aa6855d89?auto=format&fit=crop&w=700&q=72" alt="Holding a wrench by a wall of tools"/></figure><div class="body"><h3>Maintenance</h3><p>A half or full day working through your list.</p></div></div></div></div></section>
 
-<section class="why-panel" id="why"><div class="pic"><img src="https://images.unsplash.com/photo-1758101755915-462eddc23f57?auto=format&fit=crop&w=1600&q=72" alt="Electrician testing a panel"/></div><div class="inner"><div class="wrap"><span class="kicker">Standards</span><h2>Eighteen years, and still the same number.</h2><p class="sub">Most of the work comes from people who have used us before.</p><div class="rows"><div><b>Registered</b><span>Part P and Gas Safe, numbers on request.</span></div><div><b>Insured</b><span>Public liability on every job.</span></div><div><b>Priced by the job</b><span>You know the cost before it starts.</span></div><div><b>Turns up</b><span>On the day, in the window given.</span></div></div></div></div></section>
+<section class="why-panel light" id="why"><div class="pic"><img src="https://images.unsplash.com/photo-1758101755915-462eddc23f57?auto=format&fit=crop&w=1600&q=72" alt="Electrician testing a panel"/></div><div class="inner"><div class="wrap"><span class="kicker">Standards</span><h2>Eighteen years, and still the same number.</h2><p class="sub">Most of the work comes from people who have used us before.</p><div class="rows"><div><b>Registered</b><span>Part P and Gas Safe, numbers on request.</span></div><div><b>Insured</b><span>Public liability on every job.</span></div><div><b>Priced by the job</b><span>You know the cost before it starts.</span></div><div><b>Turns up</b><span>On the day, in the window given.</span></div></div></div></div></section>
 
 <section id="reviews"><div class="wrap"><div class="sec-head"><span class="kicker">Testimonials</span><h2>Eighteen years of the same customers.</h2><p>Sample review copy for the styleguide.</p></div><div class="rev-stack"><div class="q"><p>Sample testimonial copy shown for layout purposes.</p><footer>Sample customer, Berkhamsted</footer></div><div class="q"><p>Sample testimonial copy shown for layout purposes.</p><footer>Sample customer, Tring</footer></div><div class="q"><p>Sample testimonial copy shown for layout purposes.</p><footer>Sample customer, Chesham</footer></div></div></div></section>
 
