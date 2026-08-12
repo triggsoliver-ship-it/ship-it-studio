@@ -135,7 +135,7 @@ border-radius:var(--r) var(--r) 0 0;padding:46px 52px 44px;box-shadow:var(--sh-l
 .area-line{margin-top:10px;font-size:19px;line-height:1.75}
 .area-line b{font-weight:600;border-bottom:2px solid var(--acc-soft)}
 .area-line .sep{color:var(--acc);margin:0 9px}
-.cta-band{display:grid;grid-template-columns:1fr 1fr;min-height:440px}
+.cta-band{padding:0;display:grid;grid-template-columns:1fr 1fr;min-height:440px}
 .cta-band .pic{overflow:hidden}
 .cta-band .pic img{width:100%;height:100%;object-fit:cover}
 .cta-band .txt{background:var(--ink);color:#fff;display:flex;flex-direction:column;justify-content:center;padding:64px 56px}
@@ -147,7 +147,21 @@ footer.pg .fstack{text-align:center;margin-bottom:30px}
 footer.pg .fstack .brand{justify-content:center;margin:0 auto 16px;display:inline-flex}
 footer.pg .fstack p{max-width:56ch;margin:0 auto 18px}
 footer.pg .fstack .links{display:flex;flex-wrap:wrap;gap:22px;justify-content:center;font-size:14px}
-footer.pg .fbot{justify-content:center;text-align:center}</style></head><body>
+footer.pg .fbot{justify-content:center;text-align:center}
+.why-num{background:var(--wash)}
+.why-num .head{max-width:640px;margin-bottom:44px}
+.why-num .head p{color:var(--mut);font-size:17px}
+.why-num .list{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:34px}
+.why-num .list div{border-top:3px solid var(--acc);padding-top:20px}
+.why-num .n{font-family:inherit;font-weight:700;font-size:15px;color:var(--acc);letter-spacing:.1em;display:block;margin-bottom:10px}
+.why-num b{display:block;font-family:inherit;font-size:18px;margin-bottom:7px}
+.why-num span{color:var(--mut);font-size:14.5px}
+.nb{gap:12px}
+.brand{min-width:0;flex:1 1 auto}
+.brand>span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.brand small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:520px){.brand{font-size:15px}.btn{padding:11px 15px;font-size:13.5px}}
+</style></head><body>
 
 <nav><div class="wrap nb"><a class="brand" href="#top" style="text-decoration:none"><span class="mark"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h7"/></svg></span><span>Calder &amp; Rowe<small>Solicitors &middot; Shrewsbury</small></span></a>
 <div class="nl"><a href="#services">Services</a><a href="#why">Why us</a><a href="#reviews">Reviews</a><a href="#areas">Areas</a></div>
@@ -165,14 +179,14 @@ footer.pg .fbot{justify-content:center;text-align:center}</style></head><body>
 
 
 <section id="services"><div class="wrap">
-<div class="sec-head"><span class="kicker">What we do</span><h2>Four things, done thoroughly.</h2><p>Private client work for people across Shropshire and the Marches.</p></div>
-<div class="svc-num"><ol><li><div></div><div><h3>Conveyancing</h3><p>Buying, selling and transfers, with a fixed fee agreed first.</p></div></li><li><div></div><div><h3>Wills</h3><p>Written properly, stored safely, reviewed when life changes.</p></div></li><li><div></div><div><h3>Probate</h3><p>Handled with the pace and patience the situation needs.</p></div></li><li><div></div><div><h3>Lasting power of attorney</h3><p>Set up before it is needed, not after.</p></div></li></ol><div class="pic"><img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1000&q=72" alt="Adviser and client across a desk"/></div></div></div></section>
+<div class="sec-head"><span class="kicker">What we handle</span><h2>Four things, done thoroughly.</h2><p>Private client work for people across Shropshire and the Marches.</p></div>
+<div class="svc-num"><ol><li><div><h3>Conveyancing</h3><p>Buying, selling and transfers, with a fixed fee agreed first.</p></div></li><li><div><h3>Wills</h3><p>Written properly, stored safely, reviewed when life changes.</p></div></li><li><div><h3>Probate</h3><p>Handled with the pace and patience the situation needs.</p></div></li><li><div><h3>Lasting power of attorney</h3><p>Set up before it is needed, not after.</p></div></li></ol><div class="pic"><img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1000&q=72" alt="Adviser and client across a desk"/></div></div></div></section>
 
-<section class="split" id="why"><div class="wrap"><div class="shot"><img src="https://images.unsplash.com/photo-1626266061368-46a8f578ddd6?auto=format&fit=crop&w=1100&q=72" alt="Calculator on a paperwork-covered desk"/></div><div><span class="kicker">Why us</span><h2>You get a person, not a case number.</h2><p style="color:var(--mut);font-size:17px">The solicitor you meet is the one who does the work.</p><ul class="ticks"><li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><div><b>Named solicitor</b><span>One person, from first call to completion.</span></div></li><li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><div><b>Fixed fees</b><span>Agreed before any work starts.</span></div></li><li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><div><b>Plain English</b><span>Letters you can actually read.</span></div></li><li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><div><b>Local</b><span>Shrewsbury office, open to walk-ins.</span></div></li></ul></div></div></section>
+<section class="why-num" id="why"><div class="wrap"><div class="head"><span class="kicker">Our approach</span><h2>You get a person, not a case number.</h2><p>The solicitor you meet is the one who does the work.</p></div><div class="list"><div><span class="n">01</span><b>Named solicitor</b><span>One person, from first call to completion.</span></div><div><span class="n">02</span><b>Fixed fees</b><span>Agreed before any work starts.</span></div><div><span class="n">03</span><b>Plain English</b><span>Letters you can actually read.</span></div><div><span class="n">04</span><b>Local</b><span>Shrewsbury office, open to walk-ins.</span></div></div></div></section>
 
-<section id="reviews"><div class="wrap"><div class="sec-head"><span class="kicker">Reputation</span><h2>Established 1987.</h2><p>Sample review copy for the styleguide.</p></div><div class="rev-rules"><div class="q"><div class="who">Sample client, Shrewsbury</div><p>Sample testimonial copy shown for layout purposes.</p></div><div class="q"><div class="who">Sample client, Church Stretton</div><p>Sample testimonial copy shown for layout purposes.</p></div><div class="q"><div class="who">Sample client, Wem</div><p>Sample testimonial copy shown for layout purposes.</p></div></div></div></section>
+<section id="reviews"><div class="wrap"><div class="sec-head"><span class="kicker">Clients</span><h2>Established 1987.</h2><p>Sample review copy for the styleguide.</p></div><div class="rev-rules"><div class="q"><div class="who">Sample client, Shrewsbury</div><p>Sample testimonial copy shown for layout purposes.</p></div><div class="q"><div class="who">Sample client, Church Stretton</div><p>Sample testimonial copy shown for layout purposes.</p></div><div class="q"><div class="who">Sample client, Wem</div><p>Sample testimonial copy shown for layout purposes.</p></div></div></div></section>
 
-<section class="split" id="areas"><div class="wrap"><div><span class="kicker">Where we work</span><h2>Shropshire and the Marches.</h2><p style="color:var(--mut);font-size:17px">Most matters are handled by phone and email, but the Shrewsbury office is open if you would rather sit down with someone.</p><p class="area-line"><b>Shrewsbury</b><span class="sep">/</span><b>Church Stretton</b><span class="sep">/</span><b>Wem</b><span class="sep">/</span><b>Bishop&#x27;s Castle</b><span class="sep">/</span><b>Much Wenlock</b><span class="sep">/</span><b>Oswestry</b></p></div><div class="shot"><img src="https://images.unsplash.com/photo-1543325042-c67825847491?auto=format&fit=crop&w=1100&q=72" alt="Welcoming reception counter"/></div></div></section>
+<section class="split" id="areas"><div class="wrap"><div><span class="kicker">Coverage</span><h2>Shropshire and the Marches.</h2><p style="color:var(--mut);font-size:17px">Most matters are handled by phone and email, but the Shrewsbury office is open if you would rather sit down with someone.</p><p class="area-line"><b>Shrewsbury</b><span class="sep">/</span><b>Church Stretton</b><span class="sep">/</span><b>Wem</b><span class="sep">/</span><b>Bishop&#x27;s Castle</b><span class="sep">/</span><b>Much Wenlock</b><span class="sep">/</span><b>Oswestry</b></p></div><div class="shot"><img src="https://images.unsplash.com/photo-1543325042-c67825847491?auto=format&fit=crop&w=1100&q=72" alt="Welcoming reception counter"/></div></div></section>
 
 <section class="cta-band" id="quote"><div class="pic"><img src="https://images.unsplash.com/photo-1497366616365-e78dd380d3dd?auto=format&fit=crop&w=1200&q=72" alt=""/></div><div class="txt"><h2>Request a callback</h2><p>Tell us roughly what it is about and someone will ring you back.</p><div class="cta-row" style="justify-content:flex-start"><a class="btn acc" href="mailto:hello@example-sample.co.uk">Email Calder &amp; Rowe</a><a class="btn ghost" href="tel:01743000000">Call 01743 000000</a></div><a class="em" href="mailto:hello@example-sample.co.uk">hello@example-sample.co.uk</a></div></section>
 
