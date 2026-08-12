@@ -111,6 +111,24 @@ header{position:relative;min-height:92vh;display:flex;align-items:flex-end;paddi
 .hi{position:relative;z-index:2;width:100%;display:grid;grid-template-columns:1.55fr .95fr;gap:44px;align-items:end}
 header h1{color:#fff}.lede{color:rgba(255,255,255,.84)}
 @media(max-width:920px){.hi{grid-template-columns:1fr;gap:32px}header{min-height:auto;padding:130px 0 50px}}
+
+.why-panel{position:relative;overflow:hidden;background:var(--ink);color:#fff;padding:0}
+.why-panel .pic{position:absolute;inset:0;opacity:.24}
+.why-panel .pic img{width:100%;height:100%;object-fit:cover}
+.why-panel .inner{position:relative;z-index:2;padding:86px 0}
+.why-panel h2{color:#fff;max-width:20ch}
+.why-panel .kicker{color:var(--acc)}
+.why-panel .sub{color:rgba(255,255,255,.72);font-size:17px;max-width:56ch;margin-bottom:38px}
+.why-panel .rows{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px;
+background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14)}
+.why-panel .rows div{background:rgba(11,18,32,.72);padding:24px 22px}
+.why-panel .rows b{display:block;font-family:inherit;font-size:16.5px;margin-bottom:6px}
+.why-panel .rows span{color:rgba(255,255,255,.62);font-size:14px}
+.nb{gap:12px}
+.brand{min-width:0;flex:1 1 auto}
+.brand>span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.brand small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:520px){.brand{font-size:15px}.btn{padding:11px 15px;font-size:13.5px}}
 </style></head><body>
 
 <nav><div class="wrap nb"><a class="brand" href="#top" style="text-decoration:none"><span class="mark"><svg viewBox="0 0 24 24"><path d="M4 4h16v11H4z"/><path d="M12 4v11M4 9.5h16"/><path d="M7 21l2-4M17 21l-2-4"/></svg></span><span>Clearview Window Care<small>Window cleaner &middot; Bridport</small></span></a>
@@ -133,7 +151,7 @@ header h1{color:#fff}.lede{color:rgba(255,255,255,.84)}
 <div class="sec-head"><span class="kicker">What we do</span><h2>Glass, frames, sills &mdash; done properly.</h2><p>Homes and small commercial premises across west Dorset.</p></div>
 <div class="grid"><article class="svc"><figure><img src="https://images.unsplash.com/photo-1721620958961-cccc239cbb49?auto=format&fit=crop&w=900&q=72" alt="Soaping and squeegeeing glass"/></figure><div class="body"><h3>Regular rounds</h3><p>Every four or six weeks, same person each visit.</p></div></article><article class="svc"><figure><img src="https://images.unsplash.com/photo-1737372842504-260e65e0eeab?auto=format&fit=crop&w=900&q=72" alt="Cleaning a window from the sill"/></figure><div class="body"><h3>Conservatory roofs</h3><p>Glass, frames and the bits nobody else reaches.</p></div></article><article class="svc"><figure><img src="https://images.unsplash.com/photo-1632927063333-df848f5f916a?auto=format&fit=crop&w=900&q=72" alt="Water-fed pole against a building"/></figure><div class="body"><h3>Gutters &amp; fascias</h3><p>Cleared and washed down, with before and after photos.</p></div></article><article class="svc"><figure><img src="https://images.unsplash.com/photo-1635445818409-64a0ff92eb39?auto=format&fit=crop&w=900&q=72" alt="Working from a ladder at a window"/></figure><div class="body"><h3>One-off cleans</h3><p>Moving, selling, or the builders have just left.</p></div></article></div></div></section>
 
-<section class="split" id="why"><div class="wrap"><div class="shot"><img src="https://images.unsplash.com/photo-1737372842504-260e65e0eeab?auto=format&fit=crop&w=1100&q=72" alt="Cleaning a window from the sill"/></div><div><span class="kicker">Why us</span><h2>Nine reviews. Not one unhappy.</h2><p style="color:var(--mut);font-size:17px">A small round, kept small enough to do properly.</p><ul class="ticks"><li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><div><b>Told in advance</b><span>A text the day before, every visit.</span></div></li><li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><div><b>Fully insured</b><span>Cover in place for domestic and commercial.</span></div></li><li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><div><b>Pure water system</b><span>Fed poles reaching three storeys, so frames dry clean.</span></div></li><li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><div><b>No contract</b><span>Stay because the windows look right.</span></div></li></ul></div></div></section>
+<section class="why-panel" id="why"><div class="pic"><img src="https://images.unsplash.com/photo-1737372842504-260e65e0eeab?auto=format&fit=crop&w=1600&q=72" alt="Cleaning a window from the sill"/></div><div class="inner"><div class="wrap"><span class="kicker">Why us</span><h2>Nine reviews. Not one unhappy.</h2><p class="sub">A small round, kept small enough to do properly.</p><div class="rows"><div><b>Told in advance</b><span>A text the day before, every visit.</span></div><div><b>Fully insured</b><span>Cover in place for domestic and commercial.</span></div><div><b>Pure water system</b><span>Fed poles reaching three storeys, so frames dry clean.</span></div><div><b>No contract</b><span>Stay because the windows look right.</span></div></div></div></div></section>
 
 <section id="reviews"><div class="wrap"><div class="sec-head"><span class="kicker">Reputation</span><h2>100% recommended, from 9 reviews.</h2><p>Sample review copy for the styleguide.</p></div><div class="grid"><div class="quote"><p>Sample testimonial copy shown for layout purposes.</p><footer>Sample customer, Bridport</footer></div><div class="quote"><p>Sample testimonial copy shown for layout purposes.</p><footer>Sample customer, West Bay</footer></div><div class="quote"><p>Sample testimonial copy shown for layout purposes.</p><footer>Sample customer, Beaminster</footer></div></div></div></section>
 
