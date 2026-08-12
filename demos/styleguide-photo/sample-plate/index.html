@@ -146,7 +146,21 @@ footer.pg .fstack{text-align:center;margin-bottom:30px}
 footer.pg .fstack .brand{justify-content:center;margin:0 auto 16px;display:inline-flex}
 footer.pg .fstack p{max-width:56ch;margin:0 auto 18px}
 footer.pg .fstack .links{display:flex;flex-wrap:wrap;gap:22px;justify-content:center;font-size:14px}
-footer.pg .fbot{justify-content:center;text-align:center}</style></head><body>
+footer.pg .fbot{justify-content:center;text-align:center}
+.why-pairs .band{border-radius:var(--r);overflow:hidden;aspect-ratio:21/8;margin-bottom:46px;box-shadow:var(--sh-lg)}
+.why-pairs .band img{width:100%;height:100%;object-fit:cover}
+.why-pairs .in{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start}
+.why-pairs .pr{display:grid;grid-template-columns:1fr 1fr;gap:30px 34px}
+.why-pairs .pr div{border-left:2px solid var(--acc-soft);padding-left:18px}
+.why-pairs .pr b{display:block;font-family:inherit;font-size:17px;margin-bottom:5px}
+.why-pairs .pr span{color:var(--mut);font-size:14.5px}
+@media(max-width:860px){.why-pairs .in{grid-template-columns:1fr;gap:32px}.why-pairs .band{aspect-ratio:16/9}}
+.nb{gap:12px}
+.brand{min-width:0;flex:1 1 auto}
+.brand>span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.brand small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:520px){.brand{font-size:15px}.btn{padding:11px 15px;font-size:13.5px}}
+</style></head><body>
 
 <nav><div class="wrap nb"><a class="brand" href="#top" style="text-decoration:none"><span class="mark"><svg viewBox="0 0 24 24"><path d="M6 3l12 12M18 3 6 15"/><circle cx="5" cy="18" r="3"/><circle cx="19" cy="18" r="3"/></svg></span><span>Ashgrove Beauty Rooms<small>Beauty studio &middot; Alnwick</small></span></a>
 <div class="nl"><a href="#services">Services</a><a href="#why">Why us</a><a href="#reviews">Reviews</a><a href="#areas">Areas</a></div>
@@ -161,14 +175,14 @@ footer.pg .fbot{justify-content:center;text-align:center}</style></head><body>
 <div class="stat-line"><div class="wrap"><div><b>4.9</b>From 180 reviews</div><div><b>12 yrs</b>Qualified</div><div><b>2</b>Treatment rooms</div><div><b>Free</b>Quotes</div></div></div>
 
 <section id="services"><div class="wrap">
-<div class="sec-head"><span class="kicker">What we do</span><h2>Four things, done properly.</h2><p>Rather than a menu of thirty treatments none of them specialise in.</p></div>
+<div class="sec-head"><span class="kicker">The menu</span><h2>Four things, done properly.</h2><p>Rather than a menu of thirty treatments none of them specialise in.</p></div>
 <div class="svc-plain"><div class="p"><figure><img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=300&q=72" alt="Nail technician working on a client&#x27;s nails"/></figure><h3>Nails</h3><p>Gel, BIAB and natural nail care, shaped properly.</p></div><div class="p"><figure><img src="https://images.unsplash.com/photo-1674049406467-824ea37c7184?auto=format&fit=crop&w=300&q=72" alt="Applying eyelash extensions"/></figure><h3>Lashes</h3><p>Classic, hybrid and Russian sets, plus infills.</p></div><div class="p"><figure><img src="https://images.unsplash.com/photo-1674049406179-d7bf2c263e71?auto=format&fit=crop&w=300&q=72" alt="Shaping a client&#x27;s eyebrows"/></figure><h3>Brows</h3><p>Shaping, tinting and lamination.</p></div><div class="p"><figure><img src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?auto=format&fit=crop&w=300&q=72" alt="Hairdresser cutting a client&#x27;s hair"/></figure><h3>Cuts &amp; styling</h3><p>Dry cuts, restyles and blow-dries, unhurried.</p></div></div></div></section>
 
-<section class="split" id="why"><div class="wrap"><div><span class="kicker">Why us</span><h2>Twelve years, two rooms, no rush.</h2><p style="color:var(--mut);font-size:17px">Appointments are spaced so nobody is hurried out.</p><ul class="ticks"><li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><div><b>Qualified and insured</b><span>Certificates on the wall, not in a drawer.</span></div></li><li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><div><b>Patch tested</b><span>Every new client, every tinting service.</span></div></li><li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><div><b>Evenings available</b><span>Late appointments twice a week.</span></div></li><li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><div><b>No upselling</b><span>You get asked what you want, once.</span></div></li></ul></div><div class="shot"><img src="https://images.unsplash.com/photo-1674049406467-824ea37c7184?auto=format&fit=crop&w=1100&q=72" alt="Applying eyelash extensions"/></div></div></section>
+<section class="why-pairs" id="why"><div class="wrap"><div class="band"><img src="https://images.unsplash.com/photo-1674049406467-824ea37c7184?auto=format&fit=crop&w=1600&q=72" alt="Applying eyelash extensions"/></div><div class="in"><div><span class="kicker">In the studio</span><h2>Twelve years, two rooms, no rush.</h2><p style="color:var(--mut);font-size:17px">Appointments are spaced so nobody is hurried out.</p></div><div class="pr"><div><b>Qualified and insured</b><span>Certificates on the wall, not in a drawer.</span></div><div><b>Patch tested</b><span>Every new client, every tinting service.</span></div><div><b>Evenings available</b><span>Late appointments twice a week.</span></div><div><b>No upselling</b><span>You get asked what you want, once.</span></div></div></div></div></section>
 
-<section id="reviews"><div class="wrap"><div class="sec-head"><span class="kicker">Reputation</span><h2>4.9 from 180 reviews.</h2><p>Sample review copy for the styleguide.</p></div><div class="rev-single"><div class="rule"></div><p>Sample testimonial copy shown for layout purposes.</p><footer>Sample client, Alnwick</footer></div></div></section>
+<section id="reviews"><div class="wrap"><div class="sec-head"><span class="kicker">Reviews</span><h2>4.9 from 180 reviews.</h2><p>Sample review copy for the styleguide.</p></div><div class="rev-single"><div class="rule"></div><p>Sample testimonial copy shown for layout purposes.</p><footer>Sample client, Alnwick</footer></div></div></section>
 
-<section class="split" id="areas"><div class="wrap"><div class="shot"><img src="https://images.unsplash.com/photo-1674049406179-d7bf2c263e71?auto=format&fit=crop&w=1100&q=72" alt="Shaping a client&#x27;s eyebrows"/></div><div><span class="kicker">Where we work</span><h2>Alnwick and the coast.</h2><p style="color:var(--mut);font-size:17px">Clients travel in from along the coast — the studio is a two-minute walk from Bondgate.</p><div class="areas"><span>Alnwick</span><span>Alnmouth</span><span>Amble</span><span>Rothbury</span><span>Warkworth</span><span>Longhoughton</span></div></div></div></section>
+<section class="split" id="areas"><div class="wrap"><div class="shot"><img src="https://images.unsplash.com/photo-1674049406179-d7bf2c263e71?auto=format&fit=crop&w=1100&q=72" alt="Shaping a client&#x27;s eyebrows"/></div><div><span class="kicker">Finding us</span><h2>Alnwick and the coast.</h2><p style="color:var(--mut);font-size:17px">Clients travel in from along the coast — the studio is a two-minute walk from Bondgate.</p><div class="areas"><span>Alnwick</span><span>Alnmouth</span><span>Amble</span><span>Rothbury</span><span>Warkworth</span><span>Longhoughton</span></div></div></div></section>
 
 <section class="cta-solid" id="quote"><div class="wrap"><div><h2>Book an appointment</h2><p>Tell us what you are after and we will find you a slot.</p></div><div class="box"><div class="lbl">Get in touch</div><a class="em" href="mailto:hello@example-sample.co.uk">hello@example-sample.co.uk</a><a class="btn acc" href="mailto:hello@example-sample.co.uk">Email Ashgrove Beauty Rooms</a> </div></div></section>
 
