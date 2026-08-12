@@ -113,11 +113,20 @@ header h1{color:#fff}.lede{color:rgba(255,255,255,.84)}
 @media(max-width:920px){.hi{grid-template-columns:1fr;gap:32px}header{min-height:auto;padding:130px 0 50px}}
 
 .why-panel{position:relative;overflow:hidden;background:var(--ink);color:#fff;padding:0}
+/* mosaic takes the light cut so it isn't frame's dark band again */
+.why-panel.light{background:var(--acc-soft);color:var(--ink)}
+.why-panel.light .pic{opacity:.13}
+.why-panel.light h2{color:var(--ink)}
+.why-panel.light .kicker{color:var(--acc-d);opacity:1}
+.why-panel.light .sub{color:var(--mut)}
+.why-panel.light .rows{background:var(--line);border-color:var(--line)}
+.why-panel.light .rows div{background:#fff}
+.why-panel.light .rows span{color:var(--mut)}
 .why-panel .pic{position:absolute;inset:0;opacity:.24}
 .why-panel .pic img{width:100%;height:100%;object-fit:cover}
 .why-panel .inner{position:relative;z-index:2;padding:86px 0}
 .why-panel h2{color:#fff;max-width:20ch}
-.why-panel .kicker{color:var(--acc)}
+.why-panel .kicker{color:#fff;opacity:.72}
 .why-panel .sub{color:rgba(255,255,255,.72);font-size:17px;max-width:56ch;margin-bottom:38px}
 .why-panel .rows{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px;
 background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14)}
@@ -151,7 +160,7 @@ background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14)}
 <div class="sec-head"><span class="kicker">What we do</span><h2>Glass, frames, sills &mdash; done properly.</h2><p>Homes and small commercial premises across west Dorset.</p></div>
 <div class="grid"><article class="svc"><figure><img src="https://images.unsplash.com/photo-1721620958961-cccc239cbb49?auto=format&fit=crop&w=900&q=72" alt="Soaping and squeegeeing glass"/></figure><div class="body"><h3>Regular rounds</h3><p>Every four or six weeks, same person each visit.</p></div></article><article class="svc"><figure><img src="https://images.unsplash.com/photo-1737372842504-260e65e0eeab?auto=format&fit=crop&w=900&q=72" alt="Cleaning a window from the sill"/></figure><div class="body"><h3>Conservatory roofs</h3><p>Glass, frames and the bits nobody else reaches.</p></div></article><article class="svc"><figure><img src="https://images.unsplash.com/photo-1632927063333-df848f5f916a?auto=format&fit=crop&w=900&q=72" alt="Water-fed pole against a building"/></figure><div class="body"><h3>Gutters &amp; fascias</h3><p>Cleared and washed down, with before and after photos.</p></div></article><article class="svc"><figure><img src="https://images.unsplash.com/photo-1635445818409-64a0ff92eb39?auto=format&fit=crop&w=900&q=72" alt="Working from a ladder at a window"/></figure><div class="body"><h3>One-off cleans</h3><p>Moving, selling, or the builders have just left.</p></div></article></div></div></section>
 
-<section class="why-panel" id="why"><div class="pic"><img src="https://images.unsplash.com/photo-1737372842504-260e65e0eeab?auto=format&fit=crop&w=1600&q=72" alt="Cleaning a window from the sill"/></div><div class="inner"><div class="wrap"><span class="kicker">Why us</span><h2>Nine reviews. Not one unhappy.</h2><p class="sub">A small round, kept small enough to do properly.</p><div class="rows"><div><b>Told in advance</b><span>A text the day before, every visit.</span></div><div><b>Fully insured</b><span>Cover in place for domestic and commercial.</span></div><div><b>Pure water system</b><span>Fed poles reaching three storeys, so frames dry clean.</span></div><div><b>No contract</b><span>Stay because the windows look right.</span></div></div></div></div></section>
+<section class="why-panel " id="why"><div class="pic"><img src="https://images.unsplash.com/photo-1737372842504-260e65e0eeab?auto=format&fit=crop&w=1600&q=72" alt="Cleaning a window from the sill"/></div><div class="inner"><div class="wrap"><span class="kicker">Why us</span><h2>Nine reviews. Not one unhappy.</h2><p class="sub">A small round, kept small enough to do properly.</p><div class="rows"><div><b>Told in advance</b><span>A text the day before, every visit.</span></div><div><b>Fully insured</b><span>Cover in place for domestic and commercial.</span></div><div><b>Pure water system</b><span>Fed poles reaching three storeys, so frames dry clean.</span></div><div><b>No contract</b><span>Stay because the windows look right.</span></div></div></div></div></section>
 
 <section id="reviews"><div class="wrap"><div class="sec-head"><span class="kicker">Reputation</span><h2>100% recommended, from 9 reviews.</h2><p>Sample review copy for the styleguide.</p></div><div class="grid"><div class="quote"><p>Sample testimonial copy shown for layout purposes.</p><footer>Sample customer, Bridport</footer></div><div class="quote"><p>Sample testimonial copy shown for layout purposes.</p><footer>Sample customer, West Bay</footer></div><div class="quote"><p>Sample testimonial copy shown for layout purposes.</p><footer>Sample customer, Beaminster</footer></div></div></div></section>
 
