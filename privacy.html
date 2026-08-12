@@ -65,7 +65,7 @@
 <section class="hero" style="padding-bottom:20px"><div class="wrap">
   <span class="eyebrow"><span class="d"></span>Privacy notice</span>
   <h1 class="reveal">What we collect, <span class="hl">and what we do with it.</span></h1>
-  <p class="lead reveal" data-delay="80">Short version: this site has one form. If you fill it in, your name, email and message reach our inbox so we can reply. There is no tracking, no advertising and no cookie banner, because there is nothing to consent to.</p>
+  <p class="lead reveal" data-delay="80">Short version: this site has one form that actually sends anything. If you fill it in, your name, email and message reach our inbox so we can reply. There is no tracking, no advertising and no cookie banner, because there is nothing to consent to.</p>
 </div></section>
 
 <section class="sec" style="padding-top:10px"><div class="wrap doc">
@@ -115,7 +115,9 @@
 
   <div class="block">
     <h2>The demo sites</h2>
-    <p>We publish concept demos for prospective clients at shipitstudio.co.uk/demos/. Those pages have no forms on them — they collect nothing. They do load the same Google fonts, and they load a Vercel analytics script that counts page views. If a demo carries a business's contact details, those were taken from that business's own public listing.</p>
+    <p>We publish concept demos for prospective clients at shipitstudio.co.uk/demos/. <strong>Nothing on any of those pages sends anything to us.</strong></p>
+    <p>A handful of them have a form on the page — four beauty-clinic demos with an enquiry form, and a payroll demo with a pay calculator. Every one of those is switched off in the code: the page stops the submission where it stands, and nothing is transmitted anywhere. The payroll demo keeps what you type in your own browser's local storage, under the key <b>paybridge-demo</b>, so the demo still works if you reload the page. It never leaves your device, and clearing your browser data removes it.</p>
+    <p>Most demo pages load a Vercel analytics script that counts page views, and many load the same fonts from Google. If a demo carries a business's contact details, those were taken from that business's own public listing.</p>
   </div>
 
   <div class="block">
@@ -137,10 +139,11 @@
   <div class="block">
     <h2>Cookies and what's stored on your device</h2>
     <p>This site sets <strong>no cookies</strong>. That's why there's no cookie banner.</p>
-    <p>Two things are stored on your own device, and neither is sent to us:</p>
+    <p>Three things can be stored on your own device, and none of them is sent to us:</p>
     <ul>
       <li>A <b>service worker cache</b>. This site can be installed to your home screen like an app, so a copy of a few pages, the stylesheet and the icons is kept in your browser to make it load fast and work offline. Clearing your browser data removes it.</li>
       <li>On iPhone and iPad, if you dismiss the “add to home screen” banner, we store a single flag (<b>sis-ios-hide</b>) in your browser's local storage so it doesn't nag you again.</li>
+      <li>On the payroll demo page only, whatever you type into the calculator (<b>paybridge-demo</b>), so the demo survives a page reload.</li>
     </ul>
     <p>Third parties your browser contacts: Google, for the fonts, on every page; Web3Forms, only when you submit the contact form; Stripe, only if you click a payment button; and Vercel's analytics script, on the demo pages only. If any of them stores something in your browser, that is theirs rather than ours.</p>
   </div>
