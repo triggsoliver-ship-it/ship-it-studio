@@ -150,7 +150,10 @@ footer.pg .fstack .links{display:flex;flex-wrap:wrap;gap:22px;justify-content:ce
 footer.pg .fbot{justify-content:center;text-align:center}
 .why-num{background:var(--wash)}
 /* shelf takes the vertical cut: one column, left rule, no top borders */
-.why-num.vert .list{grid-template-columns:1fr;gap:0;border-left:2px solid var(--acc);padding-left:26px}
+.why-num.vert .list{grid-template-columns:1fr;gap:0;border-left:2px solid var(--acc);padding-left:26px;max-width:none}
+.why-num.vert .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+.why-num.vert .head{margin-bottom:0}
+@media(max-width:860px){.why-num.vert .wrap{grid-template-columns:1fr;gap:30px}}
 .why-num.vert .list div{border-top:0;padding:18px 0}
 .why-num.vert .n{display:inline-block;margin-right:12px;margin-bottom:0}
 .why-num.vert b{display:inline-block;margin-right:10px}
