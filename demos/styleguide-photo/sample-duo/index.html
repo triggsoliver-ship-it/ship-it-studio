@@ -128,7 +128,8 @@ header h1{text-transform:uppercase;letter-spacing:.01em;font-weight:700}
 .svc-wide .c p{color:rgba(255,255,255,.8);font-size:14.5px}
 @media(max-width:760px){.svc-wide{grid-template-columns:1fr}}
 .rev-dark{background:var(--ink);color:#fff}
-.rev-dark h2{color:#fff}.rev-dark .sec-head p{color:rgba(255,255,255,.66)}.rev-dark .kicker{color:var(--acc)}
+.rev-dark h2{color:#fff}.rev-dark .sec-head p{color:rgba(255,255,255,.66)}
+.rev-dark .kicker{color:#fff;opacity:.72}
 .rev-dark .q{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:calc(var(--r)*.7);padding:26px}
 .rev-dark .q p{font-size:16.5px;margin-bottom:14px}
 .rev-dark .q footer{font-size:13.5px;color:rgba(255,255,255,.55)}
@@ -142,6 +143,11 @@ footer.pg .fwide .meta{text-align:right;font-size:14.5px}
 footer.pg .fwide .meta a{display:block}
 @media(max-width:700px){footer.pg .fwide .meta{text-align:left}}
 .why-num{background:var(--wash)}
+/* shelf takes the vertical cut: one column, left rule, no top borders */
+.why-num.vert .list{grid-template-columns:1fr;gap:0;border-left:2px solid var(--acc);padding-left:26px}
+.why-num.vert .list div{border-top:0;padding:18px 0}
+.why-num.vert .n{display:inline-block;margin-right:12px;margin-bottom:0}
+.why-num.vert b{display:inline-block}
 .why-num .head{max-width:640px;margin-bottom:44px}
 .why-num .head p{color:var(--mut);font-size:17px}
 .why-num .list{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:34px}
@@ -174,7 +180,7 @@ footer.pg .fwide .meta a{display:block}
 <div class="sec-head"><span class="kicker">What we offer</span><h2>From a weekly wash to a full correction.</h2><p>Mobile across Ripon, Harrogate and the Vale of York.</p></div>
 <div class="svc-wide"><div class="c"><img src="https://images.unsplash.com/photo-1632823469850-2f77dd9c7f93?auto=format&fit=crop&w=1000&q=72" alt="Waxing a car bonnet"/><div class="body"><h3>Full valet</h3><p>Inside and out, wheels, glass, trim and a proper wax.</p></div></div><div class="c"><img src="https://images.unsplash.com/photo-1694678505383-676d78ea3b96?auto=format&fit=crop&w=1000&q=72" alt="Washing a car with a sponge"/><div class="body"><h3>Machine polish</h3><p>Swirl marks and light scratches taken back.</p></div></div><div class="c"><img src="https://images.unsplash.com/photo-1552930294-6b595f4c2974?auto=format&fit=crop&w=1000&q=72" alt="Hand-washing a car"/><div class="body"><h3>Ceramic protection</h3><p>Applied properly, cured properly, guaranteed.</p></div></div><div class="c"><img src="https://images.unsplash.com/photo-1683647115932-b33455fe6a3e?auto=format&fit=crop&w=1000&q=72" alt="Pressure-washing a car"/><div class="body"><h3>Pre-sale prep</h3><p>The difference between the asking price and the offer.</p></div></div></div></div></section>
 
-<section class="why-num" id="why"><div class="wrap"><div class="head"><span class="kicker">The promise</span><h2>Nine years, one pair of hands.</h2><p>The person who quotes the job is the person who does it.</p></div><div class="list"><div><span class="n">01</span><b>Self-sufficient</b><span>Own water, own power, nothing needed from you.</span></div><div><span class="n">02</span><b>Insured</b><span>Fully insured for work on customer vehicles.</span></div><div><span class="n">03</span><b>Flexible</b><span>Evenings and weekends, at home or at work.</span></div><div><span class="n">04</span><b>Priced up front</b><span>No surprises when the job is finished.</span></div></div></div></section>
+<section class="why-num " id="why"><div class="wrap"><div class="head"><span class="kicker">The promise</span><h2>Nine years, one pair of hands.</h2><p>The person who quotes the job is the person who does it.</p></div><div class="list"><div><span class="n">01</span><b>Self-sufficient</b><span>Own water, own power, nothing needed from you.</span></div><div><span class="n">02</span><b>Insured</b><span>Fully insured for work on customer vehicles.</span></div><div><span class="n">03</span><b>Flexible</b><span>Evenings and weekends, at home or at work.</span></div><div><span class="n">04</span><b>Priced up front</b><span>No surprises when the job is finished.</span></div></div></div></section>
 
 <section id="reviews" class="rev-dark"><div class="wrap"><div class="sec-head"><span class="kicker">Feedback</span><h2>4.9, and mostly repeat customers.</h2><p>Sample review copy for the styleguide.</p></div><div class="grid"><div class="q"><p>Sample testimonial copy shown for layout purposes.</p><footer>Sample customer, Ripon</footer></div><div class="q"><p>Sample testimonial copy shown for layout purposes.</p><footer>Sample customer, Harrogate</footer></div><div class="q"><p>Sample testimonial copy shown for layout purposes.</p><footer>Sample customer, Boroughbridge</footer></div></div></div></section>
 
