@@ -1,0 +1,7 @@
+{
+  "name": "ship-it-studio",
+  "private": true,
+  "dependencies": {
+    "nodemailer": "^6.9.14"
+  }
+}
