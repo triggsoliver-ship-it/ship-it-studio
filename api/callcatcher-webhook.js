@@ -4,6 +4,8 @@
 // Add one entry per client number in ROUTES. While a client is in demo,
 // point their email at info@shipitstudio.co.uk; switch to their real inbox on go-live.
 
+const VERSION = '2-2026-08-19'; // shown on GET so a deploy can be verified from a browser
+
 const ROUTES = {
   '+442045380108': {
     name: '2nd2None Driving School',
@@ -13,7 +15,7 @@ const ROUTES = {
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
-    return res.status(405).json({ ok: false, error: 'POST only' });
+    return res.status(405).json({ ok: false, error: 'POST only', v: VERSION });
   }
 
   let body = req.body;
@@ -45,12 +47,25 @@ module.exports = async (req, res) => {
     Business: route.name,
     Caller: call.from_number || 'unknown',
     When: when,
-    Duration: minutes,
-    Summary: analysis.call_summary || 'No summary available',
-    Successful: String(analysis.call_successful !== undefined ? analysis.call_successful : ''),
-    Sentiment: analysis.user_sentiment || '',
-    Transcript: (call.transcript || '').slice(0, 3500)
+    Duration: minutes
   };
+
+  // Structured fields the agent extracts (caller_name, callback_number, location,
+  // transmission, lesson_type, urgency...). Previously dropped — the office only
+  // got the summary and transcript. "caller_name" becomes "Caller name" in the email.
+  const custom = analysis.custom_analysis_data || {};
+  for (const [key, value] of Object.entries(custom)) {
+    if (value === null || value === undefined) continue;
+    const text = String(value).trim();
+    if (!text) continue;
+    const label = (key.charAt(0).toUpperCase() + key.slice(1)).replace(/_/g, ' ');
+    if (!(label in fields)) fields[label] = text;
+  }
+
+  fields.Summary = analysis.call_summary || 'No summary available';
+  fields.Successful = String(analysis.call_successful !== undefined ? analysis.call_successful : '');
+  fields.Sentiment = analysis.user_sentiment || '';
+  fields.Transcript = (call.transcript || '').slice(0, 3500);
 
   try {
     const resp = await fetch('https://formsubmit.co/ajax/' + route.email, {
