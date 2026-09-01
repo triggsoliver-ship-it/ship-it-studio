@@ -26,6 +26,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/css/style.css" />
 <script src="/assets/js/main.js" defer></script>
+<style>
+  /* priced add-on cards: flex column so the CTA sits on the baseline of the row */
+  .svc.buyable{display:flex;flex-direction:column}
+  .svc.buyable p{flex:1 1 auto}
+  .svc .svc-cta{margin-top:18px;align-self:flex-start}
+</style>
 </head>
 <body>
 <div class="grain"></div>
@@ -119,16 +125,16 @@
 <!-- ADD-ONS -->
 <section class="sec" style="padding-top:0"><div class="wrap">
   <div class="sec-head reveal"><span class="kick">Add-ons</span><h2>Bolt on what you need.</h2>
-    <p>Mix and match with any build or care plan. See the full <a href="/addons.html" class="accent">add-ons menu</a>.</p></div>
+    <p>Mix and match with any build or care plan. Everything here is a one-off payment <strong>except Local SEO (£150 a month) and Reviews automation (£29 a month), which are recurring monthly subscriptions charged every month until you cancel</strong>. See the full <a href="/addons.html" class="accent">add-ons menu</a>.</p></div>
   <div class="svc-grid">
-    <div class="svc reveal"><h3>Copywriting <span class="accent">£150</span></h3><p>Punchy, on-brand words for your pages, written to convert.</p></div>
-    <div class="svc reveal" data-delay="60"><h3>Logo &amp; brand pack <span class="accent">£250</span></h3><p>Logo, colours and fonts so everything looks consistent.</p></div>
-    <div class="svc reveal" data-delay="120"><h3>Google Business Profile <span class="accent">£299</span></h3><p>Set up &amp; optimised so you show up on Maps and local search.</p></div>
-    <div class="svc reveal" data-delay="180"><h3>Booking / enquiry system <span class="accent">£200</span></h3><p>Let customers book or request quotes straight from your site.</p></div>
-    <div class="svc reveal"><h3>Online shop module <span class="accent">£500</span></h3><p>Sell products or take payments with Stripe checkout.</p></div>
-    <div class="svc reveal" data-delay="60"><h3>Site refresh / redesign <span class="accent">£600</span></h3><p>Got an old site? A fast, modern rebuild without starting over.</p></div>
-    <div class="svc reveal" data-delay="120"><h3>Local SEO <span class="accent">£150/mo</span></h3><p>Ongoing work to climb local rankings and pull in nearby customers.</p></div>
-    <div class="svc reveal" data-delay="180"><h3>Reviews automation <span class="accent">£29/mo</span></h3><p>Automatically ask happy customers for Google reviews.</p></div>
+    <div class="svc buyable reveal"><h3>Copywriting <span class="accent">£150</span></h3><p>Punchy, on-brand words for your pages, written to convert.</p><a class="btn btn-ghost svc-cta" data-buy="addon_copywriting" href="/contact.html">Buy once — £150</a></div>
+    <div class="svc buyable reveal" data-delay="60"><h3>Logo &amp; brand pack <span class="accent">£250</span></h3><p>Logo, colours and fonts so everything looks consistent.</p><a class="btn btn-ghost svc-cta" data-buy="addon_logo" href="/contact.html">Buy once — £250</a></div>
+    <div class="svc buyable reveal" data-delay="120"><h3>Google Business Profile <span class="accent">£299</span></h3><p>Set up &amp; optimised so you show up on Maps and local search.</p><a class="btn btn-ghost svc-cta" data-buy="addon_gbp" href="/contact.html">Buy once — £299</a></div>
+    <div class="svc buyable reveal" data-delay="180"><h3>Booking / enquiry system <span class="accent">£200</span></h3><p>Let customers book or request quotes straight from your site.</p><a class="btn btn-ghost svc-cta" data-buy="addon_booking" href="/contact.html">Buy once — £200</a></div>
+    <div class="svc buyable reveal"><h3>Online shop module <span class="accent">£500</span></h3><p>Sell products or take payments with Stripe checkout.</p><a class="btn btn-ghost svc-cta" data-buy="addon_shop" href="/contact.html">Buy once — £500</a></div>
+    <div class="svc buyable reveal" data-delay="60"><h3>Site refresh / redesign <span class="accent">£600</span></h3><p>Got an old site? A fast, modern rebuild without starting over.</p><a class="btn btn-ghost svc-cta" data-buy="addon_refresh" href="/contact.html">Buy once — £600</a></div>
+    <div class="svc buyable reveal" data-delay="120"><h3>Local SEO <span class="accent">£150/mo</span></h3><p>Ongoing work to climb local rankings and pull in nearby customers. <strong>Recurring subscription — £150 charged every month until you cancel, not a one-off payment.</strong></p><a class="btn btn-ghost svc-cta" data-buy="addon_seo" href="/contact.html">Subscribe — £150 a month, recurring</a></div>
+    <div class="svc buyable reveal" data-delay="180"><h3>Reviews automation <span class="accent">£29/mo</span></h3><p>Automatically ask happy customers for Google reviews. <strong>Recurring subscription — £29 charged every month until you cancel, not a one-off payment.</strong></p><a class="btn btn-ghost svc-cta" data-buy="addon_reviews" href="/contact.html">Subscribe — £29 a month, recurring</a></div>
   </div>
 </div></section>
 
@@ -158,7 +164,7 @@
     <div class="faq-item"><button class="faq-q">Can I change or cancel my care plan?<span class="pm"></span></button>
       <div class="faq-a">Anytime. Upgrade, downgrade or cancel with no lock-in. Your site and its code always stay yours.</div></div>
     <div class="faq-item"><button class="faq-q">Do add-ons have to be bought upfront?<span class="pm"></span></button>
-      <div class="faq-a">No. Add them at build time or whenever you're ready. One-off add-ons are billed once; monthly add-ons sit alongside your care plan.</div></div>
+      <div class="faq-a">No. Add them at build time or whenever you're ready. One-off add-ons are billed once; monthly add-ons (Local SEO £150 a month and Reviews automation £29 a month) are recurring subscriptions that sit alongside your care plan and are charged every month until you cancel.</div></div>
   </div>
 </div></section>
 

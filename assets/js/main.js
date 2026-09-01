@@ -62,14 +62,14 @@ const STRIPE_PAYMENT_LINKS = {
   care_basic:        "https://buy.stripe.com/6oUbJ06m1e7ZfhVdaYeIw0l",  // £39 / month
   care_pro:          "https://buy.stripe.com/3cI00i4dTbZR9XB3AoeIw0j",  // £79 / month
   care_growth:       "https://buy.stripe.com/bJe9AS6m18NFedR6MAeIw0k",  // £129 / month
-  addon_copywriting: "",  // £150 one-off
-  addon_logo:        "",  // £250 one-off
-  addon_gbp:         "",  // £299 one-off
-  addon_booking:     "",  // £200 one-off
-  addon_shop:        "",  // £500 one-off
-  addon_refresh:     "",  // £600 one-off
-  addon_seo:         "",  // £150 / month
-  addon_reviews:     "",  // £29 / month
+  addon_copywriting: "https://buy.stripe.com/14A7sKh0F8NF9XBef2eIw0u",  // £150 one-off
+  addon_logo:        "https://buy.stripe.com/3cI00ifWB8NFfhVc6UeIw0v",  // £250 one-off
+  addon_gbp:         "https://buy.stripe.com/dRmdR85hXbZRedR9YMeIw0w",  // £299 one-off
+  addon_booking:     "https://buy.stripe.com/bJe8wOeSx7JB5Hlb2QeIw0x",  // £200 one-off
+  addon_shop:        "https://buy.stripe.com/28EdR8dOt7JB8Txb2QeIw0y",  // £500 one-off
+  addon_refresh:     "https://buy.stripe.com/4gMaEWcKpbZRedRef2eIw0z",  // £600 one-off
+  addon_seo:         "https://buy.stripe.com/28E6oGfWBgg75Hl1sgeIw0A",  // £150 / month (recurring)
+  addon_reviews:     "https://buy.stripe.com/14AdR8h0F8NF3zd3AoeIw0B",  // £29 / month (recurring)
 };
 
 /* Only a Stripe-hosted checkout URL may replace the fallback href. The trailing
