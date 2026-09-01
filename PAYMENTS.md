@@ -57,6 +57,41 @@ every button label on purpose: if a link is pasted against the wrong key, the
 mismatch between the label and the Stripe page is visible immediately rather
 than only at the moment someone is charged.
 
+### Link status — 1 September 2026
+
+Five links are live. Eight keys are **deliberately** still empty strings.
+
+| Config key | Status | Configured value |
+|---|---|---|
+| `starter_build` | **LIVE** | `https://buy.stripe.com/fZuaEWeSx4xp9XB2wkeIw0h` |
+| `business_build` | **LIVE** | `https://buy.stripe.com/bJe28qbGl0h94Dh3AoeIw0i` |
+| `care_basic` | **LIVE** | `https://buy.stripe.com/6oUbJ06m1e7ZfhVdaYeIw0l` |
+| `care_pro` | **LIVE** | `https://buy.stripe.com/3cI00i4dTbZR9XB3AoeIw0j` |
+| `care_growth` | **LIVE** | `https://buy.stripe.com/bJe9AS6m18NFedR6MAeIw0k` |
+| `addon_copywriting` | empty — no Stripe product exists yet | `""` → `/contact.html` |
+| `addon_logo` | empty — no Stripe product exists yet | `""` → `/contact.html` |
+| `addon_gbp` | empty — no Stripe product exists yet | `""` → `/contact.html` |
+| `addon_booking` | empty — no Stripe product exists yet | `""` → `/contact.html` |
+| `addon_shop` | empty — no Stripe product exists yet | `""` → `/contact.html` |
+| `addon_refresh` | empty — no Stripe product exists yet | `""` → `/contact.html` |
+| `addon_seo` | empty — no Stripe product exists yet | `""` → `/contact.html` |
+| `addon_reviews` | empty — no Stripe product exists yet | `""` → `/contact.html` |
+
+The eight `addon_*` keys are not an oversight. No Payment Link has been created
+for any of the add-ons, so every `/addons` buy button still falls back to
+`/contact.html` exactly as described below. **Leave them as `""`.**
+
+So `document.querySelectorAll('[data-buy-live]').length` should currently
+report **5** on `/pricing` across the whole site, and **0** on `/addons`.
+
+> **Still to verify in Stripe.** The checklist below asks that every configured
+> link opens a Stripe page showing the same amount as the button label. That
+> cannot be confirmed from this repository — what a Payment Link charges, its
+> currency, its interval and whether Stripe Tax is off are only visible in the
+> dashboard. The five URLs above were supplied as already-created links. Open
+> each one and check it against the price map before sending customers to
+> `/pricing`.
+
 ### Not wired, on purpose
 
 - **Platform / shop — "Custom, quoted per project"** on `/pricing`. Has no key
@@ -131,11 +166,15 @@ Two things to know:
 1. **Do not reuse the two build links for `starter_build` or `business_build`.**
    Those take a **£250 deposit**, not the full £399 / £799. Pasting either into
    the config would undercharge every customer who buys from `/pricing`.
-2. The care plan link looks like it is the same product as `care_basic` (£39 a
-   month). It has been left out of the config anyway, because the amount a
-   Payment Link actually charges can only be confirmed in the Stripe dashboard,
-   and I could not check it. **Verify it in Stripe, then paste it into
-   `care_basic` if it matches.**
+2. The `start.html` care plan link looks like the same product as `care_basic`
+   (£39 a month), but it is **not** the link now configured. As of
+   1 September 2026 `care_basic` points at a different, newly supplied Payment
+   Link ending `eIw0l`. There are therefore now two Stripe links on this site
+   that both appear to charge £39/month: the hard-coded one on `start.html`
+   and the configured one behind `/pricing`. That may well be intentional —
+   `start.html` is a separate post-demo flow — but **check in the Stripe
+   dashboard whether they are the same product**, and retire one if they are
+   accidental duplicates.
 
 ---
 
