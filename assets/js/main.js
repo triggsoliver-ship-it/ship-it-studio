@@ -57,11 +57,11 @@ const WA_HREF = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(WA_MSG)}`;
    Never put a Stripe API key in this file. Payment Links are public URLs; API
    keys are secrets and do not belong in a static site. */
 const STRIPE_PAYMENT_LINKS = {
-  starter_build:     "",  // £399 one-off
-  business_build:    "",  // £799 one-off
-  care_basic:        "",  // £39 / month
-  care_pro:          "",  // £79 / month
-  care_growth:       "",  // £129 / month
+  starter_build:     "https://buy.stripe.com/fZuaEWeSx4xp9XB2wkeIw0h",  // £399 one-off
+  business_build:    "https://buy.stripe.com/bJe28qbGl0h94Dh3AoeIw0i",  // £799 one-off
+  care_basic:        "https://buy.stripe.com/6oUbJ06m1e7ZfhVdaYeIw0l",  // £39 / month
+  care_pro:          "https://buy.stripe.com/3cI00i4dTbZR9XB3AoeIw0j",  // £79 / month
+  care_growth:       "https://buy.stripe.com/bJe9AS6m18NFedR6MAeIw0k",  // £129 / month
   addon_copywriting: "",  // £150 one-off
   addon_logo:        "",  // £250 one-off
   addon_gbp:         "",  // £299 one-off
