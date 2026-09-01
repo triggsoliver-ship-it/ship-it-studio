@@ -44,6 +44,56 @@ const WHATSAPP = "447926186207";
 const WA_MSG = "Hi Ship It Studio — I'd like a website.";
 const WA_HREF = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(WA_MSG)}`;
 
+/* ---- checkout ---------------------------------------------------------------
+   One Stripe Payment Link per purchasable item. Paste the live link from the
+   Stripe dashboard against the matching key; PAYMENTS.md lists the exact price
+   each key must charge.
+
+   Anything that is not a genuine Stripe-hosted URL - blank, a placeholder, a
+   lookalike host - is ignored, and the button keeps the /contact.html href it
+   ships with in the HTML. A half-configured deploy therefore degrades to the
+   old enquiry behaviour instead of rendering a dead checkout button.
+
+   Never put a Stripe API key in this file. Payment Links are public URLs; API
+   keys are secrets and do not belong in a static site. */
+const STRIPE_PAYMENT_LINKS = {
+  starter_build:     "",  // £399 one-off
+  business_build:    "",  // £799 one-off
+  care_basic:        "",  // £39 / month
+  care_pro:          "",  // £79 / month
+  care_growth:       "",  // £129 / month
+  addon_copywriting: "",  // £150 one-off
+  addon_logo:        "",  // £250 one-off
+  addon_gbp:         "",  // £299 one-off
+  addon_booking:     "",  // £200 one-off
+  addon_shop:        "",  // £500 one-off
+  addon_refresh:     "",  // £600 one-off
+  addon_seo:         "",  // £150 / month
+  addon_reviews:     "",  // £29 / month
+};
+
+/* Only a Stripe-hosted checkout URL may replace the fallback href. The trailing
+   "/" after the host is what rejects lookalikes such as
+   https://buy.stripe.com.example.com/x or https://buy.stripe.com@example.com/x,
+   and the "+" rejects a bare host with no payment path. */
+const STRIPE_LINK_RE = /^https:\/\/(buy|checkout)\.stripe\.com\/[^\s"'<>]+$/;
+
+function isStripePaymentLink(value){
+  return typeof value === 'string' && STRIPE_LINK_RE.test(value.trim());
+}
+
+function wireCheckout(){
+  document.querySelectorAll('[data-buy]').forEach(a=>{
+    const key = a.dataset.buy;
+    if(!Object.prototype.hasOwnProperty.call(STRIPE_PAYMENT_LINKS, key)) return;
+    const url = STRIPE_PAYMENT_LINKS[key];
+    if(!isStripePaymentLink(url)) return;   // leave the contact-page href alone
+    a.href = url.trim();
+    a.rel = 'noopener';
+    a.setAttribute('data-buy-live','');
+  });
+}
+
 /* ---- render project cards into any #work-grid ---- */
 function renderProjects(limit){
   const grid = document.getElementById('work-grid');
@@ -67,6 +117,9 @@ function renderProjects(limit){
 document.addEventListener('DOMContentLoaded',()=>{
   // wire whatsapp links
   document.querySelectorAll('[data-wa]').forEach(a=>a.href=WA_HREF);
+
+  // upgrade buy buttons to Stripe, only where a real Payment Link is configured
+  wireCheckout();
 
   // year
   const yr=document.getElementById('yr'); if(yr) yr.textContent=new Date().getFullYear();
