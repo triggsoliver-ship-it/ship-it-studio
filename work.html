@@ -4,17 +4,17 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Work — Ship It Studio</title>
-<meta name="description" content="Selected work from Ship It Studio — real, live websites and platforms. Click any project." />
+<meta name="description" content="Sixteen live websites and platforms built by Ship It Studio — marketplaces with payments, AI tools, compliance products and local business sites. Every link goes to a real, working site." />
 <link rel="canonical" href="https://shipitstudio.co.uk/work" />
 <meta property="og:title" content="Work — Ship It Studio" />
-<meta property="og:description" content="Selected work from Ship It Studio — real, live websites and platforms. Click any project." />
+<meta property="og:description" content="Sixteen live websites and platforms — marketplaces with payments, AI tools, compliance products and local business sites. Every link goes to a real, working site." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://shipitstudio.co.uk/work" />
 <meta property="og:image" content="https://shipitstudio.co.uk/assets/icon-512.png" />
 <meta property="og:site_name" content="Ship It Studio" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Work — Ship It Studio" />
-<meta name="twitter:description" content="Selected work from Ship It Studio — real, live websites and platforms. Click any project." />
+<meta name="twitter:description" content="Sixteen live websites and platforms — marketplaces with payments, AI tools, compliance products and local business sites." />
 <meta name="twitter:image" content="https://shipitstudio.co.uk/assets/icon-512.png" />
 <meta name="theme-color" content="#07090a" />
 <link rel="manifest" href="/manifest.webmanifest" />
@@ -26,6 +26,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/css/style.css" />
 <script src="/assets/js/main.js" defer></script>
+<style>
+  /* Work page only.
+     The grid used to be injected by JavaScript, which meant a crawler, a link
+     preview in an email, or anyone with JS blocked saw an empty portfolio.
+     The cards below are now in the HTML, so they must also be visible at rest
+     rather than waiting on the scroll observer that .reveal depends on. */
+  .work-group{margin-top:66px}
+  .work-group:first-of-type{margin-top:0}
+  .work-group > h2{font-size:clamp(22px,3vw,30px);margin-bottom:8px}
+  .work-group > .grp-note{color:var(--muted);font-size:16px;margin-bottom:26px;max-width:58ch}
+  .work-grid .pcard{opacity:1;transform:none}
+  .count-strip{display:flex;flex-wrap:wrap;gap:34px;margin:34px 0 0;padding-top:26px;border-top:1px solid var(--line)}
+  .count-strip div{min-width:108px}
+  .count-strip b{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:30px;line-height:1.1}
+  .count-strip span{color:var(--muted);font-size:13.5px}
+</style>
 </head>
 <body>
 <div class="grain"></div>
@@ -49,18 +65,208 @@
   <a href="/contact.html" class="accent">Start a project →</a>
 </div>
 
-<section class="hero" style="padding-bottom:30px"><div class="wrap">
+<section class="hero" style="padding-bottom:26px"><div class="wrap">
   <span class="eyebrow"><span class="d"></span>Selected work</span>
-  <h1 class="reveal">Real sites. <span class="hl">Live links.</span></h1>
-  <p class="lead reveal" data-delay="80">Everything below is a site we've built, from local businesses to payment-enabled marketplaces. Click through and judge for yourself.</p>
+  <h1>Real sites. <span class="hl">Live links.</span></h1>
+  <p class="lead">Every project below is online right now. Not mockups, not case-study screenshots — click any of them and you land on the working site. Some are local businesses, some take card payments, some are full platforms.</p>
+  <div class="count-strip">
+    <div><b>16</b><span>projects built</span></div>
+    <div><b>15</b><span>live links to click</span></div>
+    <div><b>7</b><span>platforms &amp; marketplaces</span></div>
+    <div><b>Days</b><span>not months</span></div>
+  </div>
 </div></section>
 
-<section class="sec" style="padding-top:20px"><div class="wrap">
-  <div id="work-grid" class="work-grid"></div>
+<section class="sec" style="padding-top:44px"><div class="wrap">
+
+  <div class="work-group">
+    <h2>Platforms &amp; marketplaces</h2>
+    <p class="grp-note">Multi-user products with accounts, payments and real business logic behind them — the work that usually gets quoted as a six-month agency project.</p>
+    <div class="work-grid">
+
+      <article class="pcard">
+        <div class="thumb" style="background:linear-gradient(135deg,#0e4d39,#06231a)">
+          <span class="tag">Marketplace</span><h3>Prime Origins Atlas</h3>
+        </div>
+        <div class="body">
+          <p>Carbon credit marketplace. Buyers filter by registry, vintage and project type, then either pay by card through Stripe or request a firm quote against a named project. Postgres-backed stock control stops the same tonne being sold twice.</p>
+          <div class="links"><a class="visit" href="https://primeoriginsatlas.org" target="_blank" rel="noopener">Visit live site →</a></div>
+        </div>
+      </article>
+
+      <article class="pcard">
+        <div class="thumb" style="background:linear-gradient(135deg,#123f5e,#07202f)">
+          <span class="tag">Platform</span><h3>SalesRelay</h3>
+        </div>
+        <div class="body">
+          <p>Sales progression automation for UK estate agents. Tracks a property from offer accepted to completion, chases the parties who are holding the chain up, and gives the agent one board showing where every sale actually is.</p>
+          <div class="links"><a class="visit" href="https://salesrelay.uk" target="_blank" rel="noopener">Visit live site →</a></div>
+        </div>
+      </article>
+
+      <article class="pcard">
+        <div class="thumb" style="background:linear-gradient(135deg,#2d2470,#120e30)">
+          <span class="tag">AI platform</span><h3>Agent Legend</h3>
+        </div>
+        <div class="body">
+          <p>Multi-tenant AI assistant for estate agencies. Handles inbound enquiries, qualifies them against the agency's own criteria and books viewings, with each agency getting its own isolated workspace and branding.</p>
+          <div class="links"><a class="visit" href="https://agentlegend.co.uk" target="_blank" rel="noopener">Visit live site →</a></div>
+        </div>
+      </article>
+
+      <article class="pcard">
+        <div class="thumb" style="background:linear-gradient(135deg,#6b3a14,#2b1608)">
+          <span class="tag">AI platform</span><h3>Sales Chaser</h3>
+        </div>
+        <div class="body">
+          <p>Calls every opted-in inbound lead within sixty seconds, qualifies them against your script, and drops the ones worth having straight onto the sales team's calendar. Built around the fact that speed to first contact decides most deals.</p>
+          <div class="links"><a class="visit" href="https://saleschaser.co.uk" target="_blank" rel="noopener">Visit live site →</a></div>
+        </div>
+      </article>
+
+      <article class="pcard">
+        <div class="thumb" style="background:linear-gradient(135deg,#123a6b,#0a1a33)">
+          <span class="tag">Athlete tech</span><h3>ATHVORA</h3>
+        </div>
+        <div class="body">
+          <p>A commercial operating system for an athlete's name — profile, audience, sponsorship inventory and a free scoring tool that shows a player what their personal brand is currently worth before they sign anything away.</p>
+          <div class="links"><a class="visit" href="https://athvora.co.uk" target="_blank" rel="noopener">Visit live site →</a></div>
+        </div>
+      </article>
+
+      <article class="pcard">
+        <div class="thumb" style="background:linear-gradient(135deg,#0f5c3f,#04241a)">
+          <span class="tag">Fintech</span><h3>GreenBack</h3>
+        </div>
+        <div class="body">
+          <p>Peer-to-peer money app. Send funds to a <span style="font-family:var(--mono)">$handle</span> rather than an account number, with chat, rewards and cash in and out, settled on Base. Installable as a phone app straight from the browser.</p>
+          <div class="links"><a class="visit" href="https://gnbk.app" target="_blank" rel="noopener">Visit live site →</a></div>
+        </div>
+      </article>
+
+      <article class="pcard">
+        <div class="thumb" style="background:linear-gradient(135deg,#3a1f6b,#1a0d33)">
+          <span class="tag">Marketplace</span><h3>GenoVaq</h3>
+        </div>
+        <div class="body">
+          <p>Marketplace for verified animal breeding genetics. Seller verification and KYC, listing management, and Stripe Connect taking an automatic commission on every completed sale.</p>
+          <div class="links"><span class="soon">🔒 Private — demo on request</span></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <div class="work-group">
+    <h2>Products &amp; tools</h2>
+    <p class="grp-note">Things that do a specific job for a specific trade, usually one that was being done by hand on a spreadsheet.</p>
+    <div class="work-grid">
+
+      <article class="pcard">
+        <div class="thumb" style="background:linear-gradient(135deg,#4a1f3a,#220e1a)">
+          <span class="tag">GovTech</span><h3>Parish in a Box</h3>
+        </div>
+        <div class="body">
+          <p>Websites for England's parish and town councils that meet their legal duties by default — Transparency Code publishing, WCAG 2.2 AA accessibility, and the Assertion 10 evidence pack auditors ask for, generated rather than assembled.</p>
+          <div class="links"><a class="visit" href="https://parishinabox.co.uk" target="_blank" rel="noopener">Visit live site →</a></div>
+        </div>
+      </article>
+
+      <article class="pcard">
+        <div class="thumb" style="background:linear-gradient(135deg,#1e5c34,#0a2415)">
+          <span class="tag">SportsTech</span><h3>ScaleYourClub</h3>
+        </div>
+        <div class="body">
+          <p>Free visibility audit for grassroots and lower-league sports clubs, scored across six pillars with the evidence quoted back at them — then the sites, shops and supporter lists that fix what the audit found.</p>
+          <div class="links"><a class="visit" href="https://scaleyourclub.com" target="_blank" rel="noopener">Visit live site →</a></div>
+        </div>
+      </article>
+
+      <article class="pcard">
+        <div class="thumb" style="background:linear-gradient(135deg,#1d4a55,#081f25)">
+          <span class="tag">Compliance</span><h3>StatutoryCheck</h3>
+        </div>
+        <div class="body">
+          <p>Checks a UK business website for the disclosures the law actually requires — Consumer Rights Act 2015 s.83, Regulation 20A of the Health and Social Care Act 2008 — and tells the owner exactly what is missing and where.</p>
+          <div class="links"><a class="visit" href="https://statutorycheck.co.uk" target="_blank" rel="noopener">Visit live site →</a></div>
+        </div>
+      </article>
+
+      <article class="pcard">
+        <div class="thumb" style="background:linear-gradient(135deg,#123a6b,#0a1a33)">
+          <span class="tag">Directory</span><h3>Car Events Near Me</h3>
+        </div>
+        <div class="body">
+          <p>Listings site for UK car events covering hundreds of shows across twelve regions. Filter by region, date and price, then go straight through to the organiser's own booking page.</p>
+          <div class="links"><a class="visit" href="https://careventsnearme.uk" target="_blank" rel="noopener">Visit live site →</a></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <div class="work-group">
+    <h2>Business &amp; brand sites</h2>
+    <p class="grp-note">The bread and butter: a real business that needed to be found, trusted and phoned. Most of these went live inside a week.</p>
+    <div class="work-grid">
+
+      <article class="pcard">
+        <div class="thumb" style="background:linear-gradient(135deg,#5a1d1d,#2a0c0c)">
+          <span class="tag">Business site</span><h3>Bromspec Motorworks</h3>
+        </div>
+        <div class="body">
+          <p>Dark, premium multi-page site for a BMW and MINI specialist. Brands strip, workshop gallery, click-to-call and an enquiry form that reaches the workshop rather than a void.</p>
+          <div class="links"><a class="visit" href="https://bromspec.co.uk" target="_blank" rel="noopener">Visit live site →</a></div>
+        </div>
+      </article>
+
+      <article class="pcard">
+        <div class="thumb" style="background:linear-gradient(135deg,#0e4458,#06222c)">
+          <span class="tag">Business site</span><h3>AJS Vehicle Services</h3>
+        </div>
+        <div class="body">
+          <p>Fast one-page site for an independent garage in Andover. Built around how people actually contact a garage: one tap to call, one tap to WhatsApp, opening hours and address above the fold.</p>
+          <div class="links"><a class="visit" href="https://ajsvehicleservices.co.uk" target="_blank" rel="noopener">Visit live site →</a></div>
+        </div>
+      </article>
+
+      <article class="pcard">
+        <div class="thumb" style="background:linear-gradient(135deg,#4a3a14,#231b08)">
+          <span class="tag">Business site</span><h3>Man With A Whistle</h3>
+        </div>
+        <div class="body">
+          <p>Marketing site for a bespoke dog trainer covering obedience, gundog and therapy-dog assessment. Service pages that answer the questions owners actually ask, with one-tap call, WhatsApp and email on every one.</p>
+          <div class="links"><a class="visit" href="https://manwithawhistle.co.uk" target="_blank" rel="noopener">Visit live site →</a></div>
+        </div>
+      </article>
+
+      <article class="pcard">
+        <div class="thumb" style="background:linear-gradient(135deg,#14463a,#08231c)">
+          <span class="tag">Brand site</span><h3>Prime Origins Global</h3>
+        </div>
+        <div class="body">
+          <p>Multi-page brand and product site — range pages, provenance and the cultivation story, built to carry a premium positioning rather than list products.</p>
+          <div class="links"><a class="visit" href="https://primeoriginsglobal.org" target="_blank" rel="noopener">Visit live site →</a></div>
+        </div>
+      </article>
+
+      <article class="pcard">
+        <div class="thumb" style="background:linear-gradient(135deg,#243140,#0e151c)">
+          <span class="tag">Finance</span><h3>HHS Capital</h3>
+        </div>
+        <div class="body">
+          <p>Corporate site for a growth consulting and investment firm. Sober, credibility-first design with the leadership track record, the mandate and the regulatory position stated plainly up front.</p>
+          <div class="links"><a class="visit" href="https://hhscapital.org" target="_blank" rel="noopener">Visit live site →</a></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
 </div></section>
 
 <section class="sec" style="padding-top:0"><div class="wrap">
-  <div class="cta-band reveal">
+  <div class="cta-band">
     <h2>Want one of these for your business?</h2>
     <p>We'll usually build a live demo before you pay a penny. See it, then decide.</p>
     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
