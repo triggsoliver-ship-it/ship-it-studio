@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Plumbline — health &amp; safety portal (demo)</title>
+<meta name="description" content="Concept demo of a white-label health and safety portal. Fictional company and data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ground:#F4F2EC; --panel:#FFFFFF; --ink:#16201C; --muted:#55605A; --line:#DAD6CC; --line2:#ECE9E1;
+  --green:#1F4D3A; --green-d:#123326; --amber:#E8A317; --red:#B42318; --nav:#16201C; --nav2:#26332D;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif; --body:"Public Sans","Helvetica Neue",Arial,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{font-family:var(--body);background:var(--ground);color:var(--ink);font-size:15px;line-height:1.45}
+a{color:var(--green)}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;margin:0}
+.demo-bar{background:var(--amber);color:var(--ink);font-size:13px;font-weight:600;text-align:center;padding:8px 16px}
+.app{display:flex;min-height:calc(100vh - 36px)}
+/* nav */
+.nav{width:248px;flex-shrink:0;background:var(--nav);color:#E9ECE7;padding:24px 18px;display:flex;flex-direction:column;gap:26px;position:sticky;top:0;height:calc(100vh - 36px)}
+.brand{display:flex;align-items:center;gap:10px}
+.mark{width:36px;height:36px;border-radius:8px;background:var(--amber);display:grid;place-items:center;flex-shrink:0}
+.brand b{font-family:var(--display);font-size:20px;font-weight:800;display:block}
+.brand small{font-size:11px;color:#A9B3AD}
+.navlist{display:flex;flex-direction:column;gap:4px}
+.navlist button{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:12px;height:44px;padding:0 12px;border-radius:8px;color:#C9D0CB;font-weight:500;cursor:pointer}
+.navlist button:hover{background:#1F2B26;color:#fff}
+.navlist button[aria-current="page"]{background:var(--nav2);color:#fff;font-weight:600}
+.navlist button:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.navlist .count{margin-left:auto;background:var(--red);color:#fff;font-size:11px;font-weight:700;border-radius:999px;padding:1px 7px}
+.consultant{margin-top:auto;background:var(--nav2);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:6px}
+.consultant .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#A9B3AD;font-weight:600}
+.consultant .n{font-weight:600;color:#fff}
+.consultant .s{font-size:13px;color:#C9D0CB}
+.viewswitch{display:flex;flex-direction:column;gap:6px}
+.viewswitch .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#A9B3AD;font-weight:600}
+.seg{display:flex;background:#0E1512;border-radius:10px;padding:4px;gap:4px}
+.seg button{all:unset;flex:1;text-align:center;font-size:13px;font-weight:600;padding:8px 6px;border-radius:7px;color:#C9D0CB;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--amber);color:var(--ink)}
+/* main */
+main{flex:1;min-width:0;padding:32px 40px 56px}
+.screen[hidden]{display:none!important}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:24px}
+.head .sub{font-size:14px;color:var(--muted);font-weight:500;margin-bottom:6px}
+.head h1{font-size:32px;font-weight:700;line-height:1.15}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:10px;border:1px solid transparent;font-weight:700;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{background:#951D13}
+.btn-green{background:var(--green);color:#fff}
+.btn-green:hover{background:var(--green-d)}
+.btn-amber{background:var(--amber);color:var(--ink)}
+.btn-ghost{background:#fff;border-color:#C9C4B8;color:var(--ink);font-weight:600;min-height:36px;padding:0 14px;font-size:13px}
+.btn-ghost:hover{border-color:var(--ink)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px}
+.card h2{font-size:21px;font-weight:700}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:24px}
+.stat .l{font-size:13px;color:var(--muted);font-weight:600}
+.stat .v{font-family:var(--display);font-size:38px;font-weight:700;letter-spacing:-.02em;margin:4px 0 8px}
+.pill{display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}
+.over{background:#FBE4E1;color:#9A1B10}.soon{background:#FCEFCF;color:#7A4F00}.ok{background:#DDEFE4;color:#1A5E3C}.info{background:#E4E9F2;color:#2B4476}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:24px;align-items:start}
+.side{display:flex;flex-direction:column;gap:24px}
+.cardhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:6px}
+.linkbtn{all:unset;color:var(--green);font-weight:600;font-size:14px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.row{display:flex;align-items:center;gap:14px;padding:14px 0;border-top:1px solid var(--line2);flex-wrap:wrap}
+.row .t{flex:1;min-width:200px}
+.row .t b{display:block;font-size:16px;font-weight:600}
+.row .t span{font-size:13px;color:var(--muted)}
+.date{font-family:var(--mono);font-size:13px;color:#3C4641;min-width:104px;text-align:right}
+.askcard{background:var(--green);color:#fff;border:0}
+.askcard p{color:#D3E3DA;font-size:14px;margin:10px 0 14px}
+.askrow{display:flex;gap:8px}
+.askrow input{flex:1;min-width:0;height:44px;border-radius:8px;border:0;padding:0 12px;font-size:14px;color:var(--ink)}
+.iconbtn{width:44px;height:44px;border-radius:8px;border:0;background:var(--amber);display:grid;place-items:center;cursor:pointer;flex-shrink:0}
+.mini{padding:12px 0;border-top:1px solid var(--line2)}
+.mini .top{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.mini b{font-weight:600}
+.mini span.m{display:block;font-size:13px;color:var(--muted);margin-top:3px}
+/* documents */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.filters button{all:unset;cursor:pointer;height:36px;padding:0 14px;border-radius:999px;border:1px solid #C9C4B8;background:#fff;font-size:13px;font-weight:600;display:inline-flex;align-items:center}
+.filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.tablewrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:760px}
+th{text-align:left;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;padding:10px 12px;border-bottom:1px solid var(--line)}
+td{padding:14px 12px;border-bottom:1px solid var(--line2);vertical-align:middle}
+td.d{font-family:var(--mono);font-size:13px;white-space:nowrap}
+td b{font-weight:600}
+.searchbox{height:40px;border-radius:8px;border:1px solid #C9C4B8;padding:0 12px;min-width:240px;background:#fff}
+/* report + ask phone frames */
+.phonewrap{display:flex;gap:32px;flex-wrap:wrap;align-items:flex-start}
+.phone{width:390px;max-width:100%;background:#fff;border:1px solid var(--line);border-radius:28px;overflow:hidden;box-shadow:0 1px 0 rgba(0,0,0,.02)}
+.phone .ph{background:var(--nav);color:#fff;padding:18px 20px;display:flex;align-items:center;gap:10px}
+.phone .ph b{font-family:var(--display);font-size:18px}
+.phone .pb{padding:20px;display:flex;flex-direction:column;gap:16px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label,.field .lab{font-weight:600;font-size:14px}
+.field input,.field textarea,.field select{border:1px solid #C9C4B8;border-radius:10px;padding:10px 12px;min-height:44px;background:#fff}
+.field textarea{min-height:96px;resize:vertical}
+.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.choices button{all:unset;box-sizing:border-box;cursor:pointer;min-height:48px;border:1px solid #C9C4B8;border-radius:10px;padding:8px 12px;font-weight:600;font-size:14px;display:flex;align-items:center}
+.choices button[aria-pressed="true"]{border-color:var(--green);background:#E6F0EA;box-shadow:inset 0 0 0 1px var(--green)}
+.photo{border:1.5px dashed #B9B3A5;border-radius:10px;min-height:72px;display:flex;align-items:center;justify-content:center;gap:8px;color:var(--muted);font-weight:600;cursor:pointer;background:#FAF9F5}
+.note{font-size:13px;color:var(--muted)}
+.success{background:#DDEFE4;color:#14482E;border-radius:12px;padding:16px;font-weight:600}
+.explain{max-width:420px;display:flex;flex-direction:column;gap:14px}
+.explain h2{font-size:24px}
+.explain ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.chat{display:flex;flex-direction:column;gap:12px;min-height:420px}
+.bubble{max-width:86%;padding:12px 14px;border-radius:14px;font-size:14px;line-height:1.5}
+.me{align-self:flex-end;background:var(--ink);color:#fff;border-bottom-right-radius:4px}
+.bot{align-self:flex-start;background:#F1EFE8;border-bottom-left-radius:4px}
+.src{display:inline-flex;margin-top:8px;font-size:12px;font-weight:700;color:var(--green);background:#fff;border:1px solid #CFE0D6;border-radius:999px;padding:3px 9px}
+.passed{display:inline-flex;margin-top:8px;font-size:12px;font-weight:700;color:#2B4476;background:#fff;border:1px solid #C9D3E6;border-radius:999px;padding:3px 9px}
+.suggest{display:flex;flex-direction:column;gap:8px}
+.suggest button{all:unset;box-sizing:border-box;cursor:pointer;border:1px solid #C9C4B8;border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600;background:#fff}
+.suggest button:hover{border-color:var(--green)}
+/* consultant */
+.brandbox{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.swatch{width:36px;height:36px;border-radius:8px;border:2px solid #fff;box-shadow:0 0 0 1px var(--line);cursor:pointer}
+.swatch[aria-pressed="true"]{box-shadow:0 0 0 2px var(--ink)}
+.bar{height:8px;border-radius:999px;background:#ECE9E1;overflow:hidden;width:120px}
+.bar i{display:block;height:100%;background:var(--green)}
+@media (max-width:1100px){.cols{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){
+  .app{flex-direction:column}
+  .nav{width:auto;height:auto;position:static;padding:16px;gap:14px}
+  .navlist{flex-direction:row;overflow-x:auto;gap:6px}
+  .navlist button{white-space:nowrap;background:#1F2B26}
+  .consultant{display:none}
+  main{padding:20px 16px 48px}
+  .head h1{font-size:24px}
+  .grid4{grid-template-columns:1fr 1fr;gap:10px}
+  .stat .v{font-size:28px}
+  .date{text-align:left;min-width:0}
+  .searchbox{min-width:0;width:100%}
+}
+</style>
+</head>
+<body>
+<div class="demo-bar">Demo only: a made-up company and made-up data, to show how the portal could work.</div>
+<div class="app">
+  <aside class="nav">
+    <div class="brand">
+      <div class="mark" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16201C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v14"/><path d="M12 16l-4 6h8z"/></svg></div>
+      <div><b id="brandName">Plumbline</b><small>Your logo and name go here</small></div>
+    </div>
+    <div class="viewswitch">
+      <span class="k">Viewing as</span>
+      <div class="seg" role="group" aria-label="Viewing as">
+        <button type="button" data-role="client" aria-pressed="true">Client</button>
+        <button type="button" data-role="consultant" aria-pressed="false">Consultant</button>
+      </div>
+    </div>
+    <nav class="navlist" id="clientNav" aria-label="Client menu">
+      <button type="button" data-go="overview" aria-current="page">Overview</button>
+      <button type="button" data-go="documents">Documents &amp; reminders <span class="count">1</span></button>
+      <button type="button" data-go="report">Report an incident</button>
+      <button type="button" data-go="ask">Ask a safety question</button>
+    </nav>
+    <nav class="navlist" id="consultantNav" aria-label="Consultant menu" hidden>
+      <button type="button" data-go="clients" aria-current="page">All my clients</button>
+      <button type="button" data-go="inbox">Incidents &amp; questions <span class="count">3</span></button>
+      <button type="button" data-go="settings">My branding &amp; guides</button>
+    </nav>
+    <div class="consultant" id="consultantCard">
+      <span class="k">Your safety consultant</span>
+      <span class="n">[Consultant name]</span>
+      <span class="s">Next site visit: 8 Oct 2026</span>
+      <button type="button" class="btn btn-amber" data-go="ask" style="margin-top:6px">Message</button>
+    </div>
+  </aside>
+
+  <main>
+    <!-- ========== CLIENT: OVERVIEW ========== -->
+    <section class="screen" id="overview">
+      <div class="head">
+        <div>
+          <div class="sub">Hartwell Logistics Ltd · Andover warehouse</div>
+          <h1>Good morning, Sam. 4 things need you this month.</h1>
+        </div>
+        <button type="button" class="btn btn-red" data-go="report">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+          Report an incident
+        </button>
+      </div>
+      <div class="grid4">
+        <div class="card stat"><div class="l">Up to date</div><div class="v">46 of 50</div><span class="pill ok">92% in order</span></div>
+        <div class="card stat"><div class="l">Due in next 30 days</div><div class="v">3</div><span class="pill soon">Reminders sent</span></div>
+        <div class="card stat"><div class="l">Overdue</div><div class="v">1</div><span class="pill over">Needs action</span></div>
+        <div class="card stat"><div class="l">Open incidents</div><div class="v">1</div><span class="pill info">Consultant checking</span></div>
+      </div>
+      <div class="cols">
+        <div class="card">
+          <div class="cardhead"><h2>Needs attention</h2><button type="button" class="linkbtn" data-go="documents">See everything</button></div>
+          <div id="todoList"></div>
+        </div>
+        <div class="side">
+          <div class="card askcard">
+            <h2>Ask a safety question</h2>
+            <p>Answers come only from your consultant's approved guides. Anything else goes straight to them.</p>
+            <form class="askrow" id="quickAsk">
+              <label for="quickAskInput" class="sr" style="position:absolute;left:-9999px">Your question</label>
+              <input id="quickAskInput" type="text" placeholder="e.g. How often should ladders be checked?">
+              <button class="iconbtn" type="submit" aria-label="Ask"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16201C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></button>
+            </form>
+          </div>
+          <div class="card">
+            <h2>Recent incidents</h2>
+            <div class="mini"><div class="top"><b>Near miss: pallet fell in aisle 3</b><span class="pill info">With consultant</span></div><span class="m">Dan K. · 15 Sep 2026 · nobody hurt</span></div>
+            <div class="mini"><div class="top"><b>Minor cut in loading bay</b><span class="pill ok">Closed</span></div><span class="m">Priya S. · 28 Aug 2026 · first aid given</span></div>
+          </div>
+          <div class="card">
+            <h2>New from your consultant</h2>
+            <div class="mini"><b>Racking inspection report</b><span class="m">Uploaded 3 Sep 2026 · 2 minor actions</span></div>
+            <div class="mini"><b>Warehouse safety guide (updated)</b><span class="m">Uploaded 1 Sep 2026</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CLIENT: DOCUMENTS ========== -->
+    <section class="screen" id="documents" hidden>
+      <div class="head">
+        <div>
+          <div class="sub">Hartwell Logistics Ltd · Andover warehouse</div>
+          <h1>Documents &amp; reminders</h1>
+        </div>
+        <button type="button" class="btn btn-green" id="uploadBtn">Upload a document</button>
+      </div>
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:4px">
+          <div class="filters" role="group" aria-label="Filter">
+            <button type="button" data-filter="all" aria-pressed="true">All</button>
+            <button type="button" data-filter="over" aria-pressed="false">Overdue</button>
+            <button type="button" data-filter="soon" aria-pressed="false">Due soon</button>
+            <button type="button" data-filter="ok" aria-pressed="false">Up to date</button>
+          </div>
+          <label style="position:absolute;left:-9999px" for="docSearch">Search documents</label>
+          <input id="docSearch" class="searchbox" type="search" placeholder="Search documents or people">
+        </div>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>What</th><th>Type</th><th>Who / where</th><th>Last done</th><th>Next due</th><th>Status</th><th><span style="position:absolute;left:-9999px">Action</span></th></tr></thead>
+            <tbody id="docRows"></tbody>
+          </table>
+        </div>
+        <p class="note" style="margin:14px 0 0">Automatic reminders go out 30 days and 7 days before anything is due, to you and your consultant.</p>
+      </div>
+    </section>
+
+    <!-- ========== CLIENT: REPORT ========== -->
+    <section class="screen" id="report" hidden>
+      <div class="head"><div><div class="sub">Works on any phone. No app to install.</div><h1>Report an incident</h1></div></div>
+      <div class="phonewrap">
+        <div class="phone">
+          <div class="ph"><div class="mark" style="width:30px;height:30px" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16201C" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v14"/><path d="M12 16l-4 6h8z"/></svg></div><b>Report an incident</b></div>
+          <form class="pb" id="reportForm">
+            <div class="field"><span class="lab" id="whatLab">What happened?</span>
+              <div class="choices" role="group" aria-labelledby="whatLab">
+                <button type="button" aria-pressed="true">Near miss</button>
+                <button type="button" aria-pressed="false">Someone hurt</button>
+                <button type="button" aria-pressed="false">Damage</button>
+                <button type="button" aria-pressed="false">Hazard spotted</button>
+              </div>
+            </div>
+            <div class="field"><label for="where">Where?</label>
+              <select id="where"><option>Warehouse, aisle 3</option><option>Loading bay</option><option>Office</option><option>Car park</option></select></div>
+            <div class="field"><label for="desc">Tell us what happened</label>
+              <textarea id="desc">A pallet slipped off the top rack while being moved. Nobody was underneath.</textarea></div>
+            <button type="button" class="photo" id="photoBtn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+              <span id="photoTxt">Add a photo</span>
+            </button>
+            <button type="submit" class="btn btn-red" style="width:100%">Send report</button>
+            <div class="success" id="reportDone" hidden>Sent. Your consultant has been told and you'll get an update here. Reference: INC-0142</div>
+            <p class="note" style="margin:0">Time, date and your name are added automatically.</p>
+          </form>
+        </div>
+        <div class="explain">
+          <h2>Why this matters</h2>
+          <ul>
+            <li>Anyone on site can report something in under a minute, from their phone.</li>
+            <li>The consultant gets it straight away, with photos, and can reply in the portal.</li>
+            <li>Everything is kept in one place, which makes it easy to see patterns and prove what was done.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CLIENT: ASK ========== -->
+    <section class="screen" id="ask" hidden>
+      <div class="head"><div><div class="sub">AI helper, limited to your consultant's approved guides</div><h1>Ask a safety question</h1></div></div>
+      <div class="phonewrap">
+        <div class="phone">
+          <div class="ph"><div class="mark" style="width:30px;height:30px" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16201C" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v14"/><path d="M12 16l-4 6h8z"/></svg></div><b>Safety helper</b></div>
+          <div class="pb">
+            <div class="chat" id="chat" aria-live="polite">
+              <div class="bubble bot">Hi Sam. Ask me anything about your site's safety. I only answer from the guides your consultant has approved. If it's not in them, I'll pass it straight on.</div>
+            </div>
+            <div class="suggest" id="suggest">
+              <button type="button" data-q="0">How often should our ladders be checked?</button>
+              <button type="button" data-q="1">Jordan's forklift certificate has run out. What now?</button>
+              <button type="button" data-q="2">Do we need sprinklers in the new unit?</button>
+            </div>
+            <form class="askrow" id="chatForm">
+              <label for="chatInput" style="position:absolute;left:-9999px">Your question</label>
+              <input id="chatInput" type="text" placeholder="Type a question" style="border:1px solid #C9C4B8">
+              <button class="iconbtn" type="submit" aria-label="Send"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16201C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></button>
+            </form>
+          </div>
+        </div>
+        <div class="explain">
+          <h2>How the helper stays safe</h2>
+          <ul>
+            <li>It only uses guides and documents the consultant has approved, and shows which one it used.</li>
+            <li>If the answer isn't there, it doesn't guess. It sends the question to the consultant.</li>
+            <li>It can see this site's own records, so it can say who is due what and when.</li>
+          </ul>
+          <p class="note">The answers in this demo are examples only, not safety advice.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CONSULTANT: CLIENTS ========== -->
+    <section class="screen" id="clients" hidden>
+      <div class="head">
+        <div><div class="sub">Consultant view · every client in one place</div><h1>All my clients</h1></div>
+        <button type="button" class="btn btn-green" id="addClient">Add a client</button>
+      </div>
+      <div class="grid4">
+        <div class="card stat"><div class="l">Clients</div><div class="v">6</div><span class="pill info">[Your price] a month each</span></div>
+        <div class="card stat"><div class="l">Overdue items</div><div class="v">4</div><span class="pill over">Across 3 clients</span></div>
+        <div class="card stat"><div class="l">New incidents</div><div class="v">2</div><span class="pill soon">Waiting for you</span></div>
+        <div class="card stat"><div class="l">Visits this month</div><div class="v">5</div><span class="pill ok">All booked</span></div>
+      </div>
+      <div class="card">
+        <div class="cardhead"><h2>Clients</h2><span class="note">Sorted by who needs you most</span></div>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>Client</th><th>In order</th><th>Overdue</th><th>Open incidents</th><th>Next visit</th><th><span style="position:absolute;left:-9999px">Action</span></th></tr></thead>
+            <tbody id="clientRows"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CONSULTANT: INBOX ========== -->
+    <section class="screen" id="inbox" hidden>
+      <div class="head"><div><div class="sub">Consultant view</div><h1>Incidents &amp; questions</h1></div></div>
+      <div class="card">
+        <div class="row"><div class="t"><b>Near miss: pallet fell in aisle 3</b><span>Hartwell Logistics · Dan K. · 15 Sep 2026 · 2 photos</span></div><span class="pill soon">New incident</span><button type="button" class="btn btn-ghost">Review</button></div>
+        <div class="row"><div class="t"><b>“Do we need sprinklers in the new unit?”</b><span>Hartwell Logistics · Sam · passed on by the helper</span></div><span class="pill info">Question</span><button type="button" class="btn btn-ghost">Reply</button></div>
+        <div class="row"><div class="t"><b>Scaffold board dropped from first lift</b><span>Brookfield Build · 14 Sep 2026 · nobody hurt</span></div><span class="pill soon">New incident</span><button type="button" class="btn btn-ghost">Review</button></div>
+        <div class="row"><div class="t"><b>Minor cut in loading bay</b><span>Hartwell Logistics · 28 Aug 2026</span></div><span class="pill ok">Closed</span><button type="button" class="btn btn-ghost">View</button></div>
+      </div>
+    </section>
+
+    <!-- ========== CONSULTANT: SETTINGS ========== -->
+    <section class="screen" id="settings" hidden>
+      <div class="head"><div><div class="sub">Consultant view</div><h1>My branding &amp; guides</h1></div></div>
+      <div class="cols">
+        <div class="card">
+          <h2>Your guides the helper can use</h2>
+          <p class="note">Upload your own guides. The helper only answers from what's switched on here.</p>
+          <div id="guideRows"></div>
+          <button type="button" class="btn btn-ghost" style="margin-top:14px">Upload a guide</button>
+        </div>
+        <div class="side">
+          <div class="card">
+            <h2>Your brand</h2>
+            <p class="note">Clients see your name and colours, not ours.</p>
+            <div class="field" style="margin:12px 0"><label for="bname">Portal name</label><input id="bname" type="text" value="Plumbline"></div>
+            <div class="lab" style="font-weight:600;font-size:14px;margin-bottom:8px">Main colour</div>
+            <div class="brandbox" role="group" aria-label="Main colour">
+              <button type="button" class="swatch" style="background:#1F4D3A" data-c="#1F4D3A" aria-pressed="true" aria-label="Green"></button>
+              <button type="button" class="swatch" style="background:#1D3F74" data-c="#1D3F74" aria-pressed="false" aria-label="Navy"></button>
+              <button type="button" class="swatch" style="background:#6B2A3A" data-c="#6B2A3A" aria-pressed="false" aria-label="Burgundy"></button>
+              <button type="button" class="swatch" style="background:#2E2E2E" data-c="#2E2E2E" aria-pressed="false" aria-label="Charcoal"></button>
+            </div>
+          </div>
+          <div class="card">
+            <h2>Reminders</h2>
+            <div class="mini"><b>Remind clients</b><span class="m">30 days and 7 days before due</span></div>
+            <div class="mini"><b>Copy me in</b><span class="m">On anything overdue</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+(function(){
+  var todos=[
+    {t:'Forklift training certificate',d:'Jordan Price · refresher needed',date:'2 Sep 2026',s:'over',a:'Book course'},
+    {t:'Ladder inspection (monthly)',d:'Warehouse · 6 ladders',date:'30 Sep 2026',s:'soon',a:'Start check'},
+    {t:'Fire risk assessment review',d:'Whole site · done by your consultant',date:'12 Oct 2026',s:'soon',a:'Book visit'},
+    {t:'Portable appliance testing',d:'Office and canteen',date:'21 Oct 2026',s:'soon',a:'Book test'},
+    {t:'Racking inspection',d:'Aisles 1–6 · report uploaded',date:'3 Sep 2026',s:'ok',a:'View report'}
+  ];
+  var docs=[
+    {w:'Forklift certificate',ty:'Training',p:'Jordan Price',l:'2 Sep 2023',n:'2 Sep 2026',s:'over'},
+    {w:'Ladder inspection',ty:'Inspection',p:'Warehouse',l:'30 Aug 2026',n:'30 Sep 2026',s:'soon'},
+    {w:'Fire risk assessment',ty:'Risk assessment',p:'Whole site',l:'12 Oct 2025',n:'12 Oct 2026',s:'soon'},
+    {w:'Portable appliance testing',ty:'Inspection',p:'Office and canteen',l:'21 Oct 2025',n:'21 Oct 2026',s:'soon'},
+    {w:'Racking inspection',ty:'Inspection',p:'Aisles 1–6',l:'3 Sep 2026',n:'3 Sep 2027',s:'ok'},
+    {w:'Health & safety policy',ty:'Policy',p:'Whole company',l:'1 Mar 2026',n:'1 Mar 2027',s:'ok'},
+    {w:'Manual handling training',ty:'Training',p:'12 staff',l:'14 May 2026',n:'14 May 2029',s:'ok'},
+    {w:'First aid at work',ty:'Training',p:'Priya Shah',l:'9 Jan 2025',n:'9 Jan 2028',s:'ok'},
+    {w:'Employers’ liability insurance',ty:'Certificate',p:'Whole company',l:'1 Apr 2026',n:'1 Apr 2027',s:'ok'},
+    {w:'Fire alarm test (weekly)',ty:'Check',p:'Whole site',l:'15 Sep 2026',n:'22 Sep 2026',s:'ok'},
+    {w:'COSHH assessment: cleaning products',ty:'Risk assessment',p:'Canteen',l:'20 Nov 2025',n:'20 Nov 2026',s:'ok'}
+  ];
+  var label={over:'Overdue',soon:'Due soon',ok:'Up to date'};
+  var clients=[
+    {c:'Hartwell Logistics',town:'Andover',pct:92,o:1,i:1,v:'8 Oct 2026'},
+    {c:'Brookfield Build',town:'Basingstoke',pct:81,o:2,i:1,v:'24 Sep 2026'},
+    {c:'Meadow Lane Nursery',town:'Newbury',pct:88,o:1,i:0,v:'2 Oct 2026'},
+    {c:'Kestrel Print Works',town:'Reading',pct:95,o:0,i:0,v:'15 Oct 2026'},
+    {c:'Oakfield Motors',town:'Salisbury',pct:97,o:0,i:0,v:'20 Oct 2026'},
+    {c:'Tidemark Foods',town:'Southampton',pct:99,o:0,i:0,v:'29 Oct 2026'}
+  ];
+  var guides=['Introduction to managing health and safety','Reportable incidents','Working at height','Safe use of ladders','Warehouse safety','Office safety','Home workers','Fire safety','Electrical safety','Work-related stress','Construction health and safety','CDM duties summary'];
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+
+  document.getElementById('todoList').innerHTML=todos.map(function(x){
+    return '<div class="row"><div class="t"><b>'+esc(x.t)+'</b><span>'+esc(x.d)+'</span></div><span class="date">'+x.date+'</span><span class="pill '+x.s+'" style="min-width:84px;justify-content:center">'+(x.s==='ok'?'Done':label[x.s])+'</span><button type="button" class="btn btn-ghost">'+esc(x.a)+'</button></div>';
+  }).join('');
+
+  var filter='all',q='';
+  function drawDocs(){
+    var rows=docs.filter(function(d){return (filter==='all'||d.s===filter)&&(!q||(d.w+' '+d.p+' '+d.ty).toLowerCase().indexOf(q)>-1)});
+    document.getElementById('docRows').innerHTML=rows.length?rows.map(function(d){
+      return '<tr><td><b>'+esc(d.w)+'</b></td><td>'+esc(d.ty)+'</td><td>'+esc(d.p)+'</td><td class="d">'+d.l+'</td><td class="d">'+d.n+'</td><td><span class="pill '+d.s+'">'+label[d.s]+'</span></td><td><button type="button" class="btn btn-ghost">Open</button></td></tr>';
+    }).join(''):'<tr><td colspan="7" class="note">Nothing matches.</td></tr>';
+  }
+  drawDocs();
+  document.querySelectorAll('[data-filter]').forEach(function(b){b.addEventListener('click',function(){
+    filter=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(function(x){x.setAttribute('aria-pressed',x===b)});drawDocs();
+  })});
+  document.getElementById('docSearch').addEventListener('input',function(e){q=e.target.value.trim().toLowerCase();drawDocs()});
+  document.getElementById('uploadBtn').addEventListener('click',function(){this.textContent='Upload (demo)';});
+
+  document.getElementById('clientRows').innerHTML=clients.map(function(c){
+    return '<tr><td><b>'+esc(c.c)+'</b><div class="note">'+esc(c.town)+'</div></td><td><div style="display:flex;align-items:center;gap:10px"><div class="bar"><i style="width:'+c.pct+'%"></i></div><span class="d" style="font-family:var(--mono);font-size:13px">'+c.pct+'%</span></div></td><td>'+(c.o?'<span class="pill over">'+c.o+' overdue</span>':'<span class="pill ok">None</span>')+'</td><td>'+(c.i?'<span class="pill soon">'+c.i+' new</span>':'<span class="note">None</span>')+'</td><td class="d">'+c.v+'</td><td><button type="button" class="btn btn-ghost" data-open-client>Open</button></td></tr>';
+  }).join('');
+
+  document.getElementById('guideRows').innerHTML=guides.map(function(g,i){
+    return '<div class="mini" style="display:flex;justify-content:space-between;align-items:center;gap:10px"><b style="font-weight:500">'+esc(g)+'</b><label style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600"><input type="checkbox" checked style="width:20px;height:20px;accent-color:#1F4D3A"> In use</label></div>';
+  }).join('');
+
+  /* navigation */
+  var role='client';
+  function go(id){
+    document.querySelectorAll('.screen').forEach(function(s){s.hidden=s.id!==id});
+    document.querySelectorAll('.navlist button').forEach(function(b){if(b.dataset.go===id)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
+    window.scrollTo(0,0);
+  }
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('[data-go]');if(t){e.preventDefault();go(t.dataset.go);}
+    if(e.target.closest('[data-open-client]')){setRole('client');}
+  });
+  function setRole(r){
+    role=r;
+    document.querySelectorAll('[data-role]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.role===r)});
+    document.getElementById('clientNav').hidden=r!=='client';
+    document.getElementById('consultantNav').hidden=r!=='consultant';
+    document.getElementById('consultantCard').hidden=r!=='client';
+    go(r==='client'?'overview':'clients');
+  }
+  document.querySelectorAll('[data-role]').forEach(function(b){b.addEventListener('click',function(){setRole(b.dataset.role)})});
+
+  /* report */
+  document.querySelectorAll('.choices button').forEach(function(b){b.addEventListener('click',function(){
+    b.parentNode.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+  })});
+  document.getElementById('photoBtn').addEventListener('click',function(){document.getElementById('photoTxt').textContent='2 photos added';});
+  document.getElementById('reportForm').addEventListener('submit',function(e){e.preventDefault();document.getElementById('reportDone').hidden=false;});
+
+  /* ask */
+  var answers=[
+    {q:'How often should our ladders be checked?',a:'Whoever uses a ladder should check it before every use. On top of that, it needs a proper recorded inspection regularly. Your site does this monthly, and the next one is due on 30 Sep 2026.',src:'Guide: Safe use of ladders'},
+    {q:'Jordan’s forklift certificate has run out. What now?',a:'Jordan’s certificate ran out on 2 Sep 2026. Your guide says nobody should operate a forklift without up-to-date training. I’ve flagged it to your consultant, who can book a refresher course.',src:'Guide: Warehouse safety',passed:true},
+    {q:'Do we need sprinklers in the new unit?',a:'That isn’t covered in your approved guides, so I won’t guess. I’ve sent your question to your consultant, who usually replies within one working day.',passed:true}
+  ];
+  var chat=document.getElementById('chat');
+  function addMsg(text,who,src,passed){
+    var d=document.createElement('div');d.className='bubble '+who;d.textContent=text;
+    if(src){var s=document.createElement('div');s.className='src';s.textContent=src;d.appendChild(document.createElement('br'));d.appendChild(s);}
+    if(passed){var p=document.createElement('div');p.className='passed';p.textContent='Sent to your consultant';d.appendChild(document.createElement('br'));d.appendChild(p);}
+    chat.appendChild(d);
+  }
+  function ask(text){
+    if(!text)return;
+    addMsg(text,'me');
+    var low=text.toLowerCase(),hit=null;
+    if(low.indexOf('ladder')>-1)hit=answers[0];else if(low.indexOf('forklift')>-1||low.indexOf('certificate')>-1)hit=answers[1];else hit=answers[2];
+    setTimeout(function(){
+      if(hit===answers[2]&&text!==answers[2].q){addMsg('That isn’t covered in your approved guides, so I won’t guess. I’ve sent your question to your consultant, who usually replies within one working day.','bot',null,true);}
+      else addMsg(hit.a,'bot',hit.src,hit.passed);
+    },450);
+  }
+  document.querySelectorAll('#suggest button').forEach(function(b){b.addEventListener('click',function(){ask(answers[+b.dataset.q].q);b.remove();})});
+  document.getElementById('chatForm').addEventListener('submit',function(e){e.preventDefault();var i=document.getElementById('chatInput');ask(i.value.trim());i.value='';});
+  document.getElementById('quickAsk').addEventListener('submit',function(e){e.preventDefault();var i=document.getElementById('quickAskInput');var v=i.value.trim()||answers[0].q;i.value='';go('ask');ask(v);});
+
+  /* branding */
+  document.querySelectorAll('.swatch').forEach(function(b){b.addEventListener('click',function(){
+    document.querySelectorAll('.swatch').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+    document.documentElement.style.setProperty('--green',b.dataset.c);
+  })});
+  document.getElementById('bname').addEventListener('input',function(e){document.getElementById('brandName').textContent=e.target.value||'Your portal';});
+})();
+</script>
+</body>
+</html>
