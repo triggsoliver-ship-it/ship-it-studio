@@ -48,7 +48,9 @@ main{flex:1;min-width:0;padding:28px 36px 56px}
 .btn-d{background:var(--ink);color:#fff}
 .btn-g{background:#fff;border-color:#BFC1B8;color:var(--ink);font-weight:600;min-height:36px;padding:0 12px;font-size:13px}
 .btn-g:hover{border-color:var(--ink)}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px;min-width:0}
+.two>*,.split>*,.phonewrap>*{min-width:0}
+table.compact{min-width:0}
 .card h2{font-size:24px;font-weight:700}
 .kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin-bottom:20px}
 .kpi .l{font-size:13px;color:var(--muted);font-weight:600}
@@ -121,6 +123,32 @@ tfoot td{font-weight:700;border-top:2px solid var(--ink);border-bottom:0}
 .phase{border-top:4px solid var(--orange)}
 .phase ul{margin:10px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14px}
 .phase .k{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.switch{display:flex;flex-direction:column;gap:6px}
+.switch .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9AA2B1;font-weight:600}
+.switch select{width:100%;height:38px;border-radius:8px;border:1px solid #39435A;background:#1A2130;color:#fff;padding:0 8px;font-size:13px}
+.alerts{display:flex;flex-direction:column;gap:0}
+.alert{display:flex;gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--line2);flex-wrap:wrap}
+.alert .t{flex:1;min-width:220px}
+.alert b{display:block;font-size:15px}
+.alert span.s{font-size:13px;color:var(--muted)}
+.mapbox{position:relative;background:#E7E9E4;border-radius:14px;overflow:hidden;height:380px}
+.mapbox svg{width:100%;height:100%;display:block}
+.vanpin{position:absolute;transform:translate(-50%,-50%);background:var(--ink);color:#fff;font-size:12px;font-weight:700;padding:5px 9px;border-radius:999px;white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.vanpin.late{background:var(--red)}
+.vanpin.idle{background:#6B7382}
+.maplegend{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;font-size:13px;color:var(--muted)}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle}
+.track{display:flex;flex-direction:column;gap:0}
+.tstep{display:flex;gap:12px;align-items:flex-start;padding:10px 0}
+.tstep .ic{width:26px;height:26px;border-radius:50%;background:#E6E6E0;display:grid;place-items:center;flex-shrink:0;font-size:13px;font-weight:700;color:var(--muted)}
+.tstep.ok .ic{background:var(--green);color:#fff}
+.tstep.now .ic{background:var(--orange);color:var(--ink)}
+.tstep b{display:block;font-size:15px}
+.tstep span{font-size:13px;color:var(--muted)}
+.flag{background:#FBE4E1;color:#9A1B10;font-weight:700}
+.rules{display:flex;flex-direction:column;gap:0}
+.rule{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--line2);font-size:14px}
+.rule b{font-weight:600}
 @media (max-width:1180px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.board{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr}.quote{position:static}}
 @media (max-width:760px){
   .app{flex-direction:column}
@@ -148,12 +176,21 @@ tfoot td{font-weight:700;border-top:2px solid var(--ink);border-bottom:0}
     <nav class="navlist" aria-label="Main menu">
       <button type="button" data-go="today" aria-current="page">Today's job board <span class="count" id="unCount">3</span></button>
       <button type="button" data-go="newjob">New job &amp; price</button>
+      <button type="button" data-go="map">Live map</button>
       <button type="button" data-go="fleet">Vans &amp; drivers</button>
       <button type="button" data-go="driver">Driver app</button>
-      <button type="button" data-go="eod">End of day</button>
-      <button type="button" data-go="rates">Customers &amp; rates</button>
+      <button type="button" data-go="tracking">Customer tracking</button>
+      <button type="button" data-go="margin" data-owner="1">Money &amp; margin <span class="count">2</span></button>
+      <button type="button" data-go="eod" data-owner="1">End of day</button>
+      <button type="button" data-go="rates" data-owner="1">Customers &amp; rates</button>
       <button type="button" data-go="plan">How we'd build it</button>
     </nav>
+    <div class="switch">
+      <label class="k" for="company">Company</label>
+      <select id="company"><option>London Delivery Network</option><option>Aura</option></select>
+      <label class="k" for="role" style="margin-top:6px">Signed in as</label>
+      <select id="role"><option value="owner">William (owner)</option><option value="office">Office team</option><option value="driver">Driver</option></select>
+    </div>
     <div class="clock"><span class="k">Live</span><span class="t" id="clk">14:05</span><span class="s">17 vans out · 3 on standby</span></div>
   </aside>
 
@@ -170,6 +207,14 @@ tfoot td{font-weight:700;border-top:2px solid var(--ink);border-bottom:0}
         <div class="card kpi"><div class="l">Earned so far</div><div class="v" id="kRev">£4,918</div><div class="n"><span class="up">+12%</span> on last Thursday</div></div>
         <div class="card kpi"><div class="l">Vans busy</div><div class="v">17 / 20</div><div class="n">85% in use right now</div></div>
         <div class="card kpi"><div class="l">Running late</div><div class="v">1</div><div class="n"><span class="pill p-red">JB-2291 · 18 min</span></div></div>
+      </div>
+      <div class="card" style="margin-bottom:20px">
+        <div class="cardhead" style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:4px"><h2>Alerts</h2><span class="note">Sent by WhatsApp or email as well as shown here</span></div>
+        <div class="alerts">
+          <div class="alert"><div class="t"><b>JB-2291 is 18 minutes late</b><span class="s">Tom · Van 07 · customer has been sent the tracking link</span></div><span class="pill p-red">Late job</span><button type="button" class="btn btn-g">Call driver</button></div>
+          <div class="alert"><div class="t"><b>Swiftbox Parcels margin down to 24.7%</b><span class="s">3.4 points below last week, and under your 30% line</span></div><span class="pill p-red">Margin</span><button type="button" class="btn btn-g" data-go="margin">Look at it</button></div>
+          <div class="alert"><div class="t"><b>Van 12 used at 21:40 on Saturday</b><span class="s">No job booked · 23 miles · worth checking the dash cam</span></div><span class="pill p-ow">Van use</span><button type="button" class="btn btn-g" data-go="margin">See trips</button></div>
+        </div>
       </div>
       <div class="board" id="board"></div>
     </section>
@@ -196,7 +241,10 @@ tfoot td{font-weight:700;border-top:2px solid var(--ink);border-bottom:0}
               </select></div>
             <div class="field"><label for="from">Collect from</label><input id="from" value="Bermondsey SE16"></div>
             <div class="field"><label for="to">Deliver to</label><input id="to" value="Chiswick W4"></div>
-            <div class="field"><label for="miles">Miles (worked out from postcodes)</label><input id="miles" type="number" min="1" value="14"></div>
+            <div class="field"><label for="method">How it's priced</label>
+              <select id="method"><option value="time" selected>London: minimum charge + time</option><option value="miles">Outside the M25: mileage</option></select></div>
+            <div class="field" id="fMins"><label for="mins">Time on the job (minutes)</label><input id="mins" type="number" min="15" step="5" value="95"></div>
+            <div class="field" id="fMiles" hidden><label for="miles">Miles (worked out from postcodes)</label><input id="miles" type="number" min="1" value="14"></div>
             <div class="field"><label for="when">When</label>
               <select id="when"><option value="asap">Now, as soon as possible</option><option value="slot">Timed slot</option><option value="ooh">Out of hours (8pm–6am)</option></select></div>
           </div>
@@ -260,6 +308,7 @@ tfoot td{font-weight:700;border-top:2px solid var(--ink);border-bottom:0}
             <li>Every tap updates the job board straight away, so nobody needs to ring the driver.</li>
             <li>Photos, signature, time and location are saved with the job, ready to send to the customer.</li>
             <li>Waiting time is timed automatically and can be added to the price.</li>
+            <li>No photo or signature means the job isn't counted as done, and isn't paid.</li>
           </ul>
           <button type="button" class="btn btn-d" data-go="today" style="align-self:flex-start">Back to job board</button>
         </div>
@@ -299,7 +348,7 @@ tfoot td{font-weight:700;border-top:2px solid var(--ink);border-bottom:0}
             <tr><td><b>One-off customers</b></td><td>Shoot-and-point</td><td>Standard</td><td class="m">£1.75</td><td class="m">£360</td><td>Card up front</td><td class="m">£3,488</td></tr>
           </tbody>
         </table></div>
-        <p class="note" style="margin:12px 0 0">Example figures only. Includes base charge, mileage, day and half-day rates, waiting time, second person and out-of-hours extras.</p>
+        <p class="note" style="margin:12px 0 0">Example figures only. Includes minimum charge and time for London, mileage outside the M25, day and half-day rates, waiting time, second person and out-of-hours extras.</p>
       </div>
     </section>
 
@@ -308,7 +357,7 @@ tfoot td{font-weight:700;border-top:2px solid var(--ink);border-bottom:0}
       <div class="head"><div><div class="sub">Built in stages, run side by side with the current system until it's trusted</div><h1>How we'd build it</h1></div></div>
       <div class="split">
         <div class="card phase"><span class="k">Stage 1</span><h2>The core</h2><ul><li>Vans, drivers and who's in what</li><li>Central job board</li><li>Driver phone app with photos and signatures</li><li>Prices worked out from rate cards</li><li>End-of-day report</li></ul></div>
-        <div class="card phase"><span class="k">Stage 2</span><h2>Customers &amp; money</h2><ul><li>Customers book and track online</li><li>Invoices into the accounts software</li><li>Driver pay worked out automatically</li><li>Van MOT, service and insurance reminders</li></ul></div>
+        <div class="card phase"><span class="k">Stage 2</span><h2>Customers &amp; money</h2><ul><li>Customers book and track online</li><li>Invoices into the accounts software</li><li>Driver pay worked out automatically</li><li>Margin by customer, route and van</li></ul></div>
         <div class="card phase"><span class="k">Stage 3</span><h2>Grow</h2><ul><li>Regular routes set up once, repeated automatically</li><li>Parcel companies send jobs in bulk</li><li>Van use and profit reports</li><li>Route planning for multi-drop days</li></ul></div>
       </div>
       <div class="card">
@@ -319,6 +368,125 @@ tfoot td{font-weight:700;border-top:2px solid var(--ink);border-bottom:0}
           <li>How are prices and driver pay worked out?</li>
           <li>What would you most like to see at 6pm every day?</li>
         </ul>
+      </div>
+    </section>
+
+    <!-- LIVE MAP -->
+    <section class="screen" id="map" hidden>
+      <div class="head"><div><div class="sub">Every van on one screen. Tap a van to see its job.</div><h1>Live map</h1></div><button type="button" class="btn btn-d" data-go="today">Back to job board</button></div>
+      <div class="card">
+        <div class="mapbox" id="mapbox">
+          <svg viewBox="0 0 800 380" aria-label="Simplified map of London and the M25" role="img">
+            <rect width="800" height="380" fill="#E7E9E4"></rect>
+            <ellipse cx="400" cy="190" rx="330" ry="150" fill="none" stroke="#C7CBC2" stroke-width="10"></ellipse>
+            <path d="M60 190 H740 M400 40 V340 M150 80 L650 300 M650 80 L150 300" stroke="#D3D7CE" stroke-width="7" fill="none"></path>
+            <path d="M120 250 C260 300 520 300 690 230" stroke="#9FB6C9" stroke-width="9" fill="none" opacity=".8"></path>
+            <text x="404" y="196" font-family="Figtree, sans-serif" font-size="13" fill="#7A8290">Central London</text>
+            <text x="690" y="215" font-family="Figtree, sans-serif" font-size="12" fill="#7A8290">M25</text>
+          </svg>
+        </div>
+        <div class="maplegend">
+          <span><span class="dot" style="background:#121826"></span>On a job</span>
+          <span><span class="dot" style="background:#B42318"></span>Running late</span>
+          <span><span class="dot" style="background:#6B7382"></span>Free</span>
+          <span>Illustration only. The real one uses a live map, updated from the drivers' phones.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CUSTOMER TRACKING -->
+    <section class="screen" id="tracking" hidden>
+      <div class="head"><div><div class="sub">What your customer sees. No login, just a link by text or email.</div><h1>Customer tracking</h1></div></div>
+      <div class="phonewrap">
+        <div class="phone">
+          <div class="ph"><div><b>Your delivery</b><div style="font-size:12px;color:#9AA2B1">Job JB-2291 · Northbank Bakery</div></div><span class="pill p-ow">12 min away</span></div>
+          <div class="pb">
+            <div class="mapbox" style="height:150px">
+              <svg viewBox="0 0 400 150" aria-label="Simplified map showing the van approaching" role="img">
+                <rect width="400" height="150" fill="#E7E9E4"></rect>
+                <path d="M20 120 C120 60 260 130 380 50" stroke="#C7CBC2" stroke-width="8" fill="none"></path>
+                <circle cx="205" cy="98" r="9" fill="#121826"></circle>
+                <circle cx="380" cy="50" r="7" fill="#F26B1D"></circle>
+                <text x="330" y="40" font-family="Figtree, sans-serif" font-size="12" fill="#7A8290">You</text>
+              </svg>
+            </div>
+            <div class="track">
+              <div class="tstep ok"><span class="ic">✓</span><div><b>Booked</b><span>11:02 · Luton with tail lift</span></div></div>
+              <div class="tstep ok"><span class="ic">✓</span><div><b>Collected</b><span>13:35 · Bermondsey SE16</span></div></div>
+              <div class="tstep now"><span class="ic">→</span><div><b>On the way to you</b><span>Tom is 12 minutes away · arriving about 14:24</span></div></div>
+              <div class="tstep"><span class="ic">4</span><div><b>Delivered</b><span>You'll get a photo and the signature</span></div></div>
+            </div>
+            <button type="button" class="btn btn-o big">Message the driver</button>
+            <p class="note" style="margin:0">Running late? The page says so, and why, before the customer has to ring.</p>
+          </div>
+        </div>
+        <div class="explain">
+          <h2>Why this matters</h2>
+          <ul>
+            <li>"People don't mind if they can see where you are." The link goes out the moment a job is booked.</li>
+            <li>It stops the calls asking where the driver is, which is most of what the office does today.</li>
+            <li>It carries your branding, so customers see London Delivery Network, not a courier app.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- MONEY & MARGIN -->
+    <section class="screen" id="margin" hidden>
+      <div class="head"><div><div class="sub">Week to Thursday 17 September · money left after driver pay, fuel, tickets and damage</div><h1>Money &amp; margin</h1></div><button type="button" class="btn btn-d">Download week</button></div>
+      <div class="kpis">
+        <div class="card kpi"><div class="l">Invoiced</div><div class="v">£41,280</div><div class="n">ex VAT</div></div>
+        <div class="card kpi"><div class="l">Direct costs</div><div class="v">£29,140</div><div class="n">drivers, fuel, tickets, damage</div></div>
+        <div class="card kpi"><div class="l">Money made</div><div class="v">£12,140</div><div class="n">29.4% of invoiced</div></div>
+        <div class="card kpi"><div class="l">Below your 30% line</div><div class="v">2</div><div class="n"><span class="pill p-red">Swiftbox · Hallam</span></div></div>
+        <div class="card kpi"><div class="l">Van use to check</div><div class="v">2</div><div class="n">over mileage or out of hours</div></div>
+      </div>
+      <div class="card" style="margin-bottom:20px">
+        <div class="tabs" role="group" aria-label="Show margin by">
+          <button type="button" data-mg="cust" aria-pressed="true">By customer</button>
+          <button type="button" data-mg="route" aria-pressed="false">By route</button>
+          <button type="button" data-mg="van" aria-pressed="false">By van</button>
+        </div>
+        <div class="tablewrap"><table id="mgTable"></table></div>
+        <p class="note" style="margin:12px 0 0">Every figure here is straight arithmetic from your jobs and your cost rules, so it always gives the same answer and can be checked by hand. No AI anywhere near the money.</p>
+      </div>
+      <div class="two">
+        <div class="card">
+          <h2>Van use worth checking</h2>
+          <div class="alerts">
+            <div class="alert"><div class="t"><b>Van 04 · 14% over expected mileage</b><span class="s">Expected 780 miles this week, did 889</span></div><span class="pill p-ow">Mileage</span><button type="button" class="btn btn-g">List trips</button></div>
+            <div class="alert"><div class="t"><b>Van 12 · used Saturday 21:40 to 22:25</b><span class="s">23 miles · no job booked · check dash cam</span></div><span class="pill p-red">Out of hours</span><button type="button" class="btn btn-g">List trips</button></div>
+            <div class="alert"><div class="t"><b>Everything else normal</b><span class="s">18 vans within expected mileage and hours</span></div><span class="pill p-dn">Clear</span><span></span></div>
+          </div>
+          <p class="note" style="margin:12px 0 0">Drivers should be told this is switched on and why. It's a normal part of running vans, but it has to be in the open.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div class="card">
+            <h2>Driver pay this week</h2>
+            <div class="tablewrap"><table class="compact">
+              <thead><tr><th>Driver</th><th>Days</th><th>Jobs</th><th>Pay</th></tr></thead>
+              <tbody>
+                <tr><td><b>Tom</b></td><td class="m">5</td><td class="m">48</td><td class="m">£840</td></tr>
+                <tr><td><b>Marek</b></td><td class="m">5.5</td><td class="m">61</td><td class="m">£920</td></tr>
+                <tr><td><b>Jade</b></td><td class="m">5</td><td class="m">44</td><td class="m">£800</td></tr>
+                <tr class="flag"><td><b>Kwame</b></td><td class="m">5</td><td class="m">52</td><td class="m">£765 held</td></tr>
+                <tr><td><b>Sam (18t)</b></td><td class="m">5</td><td class="m">19</td><td class="m">£950</td></tr>
+              </tbody>
+            </table></div>
+            <p class="note" style="margin:12px 0 0">Kwame has 1 job with no photo or signature. No proof, no pay, until it's sorted.</p>
+          </div>
+          <div class="card">
+            <h2>Your cost rules</h2>
+            <div class="rules">
+              <div class="rule"><span>Driver day rate</span><b>£160</b></div>
+              <div class="rule"><span>Fuel</span><b>32p a mile</b></div>
+              <div class="rule"><span>Parking tickets</span><b>Charged to the job</b></div>
+              <div class="rule"><span>Damage</span><b>Logged against the job</b></div>
+              <div class="rule"><span>Flag anything below</span><b>30% or down 3 points</b></div>
+            </div>
+            <p class="note" style="margin:12px 0 0">Set once. Example figures only.</p>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -365,11 +533,18 @@ tfoot td{font-weight:700;border-top:2px solid var(--ink);border-bottom:0}
   });
 
   /* pricing */
-  var base={sw:[25,1.10,'Small van'],spr:[35,1.35,'4m Sprinter'],lut:[55,1.75,'Luton with tail lift'],'18t':[120,2.60,'18-tonne with tail lift']};
+  var base={sw:[25,1.10,'Small van',35,0.45,45],spr:[35,1.35,'4m Sprinter',45,0.55,45],lut:[55,1.75,'Luton with tail lift',65,0.70,60],'18t':[120,2.60,'18-tonne with tail lift',140,1.10,60]};
   var disc={bakery:.12,parcel:.10,furn:0,cash:0};
   function quote(){
-    var v=document.getElementById('veh').value,b=base[v],mi=Math.max(1,+document.getElementById('miles').value||0);
-    var lines=[['Base charge ('+b[2]+')',b[0]],['Mileage: '+mi+' mi × '+money(b[1]),+(mi*b[1]).toFixed(2)]];
+    var v=document.getElementById('veh').value,b=base[v],lines,meth=document.getElementById('method').value;
+    if(meth==='time'){
+      var mn=Math.max(15,+document.getElementById('mins').value||0),inc=b[5],extra=Math.max(0,mn-inc);
+      lines=[['Minimum charge ('+b[2]+', first '+inc+' min)',b[3]]];
+      if(extra>0)lines.push(['Time after that: '+extra+' min × '+money(b[4]),+(extra*b[4]).toFixed(2)]);
+    } else {
+      var mi=Math.max(1,+document.getElementById('miles').value||0);
+      lines=[['Base charge ('+b[2]+')',b[0]],['Mileage: '+mi+' mi × '+money(b[1]),+(mi*b[1]).toFixed(2)]];
+    }
     if(document.getElementById('xman').checked)lines.push(['Second person',40]);
     if(document.getElementById('xwait').checked)lines.push(['Waiting time (estimate)',15]);
     if(document.getElementById('xpall').checked)lines.push(['Pallet or heavy item',12]);
@@ -383,7 +558,11 @@ tfoot td{font-weight:700;border-top:2px solid var(--ink);border-bottom:0}
     document.getElementById('qTot').textContent=money(+sub.toFixed(2));
     return +sub.toFixed(2);
   }
-  ['cust','veh','miles','when','xman','xwait','xpall'].forEach(function(id){var el=document.getElementById(id);el.addEventListener('input',quote);el.addEventListener('change',quote);});
+  ['cust','veh','miles','mins','method','when','xman','xwait','xpall'].forEach(function(id){var el=document.getElementById(id);el.addEventListener('input',quote);el.addEventListener('change',quote);});
+  document.getElementById('method').addEventListener('change',function(){
+    var t=this.value==='time';
+    document.getElementById('fMins').hidden=!t;document.getElementById('fMiles').hidden=t;
+  });
   quote();
   document.getElementById('jobForm').addEventListener('submit',function(e){
     e.preventDefault();
@@ -451,6 +630,54 @@ tfoot td{font-weight:700;border-top:2px solid var(--ink);border-bottom:0}
     document.getElementById('st3').className='on';document.getElementById('drvPill').textContent='Delivered';
     jobs.forEach(function(j){if(j.ref==='JB-2291'){j.st='dn';j.late=false;j.meta='Luton · signed by Aisha 14:12';}});drawBoard();
     var k=document.getElementById('kDone');k.textContent=(+k.textContent+1);
+  });
+
+  /* margin tables */
+  var mg={
+    cust:[['Swiftbox Parcels',12400,7900,1180,260,3060,24.7,-3.4,1],['Northbank Bakery',6820,3900,640,90,2190,32.1,1.2,0],['Hallam Furniture',5140,3050,520,180,1390,27.0,-0.4,1],['Coldharbour Events',4960,2600,610,0,1750,35.3,2.1,0],['One-off customers',8690,4700,900,320,2770,31.9,-0.8,0],['17 other accounts',3270,1900,330,60,980,30.0,0.5,0]],
+    route:[['Bakery route · 7 shops',6820,2190,32.1,1.2,0],['Parcel overflow · Park Royal',4910,1100,22.4,-4.1,1],['Heathrow runs',3780,1285,34.0,0.7,0],['Ad-hoc central London',9220,2812,30.5,-0.6,0],['Out past the M25',5430,1455,26.8,-1.9,1],['Everything else',11120,3298,29.7,0.3,0]],
+    van:[['Van 02 · Marek',5420,1690,31.2,0.8,0],['Van 04 · Kwame',5180,1240,23.9,-5.2,1],['Van 07 · Tom',4760,1520,31.9,1.1,0],['Van 09 · Priya',4050,1180,29.1,-0.3,0],['Van 11 · Jade',4320,1390,32.2,0.4,0],['Van 18 · Sam',6480,1940,29.9,-0.7,0],['Other 14 vans',11070,3180,28.7,0.2,0]]
+  };
+  function pts(n){return (n>0?'+':'')+n.toFixed(1)+' pts'}
+  function drawMg(mode){
+    var t=document.getElementById('mgTable'),h;
+    if(mode==='cust'){
+      h='<thead><tr><th>Customer</th><th>Invoiced</th><th>Drivers</th><th>Fuel</th><th>Tickets &amp; damage</th><th>Made</th><th>Margin</th><th>On last week</th></tr></thead><tbody>'+mg.cust.map(function(r){
+        return '<tr'+(r[8]?' class="flag"':'')+'><td><b>'+esc(r[0])+'</b></td><td class="m">'+money(r[1])+'</td><td class="m">'+money(r[2])+'</td><td class="m">'+money(r[3])+'</td><td class="m">'+money(r[4])+'</td><td class="m">'+money(r[5])+'</td><td class="m">'+r[6].toFixed(1)+'%</td><td class="m">'+pts(r[7])+'</td></tr>';
+      }).join('')+'</tbody><tfoot><tr><td>Total</td><td class="m">£41,280</td><td class="m">£24,050</td><td class="m">£4,180</td><td class="m">£910</td><td class="m">£12,140</td><td class="m">29.4%</td><td></td></tr></tfoot>';
+    } else {
+      var rows=mg[mode],label=mode==='route'?'Route':'Van';
+      h='<thead><tr><th>'+label+'</th><th>Invoiced</th><th>Made</th><th>Margin</th><th>On last week</th><th></th></tr></thead><tbody>'+rows.map(function(r){
+        return '<tr'+(r[5]?' class="flag"':'')+'><td><b>'+esc(r[0])+'</b></td><td class="m">'+money(r[1])+'</td><td class="m">'+money(r[2])+'</td><td class="m">'+r[3].toFixed(1)+'%</td><td class="m">'+pts(r[4])+'</td><td>'+(r[5]?'<span class="pill p-red">Below 30%</span>':'<span class="pill p-dn">Fine</span>')+'</td></tr>';
+      }).join('')+'</tbody><tfoot><tr><td>Total</td><td class="m">£41,280</td><td class="m">£12,140</td><td class="m">29.4%</td><td></td><td></td></tr></tfoot>';
+    }
+    t.innerHTML=h;
+  }
+  drawMg('cust');
+  document.querySelectorAll('[data-mg]').forEach(function(b){b.addEventListener('click',function(){
+    document.querySelectorAll('[data-mg]').forEach(function(x){x.setAttribute('aria-pressed',x===b)});drawMg(b.dataset.mg);
+  })});
+
+  /* live map pins */
+  var pins=[[34,58,'Van 07 · Tom','late'],[52,36,'Van 02 · Marek',''],[68,62,'Van 18 · Sam',''],[44,72,'Van 11 · Jade',''],[26,34,'Van 04 · Kwame',''],[60,20,'Van 15 · Leon',''],[78,44,'Van 09 · Priya','idle'],[16,66,'Van 12 · free','idle']];
+  var mb=document.getElementById('mapbox');
+  pins.forEach(function(p){
+    var d=document.createElement('button');d.type='button';d.className='vanpin '+p[3];
+    d.style.left=p[0]+'%';d.style.top=p[1]+'%';d.textContent=p[2];d.setAttribute('data-go','today');
+    mb.appendChild(d);
+  });
+
+  /* company + role */
+  document.getElementById('company').addEventListener('change',function(){
+    document.querySelector('.brand small').textContent=this.value+' · your logo here';
+  });
+  document.getElementById('role').addEventListener('change',function(){
+    var r=this.value;
+    document.querySelectorAll('.navlist button').forEach(function(b){
+      var owner=b.dataset.owner==='1',isDriver=b.dataset.go==='driver';
+      b.hidden = (r==='office'&&owner) || (r==='driver'&&!isDriver);
+    });
+    go(r==='driver'?'driver':'today');
   });
 
   /* nav */
