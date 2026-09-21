@@ -149,6 +149,34 @@ tfoot td{font-weight:700;border-top:2px solid var(--ink);border-bottom:0}
 .rules{display:flex;flex-direction:column;gap:0}
 .rule{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--line2);font-size:14px}
 .rule b{font-weight:600}
+.clockbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--ink);color:#fff;border-radius:14px;padding:14px 18px;margin-bottom:20px}
+.clockbar b{font-family:var(--mono);font-size:16px}
+.clockbar .note{color:#AEB5C2}
+.story{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px}
+.story button{all:unset;box-sizing:border-box;cursor:pointer;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff;display:flex;flex-direction:column;gap:4px;min-height:74px}
+.story button b{font-size:14px}
+.story button span{font-size:12px;color:var(--muted)}
+.story button[disabled]{opacity:.45;cursor:not-allowed}
+.story button.didit{border-color:var(--green);background:#F1F8F4}
+.story button.next{border-color:var(--orange);box-shadow:inset 0 0 0 1px var(--orange)}
+.q{display:flex;gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--line2);flex-wrap:wrap}
+.q .t{flex:1;min-width:220px}
+.q b{display:block;font-size:15px}
+.q span.s{font-size:13px;color:var(--muted)}
+tr.click{cursor:pointer}
+tr.click:hover td{background:#FAFAF7}
+tr.sel td{background:#FFF4EC}
+.detail{border:1px solid var(--line);border-radius:14px;padding:18px;background:#fff;margin-top:16px}
+.lines td,.lines th{padding:8px 10px}
+.tl{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.tl li{font-size:13px;display:flex;gap:10px}
+.tl li .d{font-family:var(--mono);color:var(--muted);min-width:78px}
+.email{background:#FAFAF7;border:1px solid var(--line);border-radius:12px;padding:14px;font-size:14px;white-space:pre-line;margin:10px 0}
+.chk{font-weight:700}
+.chk.y{color:var(--green)}
+.chk.n{color:var(--red)}
+.moneyband{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+@media (max-width:760px){.story{grid-template-columns:1fr}.moneyband{grid-template-columns:1fr 1fr}}
 @media (max-width:1180px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.board{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr}.quote{position:static}}
 @media (max-width:760px){
   .app{flex-direction:column}
@@ -181,6 +209,8 @@ tfoot td{font-weight:700;border-top:2px solid var(--ink);border-bottom:0}
       <button type="button" data-go="driver">Driver app</button>
       <button type="button" data-go="tracking">Customer tracking</button>
       <button type="button" data-go="margin" data-owner="1">Money &amp; margin <span class="count">2</span></button>
+      <button type="button" data-go="toinvoice" data-owner="1">Ready to invoice <span class="count" id="rtiCount">2</span></button>
+      <button type="button" data-go="cash" data-owner="1">Invoices &amp; cash <span class="count" id="cashCount">2</span></button>
       <button type="button" data-go="eod" data-owner="1">End of day</button>
       <button type="button" data-go="rates" data-owner="1">Customers &amp; rates</button>
       <button type="button" data-go="plan">How we'd build it</button>
@@ -308,7 +338,7 @@ tfoot td{font-weight:700;border-top:2px solid var(--ink);border-bottom:0}
             <li>Every tap updates the job board straight away, so nobody needs to ring the driver.</li>
             <li>Photos, signature, time and location are saved with the job, ready to send to the customer.</li>
             <li>Waiting time is timed automatically and can be added to the price.</li>
-            <li>No photo or signature means the job isn't counted as done, and isn't paid.</li>
+            <li>No photo or signature puts the job on a review list before it's invoiced.</li>
           </ul>
           <button type="button" class="btn btn-d" data-go="today" style="align-self:flex-start">Back to job board</button>
         </div>
@@ -357,7 +387,7 @@ tfoot td{font-weight:700;border-top:2px solid var(--ink);border-bottom:0}
       <div class="head"><div><div class="sub">Built in stages, run side by side with the current system until it's trusted</div><h1>How we'd build it</h1></div></div>
       <div class="split">
         <div class="card phase"><span class="k">Stage 1</span><h2>The core</h2><ul><li>Vans, drivers and who's in what</li><li>Central job board</li><li>Driver phone app with photos and signatures</li><li>Prices worked out from rate cards</li><li>End-of-day report</li></ul></div>
-        <div class="card phase"><span class="k">Stage 2</span><h2>Customers &amp; money</h2><ul><li>Customers book and track online</li><li>Invoices into the accounts software</li><li>Driver pay worked out automatically</li><li>Margin by customer, route and van</li></ul></div>
+        <div class="card phase"><span class="k">Stage 2</span><h2>Customers &amp; money</h2><ul><li>Customers book and track online</li><li>Ready-to-invoice checks, then invoices into the accounts software</li><li>Chasing with your approval, promises, part payments and disputes</li><li>Driver pay worked out, with exceptions for review</li></ul></div>
         <div class="card phase"><span class="k">Stage 3</span><h2>Grow</h2><ul><li>Regular routes set up once, repeated automatically</li><li>Parcel companies send jobs in bulk</li><li>Van use and profit reports</li><li>Route planning for multi-drop days</li></ul></div>
       </div>
       <div class="card">
@@ -426,8 +456,72 @@ tfoot td{font-weight:700;border-top:2px solid var(--ink);border-bottom:0}
             <li>"People don't mind if they can see where you are." The link goes out the moment a job is booked.</li>
             <li>It stops the calls asking where the driver is, which is most of what the office does today.</li>
             <li>It carries your branding, so customers see London Delivery Network, not a courier app.</li>
+            <li>It never shows prices, balances, signatures or driver pay, and one customer can't see another's jobs.</li>
           </ul>
         </div>
+      </div>
+    </section>
+
+    <!-- READY TO INVOICE -->
+    <section class="screen" id="toinvoice" hidden>
+      <div class="head"><div><div class="sub">Northbank Bakery · weekly account · week ending Friday 18 September · contract rates v3 (from 1 Sep)</div><h1>Ready to invoice</h1></div><button type="button" class="btn btn-g" id="reImport" style="min-height:44px">Check jobs again</button></div>
+      <div class="card" style="margin-bottom:20px">
+        <p class="note" style="margin:0 0 10px">A delivered job isn't automatically billable. Each one is checked against the rate card, PO, proof of delivery and approved extras first.</p>
+        <div class="tablewrap"><table id="rtiTable"></table></div>
+        <div class="done" id="reImportMsg" hidden style="margin-top:12px"></div>
+      </div>
+      <div class="two">
+        <div class="card">
+          <h2>Draft invoice</h2>
+          <div class="tablewrap"><table class="compact lines" id="draftTable"></table></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+            <button type="button" class="btn btn-o" id="createInv">Create invoice in accounts</button>
+          </div>
+          <div class="done" id="createdMsg" hidden style="margin-top:12px"></div>
+          <p class="note" style="margin:12px 0 0">Demo: the accounts connection is simulated and returns an invoice number. Nothing is created in a real accounts system and nothing is sent to the customer.</p>
+        </div>
+        <div class="card">
+          <h2>Not on this invoice</h2>
+          <div class="rules">
+            <div class="rule"><span>JB-2317 · Hackney</span><b>On hold: no POD</b></div>
+            <div class="rule"><span>JB-2311 · Park Royal to Guildford</span><b>Paid by card at booking</b></div>
+          </div>
+          <p class="note" style="margin:12px 0 0">Jobs paid up front never turn up as unpaid account invoices. Held jobs stay visible until someone sorts them.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- INVOICES & CASH -->
+    <section class="screen" id="cash" hidden>
+      <div class="head"><div><div class="sub">Invoice amounts include VAT · source: simulated accounts connection · last synced <span id="syncAt">09:12</span></div><h1>Invoices &amp; cash</h1></div></div>
+      <div class="clockbar"><span>Demo clock</span><b id="clockTxt">Mon 21 Sep 2026</b><span class="note">Move the clock with the story below to see invoices fall due, get chased and get paid.</span></div>
+      <div class="card" style="margin-bottom:20px">
+        <h2>Walk through one invoice</h2>
+        <div class="story" id="story">
+          <button type="button" data-step="1"><b>1. Create the Northbank invoice</b><span>From the ready-to-invoice checks</span></button>
+          <button type="button" data-step="2"><b>2. Jump to Fri 9 Oct</b><span>The invoice goes overdue, a chase draft appears</span></button>
+          <button type="button" data-step="3"><b>3. Customer promises to pay</b><span>"We'll pay by Mon 12 Oct." Chasing pauses</span></button>
+          <button type="button" data-step="4"><b>4. £150 part payment reported</b><span>Goes to checking, not straight off the balance</span></button>
+          <button type="button" data-step="5"><b>5. Accounts confirm the £150</b><span>Balance drops by exactly that</span></button>
+          <button type="button" data-step="6"><b>6. Final payment arrives</b><span>Invoice closes, chasing stops</span></button>
+        </div>
+      </div>
+      <div class="kpis" id="cashKpis"></div>
+      <div class="card" style="margin-bottom:20px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><h2>What needs doing</h2><span class="note">Ranked by facts: broken promise, amount overdue, disputes, missing proof</span></div>
+        <div id="queue"></div>
+      </div>
+      <div class="card" id="chaseCard" hidden style="margin-bottom:20px">
+        <h2>Chase waiting for your OK</h2>
+        <p class="note" id="chaseWhy" style="margin:6px 0 0"></p>
+        <div class="email" id="chaseText"></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap"><button type="button" class="btn btn-o" id="chaseOk">Approve</button><button type="button" class="btn btn-g" style="min-height:44px">Edit first</button></div>
+        <p class="note" style="margin:10px 0 0">Demo: approving logs the chase, but nothing is actually sent.</p>
+      </div>
+      <div class="card">
+        <h2>Invoices</h2>
+        <div class="tablewrap"><table id="invTable"></table></div>
+        <div id="invDetail"></div>
       </div>
     </section>
 
@@ -437,7 +531,7 @@ tfoot td{font-weight:700;border-top:2px solid var(--ink);border-bottom:0}
       <div class="kpis">
         <div class="card kpi"><div class="l">Invoiced</div><div class="v">£41,280</div><div class="n">ex VAT</div></div>
         <div class="card kpi"><div class="l">Direct costs</div><div class="v">£29,140</div><div class="n">drivers, fuel, tickets, damage</div></div>
-        <div class="card kpi"><div class="l">Money made</div><div class="v">£12,140</div><div class="n">29.4% of invoiced</div></div>
+        <div class="card kpi"><div class="l">Contribution</div><div class="v">£12,140</div><div class="n">29.4% · after direct costs only, not profit or cash</div></div>
         <div class="card kpi"><div class="l">Below your 30% line</div><div class="v">2</div><div class="n"><span class="pill p-red">Swiftbox · Hallam</span></div></div>
         <div class="card kpi"><div class="l">Van use to check</div><div class="v">2</div><div class="n">over mileage or out of hours</div></div>
       </div>
@@ -448,7 +542,16 @@ tfoot td{font-weight:700;border-top:2px solid var(--ink);border-bottom:0}
           <button type="button" data-mg="van" aria-pressed="false">By van</button>
         </div>
         <div class="tablewrap"><table id="mgTable"></table></div>
-        <p class="note" style="margin:12px 0 0">Every figure here is straight arithmetic from your jobs and your cost rules, so it always gives the same answer and can be checked by hand. No AI anywhere near the money.</p>
+        <p class="note" style="margin:12px 0 0">Every figure here is straight arithmetic from your jobs and your cost rules, so it always gives the same answer and can be checked by hand. No AI anywhere near the money. Contribution is what's left after driver pay, fuel, tickets and damage. It isn't profit (no overheads taken off) and it isn't cash in the bank.</p>
+      </div>
+      <div class="card" style="margin-bottom:20px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px"><h2>The cash side</h2><button type="button" class="btn btn-g" data-go="cash">Open invoices &amp; cash</button></div>
+        <div class="moneyband">
+          <div><div class="note">Outstanding (inc VAT)</div><div class="price" style="font-size:20px" id="mbOut">£0</div></div>
+          <div><div class="note">Overdue</div><div class="price" style="font-size:20px" id="mbOver">£0</div></div>
+          <div><div class="note">In dispute</div><div class="price" style="font-size:20px" id="mbDisp">£0</div></div>
+          <div><div class="note">Cash received, last 30 days</div><div class="price" style="font-size:20px" id="mbCash">£0</div></div>
+        </div>
       </div>
       <div class="two">
         <div class="card">
@@ -469,11 +572,11 @@ tfoot td{font-weight:700;border-top:2px solid var(--ink);border-bottom:0}
                 <tr><td><b>Tom</b></td><td class="m">5</td><td class="m">48</td><td class="m">£840</td></tr>
                 <tr><td><b>Marek</b></td><td class="m">5.5</td><td class="m">61</td><td class="m">£920</td></tr>
                 <tr><td><b>Jade</b></td><td class="m">5</td><td class="m">44</td><td class="m">£800</td></tr>
-                <tr class="flag"><td><b>Kwame</b></td><td class="m">5</td><td class="m">52</td><td class="m">£765 held</td></tr>
+                <tr class="flag"><td><b>Kwame</b></td><td class="m">5</td><td class="m">52</td><td class="m">£840 · review</td></tr>
                 <tr><td><b>Sam (18t)</b></td><td class="m">5</td><td class="m">19</td><td class="m">£950</td></tr>
               </tbody>
             </table></div>
-            <p class="note" style="margin:12px 0 0">Kwame has 1 job with no photo or signature. No proof, no pay, until it's sorted.</p>
+            <p class="note" style="margin:12px 0 0">POD exception: 1 of Kwame's jobs has no photo or signature. It's flagged for review before pay is signed off. What happens next follows his contract (employee, worker or subcontractor). The software never withholds earned pay on its own.</p>
           </div>
           <div class="card">
             <h2>Your cost rules</h2>
@@ -642,12 +745,12 @@ tfoot td{font-weight:700;border-top:2px solid var(--ink);border-bottom:0}
   function drawMg(mode){
     var t=document.getElementById('mgTable'),h;
     if(mode==='cust'){
-      h='<thead><tr><th>Customer</th><th>Invoiced</th><th>Drivers</th><th>Fuel</th><th>Tickets &amp; damage</th><th>Made</th><th>Margin</th><th>On last week</th></tr></thead><tbody>'+mg.cust.map(function(r){
+      h='<thead><tr><th>Customer</th><th>Invoiced</th><th>Drivers</th><th>Fuel</th><th>Tickets &amp; damage</th><th>Contribution</th><th>Margin</th><th>On last week</th></tr></thead><tbody>'+mg.cust.map(function(r){
         return '<tr'+(r[8]?' class="flag"':'')+'><td><b>'+esc(r[0])+'</b></td><td class="m">'+money(r[1])+'</td><td class="m">'+money(r[2])+'</td><td class="m">'+money(r[3])+'</td><td class="m">'+money(r[4])+'</td><td class="m">'+money(r[5])+'</td><td class="m">'+r[6].toFixed(1)+'%</td><td class="m">'+pts(r[7])+'</td></tr>';
       }).join('')+'</tbody><tfoot><tr><td>Total</td><td class="m">£41,280</td><td class="m">£24,050</td><td class="m">£4,180</td><td class="m">£910</td><td class="m">£12,140</td><td class="m">29.4%</td><td></td></tr></tfoot>';
     } else {
       var rows=mg[mode],label=mode==='route'?'Route':'Van';
-      h='<thead><tr><th>'+label+'</th><th>Invoiced</th><th>Made</th><th>Margin</th><th>On last week</th><th></th></tr></thead><tbody>'+rows.map(function(r){
+      h='<thead><tr><th>'+label+'</th><th>Invoiced</th><th>Contribution</th><th>Margin</th><th>On last week</th><th></th></tr></thead><tbody>'+rows.map(function(r){
         return '<tr'+(r[5]?' class="flag"':'')+'><td><b>'+esc(r[0])+'</b></td><td class="m">'+money(r[1])+'</td><td class="m">'+money(r[2])+'</td><td class="m">'+r[3].toFixed(1)+'%</td><td class="m">'+pts(r[4])+'</td><td>'+(r[5]?'<span class="pill p-red">Below 30%</span>':'<span class="pill p-dn">Fine</span>')+'</td></tr>';
       }).join('')+'</tbody><tfoot><tr><td>Total</td><td class="m">£41,280</td><td class="m">£12,140</td><td class="m">29.4%</td><td></td><td></td></tr></tfoot>';
     }
@@ -666,6 +769,184 @@ tfoot td{font-weight:700;border-top:2px solid var(--ink);border-bottom:0}
     d.style.left=p[0]+'%';d.style.top=p[1]+'%';d.textContent=p[2];d.setAttribute('data-go','today');
     mb.appendChild(d);
   });
+
+  /* ===== finance: ready to invoice + collections (local demo state) ===== */
+  var DAY=86400000;
+  var clock=new Date(2026,8,21,9,12);
+  function d(y,m,dd){return new Date(y,m-1,dd);}
+  function fd(x){return x.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});}
+  function fdy(x){return x.toLocaleDateString('en-GB',{day:'numeric',month:'short'});}
+  function gbp(p){var neg=p<0;p=Math.abs(p);return (neg?'−':'')+'£'+(Math.floor(p/100)).toLocaleString('en-GB')+'.'+String(p%100).padStart(2,'0');}
+  function vat(net){return Math.round(net*0.2);}
+
+  // Candidate items for Northbank weekly batch (money in pence)
+  var items=[
+    {job:'JB-2276',desc:'Bermondsey → Clapham',p:5800,pod:true,po:'Not needed',st:'ready'},
+    {job:'JB-2291',desc:'Bermondsey → Chiswick',p:7400,pod:true,po:'Not needed',st:'ready'},
+    {job:'JB-2291-W',desc:'Waiting time, 30 min (agreed in contract)',p:1500,pod:true,po:'Not needed',st:'ready',extra:true},
+    {job:'JB-2306',desc:'Bermondsey → Islington',p:6200,pod:true,po:'Not needed',st:'ready'},
+    {job:'JB-2314',desc:'Bermondsey → Kensington',p:6600,pod:true,po:'Not needed',st:'ready'},
+    {job:'JB-2314-C',desc:'Congestion charge (proposed extra)',p:1800,pod:true,po:'Not needed',st:'proposed',extra:true},
+    {job:'JB-2317',desc:'Bermondsey → Hackney',p:6000,pod:false,po:'Not needed',st:'hold'}
+  ];
+  var nextInv=1043;
+  function approveExtra(it){it.st='ready';it.desc=it.desc.replace('(proposed extra)','(extra approved by William)');}
+
+  // Invoice ledger
+  var invoices=[
+    {id:'INV-1036',cust:'Swiftbox Parcels',period:'w/e 4 Sep',issued:d(2026,9,4),terms:7,lines:[{d:'38 jobs, parcel overflow',p:260000}],pays:[{p:312000,on:d(2026,9,11),st:'ok'}],promise:null,dispute:null,chan:'account',ev:[[d(2026,9,4),'Invoice created and sent'],[d(2026,9,11),'Paid in full, confirmed in accounts']]},
+    {id:'INV-1029',cust:'Meridian Print',period:'August',issued:d(2026,8,22),terms:14,lines:[{d:'6 jobs, August',p:51000}],pays:[],promise:{by:d(2026,9,15),set:d(2026,9,8)},dispute:null,chan:'account',ev:[[d(2026,8,22),'Invoice created and sent'],[d(2026,9,8),'Customer promised to pay by 15 Sep'],[d(2026,9,16),'Promise date passed, nothing received']]},
+    {id:'INV-1038',cust:'Hallam Furniture',period:'August',issued:d(2026,9,1),terms:30,lines:[{d:'JB-2201 · sofa, 2 people',p:23600},{d:'JB-2218 · wardrobe, 2 people',p:21200},{d:'JB-2240 · dining set',p:19800},{d:'JB-2240 · waiting time, 45 min',p:4500,disp:true}],pays:[],promise:null,dispute:{p:4500,why:'Wrong rate: customer says waiting time was not agreed for this job',who:'Office team',next:'Send the booking note and driver timestamps'},chan:'account',ev:[[d(2026,9,1),'Invoice created and sent'],[d(2026,9,9),'Customer disputed £54.00 (waiting time). The rest of the invoice is not disputed']]},
+    {id:'INV-1040',cust:'Coldharbour Events',period:'Event 12 Sep',issued:d(2026,9,14),terms:21,lines:[{d:'18t, 6 pallets, event load-in',p:123600}],pays:[],promise:null,dispute:null,chan:'account',ev:[[d(2026,9,14),'Invoice created and sent']]},
+    {id:'INV-1041',cust:'Swiftbox Parcels',period:'w/e 11 Sep',issued:d(2026,9,11),terms:7,lines:[{d:'41 jobs, parcel overflow',p:241000}],pays:[{p:289200,on:d(2026,9,18),st:'ok'}],promise:null,dispute:null,chan:'account',ev:[[d(2026,9,11),'Invoice created and sent'],[d(2026,9,18),'Paid in full, confirmed in accounts']]},
+    {id:'CARD-2311',cust:'One-off customer',period:'JB-2311',issued:d(2026,9,17),terms:0,lines:[{d:'Park Royal → Guildford, Sprinter',p:14200}],pays:[{p:17040,on:d(2026,9,17),st:'ok'}],promise:null,dispute:null,chan:'card',ev:[[d(2026,9,17),'Paid by card at booking (hosted payment page)']]}
+  ];
+
+  function net(i){return i.lines.reduce(function(a,l){return a+l.p},0);}
+  function gross(i){var n=net(i);return n+vat(n);}
+  function confirmed(i){return i.pays.filter(function(x){return x.st==='ok'}).reduce(function(a,x){return a+x.p},0);}
+  function reported(i){return i.pays.filter(function(x){return x.st==='check'}).reduce(function(a,x){return a+x.p},0);}
+  function bal(i){return gross(i)-confirmed(i);}
+  function dispG(i){return i.dispute?i.dispute.p+vat(i.dispute.p):0;}
+  function collectible(i){return Math.max(0,bal(i)-dispG(i));}
+  function due(i){return new Date(i.issued.getTime()+i.terms*DAY);}
+  function status(i){
+    if(i.chan==='card')return ['Paid at booking','p-dn'];
+    if(bal(i)<=0)return ['Paid','p-dn'];
+    if(reported(i)>0)return ['Checking payment','p-al'];
+    if(i.promise&&clock<=i.promise.by)return ['Promised '+fdy(i.promise.by),'p-al'];
+    if(i.promise&&clock>i.promise.by)return ['Broken promise','p-red'];
+    if(clock>due(i)&&collectible(i)>0){var od=Math.floor((clock-due(i))/DAY);return ['Overdue '+od+(od===1?' day':' days'),'p-red'];}
+    if(collectible(i)===0&&i.dispute)return ['All disputed','p-ow'];
+    return ['Due '+fdy(due(i)),'p-ow'];
+  }
+  function isOver(i){var s=status(i)[0];return s.indexOf('Overdue')===0||s==='Broken promise';}
+
+  function drawRti(){
+    var chk=function(b){return b?'<span class="chk y">✓</span>':'<span class="chk n">✗</span>';};
+    document.getElementById('rtiTable').innerHTML='<thead><tr><th>Job</th><th>What</th><th>Rate</th><th>PO</th><th>Proof</th><th>Amount</th><th>Status</th><th></th></tr></thead><tbody>'+items.map(function(it,ix){
+      var stt={ready:'<span class="pill p-dn">Ready</span>',proposed:'<span class="pill p-ow">Extra: needs your OK</span>',hold:'<span class="pill p-red">On hold: no POD</span>',rejected:'<span class="pill p-off">Extra rejected</span>'}[it.st]||('<span class="pill p-al">On '+it.inv+'</span>');
+      var act=it.st==='proposed'?'<button type="button" class="btn btn-g" data-ok="'+ix+'">Approve</button> <button type="button" class="btn btn-g" data-no="'+ix+'">Reject</button>':(it.st==='hold'?'<button type="button" class="btn btn-g">Chase driver</button>':'');
+      return '<tr><td class="m">'+it.job.replace(/-[WC]$/,'')+'</td><td>'+esc(it.desc)+'</td><td>Contract v3</td><td>'+it.po+'</td><td>'+chk(it.pod)+'</td><td class="m">'+gbp(it.p)+'</td><td>'+stt+'</td><td style="white-space:nowrap">'+act+'</td></tr>';
+    }).join('')+'</tbody>';
+    var ready=items.filter(function(i){return i.st==='ready'});
+    var n=ready.reduce(function(a,i){return a+i.p},0);
+    document.getElementById('draftTable').innerHTML=ready.length?('<tbody>'+ready.map(function(i){return '<tr><td>'+i.job.replace(/-[WC]$/,'')+' · '+esc(i.desc)+'</td><td class="m" style="text-align:right">'+gbp(i.p)+'</td></tr>'}).join('')+'</tbody><tfoot><tr><td>Net</td><td class="m" style="text-align:right">'+gbp(n)+'</td></tr><tr><td>VAT 20%</td><td class="m" style="text-align:right">'+gbp(vat(n))+'</td></tr><tr><td>Total</td><td class="m" style="text-align:right">'+gbp(n+vat(n))+'</td></tr></tfoot>'):'<tbody><tr><td class="note">Nothing waiting. Every eligible job is already on an invoice.</td></tr></tbody>';
+    document.getElementById('createInv').disabled=!ready.length;
+    document.getElementById('createInv').style.opacity=ready.length?1:.5;
+    document.getElementById('rtiCount').textContent=items.filter(function(i){return i.st==='proposed'||i.st==='hold'}).length;
+  }
+  document.getElementById('rtiTable').addEventListener('click',function(e){
+    var a=e.target.closest('[data-ok]'),r=e.target.closest('[data-no]');
+    if(a){approveExtra(items[+a.dataset.ok]);drawRti();}
+    if(r){items[+r.dataset.no].st='rejected';drawRti();}
+  });
+  // Simulated accounts adapter: creates an invoice from approved items, returns its number. Idempotent per job.
+  var ReceivablesAdapter={
+    createInvoice:function(cust,period,its){
+      var id='INV-'+(nextInv++);
+      var inv={id:id,cust:cust,period:period,issued:new Date(clock.getTime()),terms:14,lines:its.map(function(i){return {d:i.job.replace(/-[WC]$/,'')+' · '+i.desc,p:i.p}}),pays:[],promise:null,dispute:null,chan:'account',ev:[[new Date(clock.getTime()),'Invoice created in accounts (simulated), '+its.length+' lines']],jobs:its.map(function(i){return i.job})};
+      invoices.unshift(inv);return inv;
+    }
+  };
+  function createNorthbank(){
+    var ready=items.filter(function(i){return i.st==='ready'});
+    if(!ready.length)return null;
+    var inv=ReceivablesAdapter.createInvoice('Northbank Bakery','w/e 18 Sep',ready);
+    ready.forEach(function(i){i.st='billed';i.inv=inv.id;});
+    var m=document.getElementById('createdMsg');m.hidden=false;
+    m.textContent='Created '+inv.id+' for '+gbp(gross(inv))+' inc VAT, due '+fdy(due(inv))+'. It now shows under Invoices & cash.';
+    drawRti();drawCash();return inv;
+  }
+  document.getElementById('createInv').addEventListener('click',function(){createNorthbank();});
+  document.getElementById('reImport').addEventListener('click',function(){
+    var billed=items.filter(function(i){return i.st==='billed'}).length,hold=items.filter(function(i){return i.st==='hold'}).length,waiting=items.filter(function(i){return i.st==='ready'||i.st==='proposed'}).length;
+    var m=document.getElementById('reImportMsg');m.hidden=false;
+    m.textContent='Checked '+items.length+' lines again: 0 new, '+billed+' already on an invoice (not charged twice), '+waiting+' waiting, '+hold+' on hold.';
+  });
+
+  var chaseLog={};
+  function queue(){
+    var q=[];
+    invoices.forEach(function(i){
+      if(i.chan==='card'||bal(i)<=0)return;
+      var s=status(i)[0];
+      if(s==='Broken promise')q.push([4,collectible(i),i.cust+' missed their promise',gbp(collectible(i))+' on '+i.id+' · promised '+fdy(i.promise.by),i.id]);
+      else if(s.indexOf('Overdue')===0)q.push([3,collectible(i),i.cust+' is overdue',gbp(collectible(i))+' on '+i.id+' · '+s.toLowerCase(),i.id]);
+      if(i.dispute)q.push([2,dispG(i),i.cust+': '+gbp(dispG(i))+' in dispute',i.dispute.why+' · '+i.dispute.who+' to '+i.dispute.next.toLowerCase(),i.id]);
+      if(reported(i)>0)q.push([2,reported(i),'Check a reported payment',gbp(reported(i))+' reported on '+i.id+'. Not taken off until the accounts confirm it',i.id]);
+    });
+    items.forEach(function(it){if(it.st==='hold')q.push([1,it.p,'Missing proof of delivery',it.job+' can\'t be invoiced until the photo or signature is sorted',null]);if(it.st==='proposed')q.push([1,it.p,'Extra waiting for your OK',it.desc+' on '+it.job.replace(/-[WC]$/,''),null]);});
+    q.sort(function(a,b){return b[0]-a[0]||b[1]-a[1]});
+    return q;
+  }
+  function chaseTarget(){
+    return invoices.filter(function(i){return i.chan==='account'&&status(i)[0].indexOf('Overdue')===0&&!chaseLog[i.id]&&i.id.indexOf('INV-104')===0&&i.cust==='Northbank Bakery'})[0];
+  }
+  var selInv=null;
+  function drawCash(){
+    document.getElementById('clockTxt').textContent=clock.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+    var acc=invoices.filter(function(i){return i.chan==='account'});
+    var since=new Date(clock.getTime()-30*DAY);
+    var invd=invoices.filter(function(i){return i.issued>=since}).reduce(function(a,i){return a+gross(i)},0);
+    var out=acc.reduce(function(a,i){return a+Math.max(0,bal(i))},0);
+    var over=acc.filter(isOver).reduce(function(a,i){return a+collectible(i)},0);
+    var prom=acc.filter(function(i){return i.promise&&clock<=i.promise.by&&bal(i)>0}).reduce(function(a,i){return a+collectible(i)},0);
+    var disp=acc.reduce(function(a,i){return a+(bal(i)>0?dispG(i):0)},0);
+    var cash=invoices.reduce(function(a,i){return a+i.pays.filter(function(x){return x.st==='ok'&&x.on>=since&&x.on<=clock}).reduce(function(b,x){return b+x.p},0)},0);
+    document.getElementById('cashKpis').innerHTML=[['Outstanding',out,'account customers'],['Overdue',over,'not counting disputed amounts'],['Promised',prom,'chasing paused'],['In dispute',disp,'paused, rest still open'],['Cash received, last 30 days',cash,'confirmed only']].slice(0,5).map(function(k){return '<div class="card kpi"><div class="l">'+k[0]+'</div><div class="v" style="font-size:32px">'+gbp(k[1])+'</div><div class="n">'+k[2]+'</div></div>'}).join('');
+    var cq=queue();
+    document.getElementById('queue').innerHTML=cq.map(function(x){return '<div class="q"><div class="t"><b>'+esc(x[2])+'</b><span class="s">'+esc(x[3])+'</span></div>'+(x[4]?'<button type="button" class="btn btn-g" data-open="'+x[4]+'">Open</button>':'<button type="button" class="btn btn-g" data-go="toinvoice">Sort it</button>')+'</div>'}).join('')||'<p class="note">Nothing needs doing.</p>';
+    document.getElementById('cashCount').textContent=cq.length;
+    document.getElementById('mbOut').textContent=gbp(out);document.getElementById('mbOver').textContent=gbp(over);document.getElementById('mbDisp').textContent=gbp(disp);document.getElementById('mbCash').textContent=gbp(cash);
+    document.getElementById('invTable').innerHTML='<thead><tr><th>Invoice</th><th>Customer</th><th>Period</th><th>Total</th><th>Paid</th><th>Left to pay</th><th>Status</th></tr></thead><tbody>'+invoices.map(function(i){
+      var st=status(i);
+      return '<tr class="click'+(selInv===i.id?' sel':'')+'" data-open="'+i.id+'"><td class="m">'+i.id+'</td><td><b>'+esc(i.cust)+'</b></td><td>'+esc(i.period)+'</td><td class="m">'+gbp(gross(i))+'</td><td class="m">'+gbp(confirmed(i))+'</td><td class="m">'+gbp(Math.max(0,bal(i)))+'</td><td><span class="pill '+st[1]+'">'+st[0]+'</span>'+(i.dispute&&bal(i)>0?' <span class="pill p-ow">Dispute</span>':'')+'</td></tr>';
+    }).join('')+'</tbody>';
+    var t=chaseTarget(),cc=document.getElementById('chaseCard');
+    if(t){
+      cc.hidden=false;
+      document.getElementById('chaseWhy').textContent='Why now: '+t.id+' is '+status(t)[0].replace('Overdue ','').toLowerCase()+' overdue, no promise, no dispute, last contact '+fdy(t.ev[t.ev.length-1][0])+'.';
+      document.getElementById('chaseText').textContent='Hi Northbank Bakery accounts team,\n\nA quick reminder that invoice '+t.id+' for '+gbp(bal(t))+' (week ending 18 September) was due on '+fdy(due(t))+'.\n\nIf it has already been paid, please ignore this. If there is a problem with any of the charges, just reply and we\'ll sort it.\n\nThanks,\nLondon Delivery Network';
+    } else cc.hidden=true;
+    if(selInv)drawDetail(selInv); else document.getElementById('invDetail').innerHTML='';
+    drawStory();
+  }
+  function drawDetail(id){
+    var i=invoices.filter(function(x){return x.id===id})[0];if(!i)return;
+    var h='<div class="detail"><div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center"><h2>'+i.id+' · '+esc(i.cust)+'</h2><span class="pill '+status(i)[1]+'">'+status(i)[0]+'</span></div>';
+    h+='<div class="tablewrap"><table class="compact lines"><tbody>'+i.lines.map(function(l){return '<tr'+(l.disp?' class="flag"':'')+'><td>'+esc(l.d)+(l.disp?' · disputed':'')+'</td><td class="m" style="text-align:right">'+gbp(l.p)+'</td></tr>'}).join('')+'</tbody><tfoot><tr><td>Net</td><td class="m" style="text-align:right">'+gbp(net(i))+'</td></tr><tr><td>VAT 20%</td><td class="m" style="text-align:right">'+gbp(vat(net(i)))+'</td></tr><tr><td>Total</td><td class="m" style="text-align:right">'+gbp(gross(i))+'</td></tr><tr><td>Confirmed paid</td><td class="m" style="text-align:right">'+gbp(confirmed(i))+'</td></tr><tr><td>Left to pay</td><td class="m" style="text-align:right">'+gbp(Math.max(0,bal(i)))+'</td></tr></tfoot></table></div>';
+    if(i.dispute&&bal(i)>0)h+='<p class="note"><b>Dispute:</b> '+esc(i.dispute.why)+'. '+gbp(dispG(i))+' is paused; '+gbp(collectible(i))+' is not disputed and is still due. Owner: '+esc(i.dispute.who)+'. Next step: '+esc(i.dispute.next)+'.</p>';
+    if(i.chan==='account')h+='<p class="note"><b>Proof of delivery:</b> photos, signatures and timestamps are attached to each job and kept private. Only this customer\'s billing contact can see them.</p>';
+    h+='<b style="font-size:14px">What\'s happened</b><ul class="tl">'+i.ev.map(function(e){return '<li><span class="d">'+fdy(e[0])+'</span><span>'+esc(e[1])+'</span></li>'}).join('')+'</ul></div>';
+    document.getElementById('invDetail').innerHTML=h;
+  }
+  document.getElementById('cash').addEventListener('click',function(e){
+    var o=e.target.closest('[data-open]');if(o){selInv=o.dataset.open;drawCash();document.getElementById('invDetail').scrollIntoView({behavior:'smooth',block:'nearest'});}
+  });
+  document.getElementById('chaseOk').addEventListener('click',function(){
+    var t=chaseTarget();if(!t)return;chaseLog[t.id]=true;t.ev.push([new Date(clock.getTime()),'Reminder approved by William (demo: logged, not sent)']);drawCash();
+  });
+
+  // Story
+  var done=0,nb=function(){return invoices.filter(function(x){return x.cust==='Northbank Bakery'})[0];};
+  function drawStory(){
+    if(done<1&&nb())done=1;
+    document.querySelectorAll('#story button').forEach(function(b){var n=+b.dataset.step;b.disabled=n>done+1;b.classList.toggle('didit',n<=done);b.classList.toggle('next',n===done+1);});
+  }
+  document.getElementById('story').addEventListener('click',function(e){
+    var b=e.target.closest('[data-step]');if(!b||b.disabled)return;var n=+b.dataset.step;if(n<=done)return;
+    if(n===1){ if(!nb()){ items.forEach(function(i){if(i.st==='proposed')approveExtra(i);}); createNorthbank(); } }
+    if(n===2){ clock=new Date(2026,9,9,9,12); }
+    if(n===3){ var i=nb(); i.promise={by:new Date(2026,9,12),set:new Date(clock.getTime())}; i.ev.push([new Date(clock.getTime()),'Customer replied: will pay by 12 Oct. Chasing paused until then']); }
+    if(n===4){ var i4=nb(); clock=new Date(2026,9,10,9,12); i4.pays.push({p:15000,on:new Date(clock.getTime()),st:'check'}); i4.ev.push([new Date(clock.getTime()),'Customer says £150.00 has been paid. Waiting for the bank or accounts to confirm']); }
+    if(n===5){ var i5=nb(); i5.pays.forEach(function(x){if(x.st==='check')x.st='ok';}); i5.ev.push([new Date(clock.getTime()),'£150.00 confirmed in accounts. '+gbp(bal(i5))+' left to pay']); }
+    if(n===6){ var i6=nb(); clock=new Date(2026,9,12,9,12); var left=bal(i6); i6.pays.push({p:left,on:new Date(clock.getTime()),st:'ok'}); i6.promise=null; i6.ev.push([new Date(clock.getTime()),'Final '+gbp(left)+' confirmed. Paid in full, chasing closed']); }
+    done=n; selInv=nb()?nb().id:null;
+    document.getElementById('syncAt').textContent=fdy(clock)+' '+clock.toTimeString().slice(0,5);
+    drawCash();
+  });
+  drawRti();drawCash();
 
   /* company + role */
   document.getElementById('company').addEventListener('change',function(){
