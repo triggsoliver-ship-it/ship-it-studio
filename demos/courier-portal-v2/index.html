@@ -1,0 +1,974 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dayline — courier operations portal (demo)</title>
+<meta name="description" content="Concept demo of a joined-up courier operations portal. Fictional company and data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ground:#F3F3EF; --panel:#fff; --ink:#121826; --muted:#545B69; --line:#D9DAD3; --line2:#EBEBE5;
+  --nav:#121826; --nav2:#212938; --orange:#F26B1D; --blue:#1F4E9C; --green:#16794A; --red:#B42318; --amber:#8A5A00;
+  --display:"Barlow Semi Condensed","Arial Narrow",Arial,sans-serif; --body:"Figtree","Helvetica Neue",Arial,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{font-family:var(--body);background:var(--ground);color:var(--ink);font-size:15px;line-height:1.45}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3{font-family:var(--display);margin:0;letter-spacing:.005em}
+.demo-bar{background:var(--orange);color:var(--ink);font-size:13px;font-weight:700;text-align:center;padding:8px 16px}
+.app{display:flex;min-height:calc(100vh - 36px)}
+.nav{width:236px;flex-shrink:0;background:var(--nav);color:#E6E8EE;padding:22px 16px;display:flex;flex-direction:column;gap:24px;position:sticky;top:0;height:calc(100vh - 36px)}
+.brand{display:flex;align-items:center;gap:10px}
+.mark{width:36px;height:36px;border-radius:8px;background:var(--orange);display:grid;place-items:center;flex-shrink:0}
+.brand b{font-family:var(--display);font-size:24px;font-weight:700;display:block;line-height:1}
+.brand small{font-size:11px;color:#9AA2B1}
+.navlist{display:flex;flex-direction:column;gap:3px}
+.navlist button{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:10px;height:44px;padding:0 12px;border-radius:8px;color:#C3C8D2;font-weight:500;cursor:pointer}
+.navlist button:hover{background:#1A2130;color:#fff}
+.navlist button[aria-current="page"]{background:var(--nav2);color:#fff;font-weight:600;box-shadow:inset 3px 0 0 var(--orange)}
+.navlist button:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.navlist .count{margin-left:auto;background:var(--orange);color:var(--ink);font-size:11px;font-weight:700;border-radius:999px;padding:1px 7px}
+.clock{margin-top:auto;background:var(--nav2);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:4px}
+.clock .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9AA2B1;font-weight:600}
+.clock .t{font-family:var(--mono);font-size:22px;color:#fff}
+.clock .s{font-size:13px;color:#C3C8D2}
+main{flex:1;min-width:0;padding:28px 36px 56px}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.head .sub{font-size:14px;color:var(--muted);font-weight:500;margin-bottom:4px}
+.head h1{font-size:36px;font-weight:700;line-height:1.05}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:10px;border:1px solid transparent;font-weight:700;cursor:pointer;white-space:nowrap}
+.btn-o{background:var(--orange);color:var(--ink)}
+.btn-o:hover{background:#DD5B10}
+.btn-d{background:var(--ink);color:#fff}
+.btn-g{background:#fff;border-color:#BFC1B8;color:var(--ink);font-weight:600;min-height:36px;padding:0 12px;font-size:13px}
+.btn-g:hover{border-color:var(--ink)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px;min-width:0}
+.two>*,.split>*,.phonewrap>*{min-width:0}
+table.compact{min-width:0}
+.card h2{font-size:24px;font-weight:700}
+.kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin-bottom:20px}
+.kpi .l{font-size:13px;color:var(--muted);font-weight:600}
+.kpi .v{font-family:var(--display);font-size:40px;font-weight:700;line-height:1.1;margin-top:4px}
+.kpi .n{font-size:13px;color:var(--muted)}
+.up{color:var(--green);font-weight:700}
+.pill{display:inline-flex;align-items:center;height:24px;padding:0 9px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}
+.p-un{background:#FDE7DA;color:#8F3A06}.p-al{background:#E3EAF7;color:#1F4E9C}.p-ow{background:#FCEFCF;color:#7A4F00}.p-dn{background:#DCF0E4;color:#135E3A}.p-off{background:#ECECE8;color:#545B69}.p-red{background:#FBE4E1;color:#9A1B10}
+.board{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;align-items:start}
+.col{background:#E9E9E3;border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:10px;min-height:200px}
+.colhead{display:flex;justify-content:space-between;align-items:center;padding:2px 4px}
+.colhead b{font-family:var(--display);font-size:19px}
+.job{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:6px}
+.job .top{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.ref{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.job .route{font-weight:600;font-size:14px;line-height:1.35}
+.job .meta{font-size:12px;color:var(--muted)}
+.job .bot{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:2px}
+.price{font-family:var(--mono);font-weight:500;font-size:14px}
+.job select{height:34px;border-radius:8px;border:1px solid #BFC1B8;padding:0 8px;font-size:13px;max-width:170px;background:#fff}
+.two{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:20px;align-items:start}
+.tablewrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:720px}
+th{text-align:left;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;padding:10px 10px;border-bottom:1px solid var(--line)}
+td{padding:12px 10px;border-bottom:1px solid var(--line2);vertical-align:middle}
+td.m{font-family:var(--mono);font-size:13px;white-space:nowrap}
+tfoot td{font-weight:700;border-top:2px solid var(--ink);border-bottom:0}
+.bar{height:8px;border-radius:999px;background:#E6E6E0;overflow:hidden;width:110px;display:inline-block;vertical-align:middle}
+.bar i{display:block;height:100%;background:var(--blue)}
+.fleetrow{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line2)}
+.fleetrow .who{flex:1;min-width:0}
+.fleetrow b{display:block;font-size:14px}
+.fleetrow span.s{font-size:12px;color:var(--muted)}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label,.lab{font-weight:600;font-size:14px}
+.field input,.field select,.field textarea{border:1px solid #BFC1B8;border-radius:10px;padding:10px 12px;min-height:44px;background:#fff}
+.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.checks{display:flex;flex-direction:column;gap:10px}
+.checks label{display:flex;gap:10px;align-items:center;font-weight:500}
+.checks input{width:20px;height:20px;accent-color:#F26B1D}
+.quote{background:var(--ink);color:#fff;border:0;position:sticky;top:20px}
+.quote .line{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #2B3345;font-size:14px;color:#D5D9E1}
+.quote .tot{display:flex;justify-content:space-between;align-items:baseline;padding-top:14px}
+.quote .tot b{font-family:var(--display);font-size:44px}
+.note{font-size:13px;color:var(--muted)}
+.phonewrap{display:flex;gap:32px;flex-wrap:wrap;align-items:flex-start}
+.phone{width:380px;max-width:100%;background:#fff;border:1px solid var(--line);border-radius:28px;overflow:hidden}
+.phone .ph{background:var(--nav);color:#fff;padding:16px 18px;display:flex;justify-content:space-between;align-items:center}
+.phone .ph b{font-family:var(--display);font-size:20px}
+.phone .pb{padding:18px;display:flex;flex-direction:column;gap:14px}
+.steps{display:flex;gap:6px}
+.steps span{flex:1;height:6px;border-radius:999px;background:#E6E6E0}
+.steps span.on{background:var(--orange)}
+.stop{border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:4px}
+.stop .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.big{min-height:56px;font-size:17px;width:100%}
+.sig{height:110px;border:1.5px dashed #B5B7AE;border-radius:12px;background:#FAFAF7;position:relative;touch-action:none}
+.sig canvas{width:100%;height:100%;display:block}
+.sig span{position:absolute;left:12px;bottom:8px;font-size:12px;color:var(--muted);pointer-events:none}
+.photos{display:flex;gap:8px}
+.ph-thumb{width:72px;height:72px;border-radius:10px;background:repeating-linear-gradient(45deg,#E6E6E0 0 8px,#F1F1EC 8px 16px);display:grid;place-items:center;font-size:11px;color:var(--muted);font-weight:600;text-align:center}
+.done{background:#DCF0E4;color:#0F4D2F;border-radius:12px;padding:14px;font-weight:600}
+.explain{max-width:440px;display:flex;flex-direction:column;gap:12px}
+.explain h2{font-size:28px}
+.explain ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tabs button{all:unset;cursor:pointer;height:36px;padding:0 14px;border-radius:999px;border:1px solid #BFC1B8;background:#fff;font-size:13px;font-weight:600;display:inline-flex;align-items:center}
+.tabs button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.split{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:20px}
+.phase{border-top:4px solid var(--orange)}
+.phase ul{margin:10px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14px}
+.phase .k{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.switch{display:flex;flex-direction:column;gap:6px}
+.switch .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9AA2B1;font-weight:600}
+.switch select{width:100%;height:38px;border-radius:8px;border:1px solid #39435A;background:#1A2130;color:#fff;padding:0 8px;font-size:13px}
+.alerts{display:flex;flex-direction:column;gap:0}
+.alert{display:flex;gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--line2);flex-wrap:wrap}
+.alert .t{flex:1;min-width:220px}
+.alert b{display:block;font-size:15px}
+.alert span.s{font-size:13px;color:var(--muted)}
+.mapbox{position:relative;background:#E7E9E4;border-radius:14px;overflow:hidden;height:380px}
+.mapbox svg{width:100%;height:100%;display:block}
+.vanpin{position:absolute;transform:translate(-50%,-50%);background:var(--ink);color:#fff;font-size:12px;font-weight:700;padding:5px 9px;border-radius:999px;white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.vanpin.late{background:var(--red)}
+.vanpin.idle{background:#6B7382}
+.maplegend{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;font-size:13px;color:var(--muted)}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle}
+.track{display:flex;flex-direction:column;gap:0}
+.tstep{display:flex;gap:12px;align-items:flex-start;padding:10px 0}
+.tstep .ic{width:26px;height:26px;border-radius:50%;background:#E6E6E0;display:grid;place-items:center;flex-shrink:0;font-size:13px;font-weight:700;color:var(--muted)}
+.tstep.ok .ic{background:var(--green);color:#fff}
+.tstep.now .ic{background:var(--orange);color:var(--ink)}
+.tstep b{display:block;font-size:15px}
+.tstep span{font-size:13px;color:var(--muted)}
+.flag{background:#FBE4E1;color:#9A1B10;font-weight:700}
+.rules{display:flex;flex-direction:column;gap:0}
+.rule{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--line2);font-size:14px}
+.rule b{font-weight:600}
+.clockbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--ink);color:#fff;border-radius:14px;padding:14px 18px;margin-bottom:20px}
+.clockbar b{font-family:var(--mono);font-size:16px}
+.clockbar .note{color:#AEB5C2}
+.story{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px}
+.story button{all:unset;box-sizing:border-box;cursor:pointer;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff;display:flex;flex-direction:column;gap:4px;min-height:74px}
+.story button b{font-size:14px}
+.story button span{font-size:12px;color:var(--muted)}
+.story button[disabled]{opacity:.45;cursor:not-allowed}
+.story button.didit{border-color:var(--green);background:#F1F8F4}
+.story button.next{border-color:var(--orange);box-shadow:inset 0 0 0 1px var(--orange)}
+.q{display:flex;gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--line2);flex-wrap:wrap}
+.q .t{flex:1;min-width:220px}
+.q b{display:block;font-size:15px}
+.q span.s{font-size:13px;color:var(--muted)}
+tr.click{cursor:pointer}
+tr.click:hover td{background:#FAFAF7}
+tr.sel td{background:#FFF4EC}
+.detail{border:1px solid var(--line);border-radius:14px;padding:18px;background:#fff;margin-top:16px}
+.lines td,.lines th{padding:8px 10px}
+.tl{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.tl li{font-size:13px;display:flex;gap:10px}
+.tl li .d{font-family:var(--mono);color:var(--muted);min-width:78px}
+.email{background:#FAFAF7;border:1px solid var(--line);border-radius:12px;padding:14px;font-size:14px;white-space:pre-line;margin:10px 0}
+.chk{font-weight:700}
+.chk.y{color:var(--green)}
+.chk.n{color:var(--red)}
+.moneyband{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+@media (max-width:760px){.story{grid-template-columns:1fr}.moneyband{grid-template-columns:1fr 1fr}}
+@media (max-width:1180px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.board{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr}.quote{position:static}}
+@media (max-width:760px){
+  .app{flex-direction:column}
+  .nav{width:auto;height:auto;position:static;padding:14px;gap:12px}
+  .navlist{flex-direction:row;overflow-x:auto;gap:6px}
+  .navlist button{white-space:nowrap;background:#1A2130}
+  .clock{display:none}
+  main{padding:18px 16px 48px}
+  .head h1{font-size:28px}
+  .kpis{grid-template-columns:1fr 1fr;gap:10px}
+  .kpi .v{font-size:30px}
+  .board{grid-template-columns:1fr}
+  .formgrid,.split{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="demo-bar">Demo only: a made-up courier company with made-up jobs, prices and people, to show how the portal could work.</div>
+<div class="app">
+  <aside class="nav">
+    <div class="brand">
+      <div class="mark" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#121826" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6h13v10H1z"/><path d="M14 10h4l4 4v2h-8z"/><circle cx="5.5" cy="18.5" r="1.8"/><circle cx="17.5" cy="18.5" r="1.8"/></svg></div>
+      <div><b>Dayline</b><small>Do your day in a day</small></div>
+    </div>
+    <nav class="navlist" aria-label="Main menu">
+      <button type="button" data-go="today" aria-current="page">Today's job board <span class="count" id="unCount">3</span></button>
+      <button type="button" data-go="newjob">New job &amp; price</button>
+      <button type="button" data-go="map">Live map</button>
+      <button type="button" data-go="fleet">Vans &amp; drivers</button>
+      <button type="button" data-go="driver">Driver app</button>
+      <button type="button" data-go="tracking">Customer tracking</button>
+      <button type="button" data-go="margin" data-owner="1">Money &amp; margin <span class="count">2</span></button>
+      <button type="button" data-go="toinvoice" data-owner="1">Ready to invoice <span class="count" id="rtiCount">2</span></button>
+      <button type="button" data-go="cash" data-owner="1">Invoices &amp; cash <span class="count" id="cashCount">2</span></button>
+      <button type="button" data-go="eod" data-owner="1">End of day</button>
+      <button type="button" data-go="rates" data-owner="1">Customers &amp; rates</button>
+      <button type="button" data-go="plan">How we'd build it</button>
+    </nav>
+    <div class="switch">
+      <label class="k" for="company">Company</label>
+      <select id="company"><option>London Delivery Network</option><option>Aura</option></select>
+      <label class="k" for="role" style="margin-top:6px">Signed in as</label>
+      <select id="role"><option value="owner">William (owner)</option><option value="office">Office team</option><option value="driver">Driver</option></select>
+    </div>
+    <div class="clock"><span class="k">Live</span><span class="t" id="clk">14:05</span><span class="s">17 vans out · 3 on standby</span></div>
+  </aside>
+
+  <main>
+    <!-- TODAY -->
+    <section class="screen" id="today">
+      <div class="head">
+        <div><div class="sub">Thursday 17 September · London &amp; M25</div><h1>Today's job board</h1></div>
+        <button type="button" class="btn btn-o" data-go="newjob">+ New job</button>
+      </div>
+      <div class="kpis">
+        <div class="card kpi"><div class="l">Jobs today</div><div class="v" id="kJobs">64</div><div class="n">incl. 12 regular route drops</div></div>
+        <div class="card kpi"><div class="l">Delivered</div><div class="v" id="kDone">41</div><div class="n">with photo or signature</div></div>
+        <div class="card kpi"><div class="l">Earned so far</div><div class="v" id="kRev">£4,918</div><div class="n"><span class="up">+12%</span> on last Thursday</div></div>
+        <div class="card kpi"><div class="l">Vans busy</div><div class="v">17 / 20</div><div class="n">85% in use right now</div></div>
+        <div class="card kpi"><div class="l">Running late</div><div class="v">1</div><div class="n"><span class="pill p-red">JB-2291 · 18 min</span></div></div>
+      </div>
+      <div class="card" style="margin-bottom:20px">
+        <div class="cardhead" style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:4px"><h2>Alerts</h2><span class="note">Sent by WhatsApp or email as well as shown here</span></div>
+        <div class="alerts">
+          <div class="alert"><div class="t"><b>JB-2291 is 18 minutes late</b><span class="s">Tom · Van 07 · customer has been sent the tracking link</span></div><span class="pill p-red">Late job</span><button type="button" class="btn btn-g">Call driver</button></div>
+          <div class="alert"><div class="t"><b>Swiftbox Parcels margin down to 24.7%</b><span class="s">3.4 points below last week, and under your 30% line</span></div><span class="pill p-red">Margin</span><button type="button" class="btn btn-g" data-go="margin">Look at it</button></div>
+          <div class="alert"><div class="t"><b>Van 12 used at 21:40 on Saturday</b><span class="s">No job booked · 23 miles · worth checking the dash cam</span></div><span class="pill p-ow">Van use</span><button type="button" class="btn btn-g" data-go="margin">See trips</button></div>
+        </div>
+      </div>
+      <div class="board" id="board"></div>
+    </section>
+
+    <!-- NEW JOB -->
+    <section class="screen" id="newjob" hidden>
+      <div class="head"><div><div class="sub">Price is worked out from the customer's own rates</div><h1>New job &amp; price</h1></div></div>
+      <div class="two">
+        <form class="card" id="jobForm">
+          <div class="formgrid">
+            <div class="field"><label for="cust">Customer</label>
+              <select id="cust">
+                <option value="bakery">Northbank Bakery (contract rates)</option>
+                <option value="parcel">Swiftbox Parcels (contract rates)</option>
+                <option value="furn">Hallam Furniture (account)</option>
+                <option value="cash">New customer (standard rates)</option>
+              </select></div>
+            <div class="field"><label for="veh">Vehicle</label>
+              <select id="veh">
+                <option value="sw">Small van</option>
+                <option value="spr">4m Sprinter</option>
+                <option value="lut" selected>Luton with tail lift</option>
+                <option value="18t">18-tonne with tail lift</option>
+              </select></div>
+            <div class="field"><label for="from">Collect from</label><input id="from" value="Bermondsey SE16"></div>
+            <div class="field"><label for="to">Deliver to</label><input id="to" value="Chiswick W4"></div>
+            <div class="field"><label for="method">How it's priced</label>
+              <select id="method"><option value="time" selected>London: minimum charge + time</option><option value="miles">Outside the M25: mileage</option></select></div>
+            <div class="field" id="fMins"><label for="mins">Time on the job (minutes)</label><input id="mins" type="number" min="15" step="5" value="95"></div>
+            <div class="field" id="fMiles" hidden><label for="miles">Miles (worked out from postcodes)</label><input id="miles" type="number" min="1" value="14"></div>
+            <div class="field"><label for="when">When</label>
+              <select id="when"><option value="asap">Now, as soon as possible</option><option value="slot">Timed slot</option><option value="ooh">Out of hours (8pm–6am)</option></select></div>
+          </div>
+          <div class="checks" style="margin-top:16px">
+            <label><input type="checkbox" id="xman"> Second person needed</label>
+            <label><input type="checkbox" id="xwait"> Expected waiting time over 15 minutes</label>
+            <label><input type="checkbox" id="xpall" checked> Pallet or heavy item</label>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap">
+            <button type="submit" class="btn btn-o">Add to job board</button>
+            <button type="button" class="btn btn-g" style="min-height:44px">Send quote to customer</button>
+          </div>
+          <div class="done" id="jobAdded" hidden style="margin-top:14px">Added to the job board as unallocated. The customer has been emailed a confirmation and tracking link.</div>
+        </form>
+        <div class="card quote" aria-live="polite">
+          <h2 style="color:#fff">Price</h2>
+          <div id="qLines" style="margin-top:8px"></div>
+          <div class="tot"><span>Total (ex VAT)</span><b id="qTot">£0</b></div>
+          <p style="font-size:13px;color:#AEB5C2;margin:10px 0 0">Example rates only. Real ones come from William's rate cards.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FLEET -->
+    <section class="screen" id="fleet" hidden>
+      <div class="head"><div><div class="sub">Who's in which van today, and what's due</div><h1>Vans &amp; drivers</h1></div><button type="button" class="btn btn-d">+ Add vehicle</button></div>
+      <div class="card">
+        <div class="tablewrap"><table>
+          <thead><tr><th>Van</th><th>Type</th><th>Driver today</th><th>Status</th><th>Jobs today</th><th>MOT</th><th>Service</th></tr></thead>
+          <tbody id="fleetRows"></tbody>
+        </table></div>
+        <p class="note" style="margin:12px 0 0">Reminders go out before MOT, service and insurance dates. Driver licence checks can sit here too.</p>
+      </div>
+    </section>
+
+    <!-- DRIVER APP -->
+    <section class="screen" id="driver" hidden>
+      <div class="head"><div><div class="sub">On the driver's own phone. Keeps working with no signal and sends when it's back.</div><h1>Driver app</h1></div></div>
+      <div class="phonewrap">
+        <div class="phone">
+          <div class="ph"><div><b>Tom · Van 07</b><div style="font-size:12px;color:#9AA2B1">Luton tail lift · Job 3 of 6</div></div><span class="pill p-ow" id="drvPill">On the way</span></div>
+          <div class="pb">
+            <div class="steps" aria-hidden="true"><span class="on" id="st1"></span><span id="st2"></span><span id="st3"></span></div>
+            <div class="stop"><span class="k">Collect</span><b>Northbank Bakery kitchen</b><span class="note">Bermondsey SE16 · 2 trays + 1 pallet</span></div>
+            <div class="stop"><span class="k">Deliver</span><b>Northbank Bakery, Chiswick shop</b><span class="note">Chiswick W4 · before 15:00 · ring back door</span></div>
+            <div id="drvStep1"><button type="button" class="btn btn-o big" id="btnCollected">Collected</button></div>
+            <div id="drvStep2" hidden style="display:flex;flex-direction:column;gap:12px">
+              <div class="lab">Photos</div>
+              <div class="photos" id="photos"><button type="button" class="ph-thumb" id="addPhoto" style="border:0;cursor:pointer">+ Add photo</button></div>
+              <div class="lab">Signature</div>
+              <div class="sig"><canvas id="sig" width="340" height="110" aria-label="Signature box"></canvas><span>Sign here</span></div>
+              <div class="field"><label for="signame">Name of person receiving</label><input id="signame" value="Aisha (shop manager)"></div>
+              <button type="button" class="btn btn-o big" id="btnDelivered">Delivered</button>
+            </div>
+            <div class="done" id="drvDone" hidden>Delivered at 14:12. Photo and signature sent to the office and the customer. Next job: Kensington W8.</div>
+          </div>
+        </div>
+        <div class="explain">
+          <h2>What the office sees</h2>
+          <ul>
+            <li>Every tap updates the job board straight away, so nobody needs to ring the driver.</li>
+            <li>Photos, signature, time and location are saved with the job, ready to send to the customer.</li>
+            <li>Waiting time is timed automatically and can be added to the price.</li>
+            <li>No photo or signature puts the job on a review list before it's invoiced.</li>
+          </ul>
+          <button type="button" class="btn btn-d" data-go="today" style="align-self:flex-start">Back to job board</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- END OF DAY -->
+    <section class="screen" id="eod" hidden>
+      <div class="head"><div><div class="sub">Every van, every job, every pound. No piecing together tomorrow.</div><h1>End of day: Thursday 17 September</h1></div><button type="button" class="btn btn-d">Download report</button></div>
+      <div class="kpis">
+        <div class="card kpi"><div class="l">Jobs done</div><div class="v">71</div><div class="n">2 failed, both rebooked</div></div>
+        <div class="card kpi"><div class="l">Earned</div><div class="v">£8,742</div><div class="n">ex VAT</div></div>
+        <div class="card kpi"><div class="l">Miles</div><div class="v">1,486</div><div class="n">£5.88 earned per mile</div></div>
+        <div class="card kpi"><div class="l">Vans used</div><div class="v">78%</div><div class="n">of available hours</div></div>
+        <div class="card kpi"><div class="l">Ready to invoice</div><div class="v">£7,336</div><div class="n">21 account customers</div></div>
+      </div>
+      <div class="card">
+        <div class="tabs" role="group" aria-label="Group by">
+          <button type="button" data-eod="van" aria-pressed="true">By van</button>
+          <button type="button" data-eod="cust" aria-pressed="false">By customer</button>
+        </div>
+        <div class="tablewrap"><table id="eodTable"></table></div>
+      </div>
+    </section>
+
+    <!-- RATES -->
+    <section class="screen" id="rates" hidden>
+      <div class="head"><div><div class="sub">Set once, used on every job automatically</div><h1>Customers &amp; rates</h1></div></div>
+      <div class="card">
+        <div class="tablewrap"><table>
+          <thead><tr><th>Customer</th><th>Type</th><th>Rate card</th><th>Luton per mile</th><th>Day rate</th><th>Invoiced</th><th>This month</th></tr></thead>
+          <tbody>
+            <tr><td><b>Northbank Bakery</b></td><td>Regular route · 7 shops</td><td>Contract</td><td class="m">£1.55</td><td class="m">£310</td><td>Weekly</td><td class="m">£6,820</td></tr>
+            <tr><td><b>Swiftbox Parcels</b></td><td>Parcel overflow</td><td>Contract</td><td class="m">£1.60</td><td class="m">£295</td><td>Weekly</td><td class="m">£9,145</td></tr>
+            <tr><td><b>Hallam Furniture</b></td><td>Two-person, white glove</td><td>Account</td><td class="m">£1.75</td><td class="m">£340</td><td>Monthly</td><td class="m">£4,210</td></tr>
+            <tr><td><b>Coldharbour Events</b></td><td>Event logistics</td><td>Account</td><td class="m">£1.75</td><td class="m">£340</td><td>Per job</td><td class="m">£2,960</td></tr>
+            <tr><td><b>One-off customers</b></td><td>Shoot-and-point</td><td>Standard</td><td class="m">£1.75</td><td class="m">£360</td><td>Card up front</td><td class="m">£3,488</td></tr>
+          </tbody>
+        </table></div>
+        <p class="note" style="margin:12px 0 0">Example figures only. Includes minimum charge and time for London, mileage outside the M25, day and half-day rates, waiting time, second person and out-of-hours extras.</p>
+      </div>
+    </section>
+
+    <!-- PLAN -->
+    <section class="screen" id="plan" hidden>
+      <div class="head"><div><div class="sub">Built in stages, run side by side with the current system until it's trusted</div><h1>How we'd build it</h1></div></div>
+      <div class="split">
+        <div class="card phase"><span class="k">Stage 1</span><h2>The core</h2><ul><li>Vans, drivers and who's in what</li><li>Central job board</li><li>Driver phone app with photos and signatures</li><li>Prices worked out from rate cards</li><li>End-of-day report</li></ul></div>
+        <div class="card phase"><span class="k">Stage 2</span><h2>Customers &amp; money</h2><ul><li>Customers book and track online</li><li>Ready-to-invoice checks, then invoices into the accounts software</li><li>Chasing with your approval, promises, part payments and disputes</li><li>Driver pay worked out, with exceptions for review</li></ul></div>
+        <div class="card phase"><span class="k">Stage 3</span><h2>Grow</h2><ul><li>Regular routes set up once, repeated automatically</li><li>Parcel companies send jobs in bulk</li><li>Van use and profit reports</li><li>Route planning for multi-drop days</li></ul></div>
+      </div>
+      <div class="card">
+        <h2>Questions to shape stage 1</h2>
+        <ul style="margin:10px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:6px">
+          <li>How do jobs come in today, and who decides which van goes?</li>
+          <li>What happens outside the current system (spreadsheets, WhatsApp, paper)?</li>
+          <li>How are prices and driver pay worked out?</li>
+          <li>What would you most like to see at 6pm every day?</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- LIVE MAP -->
+    <section class="screen" id="map" hidden>
+      <div class="head"><div><div class="sub">Every van on one screen. Tap a van to see its job.</div><h1>Live map</h1></div><button type="button" class="btn btn-d" data-go="today">Back to job board</button></div>
+      <div class="card">
+        <div class="mapbox" id="mapbox">
+          <svg viewBox="0 0 800 380" aria-label="Simplified map of London and the M25" role="img">
+            <rect width="800" height="380" fill="#E7E9E4"></rect>
+            <ellipse cx="400" cy="190" rx="330" ry="150" fill="none" stroke="#C7CBC2" stroke-width="10"></ellipse>
+            <path d="M60 190 H740 M400 40 V340 M150 80 L650 300 M650 80 L150 300" stroke="#D3D7CE" stroke-width="7" fill="none"></path>
+            <path d="M120 250 C260 300 520 300 690 230" stroke="#9FB6C9" stroke-width="9" fill="none" opacity=".8"></path>
+            <text x="404" y="196" font-family="Figtree, sans-serif" font-size="13" fill="#7A8290">Central London</text>
+            <text x="690" y="215" font-family="Figtree, sans-serif" font-size="12" fill="#7A8290">M25</text>
+          </svg>
+        </div>
+        <div class="maplegend">
+          <span><span class="dot" style="background:#121826"></span>On a job</span>
+          <span><span class="dot" style="background:#B42318"></span>Running late</span>
+          <span><span class="dot" style="background:#6B7382"></span>Free</span>
+          <span>Illustration only. The real one uses a live map, updated from the drivers' phones.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CUSTOMER TRACKING -->
+    <section class="screen" id="tracking" hidden>
+      <div class="head"><div><div class="sub">What your customer sees. No login, just a link by text or email.</div><h1>Customer tracking</h1></div></div>
+      <div class="phonewrap">
+        <div class="phone">
+          <div class="ph"><div><b>Your delivery</b><div style="font-size:12px;color:#9AA2B1">Job JB-2291 · Northbank Bakery</div></div><span class="pill p-ow">12 min away</span></div>
+          <div class="pb">
+            <div class="mapbox" style="height:150px">
+              <svg viewBox="0 0 400 150" aria-label="Simplified map showing the van approaching" role="img">
+                <rect width="400" height="150" fill="#E7E9E4"></rect>
+                <path d="M20 120 C120 60 260 130 380 50" stroke="#C7CBC2" stroke-width="8" fill="none"></path>
+                <circle cx="205" cy="98" r="9" fill="#121826"></circle>
+                <circle cx="380" cy="50" r="7" fill="#F26B1D"></circle>
+                <text x="330" y="40" font-family="Figtree, sans-serif" font-size="12" fill="#7A8290">You</text>
+              </svg>
+            </div>
+            <div class="track">
+              <div class="tstep ok"><span class="ic">✓</span><div><b>Booked</b><span>11:02 · Luton with tail lift</span></div></div>
+              <div class="tstep ok"><span class="ic">✓</span><div><b>Collected</b><span>13:35 · Bermondsey SE16</span></div></div>
+              <div class="tstep now"><span class="ic">→</span><div><b>On the way to you</b><span>Tom is 12 minutes away · arriving about 14:24</span></div></div>
+              <div class="tstep"><span class="ic">4</span><div><b>Delivered</b><span>You'll get a photo and the signature</span></div></div>
+            </div>
+            <button type="button" class="btn btn-o big">Message the driver</button>
+            <p class="note" style="margin:0">Running late? The page says so, and why, before the customer has to ring.</p>
+          </div>
+        </div>
+        <div class="explain">
+          <h2>Why this matters</h2>
+          <ul>
+            <li>"People don't mind if they can see where you are." The link goes out the moment a job is booked.</li>
+            <li>It stops the calls asking where the driver is, which is most of what the office does today.</li>
+            <li>It carries your branding, so customers see London Delivery Network, not a courier app.</li>
+            <li>It never shows prices, balances, signatures or driver pay, and one customer can't see another's jobs.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- READY TO INVOICE -->
+    <section class="screen" id="toinvoice" hidden>
+      <div class="head"><div><div class="sub">Northbank Bakery · weekly account · week ending Friday 18 September · contract rates v3 (from 1 Sep)</div><h1>Ready to invoice</h1></div><button type="button" class="btn btn-g" id="reImport" style="min-height:44px">Check jobs again</button></div>
+      <div class="card" style="margin-bottom:20px">
+        <p class="note" style="margin:0 0 10px">A delivered job isn't automatically billable. Each one is checked against the rate card, PO, proof of delivery and approved extras first.</p>
+        <div class="tablewrap"><table id="rtiTable"></table></div>
+        <div class="done" id="reImportMsg" hidden style="margin-top:12px"></div>
+      </div>
+      <div class="two">
+        <div class="card">
+          <h2>Draft invoice</h2>
+          <div class="tablewrap"><table class="compact lines" id="draftTable"></table></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+            <button type="button" class="btn btn-o" id="createInv">Create invoice in accounts</button>
+          </div>
+          <div class="done" id="createdMsg" hidden style="margin-top:12px"></div>
+          <p class="note" style="margin:12px 0 0">Demo: the accounts connection is simulated and returns an invoice number. Nothing is created in a real accounts system and nothing is sent to the customer.</p>
+        </div>
+        <div class="card">
+          <h2>Not on this invoice</h2>
+          <div class="rules">
+            <div class="rule"><span>JB-2317 · Hackney</span><b>On hold: no POD</b></div>
+            <div class="rule"><span>JB-2311 · Park Royal to Guildford</span><b>Paid by card at booking</b></div>
+          </div>
+          <p class="note" style="margin:12px 0 0">Jobs paid up front never turn up as unpaid account invoices. Held jobs stay visible until someone sorts them.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- INVOICES & CASH -->
+    <section class="screen" id="cash" hidden>
+      <div class="head"><div><div class="sub">Invoice amounts include VAT · source: simulated accounts connection · last synced <span id="syncAt">09:12</span></div><h1>Invoices &amp; cash</h1></div></div>
+      <div class="clockbar"><span>Demo clock</span><b id="clockTxt">Mon 21 Sep 2026</b><span class="note">Move the clock with the story below to see invoices fall due, get chased and get paid.</span></div>
+      <div class="card" style="margin-bottom:20px">
+        <h2>Walk through one invoice</h2>
+        <div class="story" id="story">
+          <button type="button" data-step="1"><b>1. Create the Northbank invoice</b><span>From the ready-to-invoice checks</span></button>
+          <button type="button" data-step="2"><b>2. Jump to Fri 9 Oct</b><span>The invoice goes overdue, a chase draft appears</span></button>
+          <button type="button" data-step="3"><b>3. Customer promises to pay</b><span>"We'll pay by Mon 12 Oct." Chasing pauses</span></button>
+          <button type="button" data-step="4"><b>4. £150 part payment reported</b><span>Goes to checking, not straight off the balance</span></button>
+          <button type="button" data-step="5"><b>5. Accounts confirm the £150</b><span>Balance drops by exactly that</span></button>
+          <button type="button" data-step="6"><b>6. Final payment arrives</b><span>Invoice closes, chasing stops</span></button>
+        </div>
+      </div>
+      <div class="kpis" id="cashKpis"></div>
+      <div class="card" style="margin-bottom:20px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><h2>What needs doing</h2><span class="note">Ranked by facts: broken promise, amount overdue, disputes, missing proof</span></div>
+        <div id="queue"></div>
+      </div>
+      <div class="card" id="chaseCard" hidden style="margin-bottom:20px">
+        <h2>Chase waiting for your OK</h2>
+        <p class="note" id="chaseWhy" style="margin:6px 0 0"></p>
+        <div class="email" id="chaseText"></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap"><button type="button" class="btn btn-o" id="chaseOk">Approve</button><button type="button" class="btn btn-g" style="min-height:44px">Edit first</button></div>
+        <p class="note" style="margin:10px 0 0">Demo: approving logs the chase, but nothing is actually sent.</p>
+      </div>
+      <div class="card">
+        <h2>Invoices</h2>
+        <div class="tablewrap"><table id="invTable"></table></div>
+        <div id="invDetail"></div>
+      </div>
+    </section>
+
+    <!-- MONEY & MARGIN -->
+    <section class="screen" id="margin" hidden>
+      <div class="head"><div><div class="sub">Week to Thursday 17 September · money left after driver pay, fuel, tickets and damage</div><h1>Money &amp; margin</h1></div><button type="button" class="btn btn-d">Download week</button></div>
+      <div class="kpis">
+        <div class="card kpi"><div class="l">Invoiced</div><div class="v">£41,280</div><div class="n">ex VAT</div></div>
+        <div class="card kpi"><div class="l">Direct costs</div><div class="v">£29,140</div><div class="n">drivers, fuel, tickets, damage</div></div>
+        <div class="card kpi"><div class="l">Contribution</div><div class="v">£12,140</div><div class="n">29.4% · after direct costs only, not profit or cash</div></div>
+        <div class="card kpi"><div class="l">Below your 30% line</div><div class="v">2</div><div class="n"><span class="pill p-red">Swiftbox · Hallam</span></div></div>
+        <div class="card kpi"><div class="l">Van use to check</div><div class="v">2</div><div class="n">over mileage or out of hours</div></div>
+      </div>
+      <div class="card" style="margin-bottom:20px">
+        <div class="tabs" role="group" aria-label="Show margin by">
+          <button type="button" data-mg="cust" aria-pressed="true">By customer</button>
+          <button type="button" data-mg="route" aria-pressed="false">By route</button>
+          <button type="button" data-mg="van" aria-pressed="false">By van</button>
+        </div>
+        <div class="tablewrap"><table id="mgTable"></table></div>
+        <p class="note" style="margin:12px 0 0">Every figure here is straight arithmetic from your jobs and your cost rules, so it always gives the same answer and can be checked by hand. No AI anywhere near the money. Contribution is what's left after driver pay, fuel, tickets and damage. It isn't profit (no overheads taken off) and it isn't cash in the bank.</p>
+      </div>
+      <div class="card" style="margin-bottom:20px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px"><h2>The cash side</h2><button type="button" class="btn btn-g" data-go="cash">Open invoices &amp; cash</button></div>
+        <div class="moneyband">
+          <div><div class="note">Outstanding (inc VAT)</div><div class="price" style="font-size:20px" id="mbOut">£0</div></div>
+          <div><div class="note">Overdue</div><div class="price" style="font-size:20px" id="mbOver">£0</div></div>
+          <div><div class="note">In dispute</div><div class="price" style="font-size:20px" id="mbDisp">£0</div></div>
+          <div><div class="note">Cash received, last 30 days</div><div class="price" style="font-size:20px" id="mbCash">£0</div></div>
+        </div>
+      </div>
+      <div class="two">
+        <div class="card">
+          <h2>Van use worth checking</h2>
+          <div class="alerts">
+            <div class="alert"><div class="t"><b>Van 04 · 14% over expected mileage</b><span class="s">Expected 780 miles this week, did 889</span></div><span class="pill p-ow">Mileage</span><button type="button" class="btn btn-g">List trips</button></div>
+            <div class="alert"><div class="t"><b>Van 12 · used Saturday 21:40 to 22:25</b><span class="s">23 miles · no job booked · check dash cam</span></div><span class="pill p-red">Out of hours</span><button type="button" class="btn btn-g">List trips</button></div>
+            <div class="alert"><div class="t"><b>Everything else normal</b><span class="s">18 vans within expected mileage and hours</span></div><span class="pill p-dn">Clear</span><span></span></div>
+          </div>
+          <p class="note" style="margin:12px 0 0">Drivers should be told this is switched on and why. It's a normal part of running vans, but it has to be in the open.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div class="card">
+            <h2>Driver pay this week</h2>
+            <div class="tablewrap"><table class="compact">
+              <thead><tr><th>Driver</th><th>Days</th><th>Jobs</th><th>Pay</th></tr></thead>
+              <tbody>
+                <tr><td><b>Tom</b></td><td class="m">5</td><td class="m">48</td><td class="m">£840</td></tr>
+                <tr><td><b>Marek</b></td><td class="m">5.5</td><td class="m">61</td><td class="m">£920</td></tr>
+                <tr><td><b>Jade</b></td><td class="m">5</td><td class="m">44</td><td class="m">£800</td></tr>
+                <tr class="flag"><td><b>Kwame</b></td><td class="m">5</td><td class="m">52</td><td class="m">£840 · review</td></tr>
+                <tr><td><b>Sam (18t)</b></td><td class="m">5</td><td class="m">19</td><td class="m">£950</td></tr>
+              </tbody>
+            </table></div>
+            <p class="note" style="margin:12px 0 0">POD exception: 1 of Kwame's jobs has no photo or signature. It's flagged for review before pay is signed off. What happens next follows his contract (employee, worker or subcontractor). The software never withholds earned pay on its own.</p>
+          </div>
+          <div class="card">
+            <h2>Your cost rules</h2>
+            <div class="rules">
+              <div class="rule"><span>Driver day rate</span><b>£160</b></div>
+              <div class="rule"><span>Fuel</span><b>32p a mile</b></div>
+              <div class="rule"><span>Parking tickets</span><b>Charged to the job</b></div>
+              <div class="rule"><span>Damage</span><b>Logged against the job</b></div>
+              <div class="rule"><span>Flag anything below</span><b>30% or down 3 points</b></div>
+            </div>
+            <p class="note" style="margin:12px 0 0">Set once. Example figures only.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+(function(){
+  var drivers=['Tom · Van 07','Marek · Van 02','Jade · Van 11','Kwame · Van 04','Leon · Van 15','Priya · Van 09','Sam · Van 18 (18t)'];
+  var jobs=[
+    {ref:'JB-2310',st:'un',route:'Wembley HA9 → Canary Wharf E14',meta:'Luton tail lift · 2 pallets · ASAP',p:188,cust:'Swiftbox Parcels'},
+    {ref:'JB-2311',st:'un',route:'Park Royal NW10 → Guildford GU1',meta:'Sprinter · 14 boxes · by 17:00',p:142,cust:'One-off'},
+    {ref:'JB-2312',st:'un',route:'Battersea SW11 → Hampstead NW3',meta:'Luton · sofa, 2 people · 16:00 slot',p:236,cust:'Hallam Furniture'},
+    {ref:'JB-2305',st:'al',route:'Heathrow TW6 → Croydon CR0',meta:'Sprinter · airport pickup 14:30',p:154,cust:'Swiftbox Parcels',d:'Marek · Van 02'},
+    {ref:'JB-2306',st:'al',route:'Bermondsey SE16 → Islington N1',meta:'Luton · bakery route drop 5 of 7',p:62,cust:'Northbank Bakery',d:'Jade · Van 11'},
+    {ref:'JB-2291',st:'ow',route:'Bermondsey SE16 → Chiswick W4',meta:'Luton · bakery route · 18 min late',p:74,cust:'Northbank Bakery',d:'Tom · Van 07',late:true},
+    {ref:'JB-2298',st:'ow',route:'Enfield EN1 → Dartford DA1',meta:'18t tail lift · 6 pallets',p:412,cust:'Coldharbour Events',d:'Sam · Van 18 (18t)'},
+    {ref:'JB-2280',st:'dn',route:'Ruislip HA4 → Soho W1',meta:'Sprinter · signed by R. Patel 13:48',p:118,cust:'One-off',d:'Kwame · Van 04'},
+    {ref:'JB-2276',st:'dn',route:'Bermondsey SE16 → Clapham SW4',meta:'Luton · 2 photos 13:21',p:58,cust:'Northbank Bakery',d:'Leon · Van 15'}
+  ];
+  var cols=[['un','Needs a van','p-un'],['al','Van given','p-al'],['ow','On the way','p-ow'],['dn','Delivered','p-dn']];
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function money(n){return '£'+n.toLocaleString('en-GB',{minimumFractionDigits:n%1?2:0,maximumFractionDigits:2})}
+  function drawBoard(){
+    var html='';
+    cols.forEach(function(c){
+      var list=jobs.filter(function(j){return j.st===c[0]});
+      html+='<div class="col"><div class="colhead"><b>'+c[1]+'</b><span class="pill '+c[2]+'">'+list.length+'</span></div>';
+      list.forEach(function(j){
+        html+='<div class="job"><div class="top"><span class="ref">'+j.ref+'</span>'+(j.late?'<span class="pill p-red">Late</span>':'<span class="note">'+esc(j.cust)+'</span>')+'</div><div class="route">'+esc(j.route)+'</div><div class="meta">'+esc(j.meta)+'</div><div class="bot"><span class="price">'+money(j.p)+'</span>';
+        if(j.st==='un'){
+          html+='<label style="position:absolute;left:-9999px" for="as-'+j.ref+'">Give '+j.ref+' to a van</label><select id="as-'+j.ref+'" data-assign="'+j.ref+'"><option value="">Give to a van…</option>'+drivers.map(function(d){return '<option>'+esc(d)+'</option>'}).join('')+'</select>';
+        } else html+='<span class="note">'+esc(j.d||'')+'</span>';
+        html+='</div></div>';
+      });
+      html+='</div>';
+    });
+    document.getElementById('board').innerHTML=html;
+    document.getElementById('unCount').textContent=jobs.filter(function(j){return j.st==='un'}).length;
+  }
+  drawBoard();
+  document.getElementById('board').addEventListener('change',function(e){
+    var r=e.target.dataset.assign;if(!r||!e.target.value)return;
+    jobs.forEach(function(j){if(j.ref===r){j.st='al';j.d=e.target.value;}});drawBoard();
+  });
+
+  /* pricing */
+  var base={sw:[25,1.10,'Small van',35,0.45,45],spr:[35,1.35,'4m Sprinter',45,0.55,45],lut:[55,1.75,'Luton with tail lift',65,0.70,60],'18t':[120,2.60,'18-tonne with tail lift',140,1.10,60]};
+  var disc={bakery:.12,parcel:.10,furn:0,cash:0};
+  function quote(){
+    var v=document.getElementById('veh').value,b=base[v],lines,meth=document.getElementById('method').value;
+    if(meth==='time'){
+      var mn=Math.max(15,+document.getElementById('mins').value||0),inc=b[5],extra=Math.max(0,mn-inc);
+      lines=[['Minimum charge ('+b[2]+', first '+inc+' min)',b[3]]];
+      if(extra>0)lines.push(['Time after that: '+extra+' min × '+money(b[4]),+(extra*b[4]).toFixed(2)]);
+    } else {
+      var mi=Math.max(1,+document.getElementById('miles').value||0);
+      lines=[['Base charge ('+b[2]+')',b[0]],['Mileage: '+mi+' mi × '+money(b[1]),+(mi*b[1]).toFixed(2)]];
+    }
+    if(document.getElementById('xman').checked)lines.push(['Second person',40]);
+    if(document.getElementById('xwait').checked)lines.push(['Waiting time (estimate)',15]);
+    if(document.getElementById('xpall').checked)lines.push(['Pallet or heavy item',12]);
+    var w=document.getElementById('when').value;
+    if(w==='slot')lines.push(['Timed slot',15]);
+    var sub=lines.reduce(function(a,l){return a+l[1]},0);
+    if(w==='ooh'){var o=+(sub*.25).toFixed(2);lines.push(['Out of hours (+25%)',o]);sub+=o;}
+    var c=document.getElementById('cust').value;
+    if(disc[c]){var d=-(sub*disc[c]).toFixed(2);lines.push(['Contract rate (−'+(disc[c]*100)+'%)',d]);sub+=d;}
+    document.getElementById('qLines').innerHTML=lines.map(function(l){return '<div class="line"><span>'+esc(l[0])+'</span><span style="font-family:var(--mono)">'+(l[1]<0?'−':'')+money(Math.abs(l[1]))+'</span></div>'}).join('');
+    document.getElementById('qTot').textContent=money(+sub.toFixed(2));
+    return +sub.toFixed(2);
+  }
+  ['cust','veh','miles','mins','method','when','xman','xwait','xpall'].forEach(function(id){var el=document.getElementById(id);el.addEventListener('input',quote);el.addEventListener('change',quote);});
+  document.getElementById('method').addEventListener('change',function(){
+    var t=this.value==='time';
+    document.getElementById('fMins').hidden=!t;document.getElementById('fMiles').hidden=t;
+  });
+  quote();
+  document.getElementById('jobForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=2313+jobs.length-9,c=document.getElementById('cust');
+    jobs.unshift({ref:'JB-'+n,st:'un',route:document.getElementById('from').value+' → '+document.getElementById('to').value,meta:base[document.getElementById('veh').value][2]+' · just added',p:quote(),cust:c.options[c.selectedIndex].text.replace(/ \(.*\)/,'')});
+    drawBoard();document.getElementById('jobAdded').hidden=false;
+  });
+
+  /* fleet */
+  var fleet=[
+    ['Van 02','4m Sprinter','Marek','p-al','Van given',7,'Mar 2027','in 6 weeks'],
+    ['Van 04','4m Sprinter','Kwame','p-ow','On the way',9,'Jun 2027','Nov 2026'],
+    ['Van 07','Luton tail lift','Tom','p-ow','On the way',6,'Jan 2027','Dec 2026'],
+    ['Van 09','Luton tail lift','Priya','p-dn','Between jobs',8,'Oct 2026','<span class="pill p-red">Due in 9 days</span>'],
+    ['Van 11','Luton tail lift','Jade','p-al','Van given',7,'Apr 2027','Feb 2027'],
+    ['Van 12','Luton tail lift','—','p-off','Standby',0,'Aug 2027','Jan 2027'],
+    ['Van 15','Luton tail lift','Leon','p-ow','On the way',5,'May 2027','Mar 2027'],
+    ['Van 18','18-tonne tail lift','Sam','p-ow','On the way',3,'Feb 2027','Oct 2026'],
+    ['Van 20','Luton tail lift','—','p-red','Off road: tail lift repair',0,'Dec 2026','Booked 18 Sep']
+  ];
+  document.getElementById('fleetRows').innerHTML=fleet.map(function(f){
+    return '<tr><td><b>'+f[0]+'</b></td><td>'+f[1]+'</td><td>'+f[2]+'</td><td><span class="pill '+f[3]+'">'+f[4]+'</span></td><td class="m">'+f[5]+'</td><td class="m">'+f[6]+'</td><td>'+f[7]+'</td></tr>';
+  }).join('');
+
+  /* end of day */
+  var byVan=[
+    ['Van 07 · Tom','Luton',11,142,'10.5h',92,968],['Van 02 · Marek','Sprinter',13,188,'11h',96,1104],['Van 18 · Sam','18t',4,96,'9h',75,1386],
+    ['Van 11 · Jade','Luton',9,121,'10h',83,842],['Van 04 · Kwame','Sprinter',12,176,'10.5h',88,1016],['Van 15 · Leon','Luton',8,104,'8h',67,694],
+    ['Other 11 vans','Mixed',14,659,'—',71,2732]
+  ];
+  var byCust=[['Swiftbox Parcels',19,'Weekly',2410],['Northbank Bakery',16,'Weekly',1180],['Hallam Furniture',6,'Monthly',1320],['Coldharbour Events',3,'Per job',1236],['One-off customers (card)',15,'Paid',1406],['17 other account customers',12,'Monthly',1190]];
+  function drawEod(mode){
+    var t=document.getElementById('eodTable'),h;
+    if(mode==='van'){
+      h='<thead><tr><th>Van &amp; driver</th><th>Type</th><th>Jobs</th><th>Miles</th><th>On the road</th><th>Busy</th><th>Earned</th></tr></thead><tbody>'+byVan.map(function(r){return '<tr><td><b>'+r[0]+'</b></td><td>'+r[1]+'</td><td class="m">'+r[2]+'</td><td class="m">'+r[3]+'</td><td class="m">'+r[4]+'</td><td><span class="bar"><i style="width:'+r[5]+'%"></i></span> <span class="m" style="font-family:var(--mono);font-size:13px">'+r[5]+'%</span></td><td class="m">'+money(r[6])+'</td></tr>'}).join('')+'</tbody><tfoot><tr><td>Total</td><td></td><td class="m">71</td><td class="m">1,486</td><td></td><td></td><td class="m">£8,742</td></tr></tfoot>';
+    } else {
+      h='<thead><tr><th>Customer</th><th>Jobs</th><th>Billing</th><th>Photos &amp; signatures</th><th>Amount</th><th></th></tr></thead><tbody>'+byCust.map(function(r){return '<tr><td><b>'+r[0]+'</b></td><td class="m">'+r[1]+'</td><td>'+r[2]+'</td><td><span class="pill p-dn">All attached</span></td><td class="m">'+money(r[3])+'</td><td><button type="button" class="btn btn-g">'+(r[2]==='Paid'?'View':'Add to invoice')+'</button></td></tr>'}).join('')+'</tbody><tfoot><tr><td>Total</td><td class="m">71</td><td></td><td></td><td class="m">£8,742</td><td></td></tr></tfoot>';
+    }
+    t.innerHTML=h;
+  }
+  drawEod('van');
+  document.querySelectorAll('[data-eod]').forEach(function(b){b.addEventListener('click',function(){
+    document.querySelectorAll('[data-eod]').forEach(function(x){x.setAttribute('aria-pressed',x===b)});drawEod(b.dataset.eod);
+  })});
+
+  /* driver app */
+  document.getElementById('btnCollected').addEventListener('click',function(){
+    document.getElementById('drvStep1').hidden=true;document.getElementById('drvStep2').hidden=false;
+    document.getElementById('st2').className='on';document.getElementById('drvPill').textContent='Arrived';
+    jobs.forEach(function(j){if(j.ref==='JB-2291')j.meta='Luton · bakery route · arrived';});drawBoard();
+  });
+  var pc=0;
+  document.getElementById('addPhoto').addEventListener('click',function(){
+    if(pc>=2)return;pc++;var d=document.createElement('div');d.className='ph-thumb';d.textContent='Photo '+pc+' ✓';
+    document.getElementById('photos').insertBefore(d,this);
+  });
+  var cv=document.getElementById('sig'),cx=cv.getContext('2d'),drawing=false;
+  cx.lineWidth=2.2;cx.lineCap='round';cx.strokeStyle='#121826';
+  function pos(e){var r=cv.getBoundingClientRect();return [(e.clientX-r.left)*cv.width/r.width,(e.clientY-r.top)*cv.height/r.height];}
+  cv.addEventListener('pointerdown',function(e){drawing=true;var p=pos(e);cx.beginPath();cx.moveTo(p[0],p[1]);});
+  cv.addEventListener('pointermove',function(e){if(!drawing)return;var p=pos(e);cx.lineTo(p[0],p[1]);cx.stroke();});
+  window.addEventListener('pointerup',function(){drawing=false;});
+  document.getElementById('btnDelivered').addEventListener('click',function(){
+    document.getElementById('drvStep2').hidden=true;document.getElementById('drvDone').hidden=false;
+    document.getElementById('st3').className='on';document.getElementById('drvPill').textContent='Delivered';
+    jobs.forEach(function(j){if(j.ref==='JB-2291'){j.st='dn';j.late=false;j.meta='Luton · signed by Aisha 14:12';}});drawBoard();
+    var k=document.getElementById('kDone');k.textContent=(+k.textContent+1);
+  });
+
+  /* margin tables */
+  var mg={
+    cust:[['Swiftbox Parcels',12400,7900,1180,260,3060,24.7,-3.4,1],['Northbank Bakery',6820,3900,640,90,2190,32.1,1.2,0],['Hallam Furniture',5140,3050,520,180,1390,27.0,-0.4,1],['Coldharbour Events',4960,2600,610,0,1750,35.3,2.1,0],['One-off customers',8690,4700,900,320,2770,31.9,-0.8,0],['17 other accounts',3270,1900,330,60,980,30.0,0.5,0]],
+    route:[['Bakery route · 7 shops',6820,2190,32.1,1.2,0],['Parcel overflow · Park Royal',4910,1100,22.4,-4.1,1],['Heathrow runs',3780,1285,34.0,0.7,0],['Ad-hoc central London',9220,2812,30.5,-0.6,0],['Out past the M25',5430,1455,26.8,-1.9,1],['Everything else',11120,3298,29.7,0.3,0]],
+    van:[['Van 02 · Marek',5420,1690,31.2,0.8,0],['Van 04 · Kwame',5180,1240,23.9,-5.2,1],['Van 07 · Tom',4760,1520,31.9,1.1,0],['Van 09 · Priya',4050,1180,29.1,-0.3,0],['Van 11 · Jade',4320,1390,32.2,0.4,0],['Van 18 · Sam',6480,1940,29.9,-0.7,0],['Other 14 vans',11070,3180,28.7,0.2,0]]
+  };
+  function pts(n){return (n>0?'+':'')+n.toFixed(1)+' pts'}
+  function drawMg(mode){
+    var t=document.getElementById('mgTable'),h;
+    if(mode==='cust'){
+      h='<thead><tr><th>Customer</th><th>Invoiced</th><th>Drivers</th><th>Fuel</th><th>Tickets &amp; damage</th><th>Contribution</th><th>Margin</th><th>On last week</th></tr></thead><tbody>'+mg.cust.map(function(r){
+        return '<tr'+(r[8]?' class="flag"':'')+'><td><b>'+esc(r[0])+'</b></td><td class="m">'+money(r[1])+'</td><td class="m">'+money(r[2])+'</td><td class="m">'+money(r[3])+'</td><td class="m">'+money(r[4])+'</td><td class="m">'+money(r[5])+'</td><td class="m">'+r[6].toFixed(1)+'%</td><td class="m">'+pts(r[7])+'</td></tr>';
+      }).join('')+'</tbody><tfoot><tr><td>Total</td><td class="m">£41,280</td><td class="m">£24,050</td><td class="m">£4,180</td><td class="m">£910</td><td class="m">£12,140</td><td class="m">29.4%</td><td></td></tr></tfoot>';
+    } else {
+      var rows=mg[mode],label=mode==='route'?'Route':'Van';
+      h='<thead><tr><th>'+label+'</th><th>Invoiced</th><th>Contribution</th><th>Margin</th><th>On last week</th><th></th></tr></thead><tbody>'+rows.map(function(r){
+        return '<tr'+(r[5]?' class="flag"':'')+'><td><b>'+esc(r[0])+'</b></td><td class="m">'+money(r[1])+'</td><td class="m">'+money(r[2])+'</td><td class="m">'+r[3].toFixed(1)+'%</td><td class="m">'+pts(r[4])+'</td><td>'+(r[5]?'<span class="pill p-red">Below 30%</span>':'<span class="pill p-dn">Fine</span>')+'</td></tr>';
+      }).join('')+'</tbody><tfoot><tr><td>Total</td><td class="m">£41,280</td><td class="m">£12,140</td><td class="m">29.4%</td><td></td><td></td></tr></tfoot>';
+    }
+    t.innerHTML=h;
+  }
+  drawMg('cust');
+  document.querySelectorAll('[data-mg]').forEach(function(b){b.addEventListener('click',function(){
+    document.querySelectorAll('[data-mg]').forEach(function(x){x.setAttribute('aria-pressed',x===b)});drawMg(b.dataset.mg);
+  })});
+
+  /* live map pins */
+  var pins=[[34,58,'Van 07 · Tom','late'],[52,36,'Van 02 · Marek',''],[68,62,'Van 18 · Sam',''],[44,72,'Van 11 · Jade',''],[26,34,'Van 04 · Kwame',''],[60,20,'Van 15 · Leon',''],[78,44,'Van 09 · Priya','idle'],[16,66,'Van 12 · free','idle']];
+  var mb=document.getElementById('mapbox');
+  pins.forEach(function(p){
+    var d=document.createElement('button');d.type='button';d.className='vanpin '+p[3];
+    d.style.left=p[0]+'%';d.style.top=p[1]+'%';d.textContent=p[2];d.setAttribute('data-go','today');
+    mb.appendChild(d);
+  });
+
+  /* ===== finance: ready to invoice + collections (local demo state) ===== */
+  var DAY=86400000;
+  var clock=new Date(2026,8,21,9,12);
+  function d(y,m,dd){return new Date(y,m-1,dd);}
+  function fd(x){return x.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});}
+  function fdy(x){return x.toLocaleDateString('en-GB',{day:'numeric',month:'short'});}
+  function gbp(p){var neg=p<0;p=Math.abs(p);return (neg?'−':'')+'£'+(Math.floor(p/100)).toLocaleString('en-GB')+'.'+String(p%100).padStart(2,'0');}
+  function vat(net){return Math.round(net*0.2);}
+
+  // Candidate items for Northbank weekly batch (money in pence)
+  var items=[
+    {job:'JB-2276',desc:'Bermondsey → Clapham',p:5800,pod:true,po:'Not needed',st:'ready'},
+    {job:'JB-2291',desc:'Bermondsey → Chiswick',p:7400,pod:true,po:'Not needed',st:'ready'},
+    {job:'JB-2291-W',desc:'Waiting time, 30 min (agreed in contract)',p:1500,pod:true,po:'Not needed',st:'ready',extra:true},
+    {job:'JB-2306',desc:'Bermondsey → Islington',p:6200,pod:true,po:'Not needed',st:'ready'},
+    {job:'JB-2314',desc:'Bermondsey → Kensington',p:6600,pod:true,po:'Not needed',st:'ready'},
+    {job:'JB-2314-C',desc:'Congestion charge (proposed extra)',p:1800,pod:true,po:'Not needed',st:'proposed',extra:true},
+    {job:'JB-2317',desc:'Bermondsey → Hackney',p:6000,pod:false,po:'Not needed',st:'hold'}
+  ];
+  var nextInv=1043;
+  function approveExtra(it){it.st='ready';it.desc=it.desc.replace('(proposed extra)','(extra approved by William)');}
+
+  // Invoice ledger
+  var invoices=[
+    {id:'INV-1036',cust:'Swiftbox Parcels',period:'w/e 4 Sep',issued:d(2026,9,4),terms:7,lines:[{d:'38 jobs, parcel overflow',p:260000}],pays:[{p:312000,on:d(2026,9,11),st:'ok'}],promise:null,dispute:null,chan:'account',ev:[[d(2026,9,4),'Invoice created and sent'],[d(2026,9,11),'Paid in full, confirmed in accounts']]},
+    {id:'INV-1029',cust:'Meridian Print',period:'August',issued:d(2026,8,22),terms:14,lines:[{d:'6 jobs, August',p:51000}],pays:[],promise:{by:d(2026,9,15),set:d(2026,9,8)},dispute:null,chan:'account',ev:[[d(2026,8,22),'Invoice created and sent'],[d(2026,9,8),'Customer promised to pay by 15 Sep'],[d(2026,9,16),'Promise date passed, nothing received']]},
+    {id:'INV-1038',cust:'Hallam Furniture',period:'August',issued:d(2026,9,1),terms:30,lines:[{d:'JB-2201 · sofa, 2 people',p:23600},{d:'JB-2218 · wardrobe, 2 people',p:21200},{d:'JB-2240 · dining set',p:19800},{d:'JB-2240 · waiting time, 45 min',p:4500,disp:true}],pays:[],promise:null,dispute:{p:4500,why:'Wrong rate: customer says waiting time was not agreed for this job',who:'Office team',next:'Send the booking note and driver timestamps'},chan:'account',ev:[[d(2026,9,1),'Invoice created and sent'],[d(2026,9,9),'Customer disputed £54.00 (waiting time). The rest of the invoice is not disputed']]},
+    {id:'INV-1040',cust:'Coldharbour Events',period:'Event 12 Sep',issued:d(2026,9,14),terms:21,lines:[{d:'18t, 6 pallets, event load-in',p:123600}],pays:[],promise:null,dispute:null,chan:'account',ev:[[d(2026,9,14),'Invoice created and sent']]},
+    {id:'INV-1041',cust:'Swiftbox Parcels',period:'w/e 11 Sep',issued:d(2026,9,11),terms:7,lines:[{d:'41 jobs, parcel overflow',p:241000}],pays:[{p:289200,on:d(2026,9,18),st:'ok'}],promise:null,dispute:null,chan:'account',ev:[[d(2026,9,11),'Invoice created and sent'],[d(2026,9,18),'Paid in full, confirmed in accounts']]},
+    {id:'CARD-2311',cust:'One-off customer',period:'JB-2311',issued:d(2026,9,17),terms:0,lines:[{d:'Park Royal → Guildford, Sprinter',p:14200}],pays:[{p:17040,on:d(2026,9,17),st:'ok'}],promise:null,dispute:null,chan:'card',ev:[[d(2026,9,17),'Paid by card at booking (hosted payment page)']]}
+  ];
+
+  function net(i){return i.lines.reduce(function(a,l){return a+l.p},0);}
+  function gross(i){var n=net(i);return n+vat(n);}
+  function confirmed(i){return i.pays.filter(function(x){return x.st==='ok'}).reduce(function(a,x){return a+x.p},0);}
+  function reported(i){return i.pays.filter(function(x){return x.st==='check'}).reduce(function(a,x){return a+x.p},0);}
+  function bal(i){return gross(i)-confirmed(i);}
+  function dispG(i){return i.dispute?i.dispute.p+vat(i.dispute.p):0;}
+  function collectible(i){return Math.max(0,bal(i)-dispG(i));}
+  function due(i){return new Date(i.issued.getTime()+i.terms*DAY);}
+  function status(i){
+    if(i.chan==='card')return ['Paid at booking','p-dn'];
+    if(bal(i)<=0)return ['Paid','p-dn'];
+    if(reported(i)>0)return ['Checking payment','p-al'];
+    if(i.promise&&clock<=i.promise.by)return ['Promised '+fdy(i.promise.by),'p-al'];
+    if(i.promise&&clock>i.promise.by)return ['Broken promise','p-red'];
+    if(clock>due(i)&&collectible(i)>0){var od=Math.floor((clock-due(i))/DAY);return ['Overdue '+od+(od===1?' day':' days'),'p-red'];}
+    if(collectible(i)===0&&i.dispute)return ['All disputed','p-ow'];
+    return ['Due '+fdy(due(i)),'p-ow'];
+  }
+  function isOver(i){var s=status(i)[0];return s.indexOf('Overdue')===0||s==='Broken promise';}
+
+  function drawRti(){
+    var chk=function(b){return b?'<span class="chk y">✓</span>':'<span class="chk n">✗</span>';};
+    document.getElementById('rtiTable').innerHTML='<thead><tr><th>Job</th><th>What</th><th>Rate</th><th>PO</th><th>Proof</th><th>Amount</th><th>Status</th><th></th></tr></thead><tbody>'+items.map(function(it,ix){
+      var stt={ready:'<span class="pill p-dn">Ready</span>',proposed:'<span class="pill p-ow">Extra: needs your OK</span>',hold:'<span class="pill p-red">On hold: no POD</span>',rejected:'<span class="pill p-off">Extra rejected</span>'}[it.st]||('<span class="pill p-al">On '+it.inv+'</span>');
+      var act=it.st==='proposed'?'<button type="button" class="btn btn-g" data-ok="'+ix+'">Approve</button> <button type="button" class="btn btn-g" data-no="'+ix+'">Reject</button>':(it.st==='hold'?'<button type="button" class="btn btn-g">Chase driver</button>':'');
+      return '<tr><td class="m">'+it.job.replace(/-[WC]$/,'')+'</td><td>'+esc(it.desc)+'</td><td>Contract v3</td><td>'+it.po+'</td><td>'+chk(it.pod)+'</td><td class="m">'+gbp(it.p)+'</td><td>'+stt+'</td><td style="white-space:nowrap">'+act+'</td></tr>';
+    }).join('')+'</tbody>';
+    var ready=items.filter(function(i){return i.st==='ready'});
+    var n=ready.reduce(function(a,i){return a+i.p},0);
+    document.getElementById('draftTable').innerHTML=ready.length?('<tbody>'+ready.map(function(i){return '<tr><td>'+i.job.replace(/-[WC]$/,'')+' · '+esc(i.desc)+'</td><td class="m" style="text-align:right">'+gbp(i.p)+'</td></tr>'}).join('')+'</tbody><tfoot><tr><td>Net</td><td class="m" style="text-align:right">'+gbp(n)+'</td></tr><tr><td>VAT 20%</td><td class="m" style="text-align:right">'+gbp(vat(n))+'</td></tr><tr><td>Total</td><td class="m" style="text-align:right">'+gbp(n+vat(n))+'</td></tr></tfoot>'):'<tbody><tr><td class="note">Nothing waiting. Every eligible job is already on an invoice.</td></tr></tbody>';
+    document.getElementById('createInv').disabled=!ready.length;
+    document.getElementById('createInv').style.opacity=ready.length?1:.5;
+    document.getElementById('rtiCount').textContent=items.filter(function(i){return i.st==='proposed'||i.st==='hold'}).length;
+  }
+  document.getElementById('rtiTable').addEventListener('click',function(e){
+    var a=e.target.closest('[data-ok]'),r=e.target.closest('[data-no]');
+    if(a){approveExtra(items[+a.dataset.ok]);drawRti();}
+    if(r){items[+r.dataset.no].st='rejected';drawRti();}
+  });
+  // Simulated accounts adapter: creates an invoice from approved items, returns its number. Idempotent per job.
+  var ReceivablesAdapter={
+    createInvoice:function(cust,period,its){
+      var id='INV-'+(nextInv++);
+      var inv={id:id,cust:cust,period:period,issued:new Date(clock.getTime()),terms:14,lines:its.map(function(i){return {d:i.job.replace(/-[WC]$/,'')+' · '+i.desc,p:i.p}}),pays:[],promise:null,dispute:null,chan:'account',ev:[[new Date(clock.getTime()),'Invoice created in accounts (simulated), '+its.length+' lines']],jobs:its.map(function(i){return i.job})};
+      invoices.unshift(inv);return inv;
+    }
+  };
+  function createNorthbank(){
+    var ready=items.filter(function(i){return i.st==='ready'});
+    if(!ready.length)return null;
+    var inv=ReceivablesAdapter.createInvoice('Northbank Bakery','w/e 18 Sep',ready);
+    ready.forEach(function(i){i.st='billed';i.inv=inv.id;});
+    var m=document.getElementById('createdMsg');m.hidden=false;
+    m.textContent='Created '+inv.id+' for '+gbp(gross(inv))+' inc VAT, due '+fdy(due(inv))+'. It now shows under Invoices & cash.';
+    drawRti();drawCash();return inv;
+  }
+  document.getElementById('createInv').addEventListener('click',function(){createNorthbank();});
+  document.getElementById('reImport').addEventListener('click',function(){
+    var billed=items.filter(function(i){return i.st==='billed'}).length,hold=items.filter(function(i){return i.st==='hold'}).length,waiting=items.filter(function(i){return i.st==='ready'||i.st==='proposed'}).length;
+    var m=document.getElementById('reImportMsg');m.hidden=false;
+    m.textContent='Checked '+items.length+' lines again: 0 new, '+billed+' already on an invoice (not charged twice), '+waiting+' waiting, '+hold+' on hold.';
+  });
+
+  var chaseLog={};
+  function queue(){
+    var q=[];
+    invoices.forEach(function(i){
+      if(i.chan==='card'||bal(i)<=0)return;
+      var s=status(i)[0];
+      if(s==='Broken promise')q.push([4,collectible(i),i.cust+' missed their promise',gbp(collectible(i))+' on '+i.id+' · promised '+fdy(i.promise.by),i.id]);
+      else if(s.indexOf('Overdue')===0)q.push([3,collectible(i),i.cust+' is overdue',gbp(collectible(i))+' on '+i.id+' · '+s.toLowerCase(),i.id]);
+      if(i.dispute)q.push([2,dispG(i),i.cust+': '+gbp(dispG(i))+' in dispute',i.dispute.why+' · '+i.dispute.who+' to '+i.dispute.next.toLowerCase(),i.id]);
+      if(reported(i)>0)q.push([2,reported(i),'Check a reported payment',gbp(reported(i))+' reported on '+i.id+'. Not taken off until the accounts confirm it',i.id]);
+    });
+    items.forEach(function(it){if(it.st==='hold')q.push([1,it.p,'Missing proof of delivery',it.job+' can\'t be invoiced until the photo or signature is sorted',null]);if(it.st==='proposed')q.push([1,it.p,'Extra waiting for your OK',it.desc+' on '+it.job.replace(/-[WC]$/,''),null]);});
+    q.sort(function(a,b){return b[0]-a[0]||b[1]-a[1]});
+    return q;
+  }
+  function chaseTarget(){
+    return invoices.filter(function(i){return i.chan==='account'&&status(i)[0].indexOf('Overdue')===0&&!chaseLog[i.id]&&i.id.indexOf('INV-104')===0&&i.cust==='Northbank Bakery'})[0];
+  }
+  var selInv=null;
+  function drawCash(){
+    document.getElementById('clockTxt').textContent=clock.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+    var acc=invoices.filter(function(i){return i.chan==='account'});
+    var since=new Date(clock.getTime()-30*DAY);
+    var invd=invoices.filter(function(i){return i.issued>=since}).reduce(function(a,i){return a+gross(i)},0);
+    var out=acc.reduce(function(a,i){return a+Math.max(0,bal(i))},0);
+    var over=acc.filter(isOver).reduce(function(a,i){return a+collectible(i)},0);
+    var prom=acc.filter(function(i){return i.promise&&clock<=i.promise.by&&bal(i)>0}).reduce(function(a,i){return a+collectible(i)},0);
+    var disp=acc.reduce(function(a,i){return a+(bal(i)>0?dispG(i):0)},0);
+    var cash=invoices.reduce(function(a,i){return a+i.pays.filter(function(x){return x.st==='ok'&&x.on>=since&&x.on<=clock}).reduce(function(b,x){return b+x.p},0)},0);
+    document.getElementById('cashKpis').innerHTML=[['Outstanding',out,'account customers'],['Overdue',over,'not counting disputed amounts'],['Promised',prom,'chasing paused'],['In dispute',disp,'paused, rest still open'],['Cash received, last 30 days',cash,'confirmed only']].slice(0,5).map(function(k){return '<div class="card kpi"><div class="l">'+k[0]+'</div><div class="v" style="font-size:32px">'+gbp(k[1])+'</div><div class="n">'+k[2]+'</div></div>'}).join('');
+    var cq=queue();
+    document.getElementById('queue').innerHTML=cq.map(function(x){return '<div class="q"><div class="t"><b>'+esc(x[2])+'</b><span class="s">'+esc(x[3])+'</span></div>'+(x[4]?'<button type="button" class="btn btn-g" data-open="'+x[4]+'">Open</button>':'<button type="button" class="btn btn-g" data-go="toinvoice">Sort it</button>')+'</div>'}).join('')||'<p class="note">Nothing needs doing.</p>';
+    document.getElementById('cashCount').textContent=cq.length;
+    document.getElementById('mbOut').textContent=gbp(out);document.getElementById('mbOver').textContent=gbp(over);document.getElementById('mbDisp').textContent=gbp(disp);document.getElementById('mbCash').textContent=gbp(cash);
+    document.getElementById('invTable').innerHTML='<thead><tr><th>Invoice</th><th>Customer</th><th>Period</th><th>Total</th><th>Paid</th><th>Left to pay</th><th>Status</th></tr></thead><tbody>'+invoices.map(function(i){
+      var st=status(i);
+      return '<tr class="click'+(selInv===i.id?' sel':'')+'" data-open="'+i.id+'"><td class="m">'+i.id+'</td><td><b>'+esc(i.cust)+'</b></td><td>'+esc(i.period)+'</td><td class="m">'+gbp(gross(i))+'</td><td class="m">'+gbp(confirmed(i))+'</td><td class="m">'+gbp(Math.max(0,bal(i)))+'</td><td><span class="pill '+st[1]+'">'+st[0]+'</span>'+(i.dispute&&bal(i)>0?' <span class="pill p-ow">Dispute</span>':'')+'</td></tr>';
+    }).join('')+'</tbody>';
+    var t=chaseTarget(),cc=document.getElementById('chaseCard');
+    if(t){
+      cc.hidden=false;
+      document.getElementById('chaseWhy').textContent='Why now: '+t.id+' is '+status(t)[0].replace('Overdue ','').toLowerCase()+' overdue, no promise, no dispute, last contact '+fdy(t.ev[t.ev.length-1][0])+'.';
+      document.getElementById('chaseText').textContent='Hi Northbank Bakery accounts team,\n\nA quick reminder that invoice '+t.id+' for '+gbp(bal(t))+' (week ending 18 September) was due on '+fdy(due(t))+'.\n\nIf it has already been paid, please ignore this. If there is a problem with any of the charges, just reply and we\'ll sort it.\n\nThanks,\nLondon Delivery Network';
+    } else cc.hidden=true;
+    if(selInv)drawDetail(selInv); else document.getElementById('invDetail').innerHTML='';
+    drawStory();
+  }
+  function drawDetail(id){
+    var i=invoices.filter(function(x){return x.id===id})[0];if(!i)return;
+    var h='<div class="detail"><div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center"><h2>'+i.id+' · '+esc(i.cust)+'</h2><span class="pill '+status(i)[1]+'">'+status(i)[0]+'</span></div>';
+    h+='<div class="tablewrap"><table class="compact lines"><tbody>'+i.lines.map(function(l){return '<tr'+(l.disp?' class="flag"':'')+'><td>'+esc(l.d)+(l.disp?' · disputed':'')+'</td><td class="m" style="text-align:right">'+gbp(l.p)+'</td></tr>'}).join('')+'</tbody><tfoot><tr><td>Net</td><td class="m" style="text-align:right">'+gbp(net(i))+'</td></tr><tr><td>VAT 20%</td><td class="m" style="text-align:right">'+gbp(vat(net(i)))+'</td></tr><tr><td>Total</td><td class="m" style="text-align:right">'+gbp(gross(i))+'</td></tr><tr><td>Confirmed paid</td><td class="m" style="text-align:right">'+gbp(confirmed(i))+'</td></tr><tr><td>Left to pay</td><td class="m" style="text-align:right">'+gbp(Math.max(0,bal(i)))+'</td></tr></tfoot></table></div>';
+    if(i.dispute&&bal(i)>0)h+='<p class="note"><b>Dispute:</b> '+esc(i.dispute.why)+'. '+gbp(dispG(i))+' is paused; '+gbp(collectible(i))+' is not disputed and is still due. Owner: '+esc(i.dispute.who)+'. Next step: '+esc(i.dispute.next)+'.</p>';
+    if(i.chan==='account')h+='<p class="note"><b>Proof of delivery:</b> photos, signatures and timestamps are attached to each job and kept private. Only this customer\'s billing contact can see them.</p>';
+    h+='<b style="font-size:14px">What\'s happened</b><ul class="tl">'+i.ev.map(function(e){return '<li><span class="d">'+fdy(e[0])+'</span><span>'+esc(e[1])+'</span></li>'}).join('')+'</ul></div>';
+    document.getElementById('invDetail').innerHTML=h;
+  }
+  document.getElementById('cash').addEventListener('click',function(e){
+    var o=e.target.closest('[data-open]');if(o){selInv=o.dataset.open;drawCash();document.getElementById('invDetail').scrollIntoView({behavior:'smooth',block:'nearest'});}
+  });
+  document.getElementById('chaseOk').addEventListener('click',function(){
+    var t=chaseTarget();if(!t)return;chaseLog[t.id]=true;t.ev.push([new Date(clock.getTime()),'Reminder approved by William (demo: logged, not sent)']);drawCash();
+  });
+
+  // Story
+  var done=0,nb=function(){return invoices.filter(function(x){return x.cust==='Northbank Bakery'})[0];};
+  function drawStory(){
+    if(done<1&&nb())done=1;
+    document.querySelectorAll('#story button').forEach(function(b){var n=+b.dataset.step;b.disabled=n>done+1;b.classList.toggle('didit',n<=done);b.classList.toggle('next',n===done+1);});
+  }
+  document.getElementById('story').addEventListener('click',function(e){
+    var b=e.target.closest('[data-step]');if(!b||b.disabled)return;var n=+b.dataset.step;if(n<=done)return;
+    if(n===1){ if(!nb()){ items.forEach(function(i){if(i.st==='proposed')approveExtra(i);}); createNorthbank(); } }
+    if(n===2){ clock=new Date(2026,9,9,9,12); }
+    if(n===3){ var i=nb(); i.promise={by:new Date(2026,9,12),set:new Date(clock.getTime())}; i.ev.push([new Date(clock.getTime()),'Customer replied: will pay by 12 Oct. Chasing paused until then']); }
+    if(n===4){ var i4=nb(); clock=new Date(2026,9,10,9,12); i4.pays.push({p:15000,on:new Date(clock.getTime()),st:'check'}); i4.ev.push([new Date(clock.getTime()),'Customer says £150.00 has been paid. Waiting for the bank or accounts to confirm']); }
+    if(n===5){ var i5=nb(); i5.pays.forEach(function(x){if(x.st==='check')x.st='ok';}); i5.ev.push([new Date(clock.getTime()),'£150.00 confirmed in accounts. '+gbp(bal(i5))+' left to pay']); }
+    if(n===6){ var i6=nb(); clock=new Date(2026,9,12,9,12); var left=bal(i6); i6.pays.push({p:left,on:new Date(clock.getTime()),st:'ok'}); i6.promise=null; i6.ev.push([new Date(clock.getTime()),'Final '+gbp(left)+' confirmed. Paid in full, chasing closed']); }
+    done=n; selInv=nb()?nb().id:null;
+    document.getElementById('syncAt').textContent=fdy(clock)+' '+clock.toTimeString().slice(0,5);
+    drawCash();
+  });
+  drawRti();drawCash();
+
+  /* company + role */
+  document.getElementById('company').addEventListener('change',function(){
+    document.querySelector('.brand small').textContent=this.value+' · your logo here';
+  });
+  document.getElementById('role').addEventListener('change',function(){
+    var r=this.value;
+    document.querySelectorAll('.navlist button').forEach(function(b){
+      var owner=b.dataset.owner==='1',isDriver=b.dataset.go==='driver';
+      b.hidden = (r==='office'&&owner) || (r==='driver'&&!isDriver);
+    });
+    go(r==='driver'?'driver':'today');
+  });
+
+  /* nav */
+  function go(id){
+    document.querySelectorAll('.screen').forEach(function(s){s.hidden=s.id!==id});
+    document.querySelectorAll('.navlist button').forEach(function(b){if(b.dataset.go===id)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
+    window.scrollTo(0,0);
+  }
+  document.addEventListener('click',function(e){var t=e.target.closest('[data-go]');if(t){e.preventDefault();go(t.dataset.go);}});
+})();
+</script>
+</body>
+</html>
