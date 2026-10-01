@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Watson Core Printing | Website concept</title>
+<meta name="description" content="Concept website for Watson Core Printing: personalised foil prints, photo gifts, photo printing, passport photos and framing.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#121212">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body { margin: 0; background: #ffffff; }
+a { color: #121212; }
+a:hover { color: #121212; }
+.wcp *, .wcp *::before, .wcp *::after { box-sizing: border-box; }
+.wcp button, .wcp input, .wcp textarea { font: inherit; letter-spacing: inherit; color: inherit; }
+.wcp button { cursor: pointer; }
+.wcp :focus-visible { outline: 2px solid #121212; outline-offset: 3px; }
+.wcp h1, .wcp h2, .wcp h3, .wcp p, .wcp ul, .wcp ol { margin: 0; }
+.wrap { width: 100%; max-width: 1240px; margin-left: auto; margin-right: auto; padding-left: 24px; padding-right: 24px; }
+.muted { color: rgba(18,18,18,.75); }
+.lk { background: none; border: 0; padding: 0; min-height: 44px; display: inline-flex; align-items: center; text-align: left; text-decoration: underline; text-decoration-color: rgba(18,18,18,.4); text-underline-offset: 4px; }
+.lk:hover { text-decoration-color: #121212; text-decoration-thickness: 2px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 28px; border: 1px solid #121212; background: #ffffff; color: #121212; font-size: 15px; letter-spacing: 0.06em; text-align: center; }
+.btn:hover { box-shadow: 0 0 0 1px #121212; }
+.btn.fill { background: #121212; color: #ffffff; }
+.btn.fill:hover { background: #333333; box-shadow: none; }
+.btn.inv { background: transparent; color: #ffffff; border-color: #ffffff; }
+.btn.inv:hover { background: #ffffff; color: #121212; box-shadow: none; }
+.btn.block { width: 100%; }
+.ico { position: relative; width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; background: none; border: 0; padding: 0; }
+.ico:hover svg { transform: scale(1.08); }
+.badge { position: absolute; right: 2px; bottom: 4px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px; background: #121212; color: #ffffff; font-size: 11px; line-height: 18px; letter-spacing: 0; text-align: center; }
+.logo { background: none; border: 0; padding: 0; display: flex; justify-content: center; }
+.nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 4px; }
+.nav-b { background: none; border: 0; min-height: 44px; padding: 0 12px; display: inline-flex; align-items: center; gap: 6px; font-size: 15px; color: rgba(18,18,18,.78); }
+.nav-b:hover, .nav-b.is-on { color: #121212; text-decoration: underline; text-underline-offset: 6px; }
+.mega { border-top: 1px solid rgba(18,18,18,.1); padding: 20px 0 28px; }
+.mega-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 16px 32px; }
+.mega-l { display: flex; width: 100%; min-height: 44px; align-items: center; background: none; border: 0; padding: 0; text-align: left; font-size: 15px; }
+.mega-l:hover { text-decoration: underline; text-underline-offset: 4px; }
+.pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill { min-height: 44px; padding: 0 20px; border-radius: 40px; border: 1px solid rgba(18,18,18,.55); background: #ffffff; font-size: 14px; }
+.pill:hover { border-color: #121212; box-shadow: 0 0 0 1px #121212; }
+.pill.is-on { background: #121212; border-color: #121212; color: #ffffff; }
+.sws { display: flex; flex-wrap: wrap; gap: 12px; }
+.sw { width: 44px; height: 44px; border-radius: 50%; border: 12px solid; padding: 0; box-shadow: 0 0 0 1px rgba(18,18,18,.3); }
+.sw.is-on { box-shadow: 0 0 0 3px #ffffff, 0 0 0 5px #121212; }
+.grid { display: grid; gap: 32px 20px; grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr)); }
+.grid.g3 { grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr)); }
+.tile { background: none; border: 0; padding: 0; text-align: left; display: flex; flex-direction: column; gap: 4px; }
+.tile-t { margin-top: 10px; font-size: 15px; }
+.tile:hover .tile-t { text-decoration: underline; text-underline-offset: 4px; }
+.tile-p { font-size: 17px; }
+.vis { position: relative; width: 100%; aspect-ratio: 1 / 1; background: #F3F1ED; display: flex; align-items: center; justify-content: center; overflow: hidden; font-size: 16px; letter-spacing: 0; }
+.vis-card { width: 52%; aspect-ratio: 4 / 5; display: flex; }
+.vis-win { flex: 1; min-width: 0; display: flex; align-items: center; justify-content: center; }
+.vis-win svg { width: 62%; height: auto; }
+.vis-tag { position: absolute; left: 12px; bottom: 9px; font-size: 12px; letter-spacing: 0.04em; color: #5A5750; }
+.vis.big { font-size: 34px; }
+.vis.sm { width: 84px; flex: none; font-size: 6px; }
+.vis.sm .vis-tag { display: none; }
+.cats { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); }
+.cats.sizes { grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr)); }
+.cat { display: flex; flex-direction: column; gap: 6px; min-height: 172px; padding: 22px; border: 1px solid rgba(18,18,18,.16); background: #ffffff; text-align: left; }
+.cat:hover { border-color: #121212; box-shadow: 0 0 0 1px #121212; }
+.cat svg { width: 44px; height: 44px; margin-bottom: 10px; }
+.cat-t { font-size: 19px; }
+.cat-d { font-size: 14px; color: rgba(18,18,18,.75); }
+.lbl { display: block; font-size: 14px; margin-bottom: 6px; color: rgba(18,18,18,.78); }
+.inp { display: block; width: 100%; min-height: 48px; padding: 10px 14px; border: 1px solid rgba(18,18,18,.55); border-radius: 0; background: #ffffff; }
+.inp:focus { outline: 2px solid #121212; outline-offset: 1px; }
+.box { border: 1px solid rgba(18,18,18,.16); padding: 24px; }
+.qty { display: inline-flex; align-items: center; border: 1px solid rgba(18,18,18,.55); }
+.qty button { width: 44px; height: 46px; background: none; border: 0; font-size: 18px; }
+.qty span { min-width: 40px; text-align: center; }
+.split { display: grid; gap: 40px; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); align-items: start; }
+.row { display: grid; grid-template-columns: 90px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid rgba(18,18,18,.14); }
+.pay { font-size: 12px; padding: 4px 8px; border: 1px solid rgba(18,18,18,.25); color: rgba(18,18,18,.8); }
+.show-narrow { display: none; }
+@media (max-width: 860px) {
+  .hide-narrow { display: none; }
+  .show-narrow { display: inline-flex; }
+}
+.vis-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+.pt { font-size: clamp(32px, 3.6vw, 44px); line-height: 1.15; font-weight: 400; }
+.pg { padding-top: 20px; padding-bottom: 80px; }
+.lead { margin-top: 12px; max-width: 38em; font-size: 18px; color: rgba(18,18,18,.78); }
+.h2 { font-size: 30px; line-height: 1.2; font-weight: 400; }
+.h3 { font-size: 18px; font-weight: 600; }
+.wcp .mt4 { margin-top: 4px; }
+@media (max-width: 600px) {
+  .cats, .cats.sizes, .grid, .grid.g3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cats { gap: 10px; }
+  .grid { gap: 24px 12px; }
+  .cat { min-height: 0; padding: 16px; }
+  .cat-t { font-size: 17px; }
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<template id="part-tile">
+<button class="tile" onClick="{{ t.go }}">
+<span class="vis">
+<span class="vis-card" style="border: {{ t.fw }} solid {{ t.fc }}; background: {{ t.mc }}; padding: {{ t.pad }}; box-shadow: inset 0 0 0 2px {{ t.lip }}, 0 0 0 1px rgba(18,18,18,.14), 0 16px 22px -16px rgba(18,18,18,.5)">
+<span class="vis-win" style="background: {{ t.win }}; box-shadow: 0 0 0 0.16em {{ t.wl }}">
+<svg viewBox="0 0 48 48" fill="none" stroke="{{ t.ink }}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{ t.d }}"></path></svg>
+</span>
+</span>
+<span class="vis-tag">Photo to add</span>
+<sc-if value="{{ t.hasImg }}"><img class="vis-img" src="{{ t.img }}" alt="{{ t.t }}"></sc-if>
+</span>
+<span class="tile-t">{{ t.t }}</span>
+<span class="tile-p">{{ t.price }}</span>
+</button>
+</template>
+<template id="tpl">
+<div id="wcp-top" class="wcp" style="font-family: Assistant, Segoe UI, Helvetica Neue, sans-serif; font-size: 16px; line-height: 1.55; letter-spacing: 0.02em; color: #121212; background: #ffffff">
+<div style="background: #121212; color: #ffffff; font-size: 13px; letter-spacing: 0.08em">
+<div class="wrap" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 40px; padding-top: 9px; padding-bottom: 9px; text-align: center">
+<span>Personalised foil prints, photo gifts and framing</span>
+<span class="hide-narrow">Order online, then collect in store or have it delivered</span>
+</div>
+</div>
+<header style="border-bottom: 1px solid rgba(18,18,18,.1)">
+<div class="wrap" style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px; padding-top: 16px; padding-bottom: 8px">
+<div style="display: flex; align-items: center; gap: 2px">
+<button class="ico show-narrow" aria-label="Menu" onClick="{{ toggleRoot }}"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"></path></svg></button>
+<button class="ico" aria-label="Search" onClick="{{ goSearch }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5L21 21"></path></svg></button>
+</div>
+<button class="logo" aria-label="Watson Core Printing home" onClick="{{ goHome }}"><img src="https://www.watsoncoreprinting.co.uk/cdn/shop/files/WCP_Black.jpg?width=600" alt="Watson Core Printing" style="display: block; width: 210px; max-width: 44vw; height: auto"></button>
+<div style="display: flex; align-items: center; justify-content: flex-end; gap: 2px">
+<span class="hide-narrow" style="font-size: 14px; margin-right: 12px; color: rgba(18,18,18,.78)">United Kingdom | GBP £</span>
+<button class="ico hide-narrow" aria-label="Log in" onClick="{{ goAccount }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg></button>
+<button class="ico" aria-label="Cart" onClick="{{ goCart }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 13H6L5 8z"></path><path d="M9 8V6a3 3 0 0 1 6 0v2"></path></svg><sc-if value="{{ hasCart }}"><span class="badge">{{ cartCount }}</span></sc-if></button>
+</div>
+</div>
+<div class="wrap hide-narrow" style="padding-bottom: 8px">
+<nav class="nav" aria-label="Main">
+<sc-for list="{{ nav }}" as="n">
+<button class="nav-b {{ n.cls }}" aria-expanded="{{ n.open }}" onClick="{{ n.go }}">{{ n.t }}<sc-if value="{{ n.has }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></sc-if></button>
+</sc-for>
+</nav>
+</div>
+<sc-if value="{{ menuOpen }}">
+<div class="mega">
+<div class="wrap">
+<sc-if value="{{ menuRoot }}">
+<div style="display: flex; flex-direction: column">
+<sc-for list="{{ nav }}" as="n">
+<button class="mega-l" onClick="{{ n.go }}" style="font-size: 17px; border-bottom: 1px solid rgba(18,18,18,.08)">{{ n.t }}</button>
+</sc-for>
+<button class="mega-l" onClick="{{ goAccount }}" style="font-size: 17px">Log in</button>
+</div>
+</sc-if>
+<sc-if value="{{ menuGroup }}">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 24px">
+<span style="font-size: 20px">{{ menuTitle }}</span>
+<sc-if value="{{ hasMenuAll }}"><button class="lk" onClick="{{ menuAll }}" style="font-size: 15px">{{ menuAllT }}</button></sc-if>
+</div>
+<div style="display: flex; align-items: center; gap: 16px">
+<button class="lk show-narrow" onClick="{{ menuBack }}" style="font-size: 15px">All categories</button>
+<button class="ico" aria-label="Close menu" onClick="{{ closeMenu }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"></path></svg></button>
+</div>
+</div>
+<div class="mega-cols">
+<sc-for list="{{ menuSecs }}" as="sec">
+<div>
+<p style="font-size: 14px; color: rgba(18,18,18,.7); padding-bottom: 4px; border-bottom: 1px solid rgba(18,18,18,.1); margin-bottom: 4px">{{ sec.t }}</p>
+<sc-for list="{{ sec.links }}" as="l">
+<button class="mega-l" onClick="{{ l.go }}">{{ l.t }}</button>
+</sc-for>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+</div>
+</div>
+</sc-if>
+</header>
+<main>
+<sc-if value="{{ notHome }}">
+<div class="wrap" style="padding-top: 12px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 10px; font-size: 14px; color: rgba(18,18,18,.75)">
+<sc-for list="{{ crumbs }}" as="b">
+<span style="display: inline-flex; align-items: center; gap: 10px"><button class="lk" onClick="{{ b.go }}">{{ b.t }}</button><span aria-hidden="true">/</span></span>
+</sc-for>
+<span>{{ here }}</span>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{ isHome }}">
+<div>
+<section style="background: #F3F1ED">
+<div class="wrap" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr)); gap: 40px; align-items: center; padding-top: 56px; padding-bottom: 56px">
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 22px">
+<h1 style="font-size: clamp(36px, 4.4vw, 58px); line-height: 1.08; font-weight: 400; letter-spacing: 0">Foil prints, photo gifts and framing, made to order</h1>
+<p style="font-size: 19px; max-width: 32em; color: rgba(18,18,18,.78)">Hand-pressed foil prints of your maps, marathons, pets and photos, from £14.99. Plus photo gifts, photo printing, passport photos and framing, all in one place.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<button class="btn fill" onClick="{{ goFoil }}">Shop foil prints</button>
+<button class="btn" onClick="{{ goGifts }}">Shop photo gifts</button>
+</div>
+</div>
+<div style="position: relative; min-height: 440px; background: #D9D1C4; display: flex; align-items: center; justify-content: center; padding: 40px 24px">
+<div style="width: min(290px, 72%); background: #ffffff; padding: 22px 22px 20px; transform: rotate(-3deg); box-shadow: 0 30px 40px -24px rgba(18,18,18,.55); display: flex; flex-direction: column; align-items: center; gap: 12px">
+<svg viewBox="0 0 200 224" fill="none" stroke="{{ accent }}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: block; width: 100%; height: auto">
+<path stroke-width="1.3" d="M4 44h192M4 98h192M4 152h126M58 6v208M132 6v146M132 152l62 54M4 196l54-44M96 152v66"></path>
+<path stroke-width="0.9" d="M28 6l30 38M96 44l36 54M150 98l44 40M26 152v44M160 6v38M4 70h54M132 70h64M96 98v54M170 152v36"></path>
+<path stroke-width="5" d="M2 126c26-18 48 8 76-6s38-36 66-22 30 4 54-2"></path>
+<path stroke-width="1.3" d="M127 98a5 5 0 1 0 10 0 5 5 0 1 0-10 0"></path>
+</svg>
+<span style="font-family: Georgia, serif; font-size: 15px; letter-spacing: 0.42em; padding-left: 0.42em; color: #7A5F17">YOUR PLACE</span>
+<span style="font-family: Georgia, serif; font-size: 12px; letter-spacing: 0.04em; color: #7A5F17">Names, a date, a few words</span>
+</div>
+<span class="vis-tag">Photo to add</span>
+<sc-if value="{{ hasHero }}"><img class="vis-img" src="{{ heroImg }}" alt="A foil print by Watson Core Printing"></sc-if>
+</div>
+</div>
+</section>
+<section class="wrap" style="padding-top: 72px">
+<h2 style="font-size: 30px; line-height: 1.2; font-weight: 400; margin-bottom: 24px">What we make</h2>
+<div class="cats">
+<sc-for list="{{ cats }}" as="c">
+<button class="cat" onClick="{{ c.go }}">
+<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{ c.d }}"></path></svg>
+<span class="cat-t">{{ c.t }}</span>
+<span class="cat-d">{{ c.x }}</span>
+</button>
+</sc-for>
+</div>
+</section>
+<section class="wrap" style="padding-top: 72px">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 8px 24px; margin-bottom: 24px">
+<div>
+<h2 class="h2">Personalise all our products</h2>
+<p class="muted" style="margin-top: 6px">Six foil prints, each made from your own place, race, pet or photo.</p>
+</div>
+<button class="lk" onClick="{{ goFoil }}">View all foil prints</button>
+</div>
+<div class="grid g3">
+<sc-for list="{{ foil }}" as="t">
+<sc-inc name="tile"></sc-inc>
+</sc-for>
+</div>
+</section>
+<section style="background: #121212; color: #ffffff; margin-top: 72px">
+<div class="wrap" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 40px 48px; padding-top: 60px; padding-bottom: 60px">
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 12px">
+<svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="{{ accent }}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 15V9h26v22h-4M8 15h28v24H8zM8 33l8-8 6 6 5-5 9 9"></path></svg>
+<h2 style="font-size: 24px; line-height: 1.2; font-weight: 400">Print your photos</h2>
+<p style="color: rgba(255,255,255,.84)">Send photos from your phone or computer, then collect your prints in store or have them posted.</p>
+<button class="btn inv" onClick="{{ goPrinting }}" style="margin-top: 6px">Order prints</button>
+</div>
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 12px">
+<svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="{{ accent }}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8h24v32H12zM19 20a5 5 0 1 0 10 0 5 5 0 1 0-10 0M15 40c0-7 4-11 9-11s9 4 9 11"></path></svg>
+<h2 style="font-size: 24px; line-height: 1.2; font-weight: 400">Passport and ID photos</h2>
+<p style="color: rgba(255,255,255,.84)">Printed photos, or a digital code for online applications. Any country, any age.</p>
+<button class="btn inv" onClick="{{ goPassport }}" style="margin-top: 6px">See passport photos</button>
+</div>
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 12px">
+<svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="{{ accent }}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 8h32v32H8zM15 15h18v18H15zM8 8l7 7M40 8l-7 7M40 40l-7-7M8 40l7-7"></path></svg>
+<h2 style="font-size: 24px; line-height: 1.2; font-weight: 400">Bespoke framing</h2>
+<p style="color: rgba(255,255,255,.84)">Medals, shirts, artwork, certificates and keepsakes. What can we frame for you?</p>
+<button class="btn inv" onClick="{{ goBespoke }}" style="margin-top: 6px">Ask about framing</button>
+</div>
+</div>
+</section>
+<section class="wrap" style="padding-top: 72px">
+<h2 class="h2">Turn a photo into wall art</h2>
+<p class="muted" style="margin-top: 6px; margin-bottom: 24px">Photo canvases, stretched over a wooden frame and ready to hang.</p>
+<div class="cats sizes">
+<sc-for list="{{ canvasSizes }}" as="c">
+<button class="cat" onClick="{{ c.go }}" style="min-height: 130px">
+<span class="cat-t">{{ c.l }}</span>
+<span class="cat-d">Photo canvas</span>
+<span style="margin-top: auto; font-size: 18px">{{ c.price }}</span>
+</button>
+</sc-for>
+</div>
+</section>
+<section class="wrap" style="padding-top: 72px">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 8px 24px; margin-bottom: 24px">
+<h2 class="h2">Photo gifts</h2>
+<button class="lk" onClick="{{ goGifts }}">View all photo gifts</button>
+</div>
+<div class="grid">
+<sc-for list="{{ gifts4 }}" as="t">
+<sc-inc name="tile"></sc-inc>
+</sc-for>
+</div>
+</section>
+<section style="background: #F3F1ED; margin-top: 72px">
+<div class="wrap" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 32px 48px; align-items: center; padding-top: 60px; padding-bottom: 60px">
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 14px">
+<h2 class="h2">Order online, collect in store</h2>
+<p style="max-width: 32em; color: rgba(18,18,18,.78)">Choose click and collect at checkout. We email you when your order is ready, and collection is free.</p>
+<button class="btn" onClick="{{ goStores }}">Store details</button>
+</div>
+<div style="background: #ffffff; padding: 28px; display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 20px">[Shop name]</span>
+<span>[Address line 1, town, postcode]</span>
+<span>[Phone number]</span>
+<span style="margin-top: 8px">[Opening hours]</span>
+</div>
+</div>
+</section>
+<section class="wrap" style="padding-top: 72px; padding-bottom: 80px">
+<h2 style="font-size: 30px; line-height: 1.2; font-weight: 400; margin-bottom: 24px">What customers say</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 16px">
+<div class="box" style="display: flex; flex-direction: column; gap: 10px">
+<p>[Customer review to add]</p>
+<span class="muted" style="font-size: 14px">[Customer name]</span>
+</div>
+<div class="box" style="display: flex; flex-direction: column; gap: 10px">
+<p>[Customer review to add]</p>
+<span class="muted" style="font-size: 14px">[Customer name]</span>
+</div>
+<div class="box" style="display: flex; flex-direction: column; gap: 10px">
+<p>[Customer review to add]</p>
+<span class="muted" style="font-size: 14px">[Customer name]</span>
+</div>
+</div>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{ isCol }}">
+<section class="wrap pg">
+<h1 class="pt">{{ col.t }}</h1>
+<p style="margin-top: 12px; max-width: 40em; font-size: 18px; color: rgba(18,18,18,.78)">{{ col.intro }}</p>
+<sc-if value="{{ col.hasKids }}">
+<div class="cats" style="margin-top: 28px">
+<sc-for list="{{ col.kids }}" as="c">
+<button class="cat" onClick="{{ c.go }}">
+<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{ c.d }}"></path></svg>
+<span class="cat-t">{{ c.t }}</span>
+<span class="cat-d">{{ c.x }}</span>
+</button>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{ col.hasProds }}">
+<div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; margin-top: 36px; margin-bottom: 20px">
+<span class="muted" style="font-size: 14px">{{ col.count }}</span>
+<div class="pills">
+<sc-for list="{{ col.sorts }}" as="o">
+<button class="pill {{ o.cls }}" aria-pressed="{{ o.on }}" onClick="{{ o.pick }}">{{ o.l }}</button>
+</sc-for>
+</div>
+</div>
+<div class="grid">
+<sc-for list="{{ col.prods }}" as="t">
+<sc-inc name="tile"></sc-inc>
+</sc-for>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{ col.hasCta }}">
+<div class="box" style="margin-top: 48px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; background: #F3F1ED; border-color: #F3F1ED">
+<p style="flex: 1 1 320px; font-size: 18px">{{ col.cta }}</p>
+<button class="btn fill" onClick="{{ goBespoke }}">Ask about bespoke framing</button>
+</div>
+</sc-if>
+</section>
+</sc-if>
+<sc-if value="{{ isProd }}">
+<section class="wrap pg">
+<div class="split">
+<div>
+<div class="vis big">
+<div class="vis-card" style="border: {{ prod.v.fw }} solid {{ prod.v.fc }}; background: {{ prod.v.mc }}; padding: {{ prod.v.pad }}; box-shadow: inset 0 0 0 2px {{ prod.v.lip }}, 0 0 0 1px rgba(18,18,18,.14), 0 30px 40px -28px rgba(18,18,18,.5)">
+<div class="vis-win" style="background: {{ prod.v.win }}; box-shadow: 0 0 0 0.16em {{ prod.v.wl }}">
+<svg viewBox="0 0 48 48" fill="none" stroke="{{ prod.v.ink }}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{ prod.v.d }}"></path></svg>
+</div>
+</div>
+<span class="vis-tag">Photo to add</span>
+<sc-if value="{{ prod.v.hasImg }}"><img class="vis-img" src="{{ prod.v.img }}" alt="{{ prod.t }}"></sc-if>
+</div>
+<sc-if value="{{ prod.live }}">
+<p class="muted" style="font-size: 14px; margin-top: 10px">The preview changes as you choose a frame and mount.</p>
+</sc-if>
+</div>
+<div style="display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 12px; letter-spacing: 0.14em; color: rgba(18,18,18,.72)">WATSON CORE PRINTING</span>
+<h1 style="font-size: clamp(30px, 3.4vw, 42px); line-height: 1.15; font-weight: 400">{{ prod.t }}</h1>
+</div>
+<div>
+<span style="font-size: 22px; letter-spacing: 0.04em">{{ prod.price }}</span>
+<span class="muted" style="display: block; font-size: 13px">Taxes included.</span>
+</div>
+<sc-for list="{{ prod.groups }}" as="g">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 14px"><span class="muted">{{ g.n }}: </span><span>{{ g.cur }}</span></div>
+<sc-if value="{{ g.isPill }}">
+<div class="pills">
+<sc-for list="{{ g.vals }}" as="o">
+<button class="pill {{ o.cls }}" aria-pressed="{{ o.on }}" onClick="{{ o.pick }}">{{ o.l }}</button>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{ g.isSw }}">
+<div class="sws">
+<sc-for list="{{ g.vals }}" as="o">
+<button class="sw {{ o.cls }}" aria-label="{{ o.l }}" aria-pressed="{{ o.on }}" title="{{ o.l }}" onClick="{{ o.pick }}" style="background: {{ o.c2 }}; border-color: {{ o.c }}"></button>
+</sc-for>
+</div>
+</sc-if>
+</div>
+</sc-for>
+<sc-for list="{{ prod.fields }}" as="f">
+<div>
+<label class="lbl" for="{{ f.id }}">{{ f.l }}</label>
+<input class="inp" id="{{ f.id }}" type="text" placeholder="{{ f.ph }}" value="{{ f.val }}" onChange="{{ f.set }}">
+</div>
+</sc-for>
+<sc-if value="{{ prod.up }}">
+<div class="box" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; padding: 16px 18px">
+<div style="flex: 1 1 220px; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 15px">Your photos</span>
+<span class="muted" style="font-size: 14px">{{ prod.upHint }}</span>
+<span style="font-size: 14px">{{ prod.upState }}</span>
+</div>
+<button class="btn" onClick="{{ prod.addPhoto }}">Add a photo</button>
+</div>
+</sc-if>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span class="muted" style="font-size: 14px">Quantity</span>
+<div>
+<div class="qty">
+<button aria-label="Decrease quantity" onClick="{{ prod.dec }}">−</button>
+<span>{{ prod.qty }}</span>
+<button aria-label="Increase quantity" onClick="{{ prod.inc }}">+</button>
+</div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px; max-width: 440px">
+<button class="btn block" onClick="{{ prod.add }}">Add to cart</button>
+<button class="btn fill block" onClick="{{ prod.buy }}">Buy it now</button>
+</div>
+<sc-if value="{{ added }}">
+<div class="box" role="status" style="border-color: #121212; display: flex; flex-direction: column; gap: 12px; max-width: 440px">
+<span style="display: flex; align-items: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l5 5L20 6"></path></svg>Item added to your cart</span>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<button class="btn fill" onClick="{{ goCart }}">View cart</button>
+<button class="btn" onClick="{{ prod.back }}">Continue shopping</button>
+</div>
+</div>
+</sc-if>
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 34em">
+<sc-for list="{{ prod.paras }}" as="x">
+<p>{{ x.x }}</p>
+</sc-for>
+<sc-if value="{{ prod.hasBullets }}">
+<ul style="padding-left: 20px; display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{ prod.bullets }}" as="x">
+<li>{{ x.x }}</li>
+</sc-for>
+</ul>
+</sc-if>
+</div>
+<div style="border-top: 1px solid rgba(18,18,18,.1); padding-top: 18px; display: flex; flex-direction: column; gap: 6px; max-width: 34em">
+<h2 style="font-size: 18px; font-weight: 600">Delivery and collection</h2>
+<p class="muted">Made to order. Postage options are shown at checkout, or choose click and collect and pick it up for free.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 0 24px">
+<button class="lk" onClick="{{ goDelivery }}">Delivery information</button>
+<button class="lk" onClick="{{ goContact }}">Ask a question</button>
+</div>
+</div>
+</div>
+</div>
+<sc-if value="{{ prod.hasRelated }}">
+<div style="margin-top: 72px">
+<h2 style="font-size: 26px; line-height: 1.2; font-weight: 400; margin-bottom: 20px">You may also like</h2>
+<div class="grid">
+<sc-for list="{{ prod.related }}" as="t">
+<sc-inc name="tile"></sc-inc>
+</sc-for>
+</div>
+</div>
+</sc-if>
+</section>
+</sc-if>
+<sc-if value="{{ isPrinting }}">
+<section class="wrap pg">
+<h1 class="pt">Photo printing</h1>
+<p class="lead">Turn the photos on your phone or computer into prints. Order here, then collect in store or have them posted.</p>
+<div class="split" style="margin-top: 36px">
+<div style="display: flex; flex-direction: column; gap: 24px">
+<div>
+<h2 style="font-size: 22px; font-weight: 600">How it works</h2>
+<ol style="margin-top: 10px; padding-left: 22px; display: flex; flex-direction: column; gap: 8px">
+<li>Add your photos.</li>
+<li>Choose how many prints you want.</li>
+<li>Collect in store, or have them delivered.</li>
+</ol>
+</div>
+<div class="box" style="display: flex; flex-direction: column; gap: 6px">
+<h3 class="h3">Order from your phone</h3>
+<p class="muted">[Link to your print-ordering app or web portal goes here]</p>
+</div>
+<div class="box" style="display: flex; flex-direction: column; gap: 6px">
+<h3 class="h3">More sizes</h3>
+<p class="muted">[Add your other print sizes and prices here, such as 6×4, 7×5 and 8×6 in]</p>
+</div>
+</div>
+<div class="box" style="display: flex; flex-direction: column; gap: 20px; border-color: #121212">
+<h2 style="font-size: 22px; font-weight: 600">Order 5×3 in prints</h2>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span class="muted" style="font-size: 14px">How many prints?</span>
+<div class="pills">
+<sc-for list="{{ print.qtys }}" as="o">
+<button class="pill {{ o.cls }}" aria-pressed="{{ o.on }}" onClick="{{ o.pick }}">{{ o.l }}</button>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 15px">Your photos</span>
+<span class="muted" style="font-size: 14px">{{ print.upState }}</span>
+</div>
+<button class="btn" onClick="{{ print.addPhoto }}">Add photos</button>
+</div>
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; border-top: 1px solid rgba(18,18,18,.1); padding-top: 16px">
+<span>{{ print.summary }}</span>
+<span style="font-size: 22px">{{ print.price }}</span>
+</div>
+<button class="btn fill block" onClick="{{ print.add }}">Add prints to cart</button>
+<sc-if value="{{ print.added }}">
+<div role="status" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 16px">
+<span>Prints added to your cart</span>
+<button class="lk" onClick="{{ goCart }}">View cart</button>
+</div>
+</sc-if>
+</div>
+</div>
+</section>
+</sc-if>
+<sc-if value="{{ isPassport }}">
+<section class="wrap pg">
+<h1 class="pt">Passport and ID photos</h1>
+<p class="lead">Photos for passports, driving licences, visas and ID cards, printed or as a digital code for online applications.</p>
+<div class="split" style="margin-top: 36px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 28px 32px">
+<div>
+<h2 style="font-size: 20px; font-weight: 600">More than passports</h2>
+<p class="muted" style="margin-top: 6px">Driving licences, visa and citizenship applications, ID cards, blue badges and bus passes all use the same kind of photo. Tell us what it is for and we size it to suit.</p>
+</div>
+<div>
+<h2 style="font-size: 20px; font-weight: 600">Applying online</h2>
+<p class="muted" style="margin-top: 6px">We can give you a photo code to enter on your passport application, or a digital image to upload yourself.</p>
+</div>
+<div>
+<h2 style="font-size: 20px; font-weight: 600">Any country</h2>
+<p class="muted" style="margin-top: 6px">Every country sets its own photo rules. We print, or supply a digital image, to the size and background that country asks for.</p>
+</div>
+<div>
+<h2 style="font-size: 20px; font-weight: 600">Children and babies</h2>
+<p class="muted" style="margin-top: 6px">Photos are taken by a person, not a booth, so we can take our time and help little ones settle.</p>
+</div>
+</div>
+<div class="box" style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px; border-color: #121212">
+<span style="font-size: 34px; line-height: 1.1">£9.95</span>
+<span>per person</span>
+<p class="muted">Eight printed photos, or a digital code for an online application.</p>
+<p class="muted">Call in during opening hours: [opening hours]. [Walk in or book ahead: to confirm]</p>
+<button class="btn fill" onClick="{{ goStores }}" style="margin-top: 6px">Find the shop</button>
+</div>
+</div>
+</section>
+</sc-if>
+<sc-if value="{{ isBespoke }}">
+<section class="wrap pg">
+<h1 class="pt">Bespoke framing</h1>
+<p class="lead">If it matters to you, we can frame it. Tell us what you have and we will design the frame and mount around it.</p>
+<h2 style="font-size: 26px; line-height: 1.2; font-weight: 400; margin-top: 44px; margin-bottom: 18px">What we frame</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 26px 32px">
+<div>
+<h3 class="h3">Medals</h3>
+<p class="muted mt4">Your own or a relative's, set out with ribbons, photos and a plaque.</p>
+</div>
+<div>
+<h3 class="h3">Military presentations</h3>
+<p class="muted mt4">Leaving gifts and presentation pieces with cap badges, flashes, photographs and brass plaques.</p>
+</div>
+<div>
+<h3 class="h3">Flags and pennants</h3>
+<p class="muted mt4">From full-size flags down to small pennants.</p>
+</div>
+<div>
+<h3 class="h3">Regimental photographs</h3>
+<p class="muted mt4">We can design, print and frame regimental and squadron photographs.</p>
+</div>
+<div>
+<h3 class="h3">Art and canvases</h3>
+<p class="muted mt4">Help choosing a mount and frame that let the artwork do the talking. We can print your image too.</p>
+</div>
+<div>
+<h3 class="h3">Sports shirts</h3>
+<p class="muted mt4">Football, rugby, cycling and running shirts, framed with photos, wording or other memorabilia.</p>
+</div>
+<div>
+<h3 class="h3">Boxing shorts</h3>
+<p class="muted mt4">Framed with pictures and a few lines about the fight.</p>
+</div>
+<div>
+<h3 class="h3">Sports medals</h3>
+<p class="muted mt4">Marathon and race medals, framed with your bib, photo or route map.</p>
+</div>
+<div>
+<h3 class="h3">Objects and keepsakes</h3>
+<p class="muted mt4">Deep box frames for things that are not flat.</p>
+</div>
+<div>
+<h3 class="h3">Certificates</h3>
+<p class="muted mt4">Ready-made A4 certificate frames, or larger frames with mounts. One, or many.</p>
+</div>
+<div>
+<h3 class="h3">Mounts cut to size</h3>
+<p class="muted mt4">Give us the inside and outside measurements and we cut it to fit.</p>
+</div>
+<div>
+<h3 class="h3">Trade and business orders</h3>
+<p class="muted mt4">Framing and mounts for other businesses, supplied in quantity.</p>
+</div>
+</div>
+<div class="split" style="margin-top: 60px">
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px">
+<h2 style="font-size: 26px; line-height: 1.2; font-weight: 400">Ask about a framing job</h2>
+<p class="muted" style="max-width: 30em">Tell us what you would like framed and roughly how big it is. We will come back with ideas and a price.</p>
+<button class="lk" onClick="{{ goFrames }}">Shop ready-made frames</button>
+<button class="lk" onClick="{{ goMounts }}">Shop standard mounts</button>
+</div>
+<div>
+<sc-if value="{{ bespokeForm }}">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div>
+<label class="lbl" for="b-name">Name</label>
+<input class="inp" id="b-name" type="text">
+</div>
+<div>
+<label class="lbl" for="b-email">Email (required)</label>
+<input class="inp" id="b-email" type="email">
+</div>
+<div>
+<label class="lbl" for="b-what">What would you like framed?</label>
+<input class="inp" id="b-what" type="text" placeholder="A marathon medal and race bib">
+</div>
+<div>
+<label class="lbl" for="b-size">Rough size (optional)</label>
+<input class="inp" id="b-size" type="text" placeholder="About 40 by 30 cm">
+</div>
+<div>
+<label class="lbl" for="b-msg">Anything else we should know?</label>
+<textarea class="inp" id="b-msg" rows="4"></textarea>
+</div>
+<div>
+<button class="btn fill" onClick="{{ sendBespoke }}">Send enquiry</button>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{ bespokeDone }}">
+<div class="box" role="status" style="border-color: #121212">
+<p style="font-size: 18px">Enquiry sent</p>
+<p class="muted" style="margin-top: 6px">We reply within [response time].</p>
+</div>
+</sc-if>
+</div>
+</div>
+</section>
+</sc-if>
+<sc-if value="{{ isClient }}">
+<section class="wrap pg">
+<h1 class="pt">Client area</h1>
+<p class="lead">Private galleries and proofs. Enter the code from your email to see your photos, or to approve a proof before we print.</p>
+<div style="margin-top: 32px; max-width: 520px">
+<sc-if value="{{ clientForm }}">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div>
+<label class="lbl" for="g-code">Gallery or order code</label>
+<input class="inp" id="g-code" type="text">
+</div>
+<div>
+<button class="btn fill" onClick="{{ sendClient }}">Open gallery</button>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{ clientDone }}">
+<div class="box" role="status" style="border-color: #121212">
+<p style="font-size: 18px">[Gallery or proofing service opens here]</p>
+<p class="muted" style="margin-top: 6px">[Choose a gallery provider and link it to this page]</p>
+</div>
+</sc-if>
+</div>
+</section>
+</sc-if>
+<sc-if value="{{ isStores }}">
+<section class="wrap pg">
+<h1 class="pt">Store locations</h1>
+<p class="lead">Visit us to collect an order, have a passport photo taken or talk through a framing job.</p>
+<div class="split" style="margin-top: 36px">
+<div class="box" style="display: flex; flex-direction: column; gap: 6px">
+<h2 style="font-size: 22px; font-weight: 600">[Shop name]</h2>
+<span>[Address line 1]</span>
+<span>[Town, postcode]</span>
+<span>[Phone number]</span>
+<h3 style="font-size: 16px; font-weight: 600; margin-top: 12px">Opening hours</h3>
+<span>[Monday to Friday: hours]</span>
+<span>[Saturday: hours]</span>
+<div style="margin-top: 14px; min-height: 180px; background: #F3F1ED; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #5A5750">[Map]</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<h2 style="font-size: 22px; font-weight: 600">Click and collect</h2>
+<p class="muted">Choose click and collect at checkout. It is free.</p>
+<p class="muted">We email you when your order is ready to pick up. Our normal making times still apply.</p>
+<p class="muted">[Add a second shop here if you have one]</p>
+</div>
+</div>
+</section>
+</sc-if>
+<sc-if value="{{ isAbout }}">
+<section class="wrap pg">
+<h1 class="pt">About us</h1>
+<div style="margin-top: 20px; max-width: 40em; display: flex; flex-direction: column; gap: 16px; font-size: 18px">
+<p>[Your story: who you are, when you started and where you are based]</p>
+<p>We make personalised foil prints by hand on 300gsm card and build our own frames to order. Now we also make photo gifts, print photos, take passport photos and frame almost anything.</p>
+<p>[A line about the people, the workshop or the shop]</p>
+</div>
+</section>
+</sc-if>
+<sc-if value="{{ isContact }}">
+<section class="wrap pg">
+<h1 class="pt">Contact</h1>
+<p class="lead">Questions about an order, or want help with a request? Send us a message.</p>
+<div class="split" style="margin-top: 32px">
+<div>
+<sc-if value="{{ contactForm }}">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div>
+<label class="lbl" for="c-name">Name</label>
+<input class="inp" id="c-name" type="text">
+</div>
+<div>
+<label class="lbl" for="c-email">Email (required)</label>
+<input class="inp" id="c-email" type="email">
+</div>
+<div>
+<label class="lbl" for="c-phone">Phone number</label>
+<input class="inp" id="c-phone" type="tel">
+</div>
+<div>
+<label class="lbl" for="c-msg">Comment</label>
+<textarea class="inp" id="c-msg" rows="5"></textarea>
+</div>
+<div>
+<button class="btn fill" onClick="{{ sendContact }}">Send message</button>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{ contactDone }}">
+<div class="box" role="status" style="border-color: #121212">
+<p style="font-size: 18px">Message sent</p>
+<p class="muted" style="margin-top: 6px">We reply within [response time].</p>
+</div>
+</sc-if>
+</div>
+<div class="box" style="display: flex; flex-direction: column; align-items: flex-start; gap: 6px">
+<h2 style="font-size: 20px; font-weight: 600">Call or visit</h2>
+<span>[Shop address]</span>
+<span>[Phone number]</span>
+<span>[Email address]</span>
+<span>[Opening hours]</span>
+<button class="lk" onClick="{{ goStores }}">Store locations</button>
+</div>
+</div>
+</section>
+</sc-if>
+<sc-if value="{{ isNews }}">
+<section class="wrap pg">
+<h1 class="pt">News</h1>
+<div style="margin-top: 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px">
+<div class="box" style="display: flex; flex-direction: column; gap: 8px">
+<span class="muted" style="font-size: 14px">[Date]</span>
+<h2 style="font-size: 20px; font-weight: 600">[News post title]</h2>
+<p class="muted">[First lines of the post]</p>
+</div>
+<div class="box" style="display: flex; flex-direction: column; gap: 8px">
+<span class="muted" style="font-size: 14px">[Date]</span>
+<h2 style="font-size: 20px; font-weight: 600">[News post title]</h2>
+<p class="muted">[First lines of the post]</p>
+</div>
+<div class="box" style="display: flex; flex-direction: column; gap: 8px">
+<span class="muted" style="font-size: 14px">[Date]</span>
+<h2 style="font-size: 20px; font-weight: 600">[News post title]</h2>
+<p class="muted">[First lines of the post]</p>
+</div>
+</div>
+</section>
+</sc-if>
+<sc-if value="{{ isDelivery }}">
+<section class="wrap pg">
+<h1 class="pt">Delivery information</h1>
+<p class="lead">Everything is made to order. You choose a postage option at checkout.</p>
+<div style="margin-top: 28px; max-width: 760px; border-top: 1px solid rgba(18,18,18,.14)">
+<div class="row"><span>Free</span><span>Royal Mail 2nd Class on selected items</span></div>
+<div class="row"><span>£3.95</span><span>Royal Mail 2nd Class: mugs, and frames and mounts up to 10×8 in</span></div>
+<div class="row"><span>£4.95</span><span>Royal Mail 1st Class: mugs, and frames and mounts up to 10×8 in</span></div>
+<div class="row"><span>£8.95</span><span>Royal Mail 1st Class medium parcel: larger frames and mounts, 12×12 in canvases</span></div>
+<div class="row"><span>£11.95</span><span>Next-day courier: large frames, heavy items and bulk orders</span></div>
+<div class="row"><span>Free</span><span>Click and collect from [shop address]</span></div>
+</div>
+<div style="margin-top: 24px; max-width: 40em; display: flex; flex-direction: column; gap: 12px">
+<p class="muted">Making times: [production times to add].</p>
+<p class="muted">Need it in a hurry? Contact us before you order.</p>
+<div><button class="lk" onClick="{{ goContact }}">Contact us</button></div>
+</div>
+</section>
+</sc-if>
+<sc-if value="{{ isReturns }}">
+<section class="wrap pg">
+<h1 class="pt">Returns and refunds</h1>
+<div style="margin-top: 20px; max-width: 40em; display: flex; flex-direction: column; gap: 16px; font-size: 18px">
+<p>For most items you have 14 days from delivery to tell us you want to cancel or exchange.</p>
+<p>Personalised items are made just for you, so they can only come back if they arrive faulty. [Confirm your policy]</p>
+<p>[Returns address, who pays return postage and how refunds are paid]</p>
+</div>
+</section>
+</sc-if>
+<sc-if value="{{ isTerms }}">
+<section class="wrap pg">
+<h1 class="pt">Terms of service</h1>
+<p style="margin-top: 20px; max-width: 40em; font-size: 18px">[Terms of service to add]</p>
+</section>
+</sc-if>
+<sc-if value="{{ isPrivacy }}">
+<section class="wrap pg">
+<h1 class="pt">Privacy policy</h1>
+<p style="margin-top: 20px; max-width: 40em; font-size: 18px">[Your existing privacy policy goes here]</p>
+</section>
+</sc-if>
+<sc-if value="{{ isCart }}">
+<section class="wrap pg">
+<h1 class="pt">Your cart</h1>
+<sc-if value="{{ cart.empty }}">
+<div style="margin-top: 20px; display: flex; flex-direction: column; align-items: flex-start; gap: 16px">
+<p class="muted" style="font-size: 18px">Your cart is empty.</p>
+<button class="btn fill" onClick="{{ goHome }}">Continue shopping</button>
+</div>
+</sc-if>
+<sc-if value="{{ cart.has }}">
+<div class="split" style="margin-top: 20px">
+<div style="border-top: 1px solid rgba(18,18,18,.1)">
+<sc-for list="{{ cart.lines }}" as="t">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; padding: 20px 0; border-bottom: 1px solid rgba(18,18,18,.1)">
+<span class="vis sm">
+<span class="vis-card" style="border: {{ t.fw }} solid {{ t.fc }}; background: {{ t.mc }}; padding: {{ t.pad }}; box-shadow: inset 0 0 0 1px {{ t.lip }}, 0 0 0 1px rgba(18,18,18,.14)">
+<span class="vis-win" style="background: {{ t.win }}; box-shadow: 0 0 0 0.16em {{ t.wl }}">
+<svg viewBox="0 0 48 48" fill="none" stroke="{{ t.ink }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{ t.d }}"></path></svg>
+</span>
+</span>
+<sc-if value="{{ t.hasImg }}"><img class="vis-img" src="{{ t.img }}" alt="{{ t.t }}"></sc-if>
+</span>
+<div style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 2px">
+<span>{{ t.t }}</span>
+<span class="muted" style="font-size: 14px">{{ t.sub }}</span>
+<sc-if value="{{ t.hasTxt }}">
+<span class="muted" style="font-size: 14px">{{ t.txt }}</span>
+</sc-if>
+<span style="font-size: 14px">{{ t.unit }} each</span>
+</div>
+<div class="qty">
+<button aria-label="Decrease quantity" onClick="{{ t.dec }}">−</button>
+<span>{{ t.qty }}</span>
+<button aria-label="Increase quantity" onClick="{{ t.inc }}">+</button>
+</div>
+<span style="min-width: 76px; text-align: right; font-size: 17px">{{ t.total }}</span>
+<button class="lk" aria-label="{{ t.rmLabel }}" onClick="{{ t.rm }}" style="font-size: 14px">Remove</button>
+</div>
+</sc-for>
+<div style="margin-top: 24px">
+<label class="lbl" for="cart-note">Order note</label>
+<textarea class="inp" id="cart-note" rows="3" placeholder="Anything we should know about this order" value="{{ cart.note }}" onChange="{{ cart.setNote }}"></textarea>
+</div>
+</div>
+<div class="box" style="display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span class="muted" style="font-size: 14px">How would you like to get it?</span>
+<div class="pills">
+<sc-for list="{{ cart.methods }}" as="o">
+<button class="pill {{ o.cls }}" aria-pressed="{{ o.on }}" onClick="{{ o.pick }}">{{ o.l }}</button>
+</sc-for>
+</div>
+<span class="muted" style="font-size: 14px">{{ cart.methodNote }}</span>
+</div>
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; border-top: 1px solid rgba(18,18,18,.1); padding-top: 16px">
+<span>Subtotal</span>
+<span style="font-size: 22px">{{ cart.subtotal }}</span>
+</div>
+<span class="muted" style="font-size: 13px">Taxes included.</span>
+<button class="btn fill block" onClick="{{ cart.checkout }}">Check out</button>
+<sc-if value="{{ cart.done }}">
+<p role="status" style="font-size: 15px">[Checkout: this hands over to your existing Shopify checkout and payment options]</p>
+</sc-if>
+<button class="lk" onClick="{{ goHome }}" style="align-self: flex-start">Continue shopping</button>
+</div>
+</div>
+</sc-if>
+</section>
+</sc-if>
+<sc-if value="{{ isSearch }}">
+<section class="wrap pg">
+<h1 class="pt">Search</h1>
+<div style="margin-top: 20px; max-width: 560px">
+<label class="lbl" for="q">Search products</label>
+<input class="inp" id="q" type="text" placeholder="Try canvas, mug, map or frame" value="{{ search.q }}" onChange="{{ search.onQ }}">
+</div>
+<sc-if value="{{ search.idle }}">
+<div style="margin-top: 24px; display: flex; flex-direction: column; align-items: flex-start; gap: 4px">
+<p class="muted">{{ search.total }}</p>
+<button class="lk" onClick="{{ goFoil }}">Foil prints</button>
+<button class="lk" onClick="{{ goGifts }}">Photo gifts</button>
+<button class="lk" onClick="{{ goFrames }}">Picture frames</button>
+<button class="lk" onClick="{{ goMilitary }}">Military framing</button>
+</div>
+</sc-if>
+<sc-if value="{{ search.none }}">
+<p style="margin-top: 24px; font-size: 18px">{{ search.noneT }}</p>
+</sc-if>
+<sc-if value="{{ search.has }}">
+<div style="margin-top: 28px">
+<p class="muted" style="font-size: 14px; margin-bottom: 16px">{{ search.count }}</p>
+<div class="grid">
+<sc-for list="{{ search.results }}" as="t">
+<sc-inc name="tile"></sc-inc>
+</sc-for>
+</div>
+</div>
+</sc-if>
+</section>
+</sc-if>
+<sc-if value="{{ isAccount }}">
+<section class="wrap pg">
+<h1 class="pt">Log in</h1>
+<div style="margin-top: 20px; max-width: 480px">
+<sc-if value="{{ accountForm }}">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<p class="muted">Enter your email and we will send you a login code.</p>
+<div>
+<label class="lbl" for="a-email">Email</label>
+<input class="inp" id="a-email" type="email">
+</div>
+<div>
+<button class="btn fill" onClick="{{ sendAccount }}">Continue</button>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{ accountDone }}">
+<div class="box" role="status" style="border-color: #121212">
+<p>[Customer accounts stay on your existing Shopify login]</p>
+</div>
+</sc-if>
+</div>
+</section>
+</sc-if>
+</main>
+<footer style="border-top: 1px solid rgba(18,18,18,.1)">
+<div class="wrap" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr)); gap: 36px 32px; padding-top: 48px; padding-bottom: 40px">
+<sc-for list="{{ footCols }}" as="fcol">
+<div>
+<h2 style="font-size: 17px; font-weight: 600; margin-bottom: 6px">{{ fcol.t }}</h2>
+<sc-for list="{{ fcol.links }}" as="l">
+<button class="mega-l" onClick="{{ l.go }}">{{ l.t }}</button>
+</sc-for>
+</div>
+</sc-for>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="font-size: 17px; font-weight: 600">Subscribe to our emails</h2>
+<sc-if value="{{ newsForm }}">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div>
+<label class="lbl" for="n-email">Email</label>
+<input class="inp" id="n-email" type="email">
+</div>
+<div>
+<button class="btn" onClick="{{ sendNews }}">Subscribe</button>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{ newsDone }}">
+<p role="status">Subscribed. Thanks for signing up.</p>
+</sc-if>
+<p class="muted" style="font-size: 14px; margin-top: 8px">Instagram: [link to add]</p>
+</div>
+</div>
+<div style="border-top: 1px solid rgba(18,18,18,.1)">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 16px; padding-top: 24px; padding-bottom: 40px">
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<span class="pay">American Express</span>
+<span class="pay">Apple Pay</span>
+<span class="pay">Bancontact</span>
+<span class="pay">Diners Club</span>
+<span class="pay">Discover</span>
+<span class="pay">Google Pay</span>
+<span class="pay">Maestro</span>
+<span class="pay">Mastercard</span>
+<span class="pay">MB WAY</span>
+<span class="pay">PayPal</span>
+<span class="pay">Shop Pay</span>
+<span class="pay">Union Pay</span>
+<span class="pay">Visa</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; font-size: 13px; color: rgba(18,18,18,.75)">
+<span>© 2026, Watson Core Printing</span>
+<span>Concept design by <a href="https://shipitstudio.co.uk">Ship It Studio</a></span>
+<span>United Kingdom | GBP £</span>
+</div>
+</div>
+</div>
+</footer>
+</div>
+</template>
+<script>
+(function () {
+var SVGNS = 'http://www.w3.org/2000/svg';
+var HOLE = /\{\{\s*([\w$.]+)\s*\}\}/g;
+var WHOLE = /^\s*\{\{\s*([\w$.]+)\s*\}\}\s*$/;
+var BAD = {};
+var comp, tplRoot, mount, live = null, lastKey = null, busy = false, again = false, hashLock = false;
+function val(path, scope) {
+if (path === 'true') { return true; }
+if (path === 'false') { return false; }
+var parts = path.split('.');
+var v = scope[parts[0]];
+for (var i = 1; i < parts.length && v != null; i++) { v = v[parts[i]]; }
+return v;
+}
+function interp(str, scope) {
+return str.replace(HOLE, function (_, p) { var v = val(p, scope); return v == null ? '' : String(v); });
+}
+function build(t, scope, parent) {
+var i;
+if (t.nodeType === 3) {
+if (/^\s*$/.test(t.data) && t.data.indexOf('\n') > -1) { return; }
+parent.appendChild(document.createTextNode(interp(t.data, scope)));
+return;
+}
+if (t.nodeType !== 1) { return; }
+var tag = t.localName;
+var kids = t.childNodes;
+if (tag === 'sc-if') {
+if (val(t.getAttribute('value').match(WHOLE)[1], scope)) { for (i = 0; i < kids.length; i++) { build(kids[i], scope, parent); } }
+return;
+}
+if (tag === 'sc-for') {
+var list = val(t.getAttribute('list').match(WHOLE)[1], scope) || [];
+var as = t.getAttribute('as');
+list.forEach(function (item, n) {
+var s2 = Object.create(scope);
+s2[as] = item;
+s2.$index = n;
+for (var k = 0; k < kids.length; k++) { build(kids[k], s2, parent); }
+});
+return;
+}
+if (tag === 'sc-inc') {
+var part = document.getElementById('part-' + t.getAttribute('name')).content.childNodes;
+for (i = 0; i < part.length; i++) { build(part[i], scope, parent); }
+return;
+}
+var el = t.namespaceURI === SVGNS ? document.createElementNS(SVGNS, tag) : document.createElement(tag);
+for (i = 0; i < t.attributes.length; i++) {
+var a = t.attributes[i];
+var name = a.name;
+var m = a.value.match(WHOLE);
+if (name.slice(0, 2) === 'on') {
+if (m) { (el.__h = el.__h || {})[name === 'onchange' ? 'input' : name.slice(2)] = val(m[1], scope); }
+continue;
+}
+if (m) {
+var v = val(m[1], scope);
+if (name === 'value') { el.__v = v == null ? '' : String(v); el.value = el.__v; continue; }
+if (v != null) { el.setAttribute(name, String(v)); }
+} else {
+el.setAttribute(name, interp(a.value, scope));
+}
+}
+if (tag === 'img' && el.className === 'vis-img') {
+el.onerror = function () { BAD[el.getAttribute('src')] = 1; render(); };
+}
+for (i = 0; i < kids.length; i++) { build(kids[i], scope, el); }
+parent.appendChild(el);
+}
+function morph(o, n) {
+var i;
+if (o.nodeType === 3) { if (o.data !== n.data) { o.data = n.data; } return; }
+var oa = o.attributes, na = n.attributes;
+for (i = oa.length - 1; i >= 0; i--) { if (!n.hasAttribute(oa[i].name)) { o.removeAttribute(oa[i].name); } }
+for (i = 0; i < na.length; i++) { if (o.getAttribute(na[i].name) !== na[i].value) { o.setAttribute(na[i].name, na[i].value); } }
+o.__h = n.__h;
+if (n.__v !== undefined) { o.__v = n.__v; if (o.value !== n.__v) { o.value = n.__v; } }
+var oc = Array.prototype.slice.call(o.childNodes);
+var nc = Array.prototype.slice.call(n.childNodes);
+var len = Math.max(oc.length, nc.length);
+for (i = 0; i < len; i++) {
+var a = oc[i], b = nc[i];
+if (!a) { o.appendChild(b); }
+else if (!b) { o.removeChild(a); }
+else if (a.nodeType !== b.nodeType || a.nodeName !== b.nodeName) { o.replaceChild(b, a); }
+else { morph(a, b); }
+}
+}
+function render() {
+if (busy) { again = true; return; }
+busy = true;
+var vals = comp.renderVals();
+var holder = document.createElement('div');
+build(tplRoot, vals, holder);
+var next = holder.firstElementChild;
+if (!live || vals.pageKey !== lastKey) {
+if (live) { mount.replaceChild(next, live); } else { mount.appendChild(next); }
+live = next;
+} else {
+morph(live, next);
+}
+lastKey = vals.pageKey;
+busy = false;
+if (again) { again = false; render(); }
+}
+function dispatch(type) {
+return function (e) {
+var n = e.target;
+while (n && n !== mount) {
+if (n.__h && n.__h[type]) { n.__h[type](e); return; }
+n = n.parentNode;
+}
+};
+}
+function setHash(h) { if (location.hash !== h) { hashLock = true; location.hash = h; } }
+function routeFromHash() {
+var m = location.hash.replace(/^#\/?/, '').split('/');
+return m[0] ? [m[0], m[1] || ''] : null;
+}
+function DCLogic() { this.props = {}; }
+DCLogic.prototype.setState = function (patch) { this.state = Object.assign({}, this.state || {}, patch); render(); };
+DCLogic.prototype.forceUpdate = function () { render(); };
+window.DCLogic = DCLogic;
+window.bootDemo = function (Component, photos, hero) {
+var P = Component.prototype;
+var vis = P.vis, rv = P.renderVals, nav = P.nav, add = P.addToCart;
+P.vis = function (p, sel, accent) {
+var v = vis.call(this, p, sel, accent);
+var src = photos[p.id];
+v.hasImg = !!src && !BAD[src];
+v.img = v.hasImg ? src : '';
+return v;
+};
+P.renderVals = function () {
+var r = rv.call(this);
+r.pageKey = (this.S().route || ['home', '']).join('/');
+r.hasHero = !BAD[hero];
+r.heroImg = hero;
+return r;
+};
+P.nav = function (p, id, preset) {
+nav.call(this, p, id, preset);
+setHash('#/' + p + (id ? '/' + id : ''));
+};
+P.addToCart = function (p, buy) {
+add.call(this, p, buy);
+if (buy) { setHash('#/cart'); }
+};
+comp = new Component();
+var first = routeFromHash();
+if (first) { comp.state = { route: first }; }
+tplRoot = document.getElementById('tpl').content.firstElementChild;
+mount = document.getElementById('app');
+mount.addEventListener('click', dispatch('click'));
+mount.addEventListener('input', dispatch('input'));
+window.addEventListener('hashchange', function () {
+if (hashLock) { hashLock = false; return; }
+comp.top();
+comp.setState({ route: routeFromHash() || ['home', ''], menu: null, qty: 1, photos: 0, added: false, sort: 0, padded: false, done: false });
+});
+render();
+};
+})();
+</script>
+<script>
+class Component extends DCLogic {
+S() {
+return Object.assign({ route: null, menu: null, sel: {}, txt: {}, qty: 1, photos: 0, added: false, cart: [], note: '', method: 0, sort: 0, q: '', sent: {}, pq: 2, pphotos: 0, padded: false, done: false }, this.state || {});
+}
+top() {
+try {
+var el = document.getElementById('wcp-top');
+if (el && el.scrollIntoView) { el.scrollIntoView(); }
+if (window.scrollTo) { window.scrollTo(0, 0); }
+} catch (e) {}
+}
+nav(p, id, preset) {
+var s = this.S();
+var next = { route: [p, id || ''], menu: null, qty: 1, photos: 0, added: false, sort: 0, padded: false, done: false };
+if (preset) {
+var sel = Object.assign({}, s.sel);
+sel[id] = Object.assign({}, sel[id] || {}, preset);
+next.sel = sel;
+}
+this.top();
+this.setState(next);
+}
+money(n) { return '£' + n.toFixed(2); }
+data() {
+if (this._d) { return this._d; }
+var I = {
+map: 'M6 12l12-4 12 4 12-4v28l-12 4-12-4-12 4zM18 8v28M30 12v28',
+route: 'M10 38c8 0 6-10 14-10s6-10 14-10M38 18V8l-8 3 8 3M8 38a2 2 0 1 0 4 0 2 2 0 1 0-4 0',
+photo: 'M8 10h32v28H8zM8 31l9-9 8 8 5-5 10 10M28.5 17a2.5 2.5 0 1 0 5 0 2.5 2.5 0 1 0-5 0',
+paw: 'M9.8 22a3.2 3.2 0 1 0 6.4 0 3.2 3.2 0 1 0-6.4 0M16.8 14a3.2 3.2 0 1 0 6.4 0 3.2 3.2 0 1 0-6.4 0M24.8 14a3.2 3.2 0 1 0 6.4 0 3.2 3.2 0 1 0-6.4 0M31.8 22a3.2 3.2 0 1 0 6.4 0 3.2 3.2 0 1 0-6.4 0M24 25c5 0 9 5 9 9 0 3-3 4-9 4s-9-1-9-4c0-4 4-9 9-9z',
+rings: 'M10 27a9 9 0 1 0 18 0 9 9 0 1 0-18 0M20 27a9 9 0 1 0 18 0 9 9 0 1 0-18 0M19 18l-3-4 3-3 3 3z',
+canvas: 'M8 12h28v24H8zM36 12l5 3v24H13l-5-3',
+heart: 'M24 39S9 30 9 19.5C9 14 13 11 17 11c3 0 5.5 1.8 7 4.5C25.5 12.8 28 11 31 11c4 0 8 3 8 8.5C39 30 24 39 24 39z',
+mug: 'M10 14h22v18a6 6 0 0 1-6 6H16a6 6 0 0 1-6-6zM32 18h3a5 5 0 0 1 0 10h-3',
+block: 'M10 14h22v22H10zM32 14l7-4v22l-7 4M10 14l7-4h22',
+keyring: 'M10 14a6 6 0 1 0 12 0 6 6 0 1 0-12 0M20.5 18.5l4 4M26 22h10a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H26a3 3 0 0 1-3-3V25a3 3 0 0 1 3-3z',
+magnet: 'M12 10h24a2 2 0 0 1 2 2v24a2 2 0 0 1-2 2H12a2 2 0 0 1-2-2V12a2 2 0 0 1 2-2zM10 31l8-8 7 7 4-4 9 9',
+banner: 'M6 12c12 6 24 6 36 0M11 14.5l3 9 4-7.5M21 16.5l3 9.5 3-9.5M30 16l4 7.5 3-9',
+coaster: 'M14 10h20a4 4 0 0 1 4 4v20a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4V14a4 4 0 0 1 4-4zM16 24a8 8 0 1 0 16 0 8 8 0 1 0-16 0',
+mousemat: 'M10 14h28a4 4 0 0 1 4 4v14a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4V18a4 4 0 0 1 4-4zM29 20h4a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3h-4a3 3 0 0 1-3-3v-6a3 3 0 0 1 3-3zM31 20v5',
+hook: 'M16 10h16v8H16zM19 18v8a5 5 0 0 0 10 0v-8M24 12.5v3',
+board: 'M11 9h26v30H11zM11 19l10-10M11 29l20-20M17 39l20-20M27 39l10-10',
+medal: 'M18 8h12M18 8l4 14M30 8l-4 14M16 30a8 8 0 1 0 16 0 8 8 0 1 0-16 0',
+scroll: 'M12 8h24v32H12zM17 15h14M17 20h14M17 25h8M27.5 31a3.5 3.5 0 1 0 7 0 3.5 3.5 0 1 0-7 0',
+crest: 'M24 8l13 4v10c0 9-6 15-13 18-7-3-13-9-13-18V12zM18 21l6 5 6-5',
+pennant: 'M10 8v32M10 11h28l-7 8 7 8H10',
+prints: 'M14 15V9h26v22h-4M8 15h28v24H8zM8 33l8-8 6 6 5-5 9 9',
+idphoto: 'M12 8h24v32H12zM19 20a5 5 0 1 0 10 0 5 5 0 1 0-10 0M15 40c0-7 4-11 9-11s9 4 9 11',
+framing: 'M8 8h32v32H8zM15 15h18v18H15zM8 8l7 7M40 8l-7 7M40 40l-7-7M8 40l7-7',
+mount: 'M9 9h30v30H9zM18 16h12v16H18z',
+shirt: 'M17 8l-9 5 4 8 4-2v21h16V19l4 2 4-8-9-5c-1 3-4 4.5-7 4.5S18 11 17 8z'
+};
+var P = {};
+var order = [];
+var add = function (id, o) { o.id = id; P[id] = o; if (!o.hidden) { order.push(id); } };
+var sw = function (a) { return a.map(function (x) { return { l: x[0], c: x[1], c2: x[2] || x[1] }; }); };
+var pills = function (a) { return a.map(function (x) { return { l: x }; }); };
+var sizes = function (rows, n) { return { k: 'size', n: n, vals: rows.map(function (r) { return { l: r[0], note: r[1], p: r[2] }; }) }; };
+var txt = function (l, ph) { return { k: 'text', l: l, ph: ph }; };
+var MC = [['Soft white', '#F1ECE0'], ['Ice white', '#FAFAFA'], ['Black', '#1D1D1D'], ['Dawn grey', '#B8BCC0'], ['Baby blue', '#A9CBE6'], ['Blue', '#2E5EA6'], ['Dark blue', '#1E2D52'], ['Dark green', '#1F4133'], ['Red', '#B5222B'], ['Dark red', '#6B1521'], ['Primrose', '#F2DF8D']];
+var MC2 = [['Dark blue and dark red', '#1E2D52', '#6B1521'], ['Dark red and dark blue', '#6B1521', '#1E2D52'], ['Dark blue and primrose', '#1E2D52', '#F2DF8D'], ['Dark green and dark green', '#1F4133', '#1F4133'], ['Black and bright red', '#1D1D1D', '#C8202C'], ['Soft white and baby blue', '#F1ECE0', '#A9CBE6'], ['Bright blue and bright red', '#2E5EA6', '#C8202C'], ['Black and white', '#1D1D1D', '#FAFAFA']];
+var mountOpt = function (none) {
+var v = sw(MC);
+if (none) { v.push({ l: 'No mount', c: '#DAD6CE', c2: '#DAD6CE', none: true }); }
+return { k: 'mount', n: 'Mount colour', sw: true, vals: v };
+};
+var mount2 = function () { return { k: 'mount', n: 'Mount colours', sw: true, vals: sw(MC2) }; };
+var MF = [{ l: 'Brown and gold wood', fc: '#55361F', lip: '#C2A050' }, { l: 'Black wood', fc: '#1B1B1B' }, { l: 'White wood', fc: '#F4F3EF' }, { l: 'Grey wood', fc: '#85888A' }, { l: 'Natural wood', fc: '#CDAE84' }];
+var frameOpt = function (vals, n) { return { k: 'frame', n: n || 'Frame colour', vals: vals }; };
+var FOIL = { k: 'finish', n: 'Print, framed or framed and mounted', vals: [{ l: 'Print only', p: 14.99 }, { l: 'Framed print', p: 29.99 }, { l: 'Framed print with mount', p: 44.99 }] };
+var fb = ['Frames are made to order by us, not bought in. UK orders are glazed with glass; orders going abroad are glazed with plastic.', 'Foil is pressed by hand onto 300gsm super-smooth card. Each one is hand-made, so a tiny dark speck can sometimes show.', 'Want to check it first? Ask for a proof and we will send one before we print.'];
+var ub = 'Original photos give the sharpest result. If you are photographing a printed photo, shoot from directly above in good light, with no glare or shadows.';
+add('foiled-map', { t: 'Foiled Personalised Map', s: 'Personalised map', col: 'foil', ic: 'map', foil: true, opts: [FOIL], fields: [{ k: 'place', l: 'Place to map', ph: 'Town, city, postcode or address' }, txt('Text to add', 'Names, a date, a few words')], paras: ['Turn a favourite city, country, street or home into a foil map.'], bullets: fb });
+add('marathon-foil', { t: 'Marathon Map Foil', s: 'Marathon map in foil', col: 'foil', ic: 'route', foil: true, opts: [FOIL], fields: [{ k: 'race', l: 'Marathon and year', ph: 'London Marathon 2026' }, txt('Details to add', 'Bib number, finish time, name')], paras: ['One of your biggest days, mapped in foil with the details that made it yours.'], bullets: fb });
+add('marathon-route', { t: 'Marathon Route Map', s: 'Marathon route map', col: 'foil', ic: 'route', foil: true, opts: [FOIL], fields: [{ k: 'race', l: 'Marathon and year', ph: 'London Marathon 2026' }, txt('Details to add', 'Date, distance, finish time')], paras: ['The route you ran, drawn over the city map, with your date, distance and time.'], bullets: [fb[0], fb[2]] });
+add('photo-foil', { t: 'Photo to Foil Personalised', s: 'Photo to foil', col: 'foil', ic: 'photo', foil: true, up: 5, opts: [FOIL], fields: [txt('Text to add', 'Date, place, names')], paras: ['Any photograph, redrawn in foil to keep, give or put on show.'], bullets: fb.concat([ub]) });
+add('animal-foil', { t: 'Animal Personalised Foil Print', s: 'Pet portrait in foil', col: 'foil', ic: 'paw', foil: true, up: 5, opts: [FOIL], fields: [txt('Text to add', 'Name, dates, a nickname or quote')], paras: ['Your pet, your companion, your best friend, in foil.'], bullets: fb.concat([ub]) });
+add('wedding-foil', { t: 'Wedding Photos to Foil', s: 'Wedding photo in foil', col: 'foil', ic: 'rings', foil: true, up: 5, opts: [FOIL], fields: [txt('Text to add', 'Wedding date, venue, names')], paras: ['A photo from your wedding day, pressed in foil.'], bullets: fb.concat([ub]) });
+add('canvas', { t: 'Personalised photo canvas', s: 'Canvas prints', col: 'gifts', ic: 'canvas', up: 1, opts: [{ k: 'size', n: 'Size', vals: [{ l: '12×12 in', p: 24.95 }, { l: '16×12 in', p: 39.95 }, { l: '20×16 in', p: 49.95 }, { l: '20×20 in', p: 59.95 }, { l: '30×20 in', p: 69.95 }] }, { k: 'way', n: 'Orientation', vals: pills(['Landscape', 'Portrait']) }], paras: ['Your photo printed edge to edge on canvas and stretched over a solid wooden frame, ready to hang.'], bullets: ['Polyester canvas on a wooden frame, about 1.5 in deep.', 'If we think your photo will not print well at this size, we will tell you before we print.'] });
+add('slates', { t: 'Personalised photo slate', s: 'Photo slates', col: 'gifts', ic: 'heart', up: 1, opts: [{ k: 'shape', n: 'Shape', vals: [{ l: 'Coaster', p: 7.25 }, { l: 'Square 5×5 in', p: 10.95 }, { l: 'Standing heart', p: 11.95 }, { l: 'Rectangle 8×6 in', p: 13.95 }, { l: 'Hanging heart', p: 19.95 }] }], paras: ['Natural slate with a rough-cut edge and a smooth gloss face that carries your photo.'], bullets: ['Heavy natural slate, so the edge of every piece is slightly different.'] });
+add('mugs', { t: 'Personalised photo mug', s: 'Photo mugs', col: 'gifts', ic: 'mug', up: 4, price: 7.95, opts: [{ k: 'layout', n: 'Design', vals: pills(['2 photos and text', '3 photos', '3 photos and text', '4 photos', '3-photo montage', 'Pet lover']) }], fields: [txt('Text for the mug (if your design has text)', 'Best dad, est. 2019')], paras: ['Pick a design and add your photos. Printed in full colour with a gloss finish.'] });
+add('blocks', { t: 'Personalised photo block', s: 'Photo blocks', col: 'gifts', ic: 'block', up: 1, opts: [{ k: 'size', n: 'Size', vals: [{ l: '5×5 in', p: 6.95 }, { l: '5×7 in', p: 7.95 }, { l: '8×6 in', p: 9.95 }, { l: '10×8 in', p: 14.95 }] }], paras: ['A free-standing photo block for a desk, shelf or bedside table.'] });
+add('family-frame', { t: 'Framed family photo collage', s: 'Framed photo collage', col: 'gifts', frame: true, up: 8, price: 89.95, opts: [frameOpt([{ l: 'Cottage white', fc: '#F2F0EA' }, { l: 'Rustic wood', fc: '#8A6843' }, { l: 'Rusty grey', fc: '#8C8A86' }])], fields: [txt('Text for the frame', 'Family name, a date or a few words')], paras: ['Eight of your photos and your own wording, laid out and framed as one piece.'] });
+add('coaster', { t: 'Photo slate coaster', s: 'Photo coasters', col: 'gifts', ic: 'coaster', up: 1, price: 7.25, paras: ['A slate coaster with your photo on the gloss face.'] });
+add('keyring', { t: 'Personalised photo keyring', s: 'Photo keyrings', col: 'gifts', ic: 'keyring', up: 2, price: 6.95, fields: [txt('Message (optional)', 'A few words')], paras: ['Carry a photo with you. Use one picture, a small montage, or add a message.'] });
+add('magnet', { t: 'Ceramic photo fridge magnet', s: 'Fridge magnets', col: 'gifts', ic: 'magnet', up: 1, price: 6.95, opts: [{ k: 'way', n: 'Which way is your photo?', vals: pills(['Portrait', 'Landscape']) }], paras: ['Holidays, birthdays or the picture that makes you smile, on the fridge door.'] });
+add('banners', { t: 'Personalised photo banner', s: 'Photo banners', col: 'gifts', ic: 'banner', up: 1, price: 9.95, opts: [{ k: 'theme', n: 'Theme', vals: pills(['Butterfly', 'Superhero', 'Great Gatsby', 'Comic', 'Football', 'American football', 'Digger', 'Unicorn', 'Transport', 'Mermaid', 'Zoo animals', 'Forest animals', 'Dinosaur']) }], fields: [txt('Name and message', 'Happy 6th birthday, Leo')], paras: ['A birthday or welcome-home banner with your photo and your wording.'] });
+add('mousemat', { t: 'Personalised photo mouse mat', s: 'Mouse mats', col: 'gifts', ic: 'mousemat', up: 1, price: null, paras: ['Your photo on your desk.'] });
+add('prints', { t: '5×3 in photo prints', col: 'gifts', ic: 'prints', hidden: true });
+var FS = [['6×4', '6×4 in frame with a mount for a 3.5×2.5 in photo', 6.45], ['6×6', '6×6 in frame with a mount for a 4×4 in photo', 6.95], ['7×5', '7×5 in frame with a mount for a 5×3 in photo', 7.25], ['8×6', '8×6 in frame with a mount for a 6×4 in photo', 8.95], ['8×8', '8×8 in frame with a mount for a 6×6 in photo', 9.45], ['9×7', '9×7 in frame with a mount for a 7×5 in photo', 10.45], ['10×8', '10×8 in frame with a mount for an 8×6 in photo', 10.95], ['10×10', '10×10 in frame with a mount for an 8×8 in photo', 13.95], ['12×10', '12×10 in frame with a mount for a 10×8 in photo', 12.95], ['12×12', '12×12 in frame with a mount for a 10×10 in photo', 14.95], ['A4', 'A4 certificate and document frame', 9.95], ['14×11', '14×11 in frame with a mount for an A4 print', 19.95], ['16×12', '16×12 in frame with a mount for a 12×8 in photo', 19.95], ['A3', 'A3 frame with a mount for an A4 print', 19.95], ['20×16', '20×16 in frame with a mount for a 16×12 in photo', 25.95]];
+var frameB = ['Made to order by us, not bought in.', 'Comes with an acid-free mount in your choice of colour, or with no mount.', 'UK orders are glazed with glass.'];
+var range = function (id, t, s, fc, thin, lip, para) {
+add(id, { t: t, s: s, col: 'frames', frame: true, fc: fc, thin: thin, lip: lip, opts: [sizes(FS, 'Frame size'), mountOpt(true)], paras: [para], bullets: frameB });
+};
+range('fr-black', 'Essential black picture frame', 'Essential black', '#1B1B1B', false, null, 'A plain black frame with a light wood-grain finish. It goes with almost anything.');
+range('fr-white', 'Essential white picture frame', 'Essential white', '#F4F3EF', false, null, 'A simple white frame with a light wood-grain finish.');
+range('fr-thin-black', 'Thin black picture frame', 'Thin black', '#1B1B1B', true, null, 'A slim black frame with a gently domed profile.');
+range('fr-brown-gold', 'Brown and gold picture frame', 'Brown and gold', '#55361F', false, '#C2A050', 'A traditional brown frame with a gold inner edge.');
+range('fr-oak', 'Essential oak picture frame', 'Essential oak', '#B98A52', false, null, 'A mid-toned oak-effect frame that works well with lighter mounts.');
+range('fr-thin-brown', 'Thin brown picture frame', 'Thin brown', '#6A482E', true, null, 'A slim brown frame with a gently domed profile and a grain finish.');
+range('fr-thin-silver', 'Thin silver picture frame', 'Thin silver', '#B7BABD', true, null, 'A slim brushed-silver frame with a hint of gold in the finish.');
+range('fr-thin-gold', 'Thin gold picture frame', 'Thin gold', '#C4A451', true, null, 'A slim brushed-gold frame for photographs, artwork or word art.');
+var FIN = [{ l: 'Essential black', fc: '#1B1B1B' }, { l: 'Essential white', fc: '#F4F3EF' }, { l: 'Essential oak', fc: '#B98A52' }, { l: 'Brown and gold', fc: '#55361F', lip: '#C2A050' }, { l: 'Thin black', fc: '#1B1B1B', thin: true }, { l: 'Thin brown', fc: '#6A482E', thin: true }, { l: 'Thin silver', fc: '#B7BABD', thin: true }, { l: 'Thin gold', fc: '#C4A451', thin: true }];
+add('fr-triple', { t: 'Triple photo frame', s: 'Triple photo frames', col: 'frames', frame: true, price: 13.95, from: true, opts: [frameOpt(FIN, 'Frame'), { k: 'layout', n: 'Layout', vals: pills(['Portrait', 'Landscape']) }, { k: 'photo', n: 'Photo size', vals: pills(['5×3.5 in', '6×4 in', '7×5 in', '4×4 in', '5×5 in', '6×6 in']) }, mountOpt(false)], paras: ['Three photos side by side in one frame.'], bullets: frameB });
+add('fr-quad', { t: 'Four-photo square frame, 30×30 cm', s: 'Four-photo frames', col: 'frames', frame: true, price: 14.95, opts: [frameOpt([FIN[3], FIN[7], FIN[4], FIN[1], FIN[5]], 'Frame'), mountOpt(false)], paras: ['Four 6×4 in photos in one square frame.'], bullets: frameB });
+var packs = function (rows) { return { k: 'pack', n: 'Quantity', vals: rows.map(function (r) { return { l: r[0], p: r[1] }; }) }; };
+add('acc-clip', { t: 'Clip-over hanger', col: 'accessories', ic: 'hook', opts: [packs([['1', 0.30], ['10', 3.00], ['25', 6.00], ['50', 10.00]])], paras: ['A simple hanger that clips over the back of a frame.'] });
+add('acc-dring', { t: 'Single D ring', col: 'accessories', ic: 'hook', opts: [packs([['1 pair', 0.40], ['10 pairs', 3.69], ['25 pairs', 8.49], ['50 pairs', 11.49]])], paras: ['D rings for hanging small and medium frames.'] });
+add('acc-ddring', { t: 'Heavy-duty double D ring', col: 'accessories', ic: 'hook', opts: [packs([['1 pair', 0.45], ['10 pairs', 3.95], ['25 pairs', 8.95], ['50 pairs', 14.95]])], paras: ['Two-hole D rings for heavier frames.'] });
+add('acc-string', { t: 'String hanging kit, standard', col: 'accessories', ic: 'hook', price: 2.50, paras: ['Everything needed to string a frame 12 to 24 in wide.'] });
+add('acc-string-h', { t: 'String hanging kit, heavy weight', col: 'accessories', ic: 'hook', price: 2.50, paras: ['A stronger kit for heavier frames 12 to 24 in wide.'] });
+var packM = function (rows) { return { k: 'pack', n: 'Pack size', vals: rows.map(function (r) { return { l: r[0], m: r[1] }; }) }; };
+var PK = [['Pack of 5', 1], ['Pack of 15', 2.14], ['Pack of 25', 2.77], ['Pack of 50', 5.13], ['Pack of 75', 7.65], ['Pack of 100', 9.44]];
+var colourOpt = function () { return { k: 'colour', n: 'Colour', sw: true, vals: sw(MC) }; };
+var mountB = ['Acid-free board that will not yellow with age.', 'Cut by a computer-guided cutter for a clean, even bevel.', 'Need a size that is not listed? We cut mounts to any size.'];
+add('mt-std', { t: 'Standard mounts, up to 10×8 in', s: 'Standard sizes', col: 'mounts', mount: true, opts: [sizes([['6×4', '6×4 in mount for a 3.5×2.5 in photo', 4.95], ['7×5', '7×5 in mount for a 5×3 in photo', 4.50], ['8×6', '8×6 in mount for a 6×4 in photo', 5.50], ['9×7', '9×7 in mount for a 7×5 in photo', 6.45], ['10×8', '10×8 in mount for an 8×6 in photo', 6.95]], 'Mount size'), colourOpt(), packM(PK)], paras: ['Ready-cut mounts for the most common photo sizes, in 11 colours.'], bullets: mountB });
+add('mt-large', { t: 'Large mounts, up to 20×16 in', s: 'Large sizes', col: 'mounts', mount: true, opts: [sizes([['12×10', '12×10 in mount for a 10×8 in photo', 9.50], ['14×11', '14×11 in mount for an A4 print', 12.50], ['14×12', '14×12 in mount for a 12×10 in photo', 12.50], ['16×12 (A4)', '16×12 in mount for an A4 print', 12.50], ['16×12', '16×12 in mount for a 12×8 in photo', 13.00], ['A3', 'A3 mount for an A4 print', 13.50], ['20×16 (A3)', '20×16 in mount for an A3 print', 21.00], ['20×16', '20×16 in mount for a 16×12 in photo', 21.00]], 'Mount size'), colourOpt(), packM([['Pack of 5', 1], ['Pack of 15', 1.67], ['Pack of 25', 2.25]])], paras: ['Larger ready-cut mounts for prints, certificates and artwork.'], bullets: mountB });
+add('mt-square', { t: 'Square mounts', s: 'Square sizes', col: 'mounts', mount: true, opts: [sizes([['6×6', '6×6 in mount for a 4×4 in photo', 4.95], ['7×7', '7×7 in mount for a 5×5 in photo', 5.95], ['8×8', '8×8 in mount for a 6×6 in photo', 5.95], ['10×10', '10×10 in mount for an 8×8 in photo', 9.25], ['12×12', '12×12 in mount for a 10×10 in photo', 11.50], ['14×14', '14×14 in mount for a 12×12 in photo', 13.50], ['30×30 cm', '30×30 cm mount for a 20×20 cm photo', 10.45]], 'Mount size'), colourOpt(), packM(PK)], paras: ['Square mounts for square prints, from 6×6 in up to 30×30 cm.'], bullets: mountB });
+add('mt-board', { t: 'Economy backboards', s: 'Backboards', col: 'mounts', ic: 'board', opts: [{ k: 'size', n: 'Size', vals: [{ l: '6×4 in', p: 9.50 }, { l: '7×5 in', p: 9.50 }, { l: '8×6 in', p: 9.50 }, { l: '9×7 in', p: 9.50 }, { l: '10×8 in', p: 9.50 }] }, packM([['Pack of 5', 1], ['Pack of 15', 1.42]])], paras: ['Grey backing board for the back of a frame, or to use as an undermount.'] });
+var milB = ['Tell us the regiment, corps or unit and we will confirm the crest with you before we make it.', 'Choose the frame and the two mount colours to match unit colours.', 'Made to order: [production time to add].'];
+var unit = { k: 'unit', l: 'Regiment, corps or unit', ph: 'Royal Engineers' };
+var plaqueTxt = { k: 'plaque', l: 'Plaque wording (if you chose a plaque)', ph: 'Name, rank, dates of service' };
+var plaque = function () { return { k: 'plaque', n: 'Wording plaque', vals: pills(['No plaque', 'Brass plaque', 'Silver plaque']) }; };
+var crown = function () { return { k: 'crown', n: 'Crown on the crest', vals: pills(['King', 'Queen']) }; };
+var emb = function (id, t, s, price, para, extraFields, extraOpts) {
+add(id, { t: t, s: s, col: 'mil-emb', frame: true, winIc: 'crest', price: price, opts: [frameOpt(MF), mount2(), plaque(), crown()].concat(extraOpts || []), fields: [unit].concat(extraFields || []).concat([plaqueTxt]), paras: [para], bullets: milB });
+};
+var rank = { k: 'rank', l: 'Rank', ph: 'Sergeant' };
+emb('emb-single', 'Embroidered crest presentation, single crest', 'Single crest', 45.00, 'A single embroidered crest behind a two-colour mount. A leaving or moving-on gift for a serving soldier, or a way for a veteran to show the crest they served under.');
+emb('emb-single-rank', 'Embroidered crest presentation, single crest and rank', 'Single crest and rank', 54.95, 'Cap badge and rank together: one embroidered crest with a rank slide. Suited to a promotion or a leaving presentation.', [rank]);
+emb('emb-double', 'Embroidered crest presentation, double crest', 'Double crest', 54.95, 'Two embroidered crests in one frame, such as brigade and regiment, or regiment and battery.');
+emb('emb-double-rank', 'Embroidered crest presentation, double crest and rank', 'Double crest and rank', 79.95, 'Two crests with embroidered rank insignia, all in one frame.', [rank]);
+emb('emb-triple', 'Embroidered crest presentation, triple crest', 'Triple crest', 89.95, 'Three crests in one frame, such as squadron, regiment and corps.');
+emb('emb-a4', 'Embroidered crest with A4 document or photograph', 'Single crest with A4 document', 69.95, 'An embroidered crest framed alongside an A4 document or photograph.');
+emb('emb-pennant', 'Embroidered pennant presentation', 'Pennant', 54.95, 'A framed embroidered pennant for regiments, companies and squadrons that carry one.', [{ k: 'custom', l: 'Custom wording for the pennant (optional)', ph: 'Wording to add' }]);
+emb('emb-xl', 'Embroidered crest presentation, XL single crest', 'XL single crest', 94.95, 'A larger single crest with room for your own wording.', [{ k: 'custom', l: 'Custom wording', ph: 'Wording to add' }]);
+P['emb-pennant'].winIc = 'pennant';
+var lsMount = function () { return { k: 'mount', n: 'Mount colour', sw: true, vals: sw([['Dark red', '#6B1521'], ['Red', '#B5222B'], ['Blue', '#2E5EA6'], ['Dark blue', '#1E2D52'], ['Black', '#1D1D1D'], ['Dark green', '#1F4133'], ['Baby blue', '#A9CBE6'], ['Soft white', '#F1ECE0']]) }; };
+add('ls-single', { t: 'Long Service & Good Conduct citation frame, single mount', s: 'Citation frame, single mount', col: 'mil-lsgc', frame: true, winIc: 'scroll', price: 19.95, opts: [frameOpt(MF), lsMount()], paras: ['A presentation frame for a Long Service and Good Conduct citation, with a single mount.'] });
+add('ls-double', { t: 'Long Service & Good Conduct citation frame, double mount', s: 'Citation frame, double mount', col: 'mil-lsgc', frame: true, winIc: 'scroll', price: 29.95, opts: [frameOpt(MF), mount2()], paras: ['The citation frame with a two-colour double mount.'] });
+add('ls-medal', { t: 'Long Service & Good Conduct miniature medal frame with citation', s: 'Medal and citation frame', col: 'mil-lsgc', frame: true, winIc: 'medal', price: 49.95, opts: [frameOpt(MF), mount2(), { k: 'medal', n: 'Medal', vals: pills(['Miniature medal only', 'Miniature medal with clasp']) }], paras: ['The citation and a miniature medal, presented together in one frame.'] });
+add('warrant', { t: 'Warrant or commission scroll frame', s: 'Warrants and commissions', col: 'mil-cert', frame: true, winIc: 'scroll', opts: [{ k: 'mounting', n: 'Mount', vals: [{ l: 'Single mount', p: 39.95 }, { l: 'Double mount', p: 64.95 }] }, frameOpt(MF), mountOpt(false)], paras: ['A frame sized for a military warrant or commission scroll, with a precision-cut mount. A fitting gift for a newly commissioned officer.'] });
+add('cert-a4', { t: 'A4 commendation certificate frame with mount', s: 'A4 commendation frame', col: 'mil-cert', frame: true, winIc: 'scroll', fc: '#55361F', lip: '#C2A050', price: 19.95, opts: [mountOpt(false)], paras: ['A brown and gold frame with a mount, sized for an A4 commendation certificate.'] });
+add('cert-coin', { t: 'A5 certificate and two-coin frame', s: 'A5 certificate and coin frame', col: 'mil-cert', frame: true, winIc: 'medal', price: 29.95, opts: [frameOpt([{ l: 'Black', fc: '#1B1B1B' }, { l: 'White', fc: '#F4F3EF' }, { l: 'Oak', fc: '#B98A52' }]), mountOpt(false)], paras: ['An A5 certificate presented with two coins in one frame.'] });
+var C = {
+foil: { t: 'Foil prints', ic: 'map', x: 'Maps, marathons, pets and wedding photos', intro: 'Maps, marathons, pets, weddings and your own photos, pressed in foil by hand on 300gsm card. Choose a print on its own, framed, or framed with a mount.', prods: ['foiled-map', 'marathon-foil', 'marathon-route', 'photo-foil', 'animal-foil', 'wedding-foil'] },
+gifts: { t: 'Photo gifts', ic: 'mug', x: 'Canvases, mugs, slates, blocks and more', intro: 'Add a photo and we will turn it into something to keep, give or hang on the wall.', prods: ['canvas', 'slates', 'mugs', 'blocks', 'family-frame', 'coaster', 'keyring', 'magnet', 'banners', 'mousemat'] },
+frames: { t: 'Picture frames', ic: 'framing', x: 'Standard sizes, made to order, with a mount', intro: 'Standard-size frames made to order, each with a mount in your choice of colour. Pick a finish here, then choose the size and mount on the next page.', kids: ['accessories', 'mounts', 'military'], prods: ['fr-black', 'fr-white', 'fr-thin-black', 'fr-brown-gold', 'fr-oak', 'fr-thin-brown', 'fr-thin-silver', 'fr-thin-gold', 'fr-triple', 'fr-quad'] },
+accessories: { t: 'Hanging accessories and kits', parent: 'frames', ic: 'hook', x: 'Hangers, D rings and string kits', intro: 'What you need to hang your own frames, singly or in trade packs.', prods: ['acc-clip', 'acc-dring', 'acc-ddring', 'acc-string', 'acc-string-h'] },
+mounts: { t: 'Frame mounts', ic: 'mount', x: 'Acid-free mounts in 11 colours', intro: 'Precision-cut, acid-free mounts in standard sizes and 11 colours, in packs from 5 to 100.', prods: ['mt-std', 'mt-large', 'mt-square', 'mt-board'], cta: 'Need a size that is not listed? Send us the inside and outside measurements and we will cut it for you.' },
+military: { t: 'Military framing and gifts', ic: 'crest', x: 'Long service, warrants and embroidered crests', intro: 'Presentation frames for serving soldiers, veterans and units: long service frames, warrant and commission frames, and framed embroidered crests.', kids: ['mil-lsgc', 'mil-emb', 'mil-cert'], prods: ['emb-single', 'emb-single-rank', 'emb-double', 'emb-double-rank', 'emb-triple', 'emb-a4', 'emb-pennant', 'emb-xl', 'ls-single', 'ls-double', 'ls-medal', 'warrant', 'cert-a4', 'cert-coin'], cta: 'Medals, flags, pennants or a regimental photograph to frame? Tell us what you have and we will design the frame around it.' },
+'mil-lsgc': { t: 'Long Service & Good Conduct frames', parent: 'military', ic: 'medal', x: 'Citation and medal presentation frames', intro: 'Mark a Long Service and Good Conduct Medal with a frame for the citation, the miniature medal, or both.', prods: ['ls-single', 'ls-double', 'ls-medal'] },
+'mil-emb': { t: 'Embroidered crest presentations', parent: 'military', ic: 'crest', x: 'One, two or three crests, with or without rank', intro: 'The embroidered crest of a regiment, corps or unit, framed behind a two-colour mount. Choose one, two or three crests, and add rank or a plaque.', prods: ['emb-single', 'emb-single-rank', 'emb-double', 'emb-double-rank', 'emb-triple', 'emb-a4', 'emb-pennant', 'emb-xl'] },
+'mil-cert': { t: 'Warrant, commission and certificate frames', parent: 'military', ic: 'scroll', x: 'Frames for scrolls and certificates', intro: 'Frames sized for warrants, commission scrolls and commendation certificates.', prods: ['warrant', 'cert-a4', 'cert-coin'] }
+};
+var pl = function (a) { return a.map(function (x) { return ['p', x]; }); };
+var N = [
+{ id: 'foil', t: 'Foil prints', col: 'foil', secs: [{ t: 'Made from your place, race, pet or photo', links: pl(C.foil.prods) }] },
+{ id: 'gifts', t: 'Photo gifts', col: 'gifts', secs: [{ t: 'For the wall and shelf', links: pl(['canvas', 'slates', 'blocks', 'family-frame']) }, { t: 'Everyday', links: pl(['mugs', 'coaster', 'keyring', 'magnet', 'mousemat']) }, { t: 'Celebrations', links: pl(['banners']) }] },
+{ id: 'services', t: 'Photo services', secs: [{ t: 'In store and online', links: [['g', 'printing', 'Photo printing'], ['g', 'passport', 'Passport and ID photos']] }] },
+{ id: 'frames', t: 'Picture frames', col: 'frames', secs: [{ t: 'Black and white', links: pl(['fr-black', 'fr-white', 'fr-thin-black']) }, { t: 'Wood tones', links: pl(['fr-brown-gold', 'fr-oak', 'fr-thin-brown']) }, { t: 'Silver and gold', links: pl(['fr-thin-silver', 'fr-thin-gold']) }, { t: 'More', links: [['p', 'fr-triple'], ['p', 'fr-quad'], ['c', 'accessories'], ['c', 'military']] }] },
+{ id: 'mounts', t: 'Frame mounts', col: 'mounts', secs: [{ t: 'Ready-cut mounts', links: [['p', 'mt-std'], ['p', 'mt-large'], ['p', 'mt-square'], ['p', 'mt-board'], ['g', 'bespoke', 'Mounts cut to size']] }] },
+{ id: 'military', t: 'Military framing', col: 'military', secs: [{ t: 'Presentation frames', links: [['c', 'mil-lsgc'], ['p', 'warrant'], ['c', 'mil-cert']] }, { t: 'Embroidered crests', links: pl(['emb-single', 'emb-single-rank', 'emb-double', 'emb-double-rank', 'emb-triple', 'emb-a4', 'emb-pennant']) }] },
+{ id: 'bespoke', t: 'Bespoke framing', page: 'bespoke' },
+{ id: 'client', t: 'Client area', page: 'client' }
+];
+this._d = { I: I, P: P, C: C, N: N, order: order };
+return this._d;
+}
+minPrice(p) {
+var vals = [];
+(p.opts || []).forEach(function (g) { g.vals.forEach(function (v) { if (v.p != null) { vals.push(v.p); } }); });
+if (!vals.length && p.price != null) { vals.push(p.price); }
+return vals.length ? Math.min.apply(null, vals) : null;
+}
+fromLabel(p) {
+var min = this.minPrice(p);
+if (min == null) { return '[price]'; }
+var varies = !!p.from;
+(p.opts || []).forEach(function (g) {
+var ps = g.vals.filter(function (v) { return v.p != null; }).map(function (v) { return v.p; });
+if (ps.length && Math.max.apply(null, ps) > Math.min.apply(null, ps)) { varies = true; }
+if (g.vals.some(function (v) { return v.m != null && v.m !== 1; })) { varies = true; }
+});
+return (varies ? 'From ' : '') + this.money(min);
+}
+priceOf(p, sel) {
+var base = p.price;
+var mult = 1;
+(p.opts || []).forEach(function (g) {
+var v = g.vals[sel[g.k] || 0];
+if (v.p != null) { base = v.p; }
+if (v.m != null) { mult = v.m; }
+});
+if (base == null) { return null; }
+var n = base * mult;
+if (mult !== 1) { n = Math.round(n * 20) / 20; }
+return n;
+}
+vis(p, sel, accent) {
+var I = this.data().I;
+var pick = function (k) {
+var g = (p.opts || []).filter(function (x) { return x.k === k; })[0];
+return g ? g.vals[sel[k] || 0] : null;
+};
+if (p.frame) {
+var f = pick('frame');
+var m = pick('mount') || { c: '#F1ECE0', c2: '#F1ECE0' };
+var fc = f ? f.fc : p.fc;
+var lip = f ? f.lip : p.lip;
+var thin = f ? f.thin : p.thin;
+return { fw: thin ? '0.38em' : '0.75em', fc: fc || '#1B1B1B', lip: lip || 'transparent', mc: m.c, pad: m.none ? '0%' : '7%', win: '#DAD6CE', wl: m.none ? 'transparent' : (m.c2 !== m.c ? m.c2 : 'rgba(18,18,18,.16)'), d: p.winIc ? I[p.winIc] : 'M0 0', ink: '#77736B' };
+}
+if (p.mount) {
+var c = pick('colour') || { c: '#F1ECE0' };
+return { fw: '0px', fc: 'transparent', lip: 'transparent', mc: c.c, pad: '11%', win: '#FFFFFF', wl: 'rgba(18,18,18,.16)', d: 'M0 0', ink: '#77736B' };
+}
+return { fw: '0px', fc: 'transparent', lip: 'transparent', mc: '#FFFFFF', pad: '3%', win: 'transparent', wl: 'transparent', d: I[p.ic] || 'M0 0', ink: p.foil ? accent : '#2E2E2E' };
+}
+tile(id, accent) {
+var self = this;
+var p = this.data().P[id];
+var v = this.vis(p, {}, accent);
+v.t = p.t;
+v.price = this.fromLabel(p);
+v.go = function () { self.nav('prod', id); };
+return v;
+}
+pick(id, k, i) {
+var s = this.S();
+var sel = Object.assign({}, s.sel);
+sel[id] = Object.assign({}, sel[id] || {});
+sel[id][k] = i;
+this.setState({ sel: sel, added: false });
+}
+setTxt(key, v) {
+var s = this.S();
+var t = Object.assign({}, s.txt);
+t[key] = v;
+this.setState({ txt: t });
+}
+addToCart(p, buy) {
+var s = this.S();
+var sel = s.sel[p.id] || {};
+var sub = (p.opts || []).map(function (g) { return g.vals[sel[g.k] || 0].l; }).join(', ');
+var txt = (p.fields || []).map(function (f) { var v = s.txt[p.id + ':' + f.k]; return v ? f.l + ': ' + v : ''; }).filter(Boolean).join(' / ');
+if (s.photos) { txt = (txt ? txt + ' / ' : '') + s.photos + (s.photos === 1 ? ' photo added' : ' photos added'); }
+var key = p.id + '|' + sub + '|' + txt;
+var unit = this.priceOf(p, sel);
+var hit = false;
+var cart = s.cart.map(function (l) {
+if (l.key === key) { hit = true; return Object.assign({}, l, { qty: l.qty + s.qty }); }
+return l;
+});
+if (!hit) { cart.push({ key: key, id: p.id, t: p.t, sub: sub, txt: txt, unit: unit, qty: s.qty, sel: Object.assign({}, sel) }); }
+if (buy) {
+this.top();
+this.setState({ cart: cart, route: ['cart', ''], menu: null, added: false, done: false });
+} else {
+this.setState({ cart: cart, added: true, done: false });
+}
+}
+addPrints(row) {
+var s = this.S();
+var cart = s.cart.slice();
+cart.push({ key: 'prints|' + row[0] + '|' + cart.length, id: 'prints', t: '5×3 in photo prints', sub: row[0] + ' prints', txt: s.pphotos ? s.pphotos + ' photos added' : '', unit: row[1], qty: 1, sel: {} });
+this.setState({ cart: cart, padded: true, done: false });
+}
+setQty(i, n) {
+var s = this.S();
+var cart = s.cart.slice();
+if (n <= 0) { cart.splice(i, 1); } else { cart[i] = Object.assign({}, cart[i], { qty: n }); }
+this.setState({ cart: cart, done: false });
+}
+renderVals() {
+var self = this;
+var s = this.S();
+var D = this.data();
+var I = D.I, P = D.P, C = D.C;
+var props = this.props || {};
+var accent = props.accent || '#A8862B';
+var START = { 'Home': ['home', ''] };
+var r = s.route || START[props.startPage] || ['home', ''];
+var page = r[0];
+var rid = r[1];
+if ((page === 'prod' && !P[rid]) || (page === 'col' && !C[rid])) { page = 'home'; }
+var go = function (p, id) { return function () { self.nav(p, id); }; };
+var tile = function (id) { return self.tile(id, accent); };
+var link = function (x) {
+if (x[0] === 'p') { return { t: P[x[1]].s || P[x[1]].t, go: go('prod', x[1]) }; }
+if (x[0] === 'c') { return { t: C[x[1]].t, go: go('col', x[1]) }; }
+return { t: x[2], go: go(x[1]) };
+};
+var TITLES = { printing: 'Photo printing', passport: 'Passport and ID photos', bespoke: 'Bespoke framing', client: 'Client area', stores: 'Store locations', about: 'About us', contact: 'Contact', news: 'News', delivery: 'Delivery information', returns: 'Returns and refunds', terms: 'Terms of service', privacy: 'Privacy policy', cart: 'Your cart', search: 'Search', account: 'Log in' };
+if (page !== 'home' && page !== 'prod' && page !== 'col' && !TITLES[page]) { page = 'home'; }
+var nav = D.N.map(function (g) {
+var open = s.menu === g.id;
+return { t: g.t, has: !!g.secs, open: open, cls: open ? 'is-on' : '', go: g.secs ? function () { self.setState({ menu: open ? null : g.id }); } : go(g.page) };
+});
+var mg = D.N.filter(function (g) { return g.id === s.menu && g.secs; })[0];
+var menuSecs = mg ? mg.secs.map(function (sec) { return { t: sec.t, links: sec.links.map(link) }; }) : [];
+var crumbs = [{ t: 'Home', go: go('home') }];
+var here = TITLES[page] || '';
+if (page === 'col') {
+if (C[rid].parent) { crumbs.push({ t: C[C[rid].parent].t, go: go('col', C[rid].parent) }); }
+here = C[rid].t;
+}
+if (page === 'prod') {
+var pcId = P[rid].col;
+if (C[pcId].parent) { crumbs.push({ t: C[C[pcId].parent].t, go: go('col', C[pcId].parent) }); }
+crumbs.push({ t: C[pcId].t, go: go('col', pcId) });
+here = P[rid].t;
+}
+var cats = [
+{ t: 'Foil prints', x: C.foil.x, d: I.map, go: go('col', 'foil') },
+{ t: 'Photo gifts', x: C.gifts.x, d: I.mug, go: go('col', 'gifts') },
+{ t: 'Photo printing', x: 'Prints from your phone or computer', d: I.prints, go: go('printing') },
+{ t: 'Passport and ID photos', x: 'Printed photos or a digital code', d: I.idphoto, go: go('passport') },
+{ t: 'Picture frames', x: C.frames.x, d: I.framing, go: go('col', 'frames') },
+{ t: 'Frame mounts', x: C.mounts.x, d: I.mount, go: go('col', 'mounts') },
+{ t: 'Military framing', x: C.military.x, d: I.crest, go: go('col', 'military') },
+{ t: 'Bespoke framing', x: 'Medals, shirts, artwork and keepsakes', d: I.shirt, go: go('bespoke') }
+];
+var canvasSizes = P.canvas.opts[0].vals.map(function (v, i) {
+return { l: v.l, price: self.money(v.p), go: function () { self.nav('prod', 'canvas', { size: i }); } };
+});
+var col = { t: '', intro: '', hasKids: false, kids: [], hasProds: false, prods: [], count: '', sorts: [], hasCta: false, cta: '' };
+if (page === 'col') {
+var cc = C[rid];
+var ids = cc.prods.slice();
+if (s.sort) {
+ids.sort(function (a, b) {
+var x = self.minPrice(P[a]);
+var y = self.minPrice(P[b]);
+if (x == null) { return 1; }
+if (y == null) { return -1; }
+return s.sort === 1 ? x - y : y - x;
+});
+}
+col = {
+t: cc.t, intro: cc.intro,
+hasKids: !!(cc.kids && cc.kids.length),
+kids: (cc.kids || []).map(function (k) { return { t: C[k].t, x: C[k].x, d: I[C[k].ic], go: go('col', k) }; }),
+hasProds: ids.length > 0, prods: ids.map(tile),
+count: ids.length + (ids.length === 1 ? ' product' : ' products'),
+sorts: ['Featured', 'Price, low to high', 'Price, high to low'].map(function (l, i) {
+return { l: l, on: s.sort === i, cls: s.sort === i ? 'is-on' : '', pick: function () { self.setState({ sort: i }); } };
+}),
+hasCta: !!cc.cta, cta: cc.cta || ''
+};
+}
+var noop = function () {};
+var prod = { t: '', price: '', v: this.vis({ ic: 'photo' }, {}, accent), live: false, groups: [], fields: [], up: false, upHint: '', upState: '', addPhoto: noop, qty: 1, inc: noop, dec: noop, add: noop, buy: noop, back: noop, paras: [], hasBullets: false, bullets: [], hasRelated: false, related: [] };
+if (page === 'prod') {
+var p = P[rid];
+var sel = s.sel[rid] || {};
+var price = this.priceOf(p, sel);
+var related = C[p.col].prods.filter(function (x) { return x !== rid; }).slice(0, 4).map(tile);
+prod = {
+t: p.t,
+price: price == null ? '[price]' : this.money(price),
+v: this.vis(p, sel, accent),
+live: !!(p.frame || p.mount),
+groups: (p.opts || []).map(function (g) {
+var cur = sel[g.k] || 0;
+return {
+n: g.n, cur: g.vals[cur].note || g.vals[cur].l, isSw: !!g.sw, isPill: !g.sw,
+vals: g.vals.map(function (v, i) {
+return { l: v.l, on: i === cur, cls: i === cur ? 'is-on' : '', c: v.c || '#FFFFFF', c2: v.c2 || v.c || '#FFFFFF', pick: function () { self.pick(rid, g.k, i); } };
+})
+};
+}),
+fields: (p.fields || []).map(function (f) {
+var key = rid + ':' + f.k;
+return { id: 'f-' + f.k, l: f.l, ph: f.ph, val: s.txt[key] || '', set: function (e) { self.setTxt(key, e.target.value); } };
+}),
+up: !!p.up,
+upHint: p.up > 1 ? 'Add up to ' + p.up + ' photos.' + (p.foil ? ' Not sure which is best? Send a few and we will choose.' : '') : 'Add the photo you want us to use.',
+upState: s.photos ? s.photos + (s.photos === 1 ? ' photo added' : ' photos added') : 'No photos added yet',
+addPhoto: function () { self.setState({ photos: Math.min(s.photos + 1, p.up) }); },
+qty: s.qty,
+inc: function () { self.setState({ qty: s.qty + 1 }); },
+dec: function () { self.setState({ qty: Math.max(1, s.qty - 1) }); },
+add: function () { self.addToCart(p, false); },
+buy: function () { self.addToCart(p, true); },
+back: go('col', p.col),
+paras: (p.paras || []).map(function (x) { return { x: x }; }),
+hasBullets: !!(p.bullets && p.bullets.length),
+bullets: (p.bullets || []).map(function (x) { return { x: x }; }),
+hasRelated: related.length > 0,
+related: related
+};
+}
+var PQ = [[10, 8.75], [25, 12.50], [50, 23.75], [100, 37.50], [250, 62.50]];
+var pq = PQ[s.pq] || PQ[2];
+var print = {
+qtys: PQ.map(function (x, i) {
+return { l: String(x[0]), on: s.pq === i, cls: s.pq === i ? 'is-on' : '', pick: function () { self.setState({ pq: i, padded: false }); } };
+}),
+summary: pq[0] + ' prints, 5×3 in',
+price: this.money(pq[1]),
+upState: s.pphotos ? s.pphotos + ' photos added' : 'No photos added yet',
+addPhoto: function () { self.setState({ pphotos: Math.min(s.pphotos + 10, pq[0]) }); },
+add: function () { self.addPrints(pq); },
+added: s.padded
+};
+var count = s.cart.reduce(function (a, l) { return a + l.qty; }, 0);
+var subtotal = s.cart.reduce(function (a, l) { return a + (l.unit || 0) * l.qty; }, 0);
+var lines = s.cart.map(function (l, i) {
+var v = self.vis(P[l.id], l.sel || {}, accent);
+v.t = l.t;
+v.sub = l.sub;
+v.hasTxt = !!l.txt;
+v.txt = l.txt;
+v.unit = l.unit == null ? '[price]' : self.money(l.unit);
+v.qty = l.qty;
+v.total = l.unit == null ? '[price]' : self.money(l.unit * l.qty);
+v.inc = function () { self.setQty(i, l.qty + 1); };
+v.dec = function () { self.setQty(i, l.qty - 1); };
+v.rm = function () { self.setQty(i, 0); };
+v.rmLabel = 'Remove ' + l.t;
+return v;
+});
+var cart = {
+has: s.cart.length > 0, empty: s.cart.length === 0, lines: lines, subtotal: this.money(subtotal),
+note: s.note, setNote: function (e) { self.setState({ note: e.target.value }); },
+methods: ['Delivery', 'Click and collect'].map(function (l, i) {
+return { l: l, on: s.method === i, cls: s.method === i ? 'is-on' : '', pick: function () { self.setState({ method: i }); } };
+}),
+methodNote: s.method === 1 ? 'Free. Collect from [shop address] once we email to say it is ready.' : 'Postage is worked out at checkout, from £3.95.',
+checkout: function () { self.setState({ done: true }); },
+done: s.done
+};
+var q = (s.q || '').toLowerCase().trim();
+var found = q ? D.order.filter(function (id) {
+var x = P[id];
+return (x.t + ' ' + (x.s || '') + ' ' + C[x.col].t).toLowerCase().indexOf(q) > -1;
+}) : [];
+var search = {
+q: s.q, onQ: function (e) { self.setState({ q: e.target.value }); },
+idle: !q, has: found.length > 0, none: !!q && !found.length,
+total: D.order.length + ' products to search. Start typing, or jump to a range:',
+noneT: 'No products match “' + s.q + '”. Check the spelling or try a broader word.',
+count: found.length + (found.length === 1 ? ' result' : ' results'),
+results: found.map(tile)
+};
+var sent = s.sent || {};
+var send = function (k) { return function () { var n = Object.assign({}, sent); n[k] = true; self.setState({ sent: n }); }; };
+var fl = function (t, p, id) { return { t: t, go: go(p, id) }; };
+var footCols = [
+{ t: 'Shop', links: [fl('Foil prints', 'col', 'foil'), fl('Photo gifts', 'col', 'gifts'), fl('Picture frames', 'col', 'frames'), fl('Frame mounts', 'col', 'mounts'), fl('Military framing', 'col', 'military')] },
+{ t: 'Services', links: [fl('Photo printing', 'printing'), fl('Passport and ID photos', 'passport'), fl('Bespoke framing', 'bespoke'), fl('Client area', 'client')] },
+{ t: 'Help', links: [fl('Store locations', 'stores'), fl('Contact', 'contact'), fl('About us', 'about'), fl('News', 'news'), fl('Delivery information', 'delivery'), fl('Returns and refunds', 'returns'), fl('Terms of service', 'terms'), fl('Privacy policy', 'privacy')] }
+];
+return {
+accent: accent,
+isHome: page === 'home', notHome: page !== 'home', isCol: page === 'col', isProd: page === 'prod',
+isPrinting: page === 'printing', isPassport: page === 'passport', isBespoke: page === 'bespoke', isClient: page === 'client',
+isStores: page === 'stores', isAbout: page === 'about', isContact: page === 'contact', isNews: page === 'news',
+isDelivery: page === 'delivery', isReturns: page === 'returns', isTerms: page === 'terms', isPrivacy: page === 'privacy',
+isCart: page === 'cart', isSearch: page === 'search', isAccount: page === 'account',
+crumbs: crumbs, here: here,
+nav: nav, menuOpen: !!s.menu, menuRoot: s.menu === 'root', menuGroup: !!mg,
+menuTitle: mg ? mg.t : '', menuSecs: menuSecs,
+hasMenuAll: !!(mg && mg.col), menuAllT: mg && mg.col ? 'Shop all ' + mg.t.toLowerCase() : '',
+menuAll: mg && mg.col ? go('col', mg.col) : go('home'),
+closeMenu: function () { self.setState({ menu: null }); },
+toggleRoot: function () { self.setState({ menu: s.menu ? null : 'root' }); },
+menuBack: function () { self.setState({ menu: 'root' }); },
+hasCart: count > 0, cartCount: count,
+goHome: go('home'), goSearch: go('search'), goCart: go('cart'), goAccount: go('account'),
+goFoil: go('col', 'foil'), goGifts: go('col', 'gifts'), goFrames: go('col', 'frames'), goMounts: go('col', 'mounts'), goMilitary: go('col', 'military'),
+goPrinting: go('printing'), goPassport: go('passport'), goBespoke: go('bespoke'), goClient: go('client'),
+goStores: go('stores'), goAbout: go('about'), goContact: go('contact'), goNews: go('news'),
+goDelivery: go('delivery'), goReturns: go('returns'), goTerms: go('terms'), goPrivacy: go('privacy'),
+cats: cats, foil: C.foil.prods.map(tile), gifts4: ['canvas', 'mugs', 'slates', 'blocks'].map(tile), canvasSizes: canvasSizes,
+col: col, prod: prod, added: s.added, print: print, cart: cart, search: search,
+contactForm: !sent.contact, contactDone: !!sent.contact, sendContact: send('contact'),
+bespokeForm: !sent.bespoke, bespokeDone: !!sent.bespoke, sendBespoke: send('bespoke'),
+newsForm: !sent.news, newsDone: !!sent.news, sendNews: send('news'),
+clientForm: !sent.client, clientDone: !!sent.client, sendClient: send('client'),
+accountForm: !sent.account, accountDone: !!sent.account, sendAccount: send('account'),
+footCols: footCols
+};
+}
+}
+var SHOP = 'https://www.watsoncoreprinting.co.uk/cdn/shop/files/';
+bootDemo(Component, {
+'foiled-map': SHOP + '001-10.jpg?width=900',
+'marathon-foil': SHOP + '001-19_13413851-6705-4999-b0d7-12579ddd9582.jpg?width=900',
+'marathon-route': SHOP + 'IMG_7793.heic?width=900',
+'photo-foil': SHOP + '001-18.jpg?width=900',
+'animal-foil': SHOP + '001-47.jpg?width=900',
+'wedding-foil': SHOP + '001-25.jpg?width=900'
+}, SHOP + '001-10.jpg?width=1200');
+</script>
+</body>
+</html>
