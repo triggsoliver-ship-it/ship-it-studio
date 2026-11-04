@@ -123,6 +123,54 @@ So `document.querySelectorAll('[data-buy-live]').length` should now report
 > one. If either is actually a one-off link the copy is wrong, and if a one-off
 > item is secretly recurring the customer will dispute the second charge.
 
+---
+
+## UPDATE — 4 Nov 2026: new `launch_build` key (£199), NOT YET LIVE
+
+Added as part of a pricing-tier and targeting change — a cheaper one-page
+"Launch" build sitting below Starter, created so Ship It Studio's cold outreach
+has something genuinely competitive to offer businesses with no website at all,
+after a prospect (Pine & Dandy Tree Services, 4 Nov 2026) pointed out £399 reads
+as high next to the £120-ish local-freelancer going rate for that exact buyer.
+See `outreach-daily/combined-cadence/01-shipitstudio.md` Step 2A/2B for the
+full reasoning and the new targeting split (Launch/Starter for no-website
+prospects, the existing `addon_refresh` product promoted into its own
+first-class outreach pipeline for prospects who already have a bad site).
+
+**This is a 14th key, on top of the thirteen described above.** Every count in
+this file above ("thirteen keys", "twenty-one buttons", "13 on `/pricing`", "8
+on `/addons`") still describes only the original thirteen and has deliberately
+not been rewritten — treat this section as an addendum, not a correction. Once
+`launch_build` goes live, those counts should become fourteen / twenty-three /
+14 / 8 respectively (`/addons` is unaffected — Launch has no add-ons-page
+presence).
+
+| Config key | Charge | Type | Button appears on | Button label |
+|---|---|---|---|---|
+| `launch_build` | **£199** | one-off | `/pricing` — Build your site, Launch card; `/start` — Launch card (both use `data-buy="launch_build"`, same mechanism as every other key above — unlike `/start`'s two legacy hardcoded Starter/Business links documented further down this file) | Get started — £199 |
+
+**Status: NOT CONFIGURED.** `launch_build` is an empty string in
+`assets/js/main.js`, exactly like any other unset key. Both of its buttons
+safely fall back to `/contact.html` per the fallback mechanism documented
+below — nothing is broken, and nobody can be overcharged or undercharged by
+this. To take it live:
+
+1. Stripe Dashboard → Product catalogue → add a one-off GBP product, **£199**,
+   no VAT, no Stripe Tax.
+2. Payment Links → create a link for that product.
+3. Paste the `https://buy.stripe.com/…` URL into `launch_build` in
+   `assets/js/main.js`.
+4. Decide whether `/start.html` should also get a two-stage **£120
+   deposit / £79 on go-live** Payment Link for Launch, the same way Starter and
+   Business already do there (see "Payment Links already live on this site"
+   below) — if so, create that second, separate Payment Link too and hard-code
+   it into the Launch card on `/start.html` exactly as the other two are.
+   `/start.html`'s Launch card currently points at `/contact.html` and has no
+   deposit link yet.
+5. Commit and deploy.
+
+---
+
 ### Not wired, on purpose
 
 - **Platform / shop — "Custom, quoted per project"** on `/pricing`. Has no key
@@ -208,6 +256,13 @@ Two things to know:
    `start.html` is a separate post-demo flow — but **check in the Stripe
    dashboard whether they are the same product**, and retire one if they are
    accidental duplicates.
+
+`start.html`'s new Launch card (added 4 Nov 2026, see the UPDATE section above)
+does **not** follow this hard-coded pattern — it uses `data-buy="launch_build"`
+like every `/pricing` button, so it will self-upgrade the moment `launch_build`
+is configured in `assets/js/main.js`, with no separate edit to `start.html`
+needed for the full-price flow. A deposit-only version would need its own new
+hard-coded link, per step 4 of the UPDATE section above.
 
 ---
 
