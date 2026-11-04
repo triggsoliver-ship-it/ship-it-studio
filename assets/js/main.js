@@ -74,7 +74,7 @@ const WA_HREF = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(WA_MSG)}`;
 const STRIPE_PAYMENT_LINKS = {
   starter_build:     "https://buy.stripe.com/fZuaEWeSx4xp9XB2wkeIw0h",  // £399 one-off
   business_build:    "https://buy.stripe.com/bJe28qbGl0h94Dh3AoeIw0i",  // £799 one-off
-  launch_build:      "",  // £199 one-off — added 4 Nov 2026, NOT YET CREATED in Stripe. See PAYMENTS.md.
+  launch_build:      "https://buy.stripe.com/bJe9ASh0F7JBd9N4EseIw0E",  // £199 one-off — LIVE 4 Nov 2026
   care_basic:        "https://buy.stripe.com/6oUbJ06m1e7ZfhVdaYeIw0l",  // £39 / month
   care_pro:          "https://buy.stripe.com/3cI00i4dTbZR9XB3AoeIw0j",  // £79 / month
   care_growth:       "https://buy.stripe.com/bJe9AS6m18NFedR6MAeIw0k",  // £129 / month

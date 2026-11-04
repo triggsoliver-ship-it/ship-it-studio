@@ -125,7 +125,7 @@ So `document.querySelectorAll('[data-buy-live]').length` should now report
 
 ---
 
-## UPDATE — 4 Nov 2026: new `launch_build` key (£199), NOT YET LIVE
+## UPDATE — 4 Nov 2026: new `launch_build` key (£199) — NOW LIVE
 
 Added as part of a pricing-tier and targeting change — a cheaper one-page
 "Launch" build sitting below Starter, created so Ship It Studio's cold outreach
@@ -140,34 +140,40 @@ first-class outreach pipeline for prospects who already have a bad site).
 **This is a 14th key, on top of the thirteen described above.** Every count in
 this file above ("thirteen keys", "twenty-one buttons", "13 on `/pricing`", "8
 on `/addons`") still describes only the original thirteen and has deliberately
-not been rewritten — treat this section as an addendum, not a correction. Once
-`launch_build` goes live, those counts should become fourteen / twenty-three /
-14 / 8 respectively (`/addons` is unaffected — Launch has no add-ons-page
-presence).
+not been rewritten — treat this section as an addendum, not a correction. With
+`launch_build` now live, those counts should really be read as fourteen /
+twenty-three / 14 / 8 respectively (`/addons` is unaffected — Launch has no
+add-ons-page presence).
 
 | Config key | Charge | Type | Button appears on | Button label |
 |---|---|---|---|---|
 | `launch_build` | **£199** | one-off | `/pricing` — Build your site, Launch card; `/start` — Launch card (both use `data-buy="launch_build"`, same mechanism as every other key above — unlike `/start`'s two legacy hardcoded Starter/Business links documented further down this file) | Get started — £199 |
 
-**Status: NOT CONFIGURED.** `launch_build` is an empty string in
-`assets/js/main.js`, exactly like any other unset key. Both of its buttons
-safely fall back to `/contact.html` per the fallback mechanism documented
-below — nothing is broken, and nobody can be overcharged or undercharged by
-this. To take it live:
+**Status: LIVE, created 4 Nov 2026.** `launch_build` now points at
+`https://buy.stripe.com/bJe9ASh0F7JBd9N4EseIw0E` — a one-off GBP product,
+£199.00, created directly in the Stripe dashboard. Both of its buttons
+(`/pricing` and `/start`) self-upgrade via the standard `data-buy="launch_build"`
+mechanism, so no separate HTML edit was needed beyond this config change.
 
-1. Stripe Dashboard → Product catalogue → add a one-off GBP product, **£199**,
-   no VAT, no Stripe Tax.
-2. Payment Links → create a link for that product.
-3. Paste the `https://buy.stripe.com/…` URL into `launch_build` in
-   `assets/js/main.js`.
-4. Decide whether `/start.html` should also get a two-stage **£120
-   deposit / £79 on go-live** Payment Link for Launch, the same way Starter and
-   Business already do there (see "Payment Links already live on this site"
-   below) — if so, create that second, separate Payment Link too and hard-code
-   it into the Launch card on `/start.html` exactly as the other two are.
-   `/start.html`'s Launch card currently points at `/contact.html` and has no
-   deposit link yet.
-5. Commit and deploy.
+**Managed Payments was left OFF for this product** (unchecked on the Payment
+Link, rather than the account default of on). Managed Payments bundles
+automatic tax collection and adds a 3.5% fee per transaction — Stripe forces a
+product tax category the moment it's enabled, which is exactly the automatic
+tax behaviour this file's no-VAT/no-Stripe-Tax policy rules out, and the extra
+fee has no equivalent on any of the other thirteen links. With Managed Payments
+off, "Collect tax automatically" is also off, matching the rest of the site:
+confirmed in the dashboard as `Managed Payments: Disabled`, `Collect tax
+automatically: No`. If any future Payment Link on this site is created with
+Managed Payments left at its Stripe-default on, switch it off before
+publishing the link, for the same reason.
+
+Still open, per step 4 of the original setup note below: whether `/start.html`
+should also get a second, two-stage **£120 deposit / £79 on go-live** hardcoded
+Payment Link for Launch, matching how Starter and Business work there (see
+"Payment Links already live on this site" below). Not created yet — `/start`'s
+Launch card currently takes the full £199 via `launch_build` rather than a
+deposit flow. Decide and build that separately if a deposit flow is wanted for
+Launch specifically.
 
 ---
 
@@ -257,12 +263,12 @@ Two things to know:
    dashboard whether they are the same product**, and retire one if they are
    accidental duplicates.
 
-`start.html`'s new Launch card (added 4 Nov 2026, see the UPDATE section above)
+`start.html`'s Launch card (added 4 Nov 2026, see the UPDATE section above)
 does **not** follow this hard-coded pattern — it uses `data-buy="launch_build"`
-like every `/pricing` button, so it will self-upgrade the moment `launch_build`
-is configured in `assets/js/main.js`, with no separate edit to `start.html`
-needed for the full-price flow. A deposit-only version would need its own new
-hard-coded link, per step 4 of the UPDATE section above.
+like every `/pricing` button, so it self-upgraded automatically once
+`launch_build` was configured in `assets/js/main.js`, with no separate edit to
+`start.html` needed for the full-price flow. A deposit-only version would need
+its own new hard-coded link — not yet created, see the UPDATE section above.
 
 ---
 
@@ -270,7 +276,9 @@ hard-coded link, per step 4 of the UPDATE section above.
 
 1. Stripe Dashboard → Product catalogue → add the product at the exact price in
    the table above. Currency GBP. Recurring monthly for the five subscription
-   rows, one-off for the rest.
+   rows, one-off for the rest. Leave **Managed Payments off** unless a product
+   specifically needs it — it forces a tax category and adds a 3.5% fee, which
+   conflicts with this file's no-VAT/no-Stripe-Tax policy.
 2. Payment Links → create a link for that product.
 3. Copy the `https://buy.stripe.com/…` URL into the matching key in
    `assets/js/main.js`.
