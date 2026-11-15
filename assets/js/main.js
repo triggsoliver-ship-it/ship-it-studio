@@ -309,3 +309,17 @@ function registerSW(){
     window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));
   }
 }
+
+/* ---- Vercel Web Analytics ----
+   Web Analytics is switched on for this project in Vercel, but no page loaded
+   the tracking script, so the dashboard showed zero visitors. main.js is on
+   every page, so loading it here covers the whole site (not the /demos). */
+(function(){
+  if (window.__sisVa) return;
+  window.__sisVa = true;
+  window.va = window.va || function(){ (window.vaq = window.vaq || []).push(arguments); };
+  var s = document.createElement('script');
+  s.defer = true;
+  s.src = '/_vercel/insights/script.js';
+  document.head.appendChild(s);
+})();
