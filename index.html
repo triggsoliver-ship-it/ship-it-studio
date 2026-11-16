@@ -28,9 +28,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/css/style.css" />
 <script src="/assets/js/main.js" defer></script>
-<script>document.documentElement.classList.add("mo")</script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script>(function(d){d.classList.add("mo");try{if(sessionStorage.getItem("sis-seen"))d.classList.add("seen")}catch(e){}})(document.documentElement)</script>
 </head>
 <body>
+<div class="pre" id="pre" aria-hidden="true"><i></i><span>Ship It Studio</span><b id="pre-n">000</b></div>
+<div class="grainy" aria-hidden="true"></div>
+<div class="cur" id="cur" aria-hidden="true"></div>
 <!-- NAV -->
 <header class="nav"><div class="nav-in">
   <a class="brand" href="/"><span class="dot"></span>Ship It Studio</a>
@@ -88,6 +92,13 @@
   <span>Prime Origins Atlas</span><span>Agent Legend</span><span>Bromspec Motorworks</span><span>Car Events Near Me</span><span>GreenBack</span><span>Man With A Whistle</span><span>ATHVORA</span><span>AJS Vehicle Services</span><span>SalesRelay</span><span>ScaleYourClub</span><span>Parish in a Box</span><span>HHS Capital</span>
   <span>Prime Origins Atlas</span><span>Agent Legend</span><span>Bromspec Motorworks</span><span>Car Events Near Me</span><span>GreenBack</span><span>Man With A Whistle</span><span>ATHVORA</span><span>AJS Vehicle Services</span><span>SalesRelay</span><span>ScaleYourClub</span><span>Parish in a Box</span><span>HHS Capital</span>
 </div></div>
+
+<section class="zoom" data-scroll-pin aria-label="Showreel">
+  <div class="zoom-pin">
+    <div class="zoom-frame"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>agentlegend.co.uk</span></div><img src="/assets/work/agentlegend.webp" width="1225" height="640" alt="Agent Legend, one of the studio's live builds"></div></div>
+    <div class="zoom-txt"><h2>Sixteen live builds.</h2><h2>Every one you can click.</h2></div>
+  </div>
+</section>
 
 <!-- WORK -->
 <section class="sec" id="work" style="padding-top:110px"><div class="wrap">
@@ -179,6 +190,8 @@
 </div></section>
 
 <!-- CAPABILITIES -->
+<div class="scrub" data-scroll-band aria-hidden="true"><div>Designed. <em>Built.</em> Shipped. <em>Designed.</em> Built. <em>Shipped.</em></div></div>
+
 <section class="sec" id="capabilities"><div class="wrap">
   <div class="sec-head">
     <h2 data-split data-r2>What we can build for you</h2>
@@ -326,18 +339,23 @@ document.addEventListener('DOMContentLoaded',()=>{
   // reveals
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -12% 0px'});
   document.querySelectorAll('[data-r],[data-r2]').forEach(function(el){io.observe(el)});
-  // load sequence
+  // preloader count, then the hero sequence
   function go(){requestAnimationFrame(function(){root.classList.add('loaded');setTimeout(function(){root.classList.add('settled')},2500)})}
-  if(document.readyState==='complete')go();else addEventListener('load',go);setTimeout(go,1800);
+  var pre=document.getElementById('pre'),pn=document.getElementById('pre-n');
+  if(!pre||reduce||root.classList.contains('seen')){go()}
+  else{var t0=performance.now(),D=1500;(function tick(t){var k=Math.min(1,(t-t0)/D);k=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;var v=Math.round(k*100);pn.textContent=('00'+v).slice(-3);pre.style.setProperty('--w',v+'%');
+    if(k<1)requestAnimationFrame(tick);else{try{sessionStorage.setItem('sis-seen','1')}catch(e){}pre.classList.add('done');setTimeout(go,350);setTimeout(function(){pre.style.display='none'},1400)}})(t0)}
   if(reduce)return;
   // scroll-linked: hero drift, case screens, phones
+  var pin=document.querySelector('[data-scroll-pin]'),band=document.querySelector('[data-scroll-band]');
   var hero=document.querySelector('.c-hero'), shots=[].slice.call(document.querySelectorAll('[data-scroll]')), phones=document.querySelector('[data-scroll-kids]');
   var ticking=false;
   function prog(el){var r=el.getBoundingClientRect(),vh=innerHeight;return Math.max(0,Math.min(1,(vh-r.top)/(vh*.75)))}
   function frame(){ticking=false;var y=scrollY;
     if(hero&&y<innerHeight*1.2){hero.style.setProperty('--sy',(-y*.25)+'px');hero.style.setProperty('--fade',Math.max(0,1-y/(innerHeight*.7)).toFixed(3))}
     shots.forEach(function(s){s.style.setProperty('--p',prog(s).toFixed(3))});
-    if(phones)phones.style.setProperty('--p',prog(phones).toFixed(3));
+    if(pin){var pr=pin.getBoundingClientRect();pin.style.setProperty('--p',Math.max(0,Math.min(1,-pr.top/(pr.height-innerHeight))).toFixed(4))}
+    if(band){var br=band.getBoundingClientRect();band.style.setProperty('--p',Math.max(0,Math.min(1,(innerHeight-br.top)/(innerHeight+br.height))).toFixed(4))}
     if(phones)[].forEach.call(phones.children,function(c){c.style.setProperty('--p',prog(phones).toFixed(3))});
   }
   addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(frame)}},{passive:true});frame();
@@ -351,9 +369,21 @@ document.addEventListener('DOMContentLoaded',()=>{
       t.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();b.style.setProperty('--tx',((e.clientX-r.left)/r.width-.5)*10+'deg');b.style.setProperty('--ty',-((e.clientY-r.top)/r.height-.5)*10+'deg')});
       t.addEventListener('pointerleave',function(){b.style.setProperty('--tx','0deg');b.style.setProperty('--ty','0deg')})});
   }
+  // smooth scrolling on desktop
+  if(window.Lenis&&matchMedia('(pointer:fine)').matches){try{var lenis=new Lenis({lerp:.09,anchors:true});(function raf(t){lenis.raf(t);requestAnimationFrame(raf)})(0)}catch(e){}}
+  if(matchMedia('(pointer:fine)').matches){
+    // cursor that turns into a "View" disc over the work
+    var cur=document.getElementById('cur'),cx=0,cy=0,tx=0,ty=0;root.classList.add('has-cur');
+    addEventListener('pointermove',function(e){tx=e.clientX;ty=e.clientY},{passive:true});
+    (function loop(){cx+=(tx-cx)*.22;cy+=(ty-cy)*.22;cur.style.transform='translate('+cx+'px,'+cy+'px)';requestAnimationFrame(loop)})();
+    document.querySelectorAll('.case-shot,.tile').forEach(function(el){el.addEventListener('pointerenter',function(){cur.classList.add('big');cur.textContent='View'});el.addEventListener('pointerleave',function(){cur.classList.remove('big');cur.textContent=''})});
+    document.querySelectorAll('a:not(.case-shot):not(.tile),button').forEach(function(el){el.addEventListener('pointerenter',function(){cur.classList.add('link')});el.addEventListener('pointerleave',function(){cur.classList.remove('link')})});
+    // buttons lean towards the cursor
+    document.querySelectorAll('.btn-lg,.nav-right .btn').forEach(function(b){b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.25)+'px,'+((e.clientY-r.top-r.height/2)*.35)+'px)'});b.addEventListener('pointerleave',function(){b.style.transform=''})});
+  }
   // count the stats up
   document.querySelectorAll('.c-stats b').forEach(function(b){var m=b.textContent.match(/^(£?)(\d+)(.*)$/);if(!m||m[2]==='0')return;var n=+m[2],t0=null;
-    function step(t){if(!t0)t0=t;var k=Math.min(1,(t-t0-1100)/1400);if(k<0){requestAnimationFrame(step);return}k=1-Math.pow(1-k,3);b.textContent=m[1]+Math.round(n*k)+m[3];if(k<1)requestAnimationFrame(step)}
+    function step(t){if(!t0)t0=t;var k=Math.min(1,(t-t0-2900)/1400);if(k<0){requestAnimationFrame(step);return}k=1-Math.pow(1-k,3);b.textContent=m[1]+Math.round(n*k)+m[3];if(k<1)requestAnimationFrame(step)}
     b.textContent=m[1]+'0'+m[3];requestAnimationFrame(step)});
 })();
 </script>
