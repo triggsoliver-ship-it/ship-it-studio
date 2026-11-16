@@ -480,3 +480,16 @@ html.lenis,html.lenis body{height:auto;scroll-behavior:auto}
 .founder:hover .f-photo{transform:rotate(0) scale(1.03)}
 .f-photo img{width:100%;height:auto;aspect-ratio:1}
 @media(max-width:720px){.founder{grid-template-columns:1fr;gap:26px}.f-photo{max-width:260px}}
+
+/* founder in the hero and on contact */
+.hero-oli{position:absolute;z-index:-1;right:max(3vw,calc((100vw - 1280px)/2 - 40px));bottom:0;height:min(84vh,860px);width:auto;filter:drop-shadow(0 0 60px rgba(91,124,255,.45));transform:translateY(calc(var(--sy,0px) * -.6))}
+.mo .hero-oli{opacity:0;transform:translateY(80px) scale(.94);transition:opacity 1.2s ease 1.1s,transform 1.6s cubic-bezier(.16,1,.3,1) 1.1s}
+.mo.loaded .hero-oli{opacity:1;transform:translateY(calc(var(--sy,0px) * -.6))}
+.mo.loaded.settled .hero-oli{transition:none}
+.contact-hero{display:grid;grid-template-columns:1fr minmax(220px,340px);gap:56px;align-items:center}
+.contact-hero .f-photo{transform:rotate(2.5deg)}
+@media(max-width:1020px){.hero-oli{height:min(60vh,560px);right:-4vw;opacity:.9}}
+@media(max-width:720px){.hero-oli{height:auto;width:62vw;top:70px;bottom:auto;right:-8vw}.mo.loaded .hero-oli{opacity:.95}.contact-hero{grid-template-columns:1fr;gap:28px}.contact-hero .f-photo{max-width:240px}}
+.hero-oli{height:min(76vh,780px)}
+@media(max-width:1020px){.hero-oli{height:min(56vh,520px)}}
+@media(max-width:720px){.hero-oli{display:none}}
