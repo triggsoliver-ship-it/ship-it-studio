@@ -1,0 +1,60 @@
+header{padding:132px 0 0;background:var(--paper);text-align:center}
+.ht{max-width:820px;margin:0 auto;padding-bottom:46px}
+header h1{font-weight:500;letter-spacing:-.01em}
+.lede{margin-left:auto;margin-right:auto;color:var(--mut)}
+.hero-cta{justify-content:center}
+.hp{max-width:1080px;margin:0 auto;padding:0 22px}
+.hp .in{position:relative;border:1px solid var(--line);padding:14px;background:#fff}
+.hp img{width:100%;aspect-ratio:21/9;object-fit:cover}
+.rule{width:56px;height:1px;background:var(--acc);margin:0 auto 26px}
+@media(max-width:820px){header{padding-top:112px}.hp img{aspect-ratio:16/10}}
+
+.stat-line{padding:30px 0}
+.stat-line .wrap{display:flex;flex-wrap:wrap;gap:34px;justify-content:center;align-items:baseline;
+border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-top:22px;padding-bottom:22px}
+.stat-line div{font-size:14px;color:var(--mut)}
+.stat-line b{font-family:inherit;font-weight:700;font-size:19px;color:var(--ink);margin-right:8px}
+.svc-plain{display:grid;grid-template-columns:1fr 1fr}
+.svc-plain .p{padding:38px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center}
+.svc-plain .p:nth-child(2n){border-right:0}
+.svc-plain .p:nth-child(n+3){border-bottom:0}
+.svc-plain figure{width:74px;height:74px;border-radius:50%;overflow:hidden;margin:0 auto 18px}
+.svc-plain figure img{width:100%;height:100%;object-fit:cover}
+.svc-plain h3{font-size:20px;font-weight:500;margin-bottom:9px}
+.svc-plain p{color:var(--mut);font-size:14.5px;max-width:38ch;margin:0 auto}
+@media(max-width:760px){.svc-plain{grid-template-columns:1fr}.svc-plain .p{border-right:0;border-bottom:1px solid var(--line)}}
+.rev-single{max-width:800px;margin:0 auto;text-align:center}
+.rev-single p{font-family:inherit;font-size:clamp(22px,2.6vw,30px);line-height:1.42;margin-bottom:20px}
+.rev-single footer{font-size:14px;color:var(--mut);letter-spacing:.06em;text-transform:uppercase}
+.rev-single .rule{width:56px;height:1px;background:var(--acc);margin:0 auto 26px}
+.cta-solid{background:var(--acc);color:#fff;padding:92px 0}
+.cta-solid .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:52px;align-items:center}
+.cta-solid h2{color:#fff;margin-bottom:12px}
+.cta-solid p{color:rgba(255,255,255,.86);font-size:17.5px}
+.cta-solid .box{background:#fff;border-radius:var(--r);padding:30px;box-shadow:var(--sh-lg);text-align:center}
+.cta-solid .box .lbl{font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--mut);margin-bottom:10px}
+.cta-solid .box a.em{display:block;font-family:inherit;font-size:19px;font-weight:600;color:var(--ink);text-decoration:none;margin-bottom:18px;word-break:break-all}
+@media(max-width:860px){.cta-solid .wrap{grid-template-columns:1fr;gap:32px}}
+footer.pg .fstack{text-align:center;margin-bottom:30px}
+footer.pg .fstack .brand{justify-content:center;margin:0 auto 16px;display:inline-flex}
+footer.pg .fstack p{max-width:56ch;margin:0 auto 18px}
+footer.pg .fstack .links{display:flex;flex-wrap:wrap;gap:22px;justify-content:center;font-size:14px}
+footer.pg .fbot{justify-content:center;text-align:center}
+/* plate takes the band-less cut: no photo, two columns, hairline rules */
+.why-pairs.bare .band{display:none}
+.why-pairs.bare .in{display:block}
+.why-pairs.bare .pr{margin-top:30px;grid-template-columns:1fr 1fr}
+.why-pairs.bare .pr div{border-left:0;border-top:1px solid var(--line);padding:18px 0 0}
+.why-pairs .band{border-radius:var(--r);overflow:hidden;aspect-ratio:21/8;margin-bottom:46px;box-shadow:var(--sh-lg)}
+.why-pairs .band img{width:100%;height:100%;object-fit:cover}
+.why-pairs .in{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start}
+.why-pairs .pr{display:grid;grid-template-columns:1fr 1fr;gap:30px 34px}
+.why-pairs .pr div{border-left:2px solid var(--acc-soft);padding-left:18px}
+.why-pairs .pr b{display:block;font-family:inherit;font-size:17px;margin-bottom:5px}
+.why-pairs .pr span{color:var(--mut);font-size:14.5px}
+@media(max-width:860px){.why-pairs .in{grid-template-columns:1fr;gap:32px}.why-pairs .band{aspect-ratio:16/9}}
+.nb{gap:12px}
+.brand{min-width:0;flex:1 1 auto}
+.brand>span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.brand small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:520px){.brand{font-size:15px}.btn{padding:11px 15px;font-size:13.5px}}
