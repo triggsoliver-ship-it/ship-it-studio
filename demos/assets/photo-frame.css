@@ -1,0 +1,35 @@
+header{position:relative;min-height:92vh;display:flex;align-items:flex-end;padding:150px 0 58px;overflow:hidden;background:var(--ink)}
+.hb{position:absolute;inset:0}.hb img{width:100%;height:100%;object-fit:cover;object-position:center 38%}
+.hb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,18,32,.6),rgba(11,18,32,.28) 32%,rgba(11,18,32,.8) 78%,rgba(11,18,32,.96))}
+.hi{position:relative;z-index:2;width:100%;display:grid;grid-template-columns:1.55fr .95fr;gap:44px;align-items:end}
+header h1{color:#fff}.lede{color:rgba(255,255,255,.84)}
+@media(max-width:920px){.hi{grid-template-columns:1fr;gap:32px}header{min-height:auto;padding:130px 0 50px}}
+
+.why-panel{position:relative;overflow:hidden;background:var(--ink);color:#fff;padding:0}
+/* mosaic takes the light cut so it isn't frame's dark band again */
+.why-panel.light{background:var(--acc-soft);color:var(--ink)}
+.why-panel.light .pic{opacity:.13}
+.why-panel.light h2{color:var(--ink)}
+.why-panel.light .kicker{color:var(--acc-d);opacity:1}
+.why-panel.light .sub{color:var(--mut)}
+.why-panel.light .rows{background:var(--line);border-color:var(--line)}
+.why-panel.light .rows{grid-template-columns:1fr 1fr}
+.why-panel.light .rows div{background:#fff;padding:30px 28px}
+.why-panel.light .inner{padding:64px 0}
+.why-panel.light .rows span{color:var(--mut)}
+.why-panel .pic{position:absolute;inset:0;opacity:.24}
+.why-panel .pic img{width:100%;height:100%;object-fit:cover}
+.why-panel .inner{position:relative;z-index:2;padding:86px 0}
+.why-panel h2{color:#fff;max-width:20ch}
+.why-panel .kicker{color:#fff;opacity:.72}
+.why-panel .sub{color:rgba(255,255,255,.72);font-size:17px;max-width:56ch;margin-bottom:38px}
+.why-panel .rows{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px;
+background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14)}
+.why-panel .rows div{background:rgba(11,18,32,.72);padding:24px 22px}
+.why-panel .rows b{display:block;font-family:inherit;font-size:16.5px;margin-bottom:6px}
+.why-panel .rows span{color:rgba(255,255,255,.62);font-size:14px}
+.nb{gap:12px}
+.brand{min-width:0;flex:1 1 auto}
+.brand>span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.brand small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:520px){.brand{font-size:15px}.btn{padding:11px 15px;font-size:13.5px}}

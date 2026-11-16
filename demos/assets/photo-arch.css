@@ -1,0 +1,62 @@
+header{padding:126px 0 0;background:linear-gradient(180deg,var(--acc-soft),var(--paper) 70%);text-align:center}
+.ht{max-width:760px;margin:0 auto 42px}
+.lede{margin-left:auto;margin-right:auto;color:var(--mut)}
+.hero-cta{justify-content:center}
+.hp{max-width:860px;margin:0 auto;padding:0 22px}
+.hp .in{border-radius:430px 430px var(--r) var(--r);overflow:hidden;box-shadow:var(--sh-lg)}
+.hp img{width:100%;aspect-ratio:4/4.4;object-fit:cover}
+.ribbon{display:inline-block;background:var(--acc);color:#fff;font-size:12px;font-weight:700;
+letter-spacing:.14em;text-transform:uppercase;padding:7px 20px;border-radius:100px;margin-bottom:20px}
+@media(max-width:820px){.hp .in{border-radius:240px 240px var(--r) var(--r)}.hp img{aspect-ratio:4/4.8}}
+
+.stat-pills{padding:34px 0 0}
+.stat-pills .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.stat-pills div{background:var(--acc-soft);border-radius:100px;padding:11px 22px;font-size:14.5px;color:var(--acc-d)}
+.stat-pills b{font-weight:700}
+.svc-alt .r{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:center;padding:34px 0;border-bottom:1px solid var(--line)}
+.svc-alt .r:last-child{border-bottom:0}
+.svc-alt .r:nth-child(2n) figure{order:2}
+.svc-alt figure{border-radius:var(--r);overflow:hidden;aspect-ratio:16/10}
+.svc-alt figure img{width:100%;height:100%;object-fit:cover}
+.svc-alt h3{font-size:24px;margin-bottom:9px}
+.svc-alt p{color:var(--mut);font-size:15.5px}
+@media(max-width:820px){.svc-alt .r{grid-template-columns:1fr;gap:22px}.svc-alt .r:nth-child(2n) figure{order:0}}
+.rev-marks{background:var(--acc-soft)}
+.rev-marks .in{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.rev-marks .q{position:relative;padding-left:52px}
+.rev-marks .q::before{content:"\201C";position:absolute;left:0;top:-14px;font-family:inherit;
+font-size:74px;line-height:1;color:var(--acc);opacity:.5}
+.rev-marks .q p{font-size:18px;margin-bottom:12px}
+.rev-marks .q footer{font-size:13.5px;color:var(--mut)}
+.rev-marks .q:first-child{grid-column:1/-1}
+.rev-marks .q:first-child p{font-size:24px}
+@media(max-width:820px){.rev-marks .in{grid-template-columns:1fr;gap:34px}}
+.area-line{margin-top:10px;font-size:19px;line-height:1.75}
+.area-line b{font-weight:600;border-bottom:2px solid var(--acc-soft)}
+.area-line .sep{color:var(--acc);margin:0 9px}
+.cta-band{padding:0;display:grid;grid-template-columns:1fr 1fr;min-height:440px}
+.cta-band .pic{overflow:hidden}
+.cta-band .pic img{width:100%;height:100%;object-fit:cover}
+.cta-band .txt{background:var(--ink);color:#fff;display:flex;flex-direction:column;justify-content:center;padding:64px 56px}
+.cta-band h2{color:#fff;margin-bottom:13px}
+.cta-band p{color:rgba(255,255,255,.76);font-size:17px;margin-bottom:26px}
+.cta-band .em{color:#7dd3e8;text-decoration:none;font-weight:600;margin-top:20px;display:inline-block;word-break:break-all}
+@media(max-width:860px){.cta-band{grid-template-columns:1fr}.cta-band .pic{height:240px}.cta-band .txt{padding:44px 26px}}
+/* plate takes the band-less cut: no photo, two columns, hairline rules */
+.why-pairs.bare .band{display:none}
+.why-pairs.bare .in{display:block}
+.why-pairs.bare .pr{margin-top:30px;grid-template-columns:1fr 1fr}
+.why-pairs.bare .pr div{border-left:0;border-top:1px solid var(--line);padding:18px 0 0}
+.why-pairs .band{border-radius:var(--r);overflow:hidden;aspect-ratio:21/8;margin-bottom:46px;box-shadow:var(--sh-lg)}
+.why-pairs .band img{width:100%;height:100%;object-fit:cover}
+.why-pairs .in{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start}
+.why-pairs .pr{display:grid;grid-template-columns:1fr 1fr;gap:30px 34px}
+.why-pairs .pr div{border-left:2px solid var(--acc-soft);padding-left:18px}
+.why-pairs .pr b{display:block;font-family:inherit;font-size:17px;margin-bottom:5px}
+.why-pairs .pr span{color:var(--mut);font-size:14.5px}
+@media(max-width:860px){.why-pairs .in{grid-template-columns:1fr;gap:32px}.why-pairs .band{aspect-ratio:16/9}}
+.nb{gap:12px}
+.brand{min-width:0;flex:1 1 auto}
+.brand>span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.brand small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:520px){.brand{font-size:15px}.btn{padding:11px 15px;font-size:13.5px}}
