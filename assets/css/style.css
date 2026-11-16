@@ -493,3 +493,5 @@ html.lenis,html.lenis body{height:auto;scroll-behavior:auto}
 .hero-oli{height:min(76vh,780px)}
 @media(max-width:1020px){.hero-oli{height:min(56vh,520px)}}
 @media(max-width:720px){.hero-oli{display:none}}
+.hero-oli{bottom:auto;top:max(96px,14vh);height:min(80vh,780px)}
+@media(max-width:1020px){.hero-oli{top:auto;bottom:0}}
