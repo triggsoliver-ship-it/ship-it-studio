@@ -96,7 +96,7 @@
 
 <section class="zoom" data-scroll-pin aria-label="Showreel">
   <div class="zoom-pin">
-    <div class="zoom-frame"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>agentlegend.co.uk</span></div><img src="/assets/work/agentlegend.webp" width="1225" height="640" alt="Agent Legend, one of the studio's live builds"></div></div>
+    <div class="zoom-frame"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span id="reel-url">callcatcher.uk</span></div><video id="reel" src="/assets/reel.mp4" poster="/assets/reel-poster.webp" width="1280" height="668" autoplay muted loop playsinline preload="metadata" aria-label="Screen recording of three live builds: CallCatcher, Sales Chaser and Offload"></video></div></div>
     <div class="zoom-txt"><h2>Sixteen live builds.</h2><h2>Every one you can click.</h2></div>
   </div>
 </section>
@@ -386,6 +386,12 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.querySelectorAll('.c-stats b').forEach(function(b){var m=b.textContent.match(/^(£?)(\d+)(.*)$/);if(!m||m[2]==='0')return;var n=+m[2],t0=null;
     function step(t){if(!t0)t0=t;var k=Math.min(1,(t-t0-2900)/1400);if(k<0){requestAnimationFrame(step);return}k=1-Math.pow(1-k,3);b.textContent=m[1]+Math.round(n*k)+m[3];if(k<1)requestAnimationFrame(step)}
     b.textContent=m[1]+'0'+m[3];requestAnimationFrame(step)});
+})();
+</script>
+<script>
+(function(){var v=document.getElementById('reel'),u=document.getElementById('reel-url');if(!v)return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause();v.controls=true}
+  v.addEventListener('timeupdate',function(){var t=v.currentTime,n=t<8.6?'callcatcher.uk':t<15.1?'saleschaser.co.uk':'getoffload.co.uk';if(u.textContent!==n)u.textContent=n});
 })();
 </script>
 <script src="/enquire.js" data-key="8ca05808-7f31-464b-9710-6ac18a9393d3" data-subject="New enquiry from Ship It Studio" data-phone="false" defer></script>
