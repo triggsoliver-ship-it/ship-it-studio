@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Ship It Studio" />
 <meta name="twitter:description" content="Fast, high-converting websites for ambitious businesses. See your demo before you pay a penny." />
 <meta name="twitter:image" content="https://shipitstudio.co.uk/assets/icon-512.png" />
-<meta name="theme-color" content="#ffffff" />
+<meta name="theme-color" content="#060708" />
 <link rel="manifest" href="/manifest.webmanifest" />
 <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" />
 <link rel="icon" href="/assets/logo.svg" type="image/svg+xml" />
@@ -25,9 +25,10 @@
 <meta name="apple-mobile-web-app-title" content="Ship It" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/css/style.css" />
 <script src="/assets/js/main.js" defer></script>
+<script>document.documentElement.classList.add("mo")</script>
 </head>
 <body>
 <!-- NAV -->
@@ -53,45 +54,50 @@
 </div>
 
 <!-- HERO -->
-<section class="h-hero"><div class="wrap">
-  <span class="eyebrow"><span class="d"></span>Taking on new projects</span>
-  <div class="h-hero-row">
-    <div>
-      <h1>Websites and software, built properly.</h1>
-      <p class="lead">Ship It Studio is an independent studio in Hampshire. Marketplaces, AI products, apps and websites for local businesses, designed and built in-house and usually live within a week.</p>
-      <div class="hero-cta">
-        <a class="btn btn-primary btn-lg" href="/contact.html">Start a project</a>
-        <a class="btn btn-ghost btn-lg" href="#work">See the work</a>
-      </div>
+<section class="c-hero">
+  <div class="wall" aria-hidden="true"><div class="wall-cols" id="wall"></div></div>
+  <div class="wrap">
+    <span class="eyebrow"><span class="d"></span>Taking on new projects</span>
+    <h1 data-split>Websites and software, built properly.</h1>
+    <p class="lead">An independent studio in Hampshire. Marketplaces, AI products, apps and websites for local businesses, designed and built in-house and usually live within a week.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary btn-lg" href="/contact.html">Start a project</a>
+      <a class="btn btn-ghost btn-lg" href="#work">See the work</a>
     </div>
-    <div class="h-meta">
-      <div><b>16</b>live builds</div>
-      <div><b>5 days</b>typical launch</div>
-      <div><b>£0</b>to see your demo</div>
+    <div class="c-stats">
+      <div><b>16</b><span>live builds</span></div>
+      <div><b>5 days</b><span>typical launch</span></div>
+      <div><b>£0</b><span>to see your demo</span></div>
     </div>
   </div>
-</div>
-<div class="reel" aria-label="Screens from sites we have built"><div class="reel-track" id="reel"></div></div>
+</section>
 <script>
 (function(){
-  var sites=[["atlas","primeoriginsatlas.org"],["agentlegend","agentlegend.co.uk"],["bromspec","bromspec.co.uk"],["carevents","careventsnearme.uk"],["manwithawhistle","manwithawhistle.co.uk"],["greenback","gnbk.app"],["athvora","athvora.co.uk"],["primeglobal","primeoriginsglobal.org"],["ajs","ajsvehicleservices.co.uk"],["scaleyourclub","scaleyourclub.com"],["callcatcher","callcatcher.uk"],["salesrelay","salesrelay.uk"]];
+  var cols=[["atlas","bromspec","greenback","parish"],["agentlegend","carevents","scaleyourclub","hhs"],["manwithawhistle","athvora","callcatcher","primeglobal"],["ajs","salesrelay","saleschaser","atlas"]];
   var html="";
-  for(var r=0;r<2;r++){sites.forEach(function(x){
-    html+='<div class="browser"'+(r?' aria-hidden="true"':'')+'><div class="browser-bar"><i></i><i></i><i></i><span>'+x[1]+'</span></div><img src="/assets/work/'+x[0]+'.webp" width="1225" height="640" alt="'+(r?'':x[1]+' home page')+'" decoding="async"></div>';
-  });}
-  document.getElementById('reel').innerHTML=html;
+  cols.forEach(function(c){
+    var imgs="";
+    for(var r=0;r<2;r++){c.forEach(function(x){imgs+='<img src="/assets/work/'+x+'.webp" width="1225" height="640" alt="" decoding="async">';});}
+    html+='<div class="wall-col">'+imgs+'</div>';
+  });
+  document.getElementById('wall').innerHTML=html;
 })();
 </script>
-</section>
+
+<div class="names" aria-hidden="true"><div class="names-track">
+  <span>Prime Origins Atlas</span><span>Agent Legend</span><span>Bromspec Motorworks</span><span>Car Events Near Me</span><span>GreenBack</span><span>Man With A Whistle</span><span>ATHVORA</span><span>AJS Vehicle Services</span><span>SalesRelay</span><span>ScaleYourClub</span><span>Parish in a Box</span><span>HHS Capital</span>
+  <span>Prime Origins Atlas</span><span>Agent Legend</span><span>Bromspec Motorworks</span><span>Car Events Near Me</span><span>GreenBack</span><span>Man With A Whistle</span><span>ATHVORA</span><span>AJS Vehicle Services</span><span>SalesRelay</span><span>ScaleYourClub</span><span>Parish in a Box</span><span>HHS Capital</span>
+</div></div>
 
 <!-- WORK -->
-<section class="sec" id="work" style="padding-top:60px"><div class="wrap">
+<section class="sec" id="work" style="padding-top:110px"><div class="wrap">
   <div class="sec-head">
-    <h2>Selected work</h2>
+    <span class="kick">Selected work</span>
+    <h2 data-split data-r2>Real products, live right now</h2>
     <p>Every one of these is live. Click any of them and use it.</p>
   </div>
   <article class="case">
-    <a class="case-shot" href="https://primeoriginsatlas.org" target="_blank" rel="noopener" aria-label="Open Prime Origins Atlas"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>primeoriginsatlas.org</span></div><img src="/assets/work/atlas.webp" width="1225" height="640" alt="Prime Origins Atlas home page" loading="lazy" decoding="async"></div></a>
+    <a class="case-shot" data-scroll style="--tone:rgba(201,150,60,.55)" href="https://primeoriginsatlas.org" target="_blank" rel="noopener" aria-label="Open Prime Origins Atlas"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>primeoriginsatlas.org</span></div><img src="/assets/work/atlas.webp" width="1225" height="640" alt="Prime Origins Atlas home page" loading="lazy" decoding="async"></div></a>
     <div>
       <span class="case-n">01 &nbsp; Marketplace</span>
       <h3>Prime Origins Atlas</h3>
@@ -101,7 +107,7 @@
     </div>
   </article>
   <article class="case flip">
-    <a class="case-shot" href="https://agentlegend.co.uk" target="_blank" rel="noopener" aria-label="Open Agent Legend"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>agentlegend.co.uk</span></div><img src="/assets/work/agentlegend.webp" width="1225" height="640" alt="Agent Legend home page" loading="lazy" decoding="async"></div></a>
+    <a class="case-shot" data-scroll style="--tone:rgba(91,124,255,.6)" href="https://agentlegend.co.uk" target="_blank" rel="noopener" aria-label="Open Agent Legend"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>agentlegend.co.uk</span></div><img src="/assets/work/agentlegend.webp" width="1225" height="640" alt="Agent Legend home page" loading="lazy" decoding="async"></div></a>
     <div>
       <span class="case-n">02 &nbsp; AI platform</span>
       <h3>Agent Legend</h3>
@@ -111,7 +117,7 @@
     </div>
   </article>
   <article class="case">
-    <a class="case-shot" href="https://careventsnearme.uk" target="_blank" rel="noopener" aria-label="Open Car Events Near Me"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>careventsnearme.uk</span></div><img src="/assets/work/carevents.webp" width="1225" height="640" alt="Car Events Near Me home page" loading="lazy" decoding="async"></div></a>
+    <a class="case-shot" data-scroll style="--tone:rgba(255,90,40,.5)" href="https://careventsnearme.uk" target="_blank" rel="noopener" aria-label="Open Car Events Near Me"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>careventsnearme.uk</span></div><img src="/assets/work/carevents.webp" width="1225" height="640" alt="Car Events Near Me home page" loading="lazy" decoding="async"></div></a>
     <div>
       <span class="case-n">03 &nbsp; Directory</span>
       <h3>Car Events Near Me</h3>
@@ -121,7 +127,7 @@
     </div>
   </article>
   <article class="case flip">
-    <a class="case-shot" href="https://bromspec.co.uk" target="_blank" rel="noopener" aria-label="Open Bromspec Motorworks"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>bromspec.co.uk</span></div><img src="/assets/work/bromspec.webp" width="1225" height="640" alt="Bromspec Motorworks home page" loading="lazy" decoding="async"></div></a>
+    <a class="case-shot" data-scroll style="--tone:rgba(60,120,255,.55)" href="https://bromspec.co.uk" target="_blank" rel="noopener" aria-label="Open Bromspec Motorworks"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>bromspec.co.uk</span></div><img src="/assets/work/bromspec.webp" width="1225" height="640" alt="Bromspec Motorworks home page" loading="lazy" decoding="async"></div></a>
     <div>
       <span class="case-n">04 &nbsp; Business site</span>
       <h3>Bromspec Motorworks</h3>
@@ -131,7 +137,7 @@
     </div>
   </article>
   <article class="case">
-    <a class="case-shot" href="https://gnbk.app" target="_blank" rel="noopener" aria-label="Open GreenBack"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>gnbk.app</span></div><img src="/assets/work/greenback.webp" width="1225" height="640" alt="GreenBack home page" loading="lazy" decoding="async"></div></a>
+    <a class="case-shot" data-scroll style="--tone:rgba(40,210,90,.45)" href="https://gnbk.app" target="_blank" rel="noopener" aria-label="Open GreenBack"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>gnbk.app</span></div><img src="/assets/work/greenback.webp" width="1225" height="640" alt="GreenBack home page" loading="lazy" decoding="async"></div></a>
     <div>
       <span class="case-n">05 &nbsp; Fintech</span>
       <h3>GreenBack</h3>
@@ -141,7 +147,7 @@
     </div>
   </article>
   <article class="case flip">
-    <a class="case-shot" href="https://manwithawhistle.co.uk" target="_blank" rel="noopener" aria-label="Open Man With A Whistle"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>manwithawhistle.co.uk</span></div><img src="/assets/work/manwithawhistle.webp" width="1225" height="640" alt="Man With A Whistle home page" loading="lazy" decoding="async"></div></a>
+    <a class="case-shot" data-scroll style="--tone:rgba(190,140,80,.5)" href="https://manwithawhistle.co.uk" target="_blank" rel="noopener" aria-label="Open Man With A Whistle"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>manwithawhistle.co.uk</span></div><img src="/assets/work/manwithawhistle.webp" width="1225" height="640" alt="Man With A Whistle home page" loading="lazy" decoding="async"></div></a>
     <div>
       <span class="case-n">06 &nbsp; Brand site</span>
       <h3>Man With A Whistle</h3>
@@ -155,73 +161,73 @@
 <!-- MORE WORK -->
 <section class="sec sec-alt"><div class="wrap">
   <div class="sec-head">
-    <h2>And more, all live</h2>
+    <h2 data-split data-r2>And more, all live</h2>
     <p>Business sites, software products and tools, each designed from scratch for the people who use it.</p>
   </div>
-  <div class="more"><a class="tile" href="https://ajsvehicleservices.co.uk" target="_blank" rel="noopener"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>ajsvehicleservices.co.uk</span></div><img src="/assets/work/ajs.webp" width="1225" height="640" alt="AJS Vehicle Services home page" loading="lazy" decoding="async"></div><b>AJS Vehicle Services</b><span>Garage site, Andover</span></a><a class="tile" href="https://athvora.co.uk" target="_blank" rel="noopener"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>athvora.co.uk</span></div><img src="/assets/work/athvora.webp" width="1225" height="640" alt="ATHVORA home page" loading="lazy" decoding="async"></div><b>ATHVORA</b><span>Platform for athletes</span></a><a class="tile" href="https://salesrelay.uk" target="_blank" rel="noopener"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>salesrelay.uk</span></div><img src="/assets/work/salesrelay.webp" width="1225" height="640" alt="SalesRelay home page" loading="lazy" decoding="async"></div><b>SalesRelay</b><span>Software for estate agents</span></a><a class="tile" href="https://primeoriginsglobal.org" target="_blank" rel="noopener"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>primeoriginsglobal.org</span></div><img src="/assets/work/primeglobal.webp" width="1225" height="640" alt="Prime Origins Global home page" loading="lazy" decoding="async"></div><b>Prime Origins Global</b><span>Brand and product site</span></a><a class="tile" href="https://scaleyourclub.com" target="_blank" rel="noopener"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>scaleyourclub.com</span></div><img src="/assets/work/scaleyourclub.webp" width="1225" height="640" alt="ScaleYourClub home page" loading="lazy" decoding="async"></div><b>ScaleYourClub</b><span>Free audit tool for sports clubs</span></a><a class="tile" href="https://parishinabox.co.uk" target="_blank" rel="noopener"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>parishinabox.co.uk</span></div><img src="/assets/work/parish.webp" width="1225" height="640" alt="Parish in a Box home page" loading="lazy" decoding="async"></div><b>Parish in a Box</b><span>Websites for parish councils</span></a><a class="tile" href="https://callcatcher.uk" target="_blank" rel="noopener"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>callcatcher.uk</span></div><img src="/assets/work/callcatcher.webp" width="1225" height="640" alt="CallCatcher home page" loading="lazy" decoding="async"></div><b>CallCatcher</b><span>AI receptionist for trades</span></a><a class="tile" href="https://saleschaser.co.uk" target="_blank" rel="noopener"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>saleschaser.co.uk</span></div><img src="/assets/work/saleschaser.webp" width="1225" height="640" alt="Sales Chaser home page" loading="lazy" decoding="async"></div><b>Sales Chaser</b><span>AI lead calling</span></a><a class="tile" href="https://hhscapital.org" target="_blank" rel="noopener"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>hhscapital.org</span></div><img src="/assets/work/hhs.webp" width="1225" height="640" alt="HHS Capital home page" loading="lazy" decoding="async"></div><b>HHS Capital</b><span>Investment firm</span></a></div>
+  <div class="more"><a class="tile" data-r href="https://ajsvehicleservices.co.uk" target="_blank" rel="noopener"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>ajsvehicleservices.co.uk</span></div><img src="/assets/work/ajs.webp" width="1225" height="640" alt="AJS Vehicle Services home page" loading="lazy" decoding="async"></div><b>AJS Vehicle Services</b><span>Garage site, Andover</span></a><a class="tile" data-r href="https://athvora.co.uk" target="_blank" rel="noopener"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>athvora.co.uk</span></div><img src="/assets/work/athvora.webp" width="1225" height="640" alt="ATHVORA home page" loading="lazy" decoding="async"></div><b>ATHVORA</b><span>Platform for athletes</span></a><a class="tile" data-r href="https://salesrelay.uk" target="_blank" rel="noopener"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>salesrelay.uk</span></div><img src="/assets/work/salesrelay.webp" width="1225" height="640" alt="SalesRelay home page" loading="lazy" decoding="async"></div><b>SalesRelay</b><span>Software for estate agents</span></a><a class="tile" data-r href="https://primeoriginsglobal.org" target="_blank" rel="noopener"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>primeoriginsglobal.org</span></div><img src="/assets/work/primeglobal.webp" width="1225" height="640" alt="Prime Origins Global home page" loading="lazy" decoding="async"></div><b>Prime Origins Global</b><span>Brand and product site</span></a><a class="tile" data-r href="https://scaleyourclub.com" target="_blank" rel="noopener"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>scaleyourclub.com</span></div><img src="/assets/work/scaleyourclub.webp" width="1225" height="640" alt="ScaleYourClub home page" loading="lazy" decoding="async"></div><b>ScaleYourClub</b><span>Free audit tool for sports clubs</span></a><a class="tile" data-r href="https://parishinabox.co.uk" target="_blank" rel="noopener"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>parishinabox.co.uk</span></div><img src="/assets/work/parish.webp" width="1225" height="640" alt="Parish in a Box home page" loading="lazy" decoding="async"></div><b>Parish in a Box</b><span>Websites for parish councils</span></a><a class="tile" data-r href="https://callcatcher.uk" target="_blank" rel="noopener"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>callcatcher.uk</span></div><img src="/assets/work/callcatcher.webp" width="1225" height="640" alt="CallCatcher home page" loading="lazy" decoding="async"></div><b>CallCatcher</b><span>AI receptionist for trades</span></a><a class="tile" data-r href="https://saleschaser.co.uk" target="_blank" rel="noopener"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>saleschaser.co.uk</span></div><img src="/assets/work/saleschaser.webp" width="1225" height="640" alt="Sales Chaser home page" loading="lazy" decoding="async"></div><b>Sales Chaser</b><span>AI lead calling</span></a><a class="tile" data-r href="https://hhscapital.org" target="_blank" rel="noopener"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>hhscapital.org</span></div><img src="/assets/work/hhs.webp" width="1225" height="640" alt="HHS Capital home page" loading="lazy" decoding="async"></div><b>HHS Capital</b><span>Investment firm</span></a></div>
   <div style="margin-top:56px"><a class="btn btn-ghost btn-lg" href="/work.html">The full list of work</a></div>
 </div></section>
 
 <!-- PHONES -->
 <section class="sec sec-dark"><div class="wrap">
   <div class="sec-head">
-    <h2 style="color:#fff">Built for the phone in your customer's hand</h2>
+    <h2 data-split data-r2>Built for the phone in your customer's hand</h2>
     <p>Most visitors arrive on a phone, so that is where we design first. These are demo sites we built for local businesses to show them what theirs could be.</p>
   </div>
-  <div class="phones"><div class="phone"><img src="/assets/work/phone-barks.webp" width="420" height="865" alt="Barks N Bubbles, dog groomer, shown on a phone" loading="lazy" decoding="async"></div><div class="phone"><img src="/assets/work/phone-tattoo.webp" width="420" height="865" alt="Forever Yours, tattoo studio, shown on a phone" loading="lazy" decoding="async"></div><div class="phone"><img src="/assets/work/phone-cakehouse.webp" width="420" height="865" alt="The Cake House, bakery, shown on a phone" loading="lazy" decoding="async"></div><div class="phone"><img src="/assets/work/phone-ecosteam.webp" width="420" height="865" alt="Eco Steam, mobile valeting, shown on a phone" loading="lazy" decoding="async"></div><div class="phone"><img src="/assets/work/phone-barbers.webp" width="420" height="865" alt="Istanbul Barbers, shown on a phone" loading="lazy" decoding="async"></div><div class="phone"><img src="/assets/work/phone-landscaping.webp" width="420" height="865" alt="JH Landscaping, shown on a phone" loading="lazy" decoding="async"></div></div>
+  <div class="phones" data-scroll-kids><div class="phone"><img src="/assets/work/phone-barks.webp" width="420" height="865" alt="Barks N Bubbles, dog groomer, shown on a phone" loading="lazy" decoding="async"></div><div class="phone"><img src="/assets/work/phone-tattoo.webp" width="420" height="865" alt="Forever Yours, tattoo studio, shown on a phone" loading="lazy" decoding="async"></div><div class="phone"><img src="/assets/work/phone-cakehouse.webp" width="420" height="865" alt="The Cake House, bakery, shown on a phone" loading="lazy" decoding="async"></div><div class="phone"><img src="/assets/work/phone-ecosteam.webp" width="420" height="865" alt="Eco Steam, mobile valeting, shown on a phone" loading="lazy" decoding="async"></div><div class="phone"><img src="/assets/work/phone-barbers.webp" width="420" height="865" alt="Istanbul Barbers, shown on a phone" loading="lazy" decoding="async"></div><div class="phone"><img src="/assets/work/phone-landscaping.webp" width="420" height="865" alt="JH Landscaping, shown on a phone" loading="lazy" decoding="async"></div></div>
   <div class="phones-cap"><span>Groomer, tattoo studio, bakery, valeting, barbers, landscaping.</span><span>Each one built in a few days.</span></div>
 </div></section>
 
 <!-- CAPABILITIES -->
 <section class="sec" id="capabilities"><div class="wrap">
   <div class="sec-head">
-    <h2>What we can build for you</h2>
+    <h2 data-split data-r2>What we can build for you</h2>
     <p>One studio from the first sketch to the live site, so nothing gets lost between a designer, a developer and an agency.</p>
   </div>
   <div class="caps">
-    <div class="cap"><h3>Websites that bring in work</h3><p>Fast sites for local businesses, with calling, WhatsApp and enquiry forms where customers expect them.</p><small>Bromspec, AJS, Man With A Whistle</small></div>
-    <div class="cap"><h3>Bookings and payments</h3><p>Take bookings, deposits and card payments on your own site, with Stripe doing the money.</p><small>Prime Origins Atlas, Sales Chaser</small></div>
-    <div class="cap"><h3>Marketplaces and platforms</h3><p>Buyers, sellers, listings, accounts and the admin behind them, built to handle real stock and real money.</p><small>Prime Origins Atlas, GenoVaq</small></div>
-    <div class="cap"><h3>AI assistants</h3><p>Assistants that answer enquiries, qualify leads and book appointments, with a person in the loop where it matters.</p><small>Agent Legend, CallCatcher</small></div>
-    <div class="cap"><h3>Apps and dashboards</h3><p>Web apps that install on a phone, client portals and the dashboards that run a business.</p><small>GreenBack, SalesRelay</small></div>
-    <div class="cap"><h3>Directories and tools</h3><p>Searchable listings, free check tools and calculators that bring people back and rank on Google.</p><small>Car Events Near Me, ScaleYourClub</small></div>
+    <div class="cap" data-r><h3>Websites that bring in work</h3><p>Fast sites for local businesses, with calling, WhatsApp and enquiry forms where customers expect them.</p><small>Bromspec, AJS, Man With A Whistle</small></div>
+    <div class="cap" data-r><h3>Bookings and payments</h3><p>Take bookings, deposits and card payments on your own site, with Stripe doing the money.</p><small>Prime Origins Atlas, Sales Chaser</small></div>
+    <div class="cap" data-r><h3>Marketplaces and platforms</h3><p>Buyers, sellers, listings, accounts and the admin behind them, built to handle real stock and real money.</p><small>Prime Origins Atlas, GenoVaq</small></div>
+    <div class="cap" data-r><h3>AI assistants</h3><p>Assistants that answer enquiries, qualify leads and book appointments, with a person in the loop where it matters.</p><small>Agent Legend, CallCatcher</small></div>
+    <div class="cap" data-r><h3>Apps and dashboards</h3><p>Web apps that install on a phone, client portals and the dashboards that run a business.</p><small>GreenBack, SalesRelay</small></div>
+    <div class="cap" data-r><h3>Directories and tools</h3><p>Searchable listings, free check tools and calculators that bring people back and rank on Google.</p><small>Car Events Near Me, ScaleYourClub</small></div>
   </div>
 </div></section>
 
 <!-- PROCESS -->
 <section class="sec sec-dark"><div class="wrap">
   <div class="sec-head">
-    <h2 style="color:#fff">From first message to live in a week</h2>
+    <h2 data-split data-r2>From first message to live in a week</h2>
     <p>No long meetings and no jargon. Most of it happens over WhatsApp.</p>
   </div>
   <div class="steps">
-    <div class="step"><span class="n">Day 0</span><h3>Tell us what you need</h3><p>A message or a quick call about your business and your customers.</p></div>
-    <div class="step"><span class="n">Day 1</span><h3>See a working demo</h3><p>A real, clickable version on a live link, usually before you've paid anything.</p></div>
-    <div class="step"><span class="n">Day 3</span><h3>Shape it together</h3><p>Your words, your photos, your prices. Change whatever you like.</p></div>
-    <div class="step"><span class="n">Day 5</span><h3>It goes live</h3><p>On your own domain, quick on every phone, with enquiries coming straight to you.</p></div>
+    <div class="step" data-r><span class="n">Day 0</span><h3>Tell us what you need</h3><p>A message or a quick call about your business and your customers.</p></div>
+    <div class="step" data-r><span class="n">Day 1</span><h3>See a working demo</h3><p>A real, clickable version on a live link, usually before you've paid anything.</p></div>
+    <div class="step" data-r><span class="n">Day 3</span><h3>Shape it together</h3><p>Your words, your photos, your prices. Change whatever you like.</p></div>
+    <div class="step" data-r><span class="n">Day 5</span><h3>It goes live</h3><p>On your own domain, quick on every phone, with enquiries coming straight to you.</p></div>
   </div>
 </div></section>
 
 <!-- PRICES -->
 <section class="sec"><div class="wrap">
   <div class="sec-head">
-    <h2>Clear prices for websites</h2>
+    <h2 data-split data-r2>Clear prices for websites</h2>
     <p>One payment each, and the price you see is the total. Platforms, apps and AI products are quoted per project.</p>
   </div>
   <div class="price-grid">
-    <div class="price">
+    <div class="price" data-r>
       <h3>Launch site</h3>
       <div class="amt">£199</div>
       <ul><li>One page that does the job</li><li>Designed for phones first</li><li>Contact form and WhatsApp</li><li>Live in about 5 days</li></ul>
       <a class="btn btn-ghost" data-buy="launch_build" href="/contact.html">Get started for £199</a>
     </div>
-    <div class="price">
+    <div class="price" data-r>
       <h3>Starter site</h3>
       <div class="amt">£399</div>
       <ul><li>Three pages: home, services, contact</li><li>Designed for phones first</li><li>Contact form and WhatsApp</li><li>Live in about 5 days</li></ul>
       <a class="btn btn-ghost" data-buy="starter_build" href="/contact.html">Get started for £399</a>
     </div>
-    <div class="price feature">
+    <div class="price feature" data-r>
       <span class="badge">Most chosen</span>
       <h3>Business site</h3>
       <div class="amt">£799</div>
@@ -234,7 +240,7 @@
 
 <!-- FOUNDER -->
 <section class="sec" style="padding-top:0"><div class="wrap">
-  <div class="founder">
+  <div class="founder" data-r>
     <div class="f-avatar" aria-hidden="true">O</div>
     <div>
       <h2>Hi, I'm Oli. I build every project myself.</h2>
@@ -249,7 +255,7 @@
 
 <!-- CTA -->
 <section class="sec" style="padding-top:0"><div class="wrap">
-  <div class="cta-band">
+  <div class="cta-band" data-r>
     <h2>Let's build yours next</h2>
     <p>Tell us what your business needs. We'll usually send back a working demo within a day.</p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
@@ -306,6 +312,50 @@ document.addEventListener('DOMContentLoaded',()=>{
     r.addEventListener('input',()=>set(r.value));
   }
 });
+</script>
+<script>
+(function(){
+  var root=document.documentElement, reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // split headings into words for the rise-in
+  document.querySelectorAll('[data-split]').forEach(function(h){
+    var t=h.textContent.trim(); h.setAttribute('aria-label',t);
+    h.innerHTML=t.split(/\s+/).map(function(w,i){return '<span class="w" aria-hidden="true" style="--i:'+i+'"><span>'+w+'</span></span>'}).join(' ');
+  });
+  // stagger siblings
+  document.querySelectorAll('.caps,.more,.steps,.price-grid').forEach(function(g){[].forEach.call(g.children,function(c,i){c.style.setProperty('--d',i%3)})});
+  // reveals
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -12% 0px'});
+  document.querySelectorAll('[data-r],[data-r2]').forEach(function(el){io.observe(el)});
+  // load sequence
+  function go(){requestAnimationFrame(function(){root.classList.add('loaded');setTimeout(function(){root.classList.add('settled')},2500)})}
+  if(document.readyState==='complete')go();else addEventListener('load',go);setTimeout(go,1800);
+  if(reduce)return;
+  // scroll-linked: hero drift, case screens, phones
+  var hero=document.querySelector('.c-hero'), shots=[].slice.call(document.querySelectorAll('[data-scroll]')), phones=document.querySelector('[data-scroll-kids]');
+  var ticking=false;
+  function prog(el){var r=el.getBoundingClientRect(),vh=innerHeight;return Math.max(0,Math.min(1,(vh-r.top)/(vh*.75)))}
+  function frame(){ticking=false;var y=scrollY;
+    if(hero&&y<innerHeight*1.2){hero.style.setProperty('--sy',(-y*.25)+'px');hero.style.setProperty('--fade',Math.max(0,1-y/(innerHeight*.7)).toFixed(3))}
+    shots.forEach(function(s){s.style.setProperty('--p',prog(s).toFixed(3))});
+    if(phones)phones.style.setProperty('--p',prog(phones).toFixed(3));
+    if(phones)[].forEach.call(phones.children,function(c){c.style.setProperty('--p',prog(phones).toFixed(3))});
+  }
+  addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(frame)}},{passive:true});frame();
+  // pointer: wall parallax, spotlights, tile tilt
+  if(matchMedia('(pointer:fine)').matches){
+    addEventListener('pointermove',function(e){
+      if(hero&&scrollY<innerHeight){var x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;hero.style.setProperty('--mx',(x*8).toFixed(2)+'deg');hero.style.setProperty('--my',(-y*6).toFixed(2)+'deg')}
+    },{passive:true});
+    document.querySelectorAll('.cap,.price,.step').forEach(function(c){c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect();c.style.setProperty('--x',(e.clientX-r.left)+'px');c.style.setProperty('--y',(e.clientY-r.top)+'px')})});
+    document.querySelectorAll('.tile').forEach(function(t){var b=t.querySelector('.browser');if(!b)return;
+      t.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();b.style.setProperty('--tx',((e.clientX-r.left)/r.width-.5)*10+'deg');b.style.setProperty('--ty',-((e.clientY-r.top)/r.height-.5)*10+'deg')});
+      t.addEventListener('pointerleave',function(){b.style.setProperty('--tx','0deg');b.style.setProperty('--ty','0deg')})});
+  }
+  // count the stats up
+  document.querySelectorAll('.c-stats b').forEach(function(b){var m=b.textContent.match(/^(£?)(\d+)(.*)$/);if(!m||m[2]==='0')return;var n=+m[2],t0=null;
+    function step(t){if(!t0)t0=t;var k=Math.min(1,(t-t0-1100)/1400);if(k<0){requestAnimationFrame(step);return}k=1-Math.pow(1-k,3);b.textContent=m[1]+Math.round(n*k)+m[3];if(k<1)requestAnimationFrame(step)}
+    b.textContent=m[1]+'0'+m[3];requestAnimationFrame(step)});
+})();
 </script>
 <script src="/enquire.js" data-key="8ca05808-7f31-464b-9710-6ac18a9393d3" data-subject="New enquiry from Ship It Studio" data-phone="false" defer></script>
 </body>
