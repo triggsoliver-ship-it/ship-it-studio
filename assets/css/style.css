@@ -512,3 +512,5 @@ html.lenis,html.lenis body{height:auto;scroll-behavior:auto}
 .count-strip span{color:var(--muted);font-size:14.5px}
 @media(max-width:1020px){.work-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:720px){.work-grid{grid-template-columns:1fr}}
+
+.zoom-frame video{display:block;width:100%;height:auto;aspect-ratio:1280/668;object-fit:cover;background:#070b14}
