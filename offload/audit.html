@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Automation Audit — Offload</title>
+<meta name="description" content="Answer 4 quick questions and see how many hours and how much money your business is losing to manual admin — then get a free automation roadmap. A Ship It Studio company.">
+<meta name="theme-color" content="#0b0c16">
+<link rel="canonical" href="https://shipitstudio.co.uk/offload/audit">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Offload">
+<meta property="og:url" content="https://shipitstudio.co.uk/offload/audit">
+<meta property="og:title" content="Free Automation Audit — see what admin is costing you">
+<meta property="og:description" content="4 quick questions. Instant £/year estimate. Free automation roadmap for UK businesses.">
+<meta property="og:image" content="https://shipitstudio.co.uk/offload/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://shipitstudio.co.uk/offload/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b0c16'/%3E%3Cpath d='M16 4l10 6v12l-10 6-10-6V10z' fill='none' stroke='%237c6cff' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='3.5' fill='%237c6cff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0c16;--panel:#141527;--panel2:#1c1d33;--line:#2a2c46;--text:#eceefb;--muted:#9aa0c0;--accent:#7c6cff;--accent2:#4ad6c4;--warn:#f5b04e;--r:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:"Instrument Sans",-apple-system,sans-serif;line-height:1.6;overflow-x:hidden}
+h1,h2,h3,.brand,.big{font-family:"Bricolage Grotesque","Instrument Sans",sans-serif}
+.glow{position:fixed;top:-220px;left:50%;transform:translateX(-50%);width:900px;height:520px;background:radial-gradient(ellipse,rgba(124,108,255,.18),transparent 70%);pointer-events:none;z-index:0}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px;position:relative;z-index:2}
+.nav{border-bottom:1px solid var(--line)}
+.nav-in{max-width:760px;margin:0 auto;padding:18px 22px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-weight:800;font-size:1.2rem;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:10px}
+.brand svg{width:24px;height:24px}.brand em{color:var(--accent);font-style:normal}
+.hero{padding:56px 0 20px;text-align:center}
+.eyebrow{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);border:1px solid var(--line);padding:6px 14px;border-radius:100px;margin-bottom:20px}
+h1{font-size:clamp(2rem,5vw,3rem);line-height:1.08;font-weight:800;letter-spacing:-.02em;margin-bottom:16px}
+.hl{color:var(--accent)}
+.lead{color:var(--muted);font-size:1.1rem;max-width:520px;margin:0 auto}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:30px;margin:28px 0}
+.step-label{font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+h2{font-size:1.35rem;font-weight:800;margin-bottom:4px}
+.hint{color:var(--muted);font-size:.92rem;margin-bottom:20px}
+.tasks{display:grid;gap:10px}
+.task{display:flex;align-items:center;gap:14px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;cursor:pointer;transition:border-color .15s,background .15s}
+.task:hover{border-color:#3a3c60}
+.task.on{border-color:var(--accent);background:linear-gradient(0deg,rgba(124,108,255,.08),rgba(124,108,255,.08)),var(--panel2)}
+.task .box{width:22px;height:22px;flex:none;border-radius:6px;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;transition:all .15s}
+.task.on .box{background:var(--accent);border-color:var(--accent)}
+.task .box svg{width:13px;height:13px;opacity:0;transition:opacity .15s}
+.task.on .box svg{opacity:1}
+.task .t{flex:1}.task .t b{display:block;font-size:.98rem}.task .t span{color:var(--muted);font-size:.82rem}
+label.rng{display:flex;justify-content:space-between;font-size:.92rem;color:var(--muted);margin:6px 0 8px}
+label.rng b{color:var(--text)}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.result{background:linear-gradient(160deg,#161a35,#0e0f1e);border:1px solid #2f2c5a;border-radius:18px;padding:34px;text-align:center;margin:28px 0}
+.result .big{font-family:"Bricolage Grotesque";font-size:clamp(2.4rem,7vw,3.6rem);font-weight:800;color:var(--warn);line-height:1}
+.result small{color:var(--muted);display:block;margin-top:8px;font-size:.95rem}
+.result .sub{margin-top:16px;padding-top:16px;border-top:1px dashed var(--line);color:var(--accent2);font-weight:700;font-size:1.02rem}
+.result.empty .big{color:var(--muted);font-size:1.4rem}
+.result.empty .sub{display:none}
+form .field{margin-bottom:14px}
+form label.lbl{display:block;font-size:.9rem;color:var(--muted);margin-bottom:6px}
+input.inp{width:100%;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:13px 14px;color:var(--text);font-size:1rem;font-family:inherit}
+input.inp:focus{outline:none;border-color:var(--accent)}
+.hp{position:absolute;left:-9999px;top:-9999px}
+.btn{display:block;width:100%;background:var(--accent);color:#fff;font-weight:700;font-size:1.05rem;padding:16px;border-radius:12px;border:none;cursor:pointer;font-family:inherit;transition:transform .15s,box-shadow .15s;box-shadow:0 8px 30px -8px rgba(124,108,255,.6)}
+.btn:hover{transform:translateY(-1px)}
+.reassure{text-align:center;color:var(--muted);font-size:.85rem;margin-top:14px}
+.reassure a{color:var(--accent);font-weight:600;text-decoration:none}
+.reassure a:hover{text-decoration:underline}
+footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);font-size:.85rem;text-align:center;margin-top:40px}
+footer a{color:var(--accent);text-decoration:none;font-weight:600}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+
+<header class="nav"><div class="nav-in">
+  <a class="brand" href="/offload"><svg viewBox="0 0 32 32"><path d="M16 4l10 6v12l-10 6-10-6V10z" fill="none" stroke="#7c6cff" stroke-width="2"/><circle cx="16" cy="16" r="3.5" fill="#7c6cff"/></svg>Off<em>load</em></a>
+  <a class="brand" style="font-size:.82rem;color:var(--muted)" href="https://shipitstudio.co.uk" target="_blank" rel="noopener">a Ship It Studio company</a>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <span class="eyebrow">Free automation audit · 60 seconds</span>
+  <h1>How much is <span class="hl">manual admin</span> really costing you?</h1>
+  <p class="lead">Tick the jobs your team still does by hand. We'll show you the number — then send a free roadmap of what we'd automate first.</p>
+</div></section>
+
+<form id="audit-form" action="https://formsubmit.co/info@shipitstudio.co.uk" method="POST">
+<input type="hidden" name="_subject" value="New Offload audit lead">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_next" value="https://shipitstudio.co.uk/offload/audit-thanks">
+<input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
+
+<div class="wrap">
+
+  <div class="card">
+    <div class="step-label">Step 1</div>
+    <h2>Which of these eat your team's time?</h2>
+    <p class="hint">Tick all that apply — most businesses tick 3 or more.</p>
+    <div class="tasks" id="tasks"></div>
+  </div>
+
+  <div class="card">
+    <div class="step-label">Step 2</div>
+    <h2>A couple of quick numbers</h2>
+    <p class="hint">Rough is fine — this just sizes the estimate.</p>
+    <label class="rng">People doing this admin <b id="v-people">3</b></label>
+    <input type="range" id="r-people" min="1" max="30" value="3">
+    <label class="rng" style="margin-top:18px">Roughly what you pay them / hour <b id="v-rate">£18</b></label>
+    <input type="range" id="r-rate" min="12" max="60" step="1" value="18">
+  </div>
+
+  <div class="result empty" id="result">
+    <div class="big" id="figure">Tick a task above ↑</div>
+    <small id="figure-sub">to see what it's costing you a year</small>
+    <div class="sub" id="hours-line"></div>
+  </div>
+
+  <div class="card">
+    <div class="step-label">Step 3</div>
+    <h2>Get your free automation roadmap</h2>
+    <p class="hint">We'll email you a short, written plan of exactly what we'd automate first, the fixed price to build it, and the payback — no obligation.</p>
+    <div class="field"><label class="lbl" for="name">Your name</label><input class="inp" id="name" name="name" type="text" autocomplete="name" required></div>
+    <div class="field"><label class="lbl" for="business">Business name</label><input class="inp" id="business" name="business" type="text" autocomplete="organization" required></div>
+    <div class="field"><label class="lbl" for="email">Email</label><input class="inp" id="email" name="email" type="email" autocomplete="email" required></div>
+    <input type="hidden" name="audit_summary" id="audit_summary">
+    <button class="btn" type="submit">Send me my free roadmap →</button>
+    <p class="reassure">No spam. One human reply from Oli at Ship It Studio, usually same day.</p>
+    <p class="reassure">Your name, business name, email and the summary above are sent to us by FormSubmit so we can write your roadmap. Nothing else. <a href="/offload/privacy">Read the privacy notice</a>.</p>
+  </div>
+
+</div>
+</form>
+
+<footer><div class="wrap">
+  Offload · <a href="https://shipitstudio.co.uk" target="_blank" rel="noopener">a Ship It Studio company</a> · <a href="mailto:info@shipitstudio.co.uk">info@shipitstudio.co.uk</a> · <a href="/offload/privacy">Privacy notice</a>
+  <div style="margin-top:12px;font-size:.78rem;opacity:.75;line-height:1.5">Get Offload is a trading name of Keelson Holdings Ltd, registered in England and Wales, company number 17359226. Registered office: 71-75 Shelton Street, Covent Garden, London WC2H 9JQ.</div>
+</div></footer>
+
+<script>
+const TASKS = [
+  ["Reading &amp; replying to new enquiries","email, web forms, DMs","enquiries",6],
+  ["Chasing quotes &amp; invoices","following up unpaid / unsigned","chasing",4],
+  ["Booking &amp; rescheduling appointments","calls, texts, back-and-forth","booking",5],
+  ["Re-typing data between systems","CRM, spreadsheets, accounts","retyping",5],
+  ["Answering the same questions","prices, hours, availability","faq",4],
+  ["Manual reports &amp; admin","weekly numbers, updates, filing","reports",3]
+];
+const tasksEl = document.getElementById('tasks');
+const state = {};
+TASKS.forEach(([title,sub,key,hrs])=>{
+  const d=document.createElement('div'); d.className='task'; d.dataset.key=key; d.dataset.hrs=hrs;
+  d.innerHTML='<div class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M5 13l4 4 10-10"/></svg></div><div class="t"><b>'+title+'</b><span>'+sub+'</span></div>';
+  d.addEventListener('click',()=>{state[key]=!state[key];d.classList.toggle('on',state[key]);calc();});
+  tasksEl.appendChild(d);
+});
+const rPeople=document.getElementById('r-people'), rRate=document.getElementById('r-rate');
+function money(n){return '£'+Math.round(n).toLocaleString();}
+function calc(){
+  document.getElementById('v-people').textContent=rPeople.value;
+  document.getElementById('v-rate').textContent='£'+rRate.value;
+  let hrsWeek=0;
+  document.querySelectorAll('.task.on').forEach(t=>hrsWeek+=parseFloat(t.dataset.hrs));
+  const people=+rPeople.value, rate=+rRate.value;
+  const res=document.getElementById('result');
+  if(hrsWeek===0){res.classList.add('empty');document.getElementById('figure').textContent='Tick a task above ↑';document.getElementById('figure-sub').textContent="to see what it's costing you a year";document.getElementById('hours-line').textContent='';updateSummary(0,0);return;}
+  res.classList.remove('empty');
+  const effPeople=Math.max(1,people*0.6);
+  const yr=hrsWeek*rate*effPeople*52;
+  const hrsYr=Math.round(hrsWeek*effPeople*52);
+  document.getElementById('figure').textContent=money(yr);
+  document.getElementById('figure-sub').textContent='is walking out the door every year';
+  document.getElementById('hours-line').textContent='≈ '+hrsYr.toLocaleString()+' hours a year we could hand back to your team';
+  updateSummary(yr,hrsYr);
+}
+function updateSummary(yr,hrsYr){
+  const ticked=Array.from(document.querySelectorAll('.task.on')).map(t=>t.querySelector('b').textContent.replace(/&amp;/g,'&'));
+  document.getElementById('audit_summary').value=
+    'Tasks: '+(ticked.join('; ')||'none')+
+    ' | People: '+rPeople.value+' | Rate: £'+rRate.value+'/hr'+
+    ' | Est. wasted/yr: '+money(yr)+' | Est. hours/yr: '+hrsYr;
+}
+[rPeople,rRate].forEach(r=>r.addEventListener('input',calc));
+calc();
+// make sure the summary is current the moment they submit
+document.getElementById('audit-form').addEventListener('submit',calc);
+</script>
+</body>
+</html>
