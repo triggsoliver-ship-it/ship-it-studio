@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Offload — Put your admin on autopilot</title>
+<meta name="description" content="We build custom AI automations for UK businesses — quote follow-ups, invoice chasing, enquiry triage, onboarding. Stop paying people to copy-paste. Fixed price, live in weeks.">
+<meta name="theme-color" content="#07070c">
+<link rel="canonical" href="https://shipitstudio.co.uk/offload">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Offload">
+<meta property="og:url" content="https://shipitstudio.co.uk/offload">
+<meta property="og:title" content="Offload — Put your admin on autopilot">
+<meta property="og:description" content="Custom AI automations that do your repetitive admin — quote follow-ups, invoice chasing, enquiry triage, onboarding. Fixed price, live in weeks.">
+<meta property="og:image" content="https://shipitstudio.co.uk/offload/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Offload — Put your admin on autopilot">
+<meta name="twitter:description" content="Custom AI automations that do your repetitive admin, so your team does the work that actually needs a human.">
+<meta name="twitter:image" content="https://shipitstudio.co.uk/offload/og.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Offload","url":"https://shipitstudio.co.uk/offload","description":"Custom AI automation agency for UK businesses — a Ship It Studio company. We build automations for enquiry triage, quote and invoice chasing, booking, onboarding and reporting.","email":"info@shipitstudio.co.uk","areaServed":"GB","parentOrganization":{"@type":"Organization","name":"Ship It Studio","url":"https://shipitstudio.co.uk"},"makesOffer":{"@type":"Offer","price":"1500","priceCurrency":"GBP","itemOffered":{"@type":"Service","name":"Custom AI automation build","description":"Fixed-price custom automation build for a UK business, £1,500."}}}
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23070810'/%3E%3Cpath d='M16 7l7 4v10l-7 4-7-4V11z' fill='none' stroke='%235ef2d6' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%235ef2d6'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07070c;--panel:#0d0d15;--panel2:#14141f;--line:rgba(255,255,255,.1);--line2:rgba(255,255,255,.2);--text:#f1f0f7;--muted:#9a99ad;--accent:#5ef2d6;--ink:#04130f;--accent2:#5ef2d6;--violet:#8b7bff;--r:20px;--spot:rgba(94,242,214,.12);--stroke:rgba(94,242,214,.65);--disp:"Bricolage Grotesque","Instrument Sans",sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{background:var(--bg);color:var(--text);font-family:"Instrument Sans",-apple-system,sans-serif;font-size:18px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.brand,.num,.price{font-family:var(--disp)}
+::selection{background:var(--accent);color:var(--ink)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.grain,.glow{display:none}
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px;position:relative}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:1rem;padding:16px 28px;border-radius:999px;text-decoration:none;cursor:pointer;border:1.5px solid transparent;line-height:1.2;transition:background .2s,border-color .2s,transform .35s cubic-bezier(.16,1,.3,1);will-change:transform}
+.btn-primary{background:var(--accent);color:var(--ink);box-shadow:0 14px 50px -14px rgba(94,242,214,.7)}
+.btn-primary:hover{background:#8ff7e3}
+.btn-ghost{background:rgba(255,255,255,.04);color:var(--text);border-color:var(--line2)}
+.btn-ghost:hover{border-color:#fff}
+.btn-lg{padding:19px 34px;font-size:1.08rem}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
+.nav.scrolled{background:rgba(7,7,12,.8);backdrop-filter:blur(16px);border-color:var(--line)}
+.nav-in{max-width:1240px;margin:0 auto;padding:0 28px;height:76px;display:flex;align-items:center;justify-content:space-between}
+.nav .btn{padding:11px 20px;font-size:.92rem}
+.brand{font-weight:800;font-size:1.45rem;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:10px;letter-spacing:-.02em}
+.brand .cube{width:26px;height:26px}
+.brand .cube path{stroke:var(--accent)}.brand .cube circle{fill:var(--accent)}
+.hero{position:relative;padding:150px 0 70px;min-height:100svh;display:flex;align-items:center;overflow:hidden;isolation:isolate}
+.hero::before{content:"";position:absolute;z-index:-1;width:1200px;height:1200px;right:-380px;top:-320px;background:radial-gradient(closest-side,rgba(94,242,214,.16),transparent)}
+.hero::after{content:"";position:absolute;z-index:-1;width:1000px;height:1000px;left:-420px;bottom:-560px;background:radial-gradient(closest-side,rgba(139,123,255,.2),transparent)}
+.hero>.wrap{width:100%}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.95rem;font-weight:500;color:var(--muted);margin-bottom:26px}
+.eyebrow .d{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+h1{font-size:clamp(3rem,7vw,6.4rem);line-height:.94;font-weight:800;letter-spacing:-.04em;margin-bottom:28px}
+.hl{color:var(--accent)}
+.lead{color:var(--muted);font-size:1.2rem;max-width:33em;margin-bottom:34px}
+.hero-cta{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.cta-note{font-size:.92rem;color:var(--muted)}
+.flow{background:rgba(20,20,31,.8);backdrop-filter:blur(14px);border:1px solid var(--line2);border-radius:26px;padding:28px;box-shadow:0 60px 120px -50px #000,0 0 100px -40px rgba(94,242,214,.4);transform:perspective(1400px) rotateY(-9deg) rotateX(3deg);transform-origin:left center;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.flow:hover{transform:perspective(1400px) rotateY(-2deg)}
+.flow-title{font-size:.88rem;color:var(--muted);margin-bottom:18px;display:flex;justify-content:space-between;align-items:center}
+.flow-title .live{color:var(--accent);display:flex;align-items:center;gap:7px;font-weight:600}
+.flow-title .live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);animation:blink 1.4s infinite}
+@keyframes blink{50%{opacity:.3}}
+.node{display:flex;gap:16px;align-items:center;padding:12px 0;opacity:.22;transition:opacity .5s,transform .6s cubic-bezier(.16,1,.3,1);transform:translateX(10px)}
+.node.on{opacity:1;transform:none}
+.node .ic{width:42px;height:42px;flex:none;border-radius:50%;background:var(--panel2);border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-weight:800;font-size:1rem;color:var(--muted);transition:background .4s,color .4s,box-shadow .4s}
+.node.on .ic{background:var(--accent);color:var(--ink);border-color:var(--accent);box-shadow:0 0 30px -4px rgba(94,242,214,.9)}
+.node .body b{font-size:1rem;display:block;line-height:1.3}
+.node .body span{color:var(--muted);font-size:.88rem}
+.node .tick{margin-left:auto;color:var(--accent);opacity:0;transition:opacity .4s;font-weight:700}
+.node.done .tick{opacity:1}
+.connector{width:2px;height:14px;background:var(--line2);margin-left:20px;transition:background .4s}
+.connector.on{background:var(--accent)}
+.flow-foot{margin-top:16px;padding-top:18px;border-top:1px solid var(--line);text-align:center}
+.flow-foot .saved{font-family:var(--disp);font-size:1.35rem;font-weight:800;color:var(--accent);opacity:0;transform:scale(.9);transition:opacity .5s,transform .6s cubic-bezier(.3,1.6,.5,1)}
+.flow-foot .saved.on{opacity:1;transform:none}
+.replay{background:transparent;border:1px solid var(--line2);color:var(--muted);border-radius:100px;font:inherit;font-size:.8rem;padding:7px 16px;cursor:pointer;margin-top:12px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:84px 0 0;border-top:1px solid var(--line2)}
+.stat{padding:26px 22px 0 0}
+.stat .num{font-size:clamp(2.2rem,4vw,3.4rem);font-weight:800;line-height:1;letter-spacing:-.04em;color:var(--text)}
+.stat .lbl{color:var(--muted);font-size:.95rem;margin-top:10px;max-width:17em}
+.sec{padding:120px 0!important;position:relative}
+.kick{display:block;font-size:.98rem;font-weight:600;color:var(--accent);margin-bottom:16px}
+h2{font-size:clamp(2.2rem,5vw,4.4rem);font-weight:800;letter-spacing:-.04em;line-height:.98;margin-bottom:20px;max-width:16em}
+.sec-sub{color:var(--muted);max-width:36em;margin-bottom:52px;font-size:1.12rem}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:32px 28px;transition:border-color .3s}
+.card:hover{border-color:var(--line2)}
+.card .ci{display:none}
+.card h3{font-size:1.45rem;font-weight:700;letter-spacing:-.025em;line-height:1.1;margin-bottom:10px}
+.card p{color:var(--muted);font-size:.98rem}
+.calc{background:var(--panel);border:1px solid var(--line);border-radius:28px;padding:52px;display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center}
+.calc label{display:flex;justify-content:space-between;font-size:1rem;font-weight:600;margin:28px 0 10px}
+.calc label:first-child{margin-top:0}
+.calc label b{color:var(--accent);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--accent);height:28px}
+.calc-out{background:radial-gradient(520px 300px at 20% 0%,rgba(94,242,214,.18),transparent 70%),var(--panel2);border:1px solid var(--line);border-radius:22px;padding:44px 38px}
+.calc-out .big{font-family:var(--disp);font-size:clamp(3.4rem,8.4vw,7rem);font-weight:800;line-height:.95;letter-spacing:-.05em;color:var(--accent);font-variant-numeric:tabular-nums}
+.calc-out small{color:var(--muted);display:block;margin-top:10px;font-size:1rem}
+.calc-out .vs{margin-top:20px;padding-top:20px;border-top:1px solid var(--line);color:var(--text);font-weight:700}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:30px 28px;display:block}
+.step::before{counter-increment:s;content:"0" counter(s);display:block;font-family:var(--disp);font-weight:800;font-size:3.6rem;line-height:1;letter-spacing:-.04em;color:var(--accent);margin-bottom:18px}
+.step b{display:block;margin-bottom:8px;font-family:var(--disp);font-size:1.35rem;letter-spacing:-.02em;line-height:1.15}
+.step span{color:var(--muted);font-size:.98rem}
+.p-card{position:relative;display:flex;flex-direction:column;padding:36px 30px}
+.p-card.hot{border-color:var(--accent);background:radial-gradient(480px 280px at 50% 0%,rgba(94,242,214,.16),transparent 70%),var(--panel);box-shadow:0 40px 100px -40px rgba(94,242,214,.5)}
+.p-card.hot::before{content:"Best value";position:absolute;top:-13px;left:28px;background:var(--accent);color:var(--ink);font-size:.8rem;font-weight:700;padding:4px 14px;border-radius:100px}
+.p-card h3{font-family:"Instrument Sans",sans-serif;font-size:1.1rem;letter-spacing:0}
+.price{font-size:4.2rem;font-weight:800;line-height:1;letter-spacing:-.05em;margin:18px 0 4px}
+.price small{font-size:1rem;color:var(--muted);font-weight:500;font-family:"Instrument Sans";letter-spacing:0}
+.p-cta{display:grid;gap:10px;margin-top:auto}
+ul.feats{list-style:none;margin:20px 0 28px;flex:1}
+ul.feats li{padding:9px 0 9px 26px;color:#d6d5e3;font-size:.97rem;position:relative;border-top:1px solid var(--line)}
+ul.feats li:first-child{border-top:0}
+ul.feats li::before{content:"";position:absolute;left:2px;top:17px;width:12px;height:7px;border-left:2.5px solid var(--accent);border-bottom:2.5px solid var(--accent);transform:rotate(-45deg)}
+details{border-bottom:1px solid var(--line2);max-width:820px}
+details summary{cursor:pointer;font-weight:600;padding:24px 0;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:1.2rem}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";color:var(--accent);font-size:1.6rem;font-weight:400;line-height:1;transition:transform .3s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 0 24px;color:var(--muted);max-width:40em}
+.cta-final{background:var(--accent);color:var(--ink);border-radius:36px;padding:110px 6vw;margin:0 0 28px}
+.cta-final .kick{color:var(--ink);opacity:.7}
+.cta-final h2{font-size:clamp(2.8rem,7vw,6.4rem);max-width:10em}
+.cta-final p{color:#0f3a31;max-width:36em;margin:0 0 34px;font-size:1.15rem;font-weight:500}
+.cta-final .btn{background:var(--ink);color:#fff;box-shadow:0 20px 50px -20px rgba(0,0,0,.7)}
+div.wrap:has(>.cta-final){max-width:none}
+footer{padding:36px 0 48px;color:var(--muted);font-size:.88rem}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+footer a{color:#d6d5e3;font-weight:600}
+footer .fine{font-size:.82rem}
+footer .legal{font-size:.82rem;line-height:1.55;display:block;margin-top:14px;padding-top:14px;border-top:1px solid var(--line);width:100%}
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .9s ease,transform 1.1s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+.cols>.reveal:nth-child(3n+2),.steps>.reveal:nth-child(2),.stats>.reveal:nth-child(2){transition-delay:.09s}
+.cols>.reveal:nth-child(3n),.steps>.reveal:nth-child(3),.stats>.reveal:nth-child(3){transition-delay:.18s}
+.stats>.reveal:nth-child(4){transition-delay:.27s}
+@media(max-width:980px){.hero-grid,.calc{grid-template-columns:1fr}.flow{transform:none}.flow:hover{transform:none}.cols,.steps{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr;row-gap:28px}}
+@media(max-width:640px){.wrap{padding:0 20px}.hero{padding:120px 0 60px}.sec{padding:84px 0!important}.calc{padding:26px 20px}.calc-out{padding:30px 22px}.cta-final{padding:64px 26px;border-radius:26px}.flow{padding:20px}}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+/* motion kit */
+.grainy{position:fixed;inset:0;z-index:250;pointer-events:none;opacity:.07;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.cur{position:fixed;left:0;top:0;z-index:260;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:#fff;mix-blend-mode:difference;pointer-events:none;display:none;transition:width .35s cubic-bezier(.16,1,.3,1),height .35s cubic-bezier(.16,1,.3,1),margin .35s cubic-bezier(.16,1,.3,1)}
+.has-cur .cur{display:block}
+.cur.link{width:46px;height:46px;margin:-23px 0 0 -23px}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}
+.w>span{display:inline-block}
+.mo h1 .w>span{transform:translateY(110%) rotate(5deg);transition:transform 1.1s cubic-bezier(.16,1,.3,1);transition-delay:calc(.1s + var(--i)*55ms)}
+.mo.loaded h1 .w>span{transform:none}
+.mo .hero .lead,.mo .hero .hero-cta,.mo .hero .cta-note{opacity:0;transform:translateY(22px);transition:opacity .9s ease .7s,transform 1s cubic-bezier(.16,1,.3,1) .7s}
+.mo.loaded .hero .lead,.mo.loaded .hero .hero-cta,.mo.loaded .hero .cta-note{opacity:1;transform:none}
+.mo [data-r]{opacity:0;transform:translateY(36px);transition:opacity .9s ease,transform 1.1s cubic-bezier(.16,1,.3,1);transition-delay:calc(var(--d,0)*90ms)}
+.mo [data-r].in{opacity:1;transform:none}
+[data-spot]>*{position:relative}
+[data-spot]>*::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(380px circle at var(--x,50%) var(--y,50%),var(--spot,rgba(255,255,255,.1)),transparent 60%)}
+[data-spot]>*:hover::after{opacity:1}
+.scrub{overflow:hidden;white-space:nowrap;padding:56px 0}
+.scrub div{display:inline-block;font-weight:900;font-size:clamp(80px,16vw,260px);line-height:.9;letter-spacing:-.04em;transform:translateX(calc(6% - var(--p,0)*55%));will-change:transform}
+.scrub em{font-style:normal;color:transparent;-webkit-text-stroke:1.5px var(--stroke,rgba(255,255,255,.5))}
+html.lenis,html.lenis body{height:auto;scroll-behavior:auto}
+@media(prefers-reduced-motion:reduce){.mo [data-r],.mo .hero *{opacity:1!important;transform:none!important}.w>span{transform:none!important}.scrub div{transform:none;white-space:normal;font-size:56px}}
+/* push 2: no small labels, bigger type, ruled lists instead of card grids, split sections */
+body{font-size:19px}
+.kick{display:none!important}
+.sec-sub{font-size:1.28rem;max-width:31em;color:#b3b2c6}
+.stat .num{font-size:clamp(2.4rem,4.4vw,4.2rem);white-space:nowrap}
+.stat .lbl{font-size:1.08rem;color:#b3b2c6}
+.cols[data-spot]{grid-template-columns:1fr 1fr;gap:0 88px;border-top:1px solid var(--line2)}
+.cols[data-spot] .card{background:none;border:0;border-bottom:1px solid var(--line2);border-radius:0;padding:34px 0;transition:padding .45s cubic-bezier(.16,1,.3,1)}
+.cols[data-spot] .card h3{font-size:clamp(1.7rem,2.6vw,2.3rem);transition:color .3s}
+.cols[data-spot] .card p{font-size:1.15rem;color:#b3b2c6;max-width:28em}
+.cols[data-spot] .card:hover{padding-left:16px}.cols[data-spot] .card:hover h3{color:var(--accent)}
+.steps{display:block;margin-top:0!important;border-top:1px solid var(--line2)}
+.step{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:36px;background:none;border:0;border-bottom:1px solid var(--line2);border-radius:0;padding:38px 0}
+.step::before{font-size:clamp(4.4rem,7.4vw,7rem);line-height:.85;margin:0;min-width:1.5em}
+.step b{font-size:clamp(1.7rem,2.8vw,2.4rem);margin-bottom:10px}
+.step span{font-size:1.15rem;color:#b3b2c6;display:block;max-width:30em}
+.p-card{padding:42px 34px}
+.p-card h3{font-size:1.3rem}
+.price{font-size:clamp(4.4rem,6.4vw,6rem)}
+.feats li{font-size:1.06rem}
+details{max-width:none}
+details summary{font-size:1.42rem;padding:28px 0}
+details p{font-size:1.14rem;color:#b3b2c6}
+@media(min-width:1100px){
+  section:has(>.wrap>.steps)>.wrap,section:has(>.wrap>details)>.wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:88px;align-items:start}
+  section:has(>.wrap>.steps)>.wrap>h2,section:has(>.wrap>details)>.wrap>h2{grid-column:1;grid-row:1 / span 12;position:sticky;top:120px;margin:0!important}
+  section:has(>.wrap>.steps)>.wrap>.steps,section:has(>.wrap>details)>.wrap>details{grid-column:2}
+}
+@media(max-width:980px){.cols[data-spot]{grid-template-columns:1fr}}
+@media(max-width:640px){body{font-size:17px}.step{column-gap:16px}}
+</style>
+<script>document.documentElement.classList.add("mo")</script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
+<script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+<script defer src="/offload/checkout.js"></script>
+</head>
+<body>
+<div class="grainy" aria-hidden="true"></div>
+
+<header class="nav"><div class="nav-in">
+  <a class="brand" href="/offload"><svg class="cube" viewBox="0 0 32 32"><path d="M16 4l10 6v12l-10 6-10-6V10z" fill="none" stroke="#5ef2d6" stroke-width="2"/><circle cx="16" cy="16" r="3.5" fill="#5ef2d6"/></svg>Offload</a>
+  <a class="btn btn-primary" href="mailto:info@shipitstudio.co.uk?subject=Offload%20—%20free%20automation%20audit">Get a free audit</a>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div class="hero-grid">
+    <div>
+      <span class="eyebrow reveal"><span class="d"></span>Custom AI automation for UK businesses</span>
+      <h1 class="reveal">You're paying people<br>to copy and paste.<br><span class="hl">Offload it.</span></h1>
+      <p class="lead reveal">We build custom AI automations that do your repetitive admin — chasing quotes, sending invoices, triaging enquiries, onboarding clients — while your team does the work that actually needs a human.</p>
+      <div class="hero-cta reveal">
+        <a class="btn btn-primary btn-lg" href="mailto:info@shipitstudio.co.uk?subject=Offload%20—%20free%20automation%20audit">Book my free audit</a>
+        <span class="cta-note">We map your busywork, free. No commitment.</span>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="flow" id="flow">
+        <div class="flow-title"><span>Automation: quote follow-up</span><span class="live">running</span></div>
+        <div id="nodes"></div>
+        <div class="flow-foot">
+          <div class="saved" id="saved">40 minutes of admin, done in 4 seconds</div>
+          <button class="replay" id="replay" style="display:none">Run it again</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stat reveal"><div class="num">10–15 hrs</div><div class="lbl">of admin a week the average SME wastes on copy-paste tasks*</div></div>
+    <div class="stat reveal"><div class="num">£0</div><div class="lbl">to get your automation audit &amp; roadmap</div></div>
+    <div class="stat reveal"><div class="num">2–3 wks</div><div class="lbl">from audit to your first automation running live</div></div>
+    <div class="stat reveal"><div class="num">Fixed</div><div class="lbl">price agreed upfront — no hourly meter, no surprises</div></div>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <span class="kick reveal">What we automate</span>
+  <h2 class="reveal">If someone on your team does it 50 times a week, we can take it off them.</h2>
+  <p class="sec-sub reveal">We don't sell you software. We build the specific automations your business runs on — wired into the tools you already use.</p>
+  <div class="cols" data-spot>
+    <div class="card reveal"><div class="ci">📩</div><h3>Enquiry triage &amp; reply</h3><p>Every enquiry read, categorised, answered or routed to the right person in seconds — day or night.</p></div>
+    <div class="card reveal"><div class="ci">🧾</div><h3>Quote &amp; invoice chasing</h3><p>Automatic, polite follow-ups on unsigned quotes and unpaid invoices until they're actioned. No more "did we chase that?"</p></div>
+    <div class="card reveal"><div class="ci">📅</div><h3>Booking &amp; scheduling</h3><p>Appointments and jobs booked, confirmed and reminded automatically — synced to your calendar and team.</p></div>
+    <div class="card reveal"><div class="ci">🗂️</div><h3>Client onboarding</h3><p>New client? Documents requested, chased, filed, and the welcome sequence sent — without anyone lifting a finger.</p></div>
+    <div class="card reveal"><div class="ci">📇</div><h3>CRM &amp; data entry</h3><p>Details captured from emails, forms and calls and dropped straight into your CRM or spreadsheet — accurately, every time.</p></div>
+    <div class="card reveal"><div class="ci">📊</div><h3>Reports &amp; reminders</h3><p>The weekly numbers, the renewal reminders, the deadline nudges — compiled and sent on schedule, automatically.</p></div>
+  </div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap">
+  <span class="kick reveal">The maths</span>
+  <h2 class="reveal">What is that admin actually costing you?</h2>
+  <p class="sec-sub reveal">Drag the sliders for one repetitive task, one person.</p>
+  <div class="calc reveal">
+    <div>
+      <label>Hours a week on the task <b id="v1">10</b></label>
+      <input type="range" id="r1" min="2" max="40" value="10">
+      <label>Loaded cost per hour <b id="v2">£22</b></label>
+      <input type="range" id="r2" min="12" max="60" value="22">
+      <label>How much we automate <b id="v3">80%</b></label>
+      <input type="range" id="r3" min="40" max="95" step="5" value="80">
+    </div>
+    <div class="calc-out">
+      <div class="big" id="lost">£8,230</div>
+      <small>recovered every year — one task, one person</small>
+      <div class="vs" id="vs">Most builds pay for themselves in under 3 months</div>
+    </div>
+  </div>
+</div></section>
+
+<div class="scrub" data-scrub aria-hidden="true"><div style="font-family:var(--disp);letter-spacing:-.05em">Chased. <em>Filed.</em> Sent. <em>Chased.</em> Filed. <em>Sent.</em></div></div>
+
+<section class="sec" style="padding-top:0"><div class="wrap">
+  <span class="kick reveal">How it works</span>
+  <h2 class="reveal">Simple, fixed-price, low-risk.</h2>
+  <div class="steps" style="margin-top:30px">
+    <div class="step reveal"><div><b>Free automation audit</b><span>We spend 30 minutes on your business, map where the repetitive hours go, and show you the 2–3 highest-value things to automate first. You keep the roadmap either way.</span></div></div>
+    <div class="step reveal"><div><b>Fixed-price build</b><span>We quote a fixed price for the first automation — agreed before we start, no hourly meter. We build it wired into your existing tools and test it with you.</span></div></div>
+    <div class="step reveal"><div><b>Live &amp; looked after</b><span>It goes live and starts saving hours immediately. Want more automations and ongoing tuning? We move to a simple monthly retainer. If not, you own what we built.</span></div></div>
+  </div>
+</div></section>
+
+<section class="sec" id="pricing" style="padding-top:0"><div class="wrap">
+  <span class="kick reveal">Pricing</span>
+  <h2 class="reveal">Fixed price. Known before we start.</h2>
+  <p class="sec-sub reveal">One automation, or your whole back office on autopilot. The price you see is the total you pay.</p>
+  <div class="cols">
+    <div class="card p-card reveal"><h3>Single Build</h3><div class="price">£1,500<small> one-off</small></div>
+      <ul class="feats"><li>One automation, fully built &amp; tested</li><li>Wired into your existing tools</li><li>Fixed price agreed upfront</li><li>30 days of tweaks included</li></ul>
+      <div class="p-cta">
+        <a class="btn btn-primary" data-checkout="single_build" data-checkout-label="Buy the build — £1,500" href="mailto:info@shipitstudio.co.uk?subject=Offload%20—%20Single%20Build">Enquire to buy — £1,500</a>
+        <a class="btn btn-ghost" href="mailto:info@shipitstudio.co.uk?subject=Offload%20—%20Single%20Build">Start here</a>
+      </div></div>
+    <div class="card p-card hot reveal"><h3>Automation Retainer</h3><div class="price">£2,000<small>/mo</small></div>
+      <ul class="feats"><li>A rolling programme of automations</li><li>We find the next opportunity each month</li><li>Continuous tuning &amp; monitoring</li><li>Priority support &amp; a monthly saved-hours report</li></ul>
+      <div class="p-cta">
+        <a class="btn btn-primary" data-checkout="retainer" data-checkout-label="Start the retainer — £2,000/mo" href="mailto:info@shipitstudio.co.uk?subject=Offload%20—%20Automation%20Retainer">Enquire to subscribe — £2,000/mo</a>
+        <a class="btn btn-ghost" href="mailto:info@shipitstudio.co.uk?subject=Offload%20—%20Automation%20Retainer">Book an audit</a>
+      </div></div>
+    <div class="card p-card reveal"><h3>Transformation</h3><div class="price">Custom</div>
+      <ul class="feats"><li>End-to-end back-office overhaul</li><li>Multiple departments &amp; systems</li><li>Dedicated build team</li><li>Quarterly ROI reporting</li></ul>
+      <a class="btn btn-ghost" href="mailto:info@shipitstudio.co.uk?subject=Offload%20—%20Transformation">Talk to us</a></div>
+  </div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap">
+  <span class="kick reveal">Questions</span>
+  <h2 class="reveal" style="margin-bottom:34px">The things everyone asks.</h2>
+  <details class="reveal"><summary>Do I need to change the software I use?</summary><p>No. We build around the tools you already run — your inbox, CRM, accounting software, calendar. The automation slots into your current setup.</p></details>
+  <details class="reveal"><summary>Is this just ChatGPT?</summary><p>No. We use AI where it's the right tool (reading and writing messages, extracting data), combined with proper automation plumbing so things actually happen — reliably, every time, without someone pressing a button.</p></details>
+  <details class="reveal"><summary>What if it makes a mistake?</summary><p>We build in checkpoints where it matters — an automation can flag something for a human to approve before it sends. You decide how much runs fully hands-off.</p></details>
+  <details class="reveal"><summary>How is it fixed price if every business is different?</summary><p>That's what the free audit is for. Once we've seen the task, we can quote a fixed price for that specific build — so you know the number before you commit.</p></details>
+  <details class="reveal"><summary>Who owns what you build?</summary><p>You do. On a single build, it's yours. The retainer is for ongoing new automations and tuning — cancel monthly, keep everything already built.</p></details>
+</div></section>
+
+<div class="wrap"><div class="cta-final reveal">
+  <span class="kick">Free, no obligation</span>
+  <h2>See where your hours are going.</h2>
+  <p>Book a free 30-minute automation audit. We'll map the repetitive work eating your team's week and show you the three highest-value things to offload first — roadmap yours to keep.</p>
+  <a class="btn btn-primary btn-lg" href="mailto:info@shipitstudio.co.uk?subject=Offload%20—%20free%20automation%20audit">Book my free audit</a>
+</div></div>
+
+<footer><div class="wrap">
+  <span>Offload · <a href="https://shipitstudio.co.uk" target="_blank" rel="noopener">a Ship It Studio company</a></span>
+  <span class="fine"><a href="/offload/quote-follow-up-automation">Quote Follow-Up Automation</a> · <a href="/offload/invoice-chasing-automation">Invoice Chasing Automation</a> · <a href="/offload/enquiry-triage-automation">Enquiry Triage Automation</a> · <a href="/offload/client-onboarding-automation">Client Onboarding Automation</a> · <a href="/offload/crm-data-entry-automation">CRM Data Entry Automation</a></span>
+  <span class="fine">custom AI automation · UK-built · *industry estimates, sources on request</span>
+  <span class="legal">Get Offload is a trading name of Keelson Holdings Ltd, registered in England and Wales, company number 17359226. Registered office: 71-75 Shelton Street, Covent Garden, London WC2H 9JQ. <a href="/offload/privacy">Privacy notice</a></span>
+</div></footer>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const steps=[
+ ["📥","New enquiry lands","\"Can you quote for a rewire?\"",1400],
+ ["🧠","AI reads &amp; understands","Job type, location, urgency extracted",1500],
+ ["✍️","Personalised reply sent","Answers their question, asks for photos",1600],
+ ["📅","Follow-up scheduled","Chases in 2 days if no reply",1400],
+ ["📇","Logged to your CRM","New lead + all details, zero typing",1400]
+];
+const nodesEl=document.getElementById('nodes'),savedEl=document.getElementById('saved'),replayEl=document.getElementById('replay');
+function build(){nodesEl.innerHTML='';steps.forEach((s,i)=>{
+  const n=document.createElement('div');n.className='node';n.id='n'+i;
+  n.innerHTML=`<div class="ic">${i+1}</div><div class="body"><b>${s[1]}</b><span>${s[2]}</span></div><div class="tick">✓</div>`;
+  nodesEl.appendChild(n);
+  if(i<steps.length-1){const c=document.createElement('div');c.className='connector';c.id='c'+i;nodesEl.appendChild(c);}
+});}
+function play(){build();savedEl.classList.remove('on');replayEl.style.display='none';let t=400;
+ steps.forEach((s,i)=>{
+  setTimeout(()=>{document.getElementById('n'+i).classList.add('on');},t);
+  setTimeout(()=>{document.getElementById('n'+i).classList.add('done');const c=document.getElementById('c'+i);if(c)c.classList.add('on');},t+s[3]-400);
+  t+=s[3];
+ });
+ setTimeout(()=>{savedEl.classList.add('on');replayEl.style.display='inline-block';},t+200);
+}
+build();
+new IntersectionObserver(es=>{if(es[0].isIntersecting){play();}},{threshold:.5}).observe(document.getElementById('flow'));
+replayEl.addEventListener('click',play);
+const r1=document.getElementById('r1'),r2=document.getElementById('r2'),r3=document.getElementById('r3');
+function calc(){const h=+r1.value,c=+r2.value,a=+r3.value/100;
+ document.getElementById('v1').textContent=h;
+ document.getElementById('v2').textContent='£'+c;
+ document.getElementById('v3').textContent=Math.round(a*100)+'%';
+ const yr=Math.round(h*c*a*52);
+ document.getElementById('lost').textContent='£'+yr.toLocaleString();}
+[r1,r2,r3].forEach(r=>r.addEventListener('input',calc));calc();
+</script>
+<script>window.MOTION_REVEAL='.none';</script>
+<script>
+(function(){
+  var root=document.documentElement,reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,fine=matchMedia('(pointer:fine)').matches;
+  var h1=document.querySelector('h1');
+  if(h1&&!h1.children.length){var t=h1.textContent.trim();h1.setAttribute('aria-label',t);h1.innerHTML=t.split(/\s+/).map(function(w,i){return '<span class="w" aria-hidden="true" style="--i:'+i+'"><span>'+w+'</span></span>'}).join(' ')}
+  var sel=window.MOTION_REVEAL||'h2,.sub';
+  document.querySelectorAll(sel).forEach(function(el){el.setAttribute('data-r','')});
+  document.querySelectorAll('[data-stagger]').forEach(function(g){[].forEach.call(g.children,function(c,i){c.setAttribute('data-r','');c.style.setProperty('--d',i)})});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -10% 0px'});
+  document.querySelectorAll('[data-r]').forEach(function(el){io.observe(el)});
+  requestAnimationFrame(function(){requestAnimationFrame(function(){root.classList.add('loaded')})});
+  var nav=document.querySelector('.nav');
+  addEventListener('scroll',function(){if(nav)nav.classList.toggle('scrolled',scrollY>20)},{passive:true});
+  if(reduce)return;
+  var bands=[].slice.call(document.querySelectorAll('[data-scrub]')),tick=false;
+  function frame(){tick=false;bands.forEach(function(b){var r=b.getBoundingClientRect();b.style.setProperty('--p',Math.max(0,Math.min(1,(innerHeight-r.top)/(innerHeight+r.height))).toFixed(4))})}
+  addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(frame)}},{passive:true});frame();
+  if(!fine)return;
+  if(window.Lenis){try{var l=new Lenis({lerp:.09,anchors:true});(function raf(t){l.raf(t);requestAnimationFrame(raf)})(0)}catch(e){}}
+  var cur=document.createElement('div');cur.className='cur';cur.setAttribute('aria-hidden','true');document.body.appendChild(cur);root.classList.add('has-cur');
+  var cx=0,cy=0,tx=0,ty=0;addEventListener('pointermove',function(e){tx=e.clientX;ty=e.clientY},{passive:true});
+  (function loop(){cx+=(tx-cx)*.22;cy+=(ty-cy)*.22;cur.style.transform='translate('+cx+'px,'+cy+'px)';requestAnimationFrame(loop)})();
+  document.querySelectorAll('a,button,summary,input').forEach(function(el){el.addEventListener('pointerenter',function(){cur.classList.add('link')});el.addEventListener('pointerleave',function(){cur.classList.remove('link')})});
+  document.querySelectorAll('.btn').forEach(function(b){b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.2)+'px,'+((e.clientY-r.top-r.height/2)*.3)+'px)'});b.addEventListener('pointerleave',function(){b.style.transform=''})});
+  document.querySelectorAll('[data-spot]').forEach(function(g){[].forEach.call(g.children,function(c){c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect();c.style.setProperty('--x',(e.clientX-r.left)+'px');c.style.setProperty('--y',(e.clientY-r.top)+'px')})})});
+})();
+</script>
+<script src="/enquire.js" data-key="8ca05808-7f31-464b-9710-6ac18a9393d3" data-subject="New enquiry from Offload" data-phone="false" defer></script>
+</body>
+</html>
