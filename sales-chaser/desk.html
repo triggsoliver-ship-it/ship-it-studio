@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sales Chaser Desk | Your quote follow-ups, due today</title>
+<meta name="description" content="Keep your open quotes in one list. Each working day Sales Chaser Desk shows which ones to follow up and writes the email for you. Free, no sign-up, and your quotes stay on your own device.">
+<meta name="theme-color" content="#0a0a0b">
+<link rel="canonical" href="https://saleschaser.co.uk/desk">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23ff5a1f'/%3E%3Ccircle cx='16' cy='17' r='9' fill='none' stroke='%2314161a' stroke-width='2.5'/%3E%3Cpath d='M16 17V11M13 5h6' stroke='%2314161a' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0b;--panel:#111113;--card:#161618;--ink:#f4f2ee;--soft:#9b9a96;--rule:rgba(255,255,255,.1);--rule2:rgba(255,255,255,.2);--hot:#ff5a1f;--go:#39d98a;--warn:#ffb020;--cond:"Barlow Condensed",Impact,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--ink);font-family:"Barlow",system-ui,sans-serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--ink)}
+:focus-visible{outline:3px solid var(--hot);outline-offset:3px;border-radius:4px}
+.wrap{max-width:900px;margin:0 auto;padding:0 18px}
+header{border-bottom:1px solid var(--rule)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px}
+.logo{font-family:var(--cond);font-weight:800;font-size:24px;letter-spacing:.02em;text-transform:uppercase;text-decoration:none}
+.logo b{color:var(--hot)}
+h1,h2{font-family:var(--cond);font-weight:800;text-transform:uppercase;line-height:1.02}
+h1{font-size:clamp(34px,8vw,56px);margin:22px 0 8px}
+h2{font-size:clamp(24px,5vw,34px);margin-bottom:10px}
+h3{font-size:18px}
+.soft{color:var(--soft)}.small{font-size:14px}
+section{padding:26px 0;border-top:1px solid var(--rule)}
+.btn{display:inline-block;background:var(--hot);color:#14161a;text-decoration:none;border:0;border-radius:8px;padding:11px 16px;font:700 16px "Barlow",sans-serif;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--rule2)}
+.btn.go{background:var(--go)}
+.btn.small{padding:8px 12px;font-size:14px}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:14px}
+.stat{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:12px}
+.stat b{display:block;font-size:24px}
+.stat span{font-size:13px;color:var(--soft)}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:16px;margin-top:12px}
+.card.due{border-color:var(--hot)}
+.n{font-family:var(--cond);font-weight:800;color:var(--hot);font-size:14px;letter-spacing:.12em}
+.email{white-space:pre-wrap;background:var(--bg);border:1px solid var(--rule);border-radius:10px;padding:12px;font-size:15px;margin:10px 0}
+label{display:block;font-size:13px;color:var(--soft);margin-bottom:4px}
+input,textarea{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1px solid var(--rule2);border-radius:8px;padding:10px 12px;color-scheme:dark}
+textarea{min-height:100px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form .wide{grid-column:1/-1}
+@media (max-width:560px){.form{grid-template-columns:1fr}}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px}
+th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--soft)}
+.r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.x{background:transparent;border:1px solid var(--rule2);color:var(--soft);border-radius:6px;padding:4px 9px;font:inherit;font-size:13px;cursor:pointer;margin:0 4px 4px 0}
+.hide{display:none}
+.msg{color:var(--warn);font-size:15px;margin-top:8px}
+footer{border-top:1px solid var(--rule);padding:24px 0 44px;color:var(--soft);font-size:14px}
+footer a{color:var(--soft)}
+</style>
+</head>
+<body>
+<header><div class="bar wrap">
+  <a class="logo" href="/sales-chaser">Sales<b>Chaser</b></a>
+  <span class="soft small">Desk</span>
+</div></header>
+
+<main class="wrap">
+  <h1>Your follow-ups, due today</h1>
+  <p class="soft">Keep your open quotes here. Each working day this page shows which ones to follow up and writes the email. You send it from your own email with one tap. Your quotes are saved on this device only; nothing is sent to us.</p>
+  <div id="store" class="msg hide">This browser will not save your list (private browsing, or storage is switched off). You can still use the page, but copy a backup before you close it.</div>
+  <div class="stats">
+    <div class="stat"><b id="kOpen">£0</b><span>in open quotes</span></div>
+    <div class="stat"><b id="kDue">0</b><span>follow-ups due today</span></div>
+    <div class="stat"><b id="kWon">£0</b><span>won</span></div>
+    <div class="stat"><b id="kRate">–</b><span>of closed quotes won</span></div>
+  </div>
+
+  <section>
+    <h2>Due today</h2>
+    <div id="due"></div>
+  </section>
+
+  <section>
+    <h2>Add a quote</h2>
+    <div class="form">
+      <div><label for="fC">Customer name</label><input id="fC" autocomplete="off"></div>
+      <div><label for="fE">Customer email</label><input id="fE" type="email" autocomplete="off" inputmode="email"></div>
+      <div class="wide"><label for="fJ">What the quote is for (optional)</label><input id="fJ" placeholder="e.g. kitchen refit" autocomplete="off"></div>
+      <div><label for="fV">Quote value £</label><input id="fV" type="number" step="0.01" min="0" inputmode="decimal"></div>
+      <div><label for="fD">Date you sent it</label><input id="fD" type="date"></div>
+    </div>
+    <div class="btns"><button class="btn" id="add" type="button">Add quote</button></div>
+    <div id="addMsg" class="msg"></div>
+  </section>
+
+  <section>
+    <h2>All quotes</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>Customer</th><th class="r">Value</th><th>Sent</th><th>Where it is</th><th></th></tr></thead>
+      <tbody id="tb"></tbody>
+    </table></div>
+    <p id="empty" class="soft">No quotes yet. Add your first one above.</p>
+  </section>
+
+  <section>
+    <h2>Settings and backup</h2>
+    <div style="max-width:420px"><label for="biz">Your business name (signs the emails)</label><input id="biz" placeholder="Your business"></div>
+    <p class="soft small" style="margin-top:14px">Your list lives in this browser on this device. To move it to another device, or to keep a safe copy, copy a backup and paste it in on the other side.</p>
+    <div class="btns">
+      <button class="btn ghost small" id="backup" type="button">Copy backup</button>
+      <button class="btn ghost small" id="showRestore" type="button">Restore from backup</button>
+    </div>
+    <div id="restoreBox" class="hide" style="margin-top:10px">
+      <label for="restoreText">Paste a backup here. It replaces the list on this device.</label>
+      <textarea id="restoreText" spellcheck="false"></textarea>
+      <div class="btns"><button class="btn ghost small" id="restore" type="button">Replace my list</button></div>
+    </div>
+    <div id="setMsg" class="msg"></div>
+  </section>
+
+  <section>
+    <h2>Want it sent automatically?</h2>
+    <p class="soft">Desk is free and you press send. In the pilot, Sales Chaser sends the follow-ups for you and stops when the customer replies.</p>
+    <div class="btns"><a class="btn" href="mailto:info@shipitstudio.co.uk?subject=Sales%20Chaser%20%E2%80%94%20join%20the%20pilot">Join the pilot</a></div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  <p><a href="/sales-chaser">Sales Chaser</a> · <a href="/sales-chaser/privacy">Privacy</a> · <a href="mailto:info@shipitstudio.co.uk">info@shipitstudio.co.uk</a></p>
+  <p style="margin-top:10px">Sales Chaser is a trading name of Keelson Holdings Ltd, registered in England and Wales, company number 17359226. Registered office: 71-75 Shelton Street, Covent Garden, London WC2H 9JQ.</p>
+</div></footer>
+
+<script>
+var KEY="sc_desk_v1",$=function(id){return document.getElementById(id);};
+var STEPS=[3,7,14],NAMES=["Friendly nudge","Second follow-up","Last note"];
+var state={biz:"",quotes:[]},canStore=true;
+function load(){try{var s=localStorage.getItem(KEY);if(s){var o=JSON.parse(s);if(o&&Array.isArray(o.quotes))state=o;}}catch(e){canStore=false;}
+  try{localStorage.setItem(KEY+"_t","1");localStorage.removeItem(KEY+"_t");}catch(e){canStore=false;}}
+function save(){if(!canStore)return;try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){canStore=false;$("store").classList.remove("hide");}}
+function gbp(n){return "£"+Number(n).toLocaleString("en-GB",{minimumFractionDigits:n%1?2:0,maximumFractionDigits:2});}
+function iso(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
+function day(s){return new Date(s+"T00:00:00");}
+function today(){var d=new Date();d.setHours(0,0,0,0);return d;}
+function addDays(d,n){var x=new Date(d);x.setDate(x.getDate()+n);return x;}
+function nice(s){return day(s).toLocaleDateString("en-GB",{day:"numeric",month:"short"});}
+/* next follow-up for a quote: {n: 0..2, dueOn: Date} or null when all three are done */
+function next(q){var n=(q.fu||[]).length;if(q.status!=="open"||n>=STEPS.length)return null;return{n:n,dueOn:addDays(day(q.sent),STEPS[n])};}
+function isDue(q,now){var x=next(q);if(!x)return false;var wd=now.getDay();if(wd===0||wd===6)return false;return now>=x.dueOn;}
+function draft(q,n){
+  var who=state.biz||"[your business]",amt=gbp(q.value),sent=day(q.sent).toLocaleDateString("en-GB",{day:"numeric",month:"long"});
+  var job=q.job?" for the "+q.job:"",parts=(q.customer||"").trim().split(/\s+/),person=parts.length===2&&/^[A-Z][a-z'-]+$/.test(parts[0])&&/^[A-Z][a-z'-]+$/.test(parts[1])&&!/^(Mr|Mrs|Ms|Miss|Dr|The)$/.test(parts[0])&&!/^(Ltd|Limited|Llp|Plc|Co|Nursery|Cafe|Services|Group|School|Club|Lettings|Builders|Hotel|Garage|Shop|Centre|Studio|Farm|Church|Council|Surgery|Clinic|Homes|Estates|Motors|Bakery|Salon|Dental|Roofing|Plumbing|Electrical|Solutions|Trading|Kitchens|Flooring)$/.test(parts[1]),hi=person?"Hi "+parts[0]+",":"Hi,";
+  if(n===0)return{s:"Your quote from "+who,b:hi+"\n\nI sent over our quote"+job+" ("+amt+") on "+sent+" and wanted to check it reached you safely.\n\nIf you have any questions, or would like anything changed, just reply to this email and I will sort it.\n\nMany thanks,\n"+who};
+  if(n===1)return{s:"Any questions on the quote?",b:hi+"\n\nI am following up on the quote"+job+" ("+amt+") that I sent on "+sent+".\n\nIf anything in it is unclear, or the timing or scope is not quite right, tell me and I will happily look at it again.\n\nWould you like to go ahead?\n\nThank you,\n"+who};
+  return{s:"Shall I close this quote?",b:hi+"\n\nI have not heard back about the quote"+job+" ("+amt+") from "+sent+", so I wanted to check one last time.\n\nIf you have gone another way, that is completely fine. A quick reply either way would help me keep my diary straight.\n\nIf you would still like to go ahead, just say and I will get you booked in.\n\nKind regards,\n"+who};
+}
+function el(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e;}
+function btn(label,cls,fn){var b=el("button",cls,label);b.type="button";b.onclick=fn;return b;}
+function copy(text,b,label){var done=function(ok){b.textContent=ok?"Copied ✓":"Select and copy the text";setTimeout(function(){b.textContent=label;},2200);};
+  try{navigator.clipboard.writeText(text).then(function(){done(true);},function(){done(false);});}catch(e){done(false);}}
+function close(q,how){q.status=how;q.closed=iso(today());save();render();}
+function where(q,now){
+  if(q.status==="won")return "Won"+(q.closed?" "+nice(q.closed):"");
+  if(q.status==="lost")return "Lost"+(q.closed?" "+nice(q.closed):"");
+  var x=next(q),sentN=(q.fu||[]).length;
+  if(!x)return "All 3 follow-ups sent. Waiting.";
+  if(isDue(q,now))return NAMES[x.n]+" due now";
+  return (sentN?sentN+" sent. ":"")+NAMES[x.n]+" due "+nice(iso(x.dueOn));
+}
+function render(){
+  var now=today(),open=0,won=0,wonN=0,lostN=0,dueList=[];
+  state.quotes.forEach(function(q){
+    if(q.status==="open"){open+=q.value;if(isDue(q,now))dueList.push(q);}
+    else if(q.status==="won"){won+=q.value;wonN++;}else lostN++;
+  });
+  $("kOpen").textContent=gbp(open);$("kDue").textContent=dueList.length;$("kWon").textContent=gbp(won);
+  $("kRate").textContent=(wonN+lostN)?Math.round(100*wonN/(wonN+lostN))+"%":"–";
+  var due=$("due");due.textContent="";
+  var wd=now.getDay();
+  if(!dueList.length){
+    due.appendChild(el("p","soft",(wd===0||wd===6)?"Nothing is chased at weekends. Come back on Monday.":state.quotes.some(function(q){return q.status==="open";})?"Nothing to chase today. You are up to date.":"Add a quote and its first follow-up will appear here three days after you sent it."));
+  }
+  dueList.sort(function(a,b){return b.value-a.value;}).forEach(function(q){
+    var x=next(q),d=draft(q,x.n),c=el("div","card due");
+    c.appendChild(el("div","n","FOLLOW-UP "+(x.n+1)+" OF 3 · "+NAMES[x.n].toUpperCase()));
+    c.appendChild(el("h3",null,q.customer+" — "+gbp(q.value)));
+    c.appendChild(el("p","soft small","Quote sent "+nice(q.sent)+(q.email?" · "+q.email:" · no email saved")));
+    var body=el("div","email","Subject: "+d.s+"\n\n"+d.b);c.appendChild(body);
+    var row=el("div","btns");
+    if(q.email){var a=el("a","btn small","Open in my email");a.href="mailto:"+encodeURIComponent(q.email).replace(/%40/g,"@")+"?subject="+encodeURIComponent(d.s)+"&body="+encodeURIComponent(d.b);row.appendChild(a);}
+    var cb=btn("Copy email","btn ghost small",function(){copy(body.textContent,cb,"Copy email");});row.appendChild(cb);
+    row.appendChild(btn("I sent it","btn go small",function(){q.fu=(q.fu||[]).concat(iso(today()));save();render();}));
+    row.appendChild(btn("They said yes","btn ghost small",function(){close(q,"won");}));
+    row.appendChild(btn("They said no","btn ghost small",function(){close(q,"lost");}));
+    c.appendChild(row);due.appendChild(c);
+  });
+  var tb=$("tb");tb.textContent="";
+  $("empty").classList.toggle("hide",state.quotes.length>0);
+  state.quotes.slice().sort(function(a,b){return (a.status==="open"?0:1)-(b.status==="open"?0:1)||b.sent.localeCompare(a.sent);}).forEach(function(q){
+    var tr=el("tr");
+    var c1=el("td");c1.appendChild(el("div",null,q.customer));if(q.job)c1.appendChild(el("div","soft small",q.job));tr.appendChild(c1);
+    tr.appendChild(el("td","r",gbp(q.value)));tr.appendChild(el("td",null,nice(q.sent)));tr.appendChild(el("td",null,where(q,now)));
+    var act=el("td");
+    if(q.status==="open"){act.appendChild(btn("Won","x",function(){close(q,"won");}));act.appendChild(btn("Lost","x",function(){close(q,"lost");}));}
+    else act.appendChild(btn("Reopen","x",function(){q.status="open";delete q.closed;save();render();}));
+    act.appendChild(btn("Remove","x",function(){state.quotes=state.quotes.filter(function(z){return z!==q;});save();render();}));
+    tr.appendChild(act);tb.appendChild(tr);
+  });
+}
+$("add").onclick=function(){
+  var c=$("fC").value.trim(),e=$("fE").value.trim(),v=parseFloat($("fV").value),d=$("fD").value,m=$("addMsg");
+  if(!c||!(v>0)||!d){m.textContent="A quote needs a customer name, a value and the date you sent it.";return;}
+  if(e&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)){m.textContent="That email address does not look right.";return;}
+  if(day(d)>today()){m.textContent="The sent date is in the future.";return;}
+  m.textContent="";
+  state.quotes.push({id:Date.now().toString(36),customer:c,email:e,job:$("fJ").value.trim(),value:v,sent:d,fu:[],status:"open"});
+  ["fC","fE","fJ","fV","fD"].forEach(function(i){$(i).value="";});
+  save();render();
+};
+$("biz").oninput=function(){state.biz=$("biz").value.trim();save();render();};
+$("backup").onclick=function(){copy(JSON.stringify(state),$("backup"),"Copy backup");};
+$("showRestore").onclick=function(){$("restoreBox").classList.toggle("hide");};
+$("restore").onclick=function(){
+  var m=$("setMsg");
+  try{var o=JSON.parse($("restoreText").value);
+    if(!o||!Array.isArray(o.quotes))throw 0;
+    o.quotes=o.quotes.filter(function(q){return q&&q.customer&&q.value>0&&/^\d{4}-\d{2}-\d{2}$/.test(q.sent);}).map(function(q){
+      return{id:String(q.id||Date.now().toString(36)+Math.random().toString(36).slice(2,6)),customer:String(q.customer),email:String(q.email||""),job:String(q.job||""),value:Number(q.value),sent:q.sent,fu:Array.isArray(q.fu)?q.fu.filter(function(x){return typeof x==="string";}):[],status:["open","won","lost"].indexOf(q.status)>-1?q.status:"open",closed:typeof q.closed==="string"?q.closed:undefined};});
+    state={biz:String(o.biz||""),quotes:o.quotes};$("biz").value=state.biz;save();render();
+    m.textContent="Restored "+state.quotes.length+" quote(s).";$("restoreBox").classList.add("hide");$("restoreText").value="";
+  }catch(e){m.textContent="That does not look like a Sales Chaser backup.";}
+};
+load();$("biz").value=state.biz||"";if(!canStore)$("store").classList.remove("hide");render();
+</script>
+<script src="/_vercel/insights/script.js" defer></script>
+</body>
+</html>
